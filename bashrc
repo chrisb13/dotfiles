@@ -113,6 +113,9 @@ alias qme='qstat -nru $USER'
 alias r='cd ~/hdrive/repos/cms_analysis/'
 alias py='python '
 alias katint='qsub -I -l nodes=1:ppn=1,vmem=20gb,walltime=1:00:00'
+alias s='ssh -X z3457920@squall.science.unsw.edu.au'
+alias maelstrom='ssh -X z3457920@maelstrom.science.unsw.edu.au'
+alias monsoon='ssh -X z3457920@monsoon.science.unsw.edu.au'
 
 #git alias
 alias gittrack='git ls-tree --full-tree -r HEAD'
