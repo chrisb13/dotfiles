@@ -80,8 +80,7 @@ RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
 
-PS1="$RED\$(date +%H:%M) \w$YELLOW \$(parse_git_branch)$GREEN\$ "
-
+export PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h]$PS1 $RED\$(date +%H:%M) \$(parse_git_branch)$GREEN\$ "
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -105,6 +104,7 @@ alias vim='vimx'
 alias u='cd ..'
 alias c='clear'
 alias edprof='vi ~/.bashrc'
+alias edvim='vi ~/.vimrc'
 alias runprof='. ~/.bashrc'
 alias aabw='cd /home/z3457920/hdrive/aabw'
 alias pdata='cd /srv/ccrc/data15/z3263455/eocene'
@@ -125,6 +125,7 @@ alias tensor='ssh -X z3457920@tensor.maths.unsw.edu.au'
 alias adrift='ssh -X chris@115.146.86.89'
 alias qme='qstat -nru $USER'
 alias r='cd ~/hdrive/repos/cms_analysis/'
+alias sa='cd ~/hdrive/repos/swissarmy/'
 alias py='python '
 alias katint='qsub -I -l nodes=1:ppn=1,vmem=20gb,walltime=1:00:00'
 alias s='ssh -X z3457920@squall.science.unsw.edu.au'

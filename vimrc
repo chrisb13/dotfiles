@@ -1,5 +1,8 @@
 call pathogen#infect()
 call pathogen#helptags()
+"Rebind <Leader> key
+let mapleader = ","
+
 "
 "
 " ~/.vimrc (configuration file for vim only)
@@ -45,7 +48,6 @@ autocmd BufNewFile	*.spec	call SKEL_spec()
 " paste. At the bottom you should see ``-- INSERT (paste) --``.
 
 set pastetoggle=<F3>
-
 
 " Mouse and backspace
 " set mouse=a " on OSX press ALT and click
@@ -145,9 +147,6 @@ filetype off
 " then press ``>`` several times.
 vnoremap < <gv " better indentation
 vnoremap > >gv " better indentation
-
-"Rebind <Leader> key
-let mapleader = ","
 
 "moving between tabs
 map <Leader>n <esc>:tabprevious<CR>
