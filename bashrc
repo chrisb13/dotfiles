@@ -69,6 +69,20 @@ xterm*|rxvt*)
     ;;
 esac
 
+
+#function parse git branch
+function parse_git_branch {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo "("${ref#refs/heads/}")"
+}
+
+RED="\[\033[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+GREEN="\[\033[0;32m\]"
+
+PS1="$RED\$(date +%H:%M) \w$YELLOW \$(parse_git_branch)$GREEN\$ "
+
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
