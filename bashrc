@@ -76,11 +76,8 @@ function parse_git_branch {
     echo "("${ref#refs/heads/}")"
 }
 
-RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-GREEN="\[\033[0;32m\]"
-
-export PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h]$PS1 $RED\$(date +%H:%M) \$(parse_git_branch)$GREEN\$ "
+#neds version
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)\$ '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -132,6 +129,7 @@ alias katint='qsub -I -l nodes=1:ppn=1,vmem=20gb,walltime=1:00:00'
 alias s='ssh -X z3457920@squall.science.unsw.edu.au'
 alias maelstrom='ssh -X z3457920@maelstrom.science.unsw.edu.au'
 alias monsoon='ssh -X z3457920@monsoon.science.unsw.edu.au'
+alias sniped='vi ~/.vim/bundle/vim-snippets/snippets/python.snippets'
 
 #git alias
 alias gittrack='git ls-tree --full-tree -r HEAD'
@@ -264,6 +262,7 @@ import time
 ####       lg.info("Local current time : "+ str(localtime))
 
 
+
 from cb2logger import *
 
 
@@ -272,6 +271,13 @@ if __name__ == "__main__":                                     #are we being run
     #LogStart(args.inputdir+'asciplot_lc_katana'+args.fno + '.log',fout=True)
 
     #PUT wothwhile code here!
+
+#   lg.info("------Package version information-------")
+#   lg.info("Pandas version: " + str(pd.__version__))
+#   lg.info("Numpy version: " + str(np.__version__))
+#   lg.info("Matplotlib version: " + str(matplotlib.__version__))
+#   lg.info("------Package version information-------")
+
 
     lg.info('')
     localtime = time.asctime( time.localtime(time.time()) )

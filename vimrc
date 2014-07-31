@@ -1,8 +1,8 @@
 call pathogen#infect()
 call pathogen#helptags()
-"Rebind <Leader> key
-let mapleader = ","
 
+syntax on
+filetype plugin indent on
 "
 "
 " ~/.vimrc (configuration file for vim only)
@@ -48,6 +48,7 @@ autocmd BufNewFile	*.spec	call SKEL_spec()
 " paste. At the bottom you should see ``-- INSERT (paste) --``.
 
 set pastetoggle=<F3>
+
 
 " Mouse and backspace
 " set mouse=a " on OSX press ALT and click
@@ -140,7 +141,6 @@ map <leader>td <Plug>TaskList
 
 "se mouse+=a
 
-filetype off
 
 " easier moving of code blocks
 " Try to go into visual mode (v), thenselect several lines of code here and
@@ -148,14 +148,15 @@ filetype off
 vnoremap < <gv " better indentation
 vnoremap > >gv " better indentation
 
+"Rebind <Leader> key
+let mapleader = ","
+
 "moving between tabs
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
 
 nnoremap <F4> :GundoToggle<CR>
 
-filetype plugin indent on
-syntax on
 
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
 inoremap <Nul> <C-x><C-o>
@@ -166,8 +167,7 @@ inoremap <Nul> <C-x><C-o>
 :command Plot :normal i plt.close('all')<Enter>fig=plt.figure()<Enter>ax=fig.add_subplot(1, 1,1)<Enter>ax.set_title('')<Enter>ax.set_xlabel('')<Enter>ax.set_ylabel('')<Enter>#fig.savefig('./.png',dpi=300)<Enter>plt.show()<ESC>
 
 "syntax highlighting and validation
-filetype on                          " try to detect filetypes
-filetype plugin indent on    " enable loading indent file for filetype
+"filetype plugin indent on    " enable loading indent file for filetype
 let g:pyflakes_use_quickfix = 0
 let g:pep8_map='<leader>8'
 
@@ -240,9 +240,6 @@ set nocompatible
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
 filetype indent plugin on
-
-" Enable syntax highlighting
-syntax on
 
 
 "------------------------------------------------------------
