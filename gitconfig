@@ -1,0 +1,8 @@
+[user]
+	email = z3457920@student.unsw.edu.au
+	name = Christopher Bull (yoga)
+
+[alias]
+    lg = log --oneline --all --decorate --color --graph
+[color]
+	ui = auto
