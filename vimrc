@@ -1,5 +1,8 @@
 call pathogen#infect()
 call pathogen#helptags()
+"Rebind <Leader> key
+let mapleader = ","
+
 "
 "
 " ~/.vimrc (configuration file for vim only)
@@ -45,7 +48,6 @@ autocmd BufNewFile	*.spec	call SKEL_spec()
 " paste. At the bottom you should see ``-- INSERT (paste) --``.
 
 set pastetoggle=<F3>
-
 
 " Mouse and backspace
 " set mouse=a " on OSX press ALT and click
@@ -146,9 +148,6 @@ filetype off
 vnoremap < <gv " better indentation
 vnoremap > >gv " better indentation
 
-"Rebind <Leader> key
-let mapleader = ","
-
 "moving between tabs
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
@@ -205,6 +204,8 @@ set foldlevel=99
 nmap <leader>a <Esc>:Ack!
 
 map <F2> :NERDTreeToggle<CR>
+nnoremap <buffer> <F7> :exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cms_diagnostics.py ./' <cr>
+nnoremap <buffer> <F8> :exec '!rsync -avz ./cms_diagnostics.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cms_diagnostics.py' <cr>
 
 "" Add the virtualenv's site-packages to vim path
 "py << EOF
