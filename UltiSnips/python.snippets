@@ -1,0 +1,113 @@
+
+#CHRIS'
+snippet log
+lg.info("${1:msg}: " + str(${2:non-string}))
+endsnippet
+
+snippet timeit
+start=time.time()
+#insert timed code here
+finish=time.time()
+lg.info("time for ${0:msg}: %s",str(finish-start))
+endsnippet
+
+snippet parser
+import argparse
+parser = argparse.ArgumentParser(description='Parser for ${1:msg}.',\
+epilog='')
+parser.add_argument("${2:arg}",help="mandatory argument $2 is: ${3:msg}")
+parser.add_argument("${4:arg}",help="mandatory argument $4 is: ${5:msg}")
+parser.add_argument("-${6:shortarg}","--${7:longarg}",help="optional argument \
+$7 for ${8:msg}.",action="store")
+args=parser.parse_args()
+lg.info("$2 is: "+str(args.$2))
+lg.info("$4 is: "+str(args.$4))
+if args.$2!=None:
+	pass
+if args.$4!=None:
+	pass
+if args.$7==None:
+	lg.info("$7 was not given.")
+else:
+	lg.info("$7 is: "+args.$7)
+endsnippet
+
+snippet hackit
+import subprocess 
+path=['/srv/ccrc/data32/z3457920/leeuwincurrent2/expt_lc_fwdcore01/output/pandasHDF/toyhdf/',\
+	'/srv/ccrc/data32/z3457920/leeuwincurrent2/expt_lc_fwdcore01/output/pandasHDF/toyhdf2/',\
+	'/srv/ccrc/data32/z3457920/leeuwincurrent2/expt_lc_fwdcore01/output/pandasHDF/toyhdf3/']
+boundingbox=['118 130 -37 -31','120 130 -37 -31']
+
+#with ctx.closing(open('./go.sh','w')) as handle:
+for p in path:
+	for bb in boundingbox:
+		do="python cms_diagnostics.py " + p + " " + "-bndbox '" + bb + "' &"
+		print p,bb
+		print ''
+		print do
+		subprocess.call(do,shell=True)
+
+#subprocess.call('chmod +x ./go.sh',shell=True)
+endsnippet
+
+snippet catch
+if ${1:msg}:
+	lg.error("${2:msg}: " + str(${3:non-string}))
+	sys.exit("Okay, shit went bad, now exit.")
+endsnippet
+		
+
+
+# New Class
+snippet cl
+class ${1:ClassName}(${2:object}):
+	"""
+	${3:docstring for $1}.
+
+	Parameters
+	----------
+	$4: 
+
+	Returns
+	-------
+	
+	Notes
+	-------
+	
+
+	Example
+	--------
+	>>> 
+	>>> 
+	"""
+	def __init__(self, ${4:arg}):
+		${5:super($1, self).__init__()}
+		self.$4 = $4
+		${0}
+endsnippet
+
+# New Function
+snippet def
+def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+	"""
+	${3:docstring for $1}.
+
+	Parameters
+	----------
+	$4: 
+
+	Returns
+	-------
+	
+	Notes
+	-------
+	
+
+	Example
+	--------
+	>>> 
+	>>> 
+	"""
+	${0}
+endsnippet
