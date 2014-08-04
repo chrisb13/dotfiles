@@ -231,7 +231,7 @@ import logging as lg
 import time
 #import sys
 #import os
-#sys.path.insert(0,os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+#sys.path.insert(1,os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 #import swissarmy as sa
 
 #lg.basicConfig(filename='example.log',filemode='w',format='%(levelname)s:%(message)s', level=lg.DEBUG) #where filemode clobbers file
