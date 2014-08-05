@@ -158,6 +158,8 @@ map <Leader>m <esc>:tabnext<CR>
 
 nnoremap <F4> :GundoToggle<CR>
 
+"Flake8 remap
+autocmd FileType python map <buffer> <F5> :call Flake8()<CR>
 
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
 inoremap <Nul> <C-x><C-o>
