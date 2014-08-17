@@ -92,12 +92,38 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
+
+case $(hostname) in
+    typhoon.ccrc.unsw.edu.au|katana.science.unsw.edu.au) 
+        module load hdf5           
+        module load ncview
+        module load netcdf/3.6.3-intel 
+        #module load netcdf
+        module load intel
+        module load matlab/2011b
+        module load python
+        module load proj
+        ;;
+    squall.ccrc.unsw.edu.au|maelstrom.ccrc.unsw.edu.au|monsoon.ccrc.unsw.edu.au)
+        alias v='vimx'
+        alias vi='vimx'
+        alias vim='vimx'
+        module load hdf5               #for new storm servers
+        module load ncview
+        module load netcdf/3.6.3-intel
+        #module load netcdf
+        module load intel
+        module load matlab/2011b
+        module load python
+        module load proj
+        ;;
+    #ccrc165) 
+esac
+
+
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias v='vimx'
-alias vi='vimx'
-alias vim='vimx'
 alias u='cd ..'
 alias c='clear'
 alias edprof='vi ~/.bashrc'
@@ -149,17 +175,6 @@ alias pyk='source ~/env/katana_env/bin/activate'   #for katana
 
 #cb added
 set -o vi
-module load hdf5               #for new storm servers
-#module load hdf5/1.8.8-intel  #forces us to have the same version on katana and storm -- useful for pytables
-
-
-module load ncview
-module load netcdf/3.6.3-intel #useful for paul's rhomoc
-#module load netcdf
-module load intel
-module load matlab/2011b
-module load python
-module load proj
 
 
 export MATLABPATH=$HOME/.matlab
