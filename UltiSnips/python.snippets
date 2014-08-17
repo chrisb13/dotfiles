@@ -1,4 +1,22 @@
 
+#CHRIS' paths
+snippet  cbd
+'/srv/ccrc/data23/z3457920/leeuwincurrent/'
+endsnippet 
+
+snippet  cbd2
+'/srv/ccrc/data32/z3457920/leeuwincurrent2/'
+endsnippet 
+
+snippet r
+'~/hdrive/repos/cms_analysis/'
+endsnippet
+
+snippet sa
+'~/hdrive/repos/swissarmy/'
+endsnippet
+
+
 #CHRIS'
 snippet log
 lg.info("${1:msg}: " + str(${2:non-string}))
@@ -89,6 +107,26 @@ plt.show()
 endsnippet
 
 
+snippet snsplot
+
+
+import seaborn as sns
+import itertools
+#sns.set(style="whitegrid")
+sns.axes_style('darkgrid')
+#sns.set_style("ticks")
+#sns.set_palette("deep", desat=.6)
+sns.set_style("darkgrid", {"grid.linewidth": .5, "axes.facecolor": ".9"})
+sym=itertools.cycle(['v','o','^','s','D'])
+plt.close('all')
+fig=plt.figure()
+ax=fig.add_subplot(1, 1,1)
+${0:code to plot}
+ax.plot(foob.index,foob['transport'], linestyle='--',marker=sym.next(),label=cookie)
+plt.show()
+endsnippet
+
+
 # New Class
 snippet cl
 class ${1:ClassName}(${2:object}):
@@ -140,6 +178,35 @@ def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 	>>> 
 	"""
 	${0}
+endsnippet
+
+snippet pdhdf
+efile = ${1:variable for export path} + ${2:name of exported hdf}+'_table'+ '.h5'
+store = pd.HDFStore(efile,complevel=9, complib='blosc')
+store.append('DF',DF,data_columns = ${3:list of columns that will be data columns}) #querable columns or dc take more space and are slower
+store.close()
+endsnippet
+
+snippet toypanda
+import itertools
+import pandas as pd
+import numpy as np
+def expand_grid(data_dict):
+    rows = itertools.product(*data_dict.values())
+    return pd.DataFrame.from_records(rows, columns=data_dict.keys())
+
+
+df = expand_grid(
+    {'height': [60, 70],
+     'weight': [100, 140, 180],
+     'sex': ['Male', 'Female']}
+    )
+
+df2 = pd.DataFrame(
+        {u'stratifying_var': np.random.uniform(0, 100, 20),
+         u'price': np.random.normal(100, 5, 20)}
+    )
+
 endsnippet
 
 #stolen from:
