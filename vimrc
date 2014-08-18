@@ -136,8 +136,6 @@ let g:jedi#usages_command = "<leader>z"
 "let g:jedi#popup_select_first = 0
 let g:jedi#use_splits_not_buffers = "right"
 
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
 " Better navigating through omnicomplete option list
 " See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
 set completeopt=longest,menuone
@@ -155,8 +153,8 @@ endfunction
 inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
 inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
+"tries to fix clipboard
 set clipboard=unnamed
-
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
@@ -170,7 +168,7 @@ if 'VIRTUAL_ENV' in os.environ:
     execfile(activate_this, dict(__file__=activate_this))
 EOF
 
-
+"run file in python
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 
 """" Sample .vimrc file by Martin Brochhaus
@@ -183,13 +181,6 @@ vnoremap <C-p> "+gp
 "colorscheme elflord
 "" colors koehler
 
-map <leader>td <Plug>TaskList
-
-"set clipboard=unnamed
-
-"se mouse+=a
-
-
 " easier moving of code blocks
 " Try to go into visual mode (v), thenselect several lines of code here and
 " then press ``>`` several times.
@@ -199,7 +190,8 @@ vnoremap > >gv " better indentation
 "Rebind <Leader> key
 let mapleader = ","
 
-nnoremap <F4> :GundoToggle<CR>
+"Gundo
+"nnoremap <F4> :GundoToggle<CR>
 
 "Flake8 remap
 autocmd FileType python map <buffer> <F5> :call Flake8()<CR>
@@ -212,10 +204,15 @@ inoremap <Nul> <C-x><C-o>
 :command Pdb :normal i import pdb;pdb.set_trace()<ESC>
 :command Plot :normal i plt.close('all')<Enter>fig=plt.figure()<Enter>ax=fig.add_subplot(1, 1,1)<Enter>ax.set_title('')<Enter>ax.set_xlabel('')<Enter>ax.set_ylabel('')<Enter>#fig.savefig('./.png',dpi=300)<Enter>plt.show()<ESC>
 
-"syntax highlighting and validation
-"filetype plugin indent on    " enable loading indent file for filetype
-let g:pyflakes_use_quickfix = 0
-let g:pep8_map='<leader>8'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<leader>k"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"remap escape key
+:imap jj <Esc>
+
 
 " IndentGuide stuff
 let g:indent_guides_enable_on_vim_startup = 1
@@ -243,13 +240,14 @@ set foldmethod=indent
 set foldlevel=99
 
 "code completion
-"au FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 
 "searching with ack!
 nmap <leader>a <Esc>:Ack!
 
+"NERDTree
 map <F2> :NERDTreeToggle<CR>
+
 nnoremap <buffer> <F7> :exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cms_diagnostics.py ./' <cr>
 nnoremap <buffer> <F8> :exec '!rsync -avz ./cms_diagnostics.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cms_diagnostics.py' <cr>
 
@@ -306,7 +304,6 @@ set hidden
 " set autowriteall
 
 " Better command-line completion
-set wildmenu
 set wildmode=longest,list
 
 " Show partial commands in the last line of the screen
