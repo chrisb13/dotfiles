@@ -191,7 +191,7 @@ vnoremap > >gv " better indentation
 let mapleader = ","
 
 "Gundo
-"nnoremap <F4> :GundoToggle<CR>
+nnoremap <F4> :GundoToggle<CR>
 
 "Flake8 remap
 autocmd FileType python map <buffer> <F5> :call Flake8()<CR>
@@ -243,7 +243,7 @@ set foldlevel=99
 let g:SuperTabDefaultCompletionType = "context"
 
 "searching with ack!
-nmap <leader>a <Esc>:Ack!
+nmap <leader>a <Esc>:!ack-grep 
 
 "NERDTree
 map <F2> :NERDTreeToggle<CR>
@@ -416,3 +416,36 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 
 " ~/.vimrc ends here
+"
+"
+"More edits from:
+"http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+"Some of these require vim 7.3...
+set encoding=utf-8
+set scrolloff=3
+set showmode
+set wildmenu
+set cursorline
+set ttyfast
+set backspace=indent,eol,start
+set relativenumber           "new in 7.3
+set undofile                 "new in 7.3
+
+"more changes that I might not like
+""this effects search regex
+nnoremap / /\v
+vnoremap / /\v
+"this effects search regex
+set gdefault                 "applies substitutions globally on lines
+set incsearch
+set showmatch
+nnoremap <leader><space> :noh<cr>  "turn off search highlights
+nnoremap <tab> %
+vnoremap <tab> %
+"open edvim in split
+nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+"select just pasted text
+nnoremap <leader>v V`]
+"highlight column 81
+let &colorcolumn=join(range(81,83),",")
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
