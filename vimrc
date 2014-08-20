@@ -436,10 +436,9 @@ set undofile                 "new in 7.3
 nnoremap / /\v
 vnoremap / /\v
 "this effects search regex
-set gdefault                 "applies substitutions globally on lines
 set incsearch
 set showmatch
-nnoremap <leader><space> :noh<cr>  "turn off search highlights
+nnoremap <leader><space> /mooblahnahnah<cr>  "turn off search highlights
 nnoremap <tab> %
 vnoremap <tab> %
 "open edvim in split
@@ -449,3 +448,5 @@ nnoremap <leader>v V`]
 "highlight column 81
 let &colorcolumn=join(range(81,83),",")
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
+"for yankring
+nnoremap <silent> <F11> :YRShow<CR>

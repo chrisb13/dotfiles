@@ -117,7 +117,9 @@ case $(hostname) in
         module load python
         module load proj
         ;;
-    #ccrc165) 
+    ccrc165) 
+        alias vi='vim'
+        ;;
 esac
 
 
