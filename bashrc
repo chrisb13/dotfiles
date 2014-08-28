@@ -1,3 +1,6 @@
+#export SHELL=/usr/bin/zsh
+#exec $SHELL
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -44,12 +47,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -236,12 +239,12 @@ cat > ${1}.py <<EOF
 ##   Date created: $(date)
 ##   Machine created on: $(hostname)
 ##
-##   The virtualenv packages available on creation date (includes systemwide):
-${pipfreeze}
-##
-##   The modules availabe on creation date:
-##   ${modulelist_storm}
-##   ${modulelist_katana}
+
+"""
+This file is for 
+
+"""
+
 
 #
 #python logging
@@ -249,41 +252,11 @@ import logging as lg
 import time
 #import sys
 #import os
-#sys.path.insert(1,os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+#sys.path.insert(1,'/home/z3457920/hdrive/repos/')
 #import swissarmy as sa
 
-#lg.basicConfig(filename='example.log',filemode='w',format='%(levelname)s:%(message)s', level=lg.DEBUG) #where filemode clobbers file
-#log=lg.basicConfig(format='%(levelname)s:%(message)s', level=lg.DEBUG)
 
-#Detailed information, typically of interest only when diagnosing problems.
-#lg.debug('1.This message should appear on the console')
-
-#Confirmation that things are working as expected.
-#lg.info('2.So should this')
-
-#as expected
-#lg.warning('3.And this, too')
-
-#display variable
-#lg.warning('%s before you %s', 'Look', 'leap!')
-
-
-#####old logging system
-####class LogStart(object):
-####   "class that sets up a logger"
-####   def __init__(self, fname,fout=False):
-####       if fout:
-####          lg.basicConfig(filename=fname,filemode='w',format='%(levelname)s:%(message)s', level=lg.DEBUG) #where filemode clobbers file
-####       else:
-####          lg.basicConfig(format='%(levelname)s: %(message)s', level=lg.DEBUG)
-####
-####       lg.info('')
-####       lg.info('SCRIPT started')
-####       localtime = time.asctime( time.localtime(time.time()) )
-####       lg.info("Local current time : "+ str(localtime))
-
-
-
+#sys.path.insert(1,'/home/z3457920/hdrive/repos/cms_analysis/')
 from cb2logger import *
 
 
@@ -292,12 +265,6 @@ if __name__ == "__main__":                                     #are we being run
     #LogStart(args.inputdir+'asciplot_lc_katana'+args.fno + '.log',fout=True)
 
     #PUT wothwhile code here!
-
-#   lg.info("------Package version information-------")
-#   lg.info("Pandas version: " + str(pd.__version__))
-#   lg.info("Numpy version: " + str(np.__version__))
-#   lg.info("Matplotlib version: " + str(matplotlib.__version__))
-#   lg.info("------Package version information-------")
 
 
     lg.info('')
@@ -323,9 +290,16 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
+
+case $(hostname) in
+    ccrc165) 
+        # enable programmable completion features (you don't need to enable
+        # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+        # sources /etc/bash.bashrc).
+        if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+            . /etc/bash_completion
+        fi
+        source ~/.fzf.bash
+        ;;
+esac
+
