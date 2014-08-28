@@ -248,8 +248,8 @@ nmap <leader>a <Esc>:!ack-grep
 "NERDTree
 map <F2> :NERDTreeToggle<CR>
 
-nnoremap <buffer> <F7> :exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cms_diagnostics.py ./' <cr>
-nnoremap <buffer> <F8> :exec '!rsync -avz ./cms_diagnostics.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cms_diagnostics.py' <cr>
+nnoremap <buffer> <F7> :exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/*.py ./' <bar> exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cookies/*.py ./cookies/' <cr>
+nnoremap <buffer> <F8> :exec '!rsync -avz ./*.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/' <bar> exec '!rsync -avz ./cookies/*.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cookies/' <cr>
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
