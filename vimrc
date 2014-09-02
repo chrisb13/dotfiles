@@ -248,8 +248,8 @@ nmap <leader>a <Esc>:!ack-grep
 "NERDTree
 map <F2> :NERDTreeToggle<CR>
 
-nnoremap <buffer> <F7> :exec '!mkdir ~/codescratch/' <bar>  :exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/*.py ~/codescratch/' <bar> exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cookies/*.py ~/codescratch/cookies/' <cr>
-nnoremap <buffer> <F8> :exec '!rsync -avz ~/codescratch/*.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/' <bar> exec '!rsync -avz ~/codescratch/cookies/*.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cookies/' <cr>
+nnoremap <buffer> <F7> :exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cms_diagnostics.py ./' <cr>
+nnoremap <buffer> <F8> :exec '!rsync -avz ./cms_diagnostics.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cms_diagnostics.py' <cr>
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
@@ -443,6 +443,7 @@ nnoremap <tab> %
 vnoremap <tab> %
 "open edvim in split
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+nnoremap <leader>es <C-w><C-v><C-l>:e ~/.vim/UltiSnips/python.snippets<cr>
 "select just pasted text
 nnoremap <leader>v V`]
 "highlight column 81

@@ -108,8 +108,6 @@ endsnippet
 
 
 snippet snsplot
-
-
 import seaborn as sns
 import itertools
 #sns.set(style="whitegrid")
@@ -124,6 +122,13 @@ ax=fig.add_subplot(1, 1,1)
 ${0:code to plot}
 ax.plot(foob.index,foob['transport'], linestyle='--',marker=sym.next(),label=cookie)
 plt.show()
+
+## Now add the legend with some customizations.
+#legend = ax.legend(loc='upper right', shadow=True)
+#
+## The frame is matplotlib.patches.Rectangle instance surrounding the legend.
+#frame = legend.get_frame()
+#frame.set_facecolor('0.90')
 endsnippet
 
 
@@ -180,6 +185,7 @@ def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 	${0}
 endsnippet
 
+#pandas
 snippet pdhdf
 efile = ${1:variable for export path} + ${2:name of exported hdf}+'_table'+ '.h5'
 store = pd.HDFStore(efile,complevel=9, complib='blosc')
@@ -206,8 +212,67 @@ df2 = pd.DataFrame(
         {u'stratifying_var': np.random.uniform(0, 100, 20),
          u'price': np.random.normal(100, 5, 20)}
     )
-
 endsnippet
+
+
+snippet loadtoy
+import pandas as pd
+import numpy as np
+file='/srv/ccrc/data32/z3457920/leeuwincurrent2/expt_lc_fwdcore01/output/pandasHDF/toyhdf/'
+file='/srv/ccrc/data32/z3457920/leeuwincurrent2/expt_lc_fwdcore01/output/pandasHDF/toyhdf/'
+file='/home/z3457920/hdrive/repos/cms_analysis/fwdcore_toyhdf/traj_file_05_table.h5'
+dataframe=pd.HDFStore(file)
+df=dataframe.select('DF')
+endsnippet
+
+snippet pd
+import pandas as pd
+endsnippet
+
+snippet rounddf
+slice['latitude']=np.round(slice['latitude']/.1)*.1     
+endsnippet
+
+
+snippet pickle
+#Save a dictionary into a pickle file.
+import pickle
+favorite_color = { "lion": "yellow", "kitty": "red" }
+pickle.dump( favorite_color, open( "save.p", "wb" ) )
+
+# Load the dictionary back from the pickle file.
+favorite_color = pickle.load( open( "save.p", "rb" ) )
+# favorite_color is now { "lion": "yellow", "kitty": "red" }
+endsnippet
+
+snippet sor
+ifiles=sorted(glob.glob(path + '*' ))
+endsnippet
+
+#quick import commands
+snippet plt
+import matplotlib.pyplot as plt
+endsnippet
+
+snippet np
+import numpy as np
+endsnippet
+
+#matplotlib
+snippet title
+ax.set_title('${1:Title}')
+endsnippet
+
+snippet xlab
+ax.set_xlabel('${1:xlabel}')
+endsnippet
+
+snippet ylab
+ax.set_xlabel('${1:ylabel}')
+endsnippet
+
+
+
 
 #stolen from:
 #http://bazaar.launchpad.net/~sirver/ultisnips/trunk/view/head:/UltiSnips/python.snippets
