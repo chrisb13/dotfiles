@@ -132,6 +132,43 @@ plt.show()
 endsnippet
 
 
+snippet snsplotcomplicated
+import seaborn as sns
+import itertools
+#sns.set(style="whitegrid")
+sns.axes_style('darkgrid')
+#sns.set_style("ticks")
+#sns.set_palette("deep", desat=.6)
+sns.set_style("darkgrid", {"grid.linewidth": .5, "axes.facecolor": ".9"})
+sym=itertools.cycle(['v','o','^','s','D'])
+plt.close('all')
+fig=plt.figure()
+#fig.set_size_inches(20,12.5)
+ax1=fig.add_subplot(2, 1,1)
+ax2=fig.add_subplot(2, 1,2)
+
+${0:code to plot}
+ax1.plot(foob.index,foob['transport'], linestyle='--',marker=sym.next(),label=cookie)
+
+ax2.set_title('Month--crossing location')
+ax2.set_xlabel('month')
+ax2.set_ylabel('transport')
+
+#note you can specify axis!
+sns.barplot(whole_mean.pathway,whole_mean.transport,ax=ax2)
+plt.show()
+
+
+## Now add the legend with some customizations.
+#legend = ax.legend(loc='upper right', shadow=True)
+#
+## The frame is matplotlib.patches.Rectangle instance surrounding the legend.
+#frame = legend.get_frame()
+#frame.set_facecolor('0.90')
+endsnippet
+
+
+
 # New Class
 snippet cl
 class ${1:ClassName}(${2:object}):
