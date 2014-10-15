@@ -193,6 +193,10 @@ let mapleader = ","
 "Gundo
 nnoremap <F4> :GundoToggle<CR>
 
+
+"GitGutter Toggle changed highlights
+nnoremap <F3> :GitGutterLineHighlightsToggle<CR>
+
 "Flake8 remap
 autocmd FileType python map <buffer> <F5> :call Flake8()<CR>
 
