@@ -262,6 +262,15 @@ dataframe=pd.HDFStore(file)
 df=dataframe.select('DF')
 endsnippet
 
+
+snippet loadhdf
+import pandas as pd
+file='path/to/hdfstore.h5'
+dataframe=pd.HDFStore(file)
+df=dataframe.select('DF')
+endsnippet
+
+
 snippet pd
 import pandas as pd
 endsnippet
