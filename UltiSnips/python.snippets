@@ -74,6 +74,14 @@ if ${1:msg}:
 	lg.error("${2:msg}: " + str(${3:non-string}))
 	sys.exit("Okay, shit went bad, now exit.")
 endsnippet
+
+
+snippet catchg
+#error trap for globbing...
+if ${1:msg}==[]:
+	lg.error("Globbing returned nothing!")
+	sys.exit("Okay, shit went bad, now exit.")
+endsnippet
 		
 
 snippet loopme
@@ -260,6 +268,24 @@ file='/srv/ccrc/data32/z3457920/leeuwincurrent2/expt_lc_fwdcore01/output/pandasH
 file='/home/z3457920/hdrive/repos/cms_analysis/fwdcore_toyhdf/traj_file_05_table.h5'
 dataframe=pd.HDFStore(file)
 df=dataframe.select('DF')
+endsnippet
+
+
+snippet toymaskedarray 
+import numpy as np
+mask=[[False,True,False], \
+     [False,False,False], \
+     [False,False,True], \
+     [False,True,False]]
+old=np.ma.MaskedArray(np.random.rand(4,3),mask=mask)
+new=np.ma.MaskedArray(np.random.rand(4,3),mask=mask)
+endsnippet
+
+snippet loadnetcdf
+from netCDF4 import Dataset
+file='/path/to/netcdf4/file.nc'
+ifile=Dataset(file, 'r')
+varone=ifile.variables['']
 endsnippet
 
 
