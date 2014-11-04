@@ -297,6 +297,11 @@ df=dataframe.select('DF')
 endsnippet
 
 
+snippet glob
+import glob
+ifiles=sorted(glob.glob(${1:varpath to glob} + ${2:string to glob} ))
+endsnippet
+
 snippet pd
 import pandas as pd
 endsnippet
