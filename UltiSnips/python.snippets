@@ -260,6 +260,13 @@ df2 = pd.DataFrame(
 endsnippet
 
 
+snippet toypandamerge
+#Doing join/merge of DF's that are different sizes...
+one=pd.DataFrame({"year":[1992,2003,2014],"blah":[231,1232,1212],"parnum":[1,2,3]})
+two=pd.DataFrame({"seconds":[20,40,20,60,60,60],"garbage":[204,430,240,-60,604,603],"parnum":[1,1,2,3,3,3]})
+two.merge(one[['year','parnum']],on='parnum')
+endsnippet
+
 snippet loadtoy
 import pandas as pd
 import numpy as np

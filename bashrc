@@ -302,7 +302,9 @@ case $(hostname) in
         source ~/.fzf.bash
         ;;
     ubuntudesktop) 
+        source ~/myenv/bin/activate
         alias grabplots='rsync -avz z3457920@squall.ccrc.unsw.edu.au:/srv/ccrc/data32/z3457920/leeuwincurrent2/cookiecutting07/plots/depint/ ~/plotscratch/'
+        alias open='nautilus .'
         ;;
         chris-VirtualBox2)
         source ~/my_env/bin/activate
