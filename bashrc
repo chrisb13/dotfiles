@@ -154,6 +154,7 @@ alias tensor='ssh -X z3457920@tensor.maths.unsw.edu.au'
 alias adrift='ssh -X chris@115.146.86.89'
 alias qme='qstat -nru $USER'
 alias r='cd ~/hdrive/repos/cms_analysis/'
+alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
 alias sa='cd ~/hdrive/repos/swissarmy/'
 alias py='python '
 alias katint='qsub -I -l nodes=1:ppn=1,vmem=20gb,walltime=1:00:00'
@@ -168,7 +169,7 @@ alias gitb='git branch -a --color=auto'
 
 #for python virtualenv
 alias pyt='source ~/env/my_env/bin/activate'  #for storm servers
-alias p='pyt; ipython --pylab'
+#alias p='pyt; ipython --pylab'
 alias ip='ipython --pylab'
 alias ps='module load geos; module load perl/5.18.2;module load gdal;source ~/env/newstorm_env/bin/activate'
 alias psr='source ~/env/newstorm_env/bin/activate; python asciplot.py'
@@ -221,6 +222,13 @@ tput cup 0 0;
 ls --color=auto -F --color=always -lhFrt;
 tput cup 40 0;
 }
+
+
+function pushit() #bash command to push file into hdrive at UNSW
+{
+rsync -avz ./${1} z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/
+}
+
 
 
 function makepy ()
