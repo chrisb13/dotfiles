@@ -108,7 +108,7 @@ case $(hostname) in
         module load proj
         ;;
     squall.ccrc.unsw.edu.au|maelstrom.ccrc.unsw.edu.au|monsoon.ccrc.unsw.edu.au)
-        alias v='vimx'
+        #alias v='vimx'
         alias vi='vimx'
         alias vim='vimx'
         module load hdf5               #for new storm servers
@@ -140,6 +140,7 @@ alias pdata='cd /srv/ccrc/data15/z3263455/eocene'
 alias ml='matlab -nodesktop'
 alias cbd='cd /srv/ccrc/data23/z3457920/leeuwincurrent/'
 alias cbd2='cd /srv/ccrc/data32/z3457920/leeuwincurrent2/'
+alias cbd3='cd /srv/ccrc/data32/z3457920/leeuwincurrent3/'
 alias lc='cd /srv/scratch/z3457920/leeuwincurrent/expt/'
 alias m='cd /home/z3457920/hdrive/eocene/m_code_cbull'
 alias top='top -M'
@@ -154,6 +155,7 @@ alias tensor='ssh -X z3457920@tensor.maths.unsw.edu.au'
 alias adrift='ssh -X chris@115.146.86.89'
 alias qme='qstat -nru $USER'
 alias r='cd ~/hdrive/repos/cms_analysis/'
+alias v='cd ~/.vim/'
 alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
 alias sa='cd ~/hdrive/repos/swissarmy/'
 alias py='python '
@@ -308,6 +310,7 @@ case $(hostname) in
             . /etc/bash_completion
         fi
         source ~/.fzf.bash
+        alias open='dolphin . &'
         ;;
     ubuntudesktop) 
         source ~/myenv/bin/activate
