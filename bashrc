@@ -111,6 +111,7 @@ case $(hostname) in
         #alias v='vimx'
         alias vi='vimx'
         alias vim='vimx'
+        alias ps='module load geos; module load perl/5.18.2;module load gdal;source ~/env/newstorm_env/bin/activate'
         module load hdf5               #for new storm servers
         module load ncview
         module load netcdf/3.6.3-intel
@@ -120,10 +121,33 @@ case $(hostname) in
         module load python
         module load proj
         ;;
+esac
+
+case $(hostname) in
     ccrc165) 
+        # enable programmable completion features (you don't need to enable
+        # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+        # sources /etc/bash.bashrc).
+        if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+            . /etc/bash_completion
+        fi
+        source ~/.fzf.bash
+        alias open='dolphin . &'
         alias vi='vim'
+        alias ps='source ~/env/ccrc_env/bin/activate'
+        ;;
+    ubuntudesktop) 
+        source ~/myenv/bin/activate
+        alias grabplots='rsync -avz z3457920@squall.ccrc.unsw.edu.au:/srv/ccrc/data32/z3457920/leeuwincurrent2/cookiecutting07/plots/depint/ ~/plotscratch/'
+        alias open='nautilus .'
+        ;;
+    chris-VirtualBox2)
+        source ~/my_env/bin/activate
+        alias r='cd ~/codescratch/cms_analysis/hp_validation/'
+        alias open='pcmanfm'
         ;;
 esac
+
 
 
 alias ll='ls -alF'
@@ -173,7 +197,6 @@ alias gitb='git branch -a --color=auto'
 alias pyt='source ~/env/my_env/bin/activate'  #for storm servers
 #alias p='pyt; ipython --pylab'
 alias ip='ipython --pylab'
-alias ps='module load geos; module load perl/5.18.2;module load gdal;source ~/env/newstorm_env/bin/activate'
 alias psr='source ~/env/newstorm_env/bin/activate; python asciplot.py'
 #export PATH=${PATH}:/home/z3457920/env/my_env/bin
 
@@ -301,26 +324,4 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 
-case $(hostname) in
-    ccrc165) 
-        # enable programmable completion features (you don't need to enable
-        # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-        # sources /etc/bash.bashrc).
-        if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-            . /etc/bash_completion
-        fi
-        source ~/.fzf.bash
-        alias open='dolphin . &'
-        ;;
-    ubuntudesktop) 
-        source ~/myenv/bin/activate
-        alias grabplots='rsync -avz z3457920@squall.ccrc.unsw.edu.au:/srv/ccrc/data32/z3457920/leeuwincurrent2/cookiecutting07/plots/depint/ ~/plotscratch/'
-        alias open='nautilus .'
-        ;;
-        chris-VirtualBox2)
-        source ~/my_env/bin/activate
-        alias r='cd ~/codescratch/cms_analysis/hp_validation/'
-        alias open='pcmanfm'
-        ;;
-esac
 
