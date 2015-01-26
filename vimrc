@@ -456,3 +456,5 @@ let &colorcolumn=join(range(81,83),",")
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 "for yankring
 nnoremap <silent> <F11> :YRShow<CR>
+
+let g:yankring_replace_n_pkey = '<C-I>'

@@ -8,6 +8,19 @@ snippet  cbd2
 '/srv/ccrc/data32/z3457920/leeuwincurrent2/'
 endsnippet 
 
+snippet  cbd3
+'/srv/ccrc/data32/z3457920/leeuwincurrent3/'
+endsnippet 
+
+snippet  cbd4
+'/srv/ccrc/data42/z3457920/'
+endsnippet 
+
+snippet  newdata
+'/srv/ccrc/data42/z3457920/'
+endsnippet 
+
+
 snippet r
 '~/hdrive/repos/cms_analysis/'
 endsnippet
@@ -105,7 +118,6 @@ endsnippet
 snippet plthack
 def ${1:function_name}(output_opt):
     """
-    Demonstrates how to change a single xticklabel
 	This function ($1) is designed to ${2:function_doc_string}
     """
 	${0:code to plot}
@@ -113,6 +125,7 @@ def ${1:function_name}(output_opt):
         plt.show()
     else:
         plt.savefig(output_opt+'$1.png',dpi=300)
+        #plt.savefig(output_opt+'$1.pdf',format='pdf')
 endsnippet
 
 
@@ -125,6 +138,7 @@ ax.set_title('${1:msg}')
 ax.set_xlabel('${2:msg}')
 ax.set_ylabel('${3:msg}')
 #fig.savefig('./.png',dpi=300)
+#fig.savefig('./.pdf',format='pdf')
 plt.show()
 endsnippet
 
@@ -133,6 +147,7 @@ plt.xlim(0.8, 12.2)
 labels=['J','F','M','A','M','J','J','A','S','O','N','D']
 labels=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 ax1.set_xlim(0.8, 12.2)
+ax1.set_xticklabels(labels)
 endsnippet
 
 snippet splot
@@ -159,6 +174,9 @@ ax=fig.add_subplot(1, 1,1)
 ${0:code to plot}
 ax.plot(foob.index,foob['transport'], linestyle='--',marker=sym.next(),label=cookie)
 plt.show()
+
+#fig.savefig('./.png',dpi=300)
+#fig.savefig('./.pdf',format='pdf')
 
 ## Now add the legend with some customizations.
 #legend = ax.legend(loc='upper right', shadow=True)
@@ -196,6 +214,9 @@ sns.barplot(whole_mean.pathway,whole_mean.transport,ax=ax2)
 plt.show()
 
 
+#fig.savefig('./.png',dpi=300)
+#fig.savefig('./.pdf',format='pdf')
+
 ## Now add the legend with some customizations.
 #legend = ax.legend(loc='upper right', shadow=True)
 #
@@ -209,7 +230,10 @@ from matplotlib import gridspec
 import matplotlib.pyplot as plt
 #set up for gridspec plot...
 plt.close('all')
+#width then height
 fig=plt.figure(figsize=(20.0,9.0))
+#the other option
+#fig.set_size_inches(7.5,15.5)
 
 #if you want to use seaborn too...
 import seaborn as sns

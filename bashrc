@@ -165,6 +165,7 @@ alias ml='matlab -nodesktop'
 alias cbd='cd /srv/ccrc/data23/z3457920/leeuwincurrent/'
 alias cbd2='cd /srv/ccrc/data32/z3457920/leeuwincurrent2/'
 alias cbd3='cd /srv/ccrc/data32/z3457920/leeuwincurrent3/'
+alias cbd4='cd /srv/ccrc/data42/z3457920/'
 alias newdata='cd /srv/ccrc/data42/z3457920/'
 alias lc='cd /srv/scratch/z3457920/leeuwincurrent/expt/'
 alias m='cd /home/z3457920/hdrive/eocene/m_code_cbull'
@@ -270,6 +271,7 @@ cat > ${1}.py <<EOF
 ##                Sydney, NSW, Australia, 2052
 ##   Contact: z3457920@student.unsw.edu.au
 ##   www:     christopherbull.com.au
+##   twitter: @@ChrisBullOceanO
 ##   Date created: $(date)
 ##   Machine created on: $(hostname)
 ##
