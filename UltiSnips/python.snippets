@@ -258,6 +258,12 @@ plt.setp(ax1.get_yticklabels()+ax1.get_xticklabels()+\
          ax2.get_yticklabels(),\
                  visible=False)
 
+#turn on tight layout for gridspec, see more options here:
+#http://matplotlib.org/users/tight_layout_guide.html
+#couldn't actually get this to work... these options: pad=0.4, w_pad=0.5,
+#h_pad=1.0
+gs.tight_layout(fig)
+
 # sub-panel enumerations
 plt.figtext(0.1, 0.92,  'a)',clip_on=False,color='black',size=22)
 plt.figtext(0.1, 0.77,  'b)',clip_on=False,color='black',size=22)

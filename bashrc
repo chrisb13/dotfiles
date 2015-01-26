@@ -191,6 +191,8 @@ alias maelstrom='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
 alias monsoon='ssh -X z3457920@monsoon.ccrc.unsw.edu.au'
 alias sniped='vi ~/.vim/UltiSnips/python.snippets'
 
+alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
+
 #git alias
 alias gittrack='git ls-tree --full-tree -r HEAD'
 alias gitb='git branch -a --color=auto'
