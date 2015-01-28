@@ -209,6 +209,38 @@ inoremap <Nul> <C-x><C-o>
 :command Plot :normal i plt.close('all')<Enter>fig=plt.figure()<Enter>ax=fig.add_subplot(1, 1,1)<Enter>ax.set_title('')<Enter>ax.set_xlabel('')<Enter>ax.set_ylabel('')<Enter>#fig.savefig('./.png',dpi=300)<Enter>plt.show()<ESC>
 
 
+"Vexplore option for netrw
+"" Toggle Vexplore with Ctrl-E
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          close
+          exec cur_win_nr . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      let t:expl_buf_num = bufnr("%")
+  endif
+endfunction
+map <silent> <C-E> :call ToggleVExplorer()<CR>
+
+" Hit enter in the file browser to open the selected
+" " file with :vsplit to the right of the browser.
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+"
+" " Change directory to the current buffer when opening files.
+set autochdir
+
+
+
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<leader>k"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -216,7 +248,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "remap escape key
 :imap jj <Esc>
-
 
 " IndentGuide stuff
 let g:indent_guides_enable_on_vim_startup = 1
@@ -449,6 +480,8 @@ vnoremap <tab> %
 "open edvim in split
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 nnoremap <leader>es <C-w><C-v><C-l>:e ~/.vim/UltiSnips/python.snippets<cr>
+
+
 "select just pasted text
 nnoremap <leader>v V`]
 "highlight column 81
@@ -458,3 +491,11 @@ highlight ColorColumn ctermbg=235 guibg=#2c2d27
 nnoremap <silent> <F11> :YRShow<CR>
 
 let g:yankring_replace_n_pkey = '<C-I>'
+
+
+"for some sort of very frustrating reason, these had to go at the bottom...
+nnoremap <leader>pwd :exec 'r!pwd'<bar><cr>
+nnoremap <leader>ls :exec 'r!ls'<bar><cr>
+noremap <Leader>sa :CtrlP /home/nfs/z3457920/hdrive/repos/swissarmy<cr>
+noremap <Leader>r :CtrlP /home/nfs/z3457920/hdrive/repos/cms_analysis<cr>
+

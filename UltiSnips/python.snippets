@@ -110,10 +110,12 @@ for $1 in $2:
 endsnippet
 
 snippet s
-str(${VISUAL})+
+str(${VISUAL:object to convert to string})
 endsnippet
 
-
+snippet nfo
+lg.info("${VISUAL:object to put in}")
+endsnippet
 
 snippet plthack
 def ${1:function_name}(output_opt):
@@ -127,7 +129,6 @@ def ${1:function_name}(output_opt):
         plt.savefig(output_opt+'$1.png',dpi=300)
         #plt.savefig(output_opt+'$1.pdf',format='pdf')
 endsnippet
-
 
 snippet plot
 plt.close('all')

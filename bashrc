@@ -108,6 +108,7 @@ case $(hostname) in
         module load proj
         ;;
     squall.ccrc.unsw.edu.au|maelstrom.ccrc.unsw.edu.au|monsoon.ccrc.unsw.edu.au)
+        alias open='nautilus . &'
         #alias v='vimx'
         alias vi='vimx'
         alias vim='vimx'
@@ -150,6 +151,7 @@ esac
 
 
 
+alias checkh='mount | grep hdrive'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -192,6 +194,8 @@ alias monsoon='ssh -X z3457920@monsoon.ccrc.unsw.edu.au'
 alias sniped='vi ~/.vim/UltiSnips/python.snippets'
 
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
+alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
+alias vimhdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 
 #git alias
 alias gittrack='git ls-tree --full-tree -r HEAD'
