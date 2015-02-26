@@ -497,5 +497,5 @@ let g:yankring_replace_n_pkey = '<C-I>'
 nnoremap <leader>pwd :exec 'r!pwd'<bar><cr>
 nnoremap <leader>ls :exec 'r!ls'<bar><cr>
 noremap <Leader>sa :CtrlP /home/nfs/z3457920/hdrive/repos/swissarmy<cr>
-noremap <Leader>r :CtrlP /home/nfs/z3457920/hdrive/repos/cms_analysis<cr>
+noremap <Leader>cms :CtrlP /home/nfs/z3457920/hdrive/repos/cms_analysis<cr>
 

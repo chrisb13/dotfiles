@@ -292,22 +292,25 @@ This file is for
 #python logging
 import logging as lg
 import time
-#import sys
 #import os
-#sys.path.insert(1,'/home/z3457920/hdrive/repos/')
-#import swissarmy as sa
 
+#import sys
 
 #sys.path.insert(1,'/home/z3457920/hdrive/repos/cms_analysis/')
 from cb2logger import *
 
+#If you want to log to a file you need to put this before you import swissarmy!
+#LogStart(sys.argv[0]+ '.log',fout=True)
+
+#sys.path.insert(1,'/home/z3457920/hdrive/repos/')
+#import swissarmy as sa
 
 if __name__ == "__main__":                                     #are we being run directly?
     LogStart('',fout=False)
-    #LogStart(args.inputdir+'asciplot_lc_katana'+args.fno + '.log',fout=True)
 
     #PUT wothwhile code here!
 
+    #sa.mkdir('./blah3/')
 
     lg.info('')
     localtime = time.asctime( time.localtime(time.time()) )

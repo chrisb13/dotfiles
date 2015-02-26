@@ -49,6 +49,12 @@ with ctx.closing(open(${1:ofol}+${2:'ofile_name.txt'},'w')) as handle:
      handle.write("string to write"+"\n")
 endsnippet
 
+snippet collections
+import collections
+plot_dict=collections.OrderedDict()
+endsnippet
+
+
 snippet parser
 import argparse
 parser = argparse.ArgumentParser(description='Parser for ${1:msg}.',\
@@ -142,6 +148,18 @@ ax.set_ylabel('${3:msg}')
 #fig.savefig('./.pdf',format='pdf')
 plt.show()
 endsnippet
+
+snippet confirm
+confirm = raw_input("Please confirm you're happy with the ...")
+if confirm=='y':
+    #do something!
+	pass
+elif confirm=='n':
+   sys.exit("Quitting b/c you said you weren't happy with the slice.")
+else:
+   sys.exit("Quitting b/c you didn't answer yes ('y')  or no ('n').")
+endsnippet
+
 
 snippet months
 plt.xlim(0.8, 12.2)
@@ -401,6 +419,7 @@ endsnippet
 snippet glob
 import glob
 ifiles=sorted(glob.glob(${1:varpath to glob} + ${2:string to glob} ))
+assert(ifiles!=[]),"glob didn't find anything!"
 endsnippet
 
 snippet pd
