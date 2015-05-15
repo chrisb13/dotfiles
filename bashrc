@@ -136,6 +136,7 @@ case $(hostname) in
         alias open='dolphin . &'
         alias vi='vim'
         alias ps='source ~/env/ccrc_env/bin/activate'
+        alias fixdesk='kstart plasma-desktop &'
         ;;
     ubuntudesktop) 
         source ~/myenv/bin/activate

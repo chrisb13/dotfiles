@@ -95,6 +95,50 @@ for p in path:
 #subprocess.call('chmod +x ./go.sh',shell=True)
 endsnippet
 
+snippet multi_core
+def multi_sh(s_name,args_one):
+    """function for an embarrasingly parralel job in which we want to use many cores
+    
+    :s_name: name of script
+    :args_one: list containing argument to send to script
+    :returns: s_name + '.sh' script.
+
+    Notes
+    -------
+    
+
+    Example
+    --------
+    >>> #to call multi_sh() ...
+    >>> s_name='cms_diagnostics.py'
+    >>> args_one=\
+    >>> ["'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdwesternboundary02/output/pandasHDF/'",\
+    >>> "'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthernIO_01/output/pandasHDF/'",\
+    >>> "'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_itf_01/output/pandasHDF/'",\
+    >>> "'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_itf_02/output/pandasHDF/'",\
+    >>> "'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdeasternboundary01/output/pandasHDF/'"]
+    >>> multi_sh(s_name,args_one)
+
+    >>> #to put in script
+    >>> import sys
+    >>> ifile=sys.argv[1]
+    >>> lg.info('Working folder: ' + ifile)
+    """
+    import contextlib as ctx
+    import subprocess 
+    f_name=s_name[:-3]+'.sh'
+    lg.info("Creating multi-core script for: " + f_name)
+    with ctx.closing(open('./' + f_name,'w')) as handle:
+        for arg in args_one:
+            do="python " + s_name +" " + arg+" &"
+            lg.info("Writing: " + do)
+            #subprocess.call(do,shell=True)
+            handle.write(do+"\n")
+
+    subprocess.call('chmod +x ' + f_name,shell=True)
+    return
+endsnippet
+
 snippet catch
 if ${1:msg}:
 	lg.error("${2:msg}: " + str(${3:non-string}))
@@ -468,7 +512,28 @@ snippet ylab
 ax.set_xlabel('${1:ylabel}')
 endsnippet
 
+snippet xlim
+#ax.set_xlim([-1,5])
+endsnippet
 
+snippet ylim
+#ax.set_ylim([-10,10])
+endsnippet
+
+snippet lines
+#these use axes coords!
+#ax.axhline(y=0.2,xmin=0,xmax=3,c="blue",linewidth=3,zorder=0)
+#ax.axhline(y=-8,xmin=0,xmax=0.5,c="blue",linewidth=3)
+#ax.axhline(y=-5, xmin=0, xmax=0.5,c="red",linewidth=3,zorder=0)
+
+# horizontal line
+ax.hlines(y=-8.5, xmin=90, xmax=114,linewidth=3, color='red', zorder=1)
+ax.hlines(y=-8.5, xmin=114, xmax=140,linewidth=3, color='purple', zorder=1)
+
+# vertical line
+ax.vlines(x=90.1, ymin=-49, ymax=-8.5,linewidth=3, color='blue', zorder=1)
+ax.vlines(x=142.5, ymin=-11, ymax=-9,linewidth=3, color='sienna', zorder=1)
+endsnippet
 
 
 #stolen from:
