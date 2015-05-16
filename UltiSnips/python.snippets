@@ -387,12 +387,32 @@ def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 endsnippet
 
 #pandas
-snippet pdhdf
+snippet savehdf_append
 efile = ${1:variable for export path} + ${2:name of exported hdf}+'_table'+ '.h5'
 store = pd.HDFStore(efile,complevel=9, complib='blosc')
 store.append('DF',DF,data_columns = ${3:list of columns that will be data columns}) #querable columns or dc take more space and are slower
 store.close()
 endsnippet
+
+
+snippet savehdf_put
+efile = ${1:variable for export path} +\
+		${2:name of exported hdf} +\
+        '_table'+ '.h5'
+
+#a clobber check here
+try:
+    os.remove(efile)
+    lg.info("HDFStore already existed, clobbering!")
+except OSError:
+    pass 
+
+#Due to Pandas 'TypeError' had to use put rather than append...
+store = pd.HDFStore(efile,complevel=9, complib='blosc')
+store.put('$3',${3:name of dataframe})
+store.close()
+endsnippet
+
 
 snippet toypanda
 import itertools

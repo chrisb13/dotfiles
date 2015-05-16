@@ -106,6 +106,9 @@ case $(hostname) in
         module load matlab/2011b
         module load python
         module load proj
+        alias qint='qsub -I -l nodes=1:ppn=1,vmem=15gb,walltime=2:00:00'
+        alias qme='qstat -nru $USER'
+        alias qme2='qstat | grep z3457920'
         ;;
     squall.ccrc.unsw.edu.au|maelstrom.ccrc.unsw.edu.au|monsoon.ccrc.unsw.edu.au)
         alias open='nautilus . &'
@@ -113,6 +116,7 @@ case $(hostname) in
         alias vi='vimx'
         alias vim='vimx'
         alias ps='module load geos; module load perl/5.18.2;module load gdal;source ~/env/newstorm_env/bin/activate'
+        alias topme='top -u z3457920'
         module load hdf5               #for new storm servers
         module load ncview
         module load netcdf/3.6.3-intel
@@ -182,7 +186,6 @@ alias katana='ssh -X z3457920@katana.science.unsw.edu.au'
 alias k='ssh -X z3457920@katana.science.unsw.edu.au'
 alias tensor='ssh -X z3457920@tensor.maths.unsw.edu.au'
 alias adrift='ssh -X chris@115.146.86.89'
-alias qme='qstat -nru $USER'
 alias r='cd ~/hdrive/repos/cms_analysis/'
 alias v='cd ~/.vim/'
 alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
@@ -190,13 +193,16 @@ alias sa='cd ~/hdrive/repos/swissarmy/'
 alias py='python '
 alias katint='qsub -I -l nodes=1:ppn=1,vmem=20gb,walltime=1:00:00'
 alias s='ssh -X z3457920@squall.ccrc.unsw.edu.au'
+alias nci='ssh -X cyb561@raijin.nci.org.au'
 alias maelstrom='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
+alias m='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
 alias monsoon='ssh -X z3457920@monsoon.ccrc.unsw.edu.au'
 alias sniped='vi ~/.vim/UltiSnips/python.snippets'
 
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias vimhdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
+alias hdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 
 #git alias
 alias gittrack='git ls-tree --full-tree -r HEAD'
