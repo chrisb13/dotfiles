@@ -61,3 +61,12 @@
 [submodule "bundle/surround"]
 	path = bundle/surround
 	url = git://github.com/tpope/vim-surround.git
+[submodule "bundle/multiple-cursors"]
+	path = bundle/multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors.git
+[submodule "bundle/smartpairs"]
+	path = bundle/smartpairs
+	url = https://github.com/gorkunov/smartpairs.vim.git
+[submodule "bundle/DidYouMean"]
+	path = bundle/DidYouMean
+	url = https://github.com/EinfachToll/DidYouMean.git
