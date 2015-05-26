@@ -425,7 +425,7 @@ set pastetoggle=<F11>
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set textwidth=79
+"set textwidth=79
 
 " Indentation settings for using hard tabs for indent. Display tabs as
 " two characters wide.
@@ -497,5 +497,5 @@ let g:yankring_replace_n_pkey = '<C-I>'
 nnoremap <leader>pwd :exec 'r!pwd'<bar><cr>
 nnoremap <leader>ls :exec 'r!ls'<bar><cr>
 noremap <Leader>sa :CtrlP /home/nfs/z3457920/hdrive/repos/swissarmy<cr>
-noremap <Leader>cms :CtrlP /home/nfs/z3457920/hdrive/repos/cms_analysis<cr>
+noremap <Leader>cm :CtrlP /home/nfs/z3457920/hdrive/repos/cms_analysis<cr>
 

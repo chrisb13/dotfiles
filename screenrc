@@ -1,0 +1,13 @@
+autodetach on 
+startup_message off 
+hardstatus alwayslastline 
+shelltitle 'bash'
+term xterm
+
+hardstatus string '%{gk}[%{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= w}%?%+Lw%?%? %{g}][%{d}%l%{g}][ %{= w}%Y/%m/%d %0C:%s%a%{g} ]%{W}'
+
+#fix vim colours:
+#stolen from: http://stackoverflow.com/questions/9356353/vim-color-is-different-between-local-and-remote-machines-screen
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce "on"
