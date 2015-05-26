@@ -212,6 +212,11 @@ alias pyadrift='source ~/env/adrift_env/bin/activate'  #for storm servers
 
 alias pyk='source ~/env/katana_env/bin/activate'   #for katana 
 
+
+#for Jekyll website
+alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
+
+
 #cb added
 set -o vi
 
