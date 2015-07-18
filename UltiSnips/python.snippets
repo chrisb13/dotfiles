@@ -25,6 +25,17 @@ snippet  currentexps
 '/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_moluccas_itf_05/output/pandasHDF/cookie_parted/'
 endsnippet 
 
+snippet  currentexps_dict
+ckd_exps={\
+'fwdeasternboundary01':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdeasternboundary01/output/pandasHDF/cookie_parted/',\
+'fwdwesternboundary02':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdwesternboundary02/output/pandasHDF/cookie_parted/',\
+'fwdnorthernIO_01':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthernIO_01/output/pandasHDF/cookie_parted/',\
+'fwdnorthern_karimata_itf_03':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_karimata_itf_03/output/pandasHDF/cookie_parted/',\
+'fwdnorthern_makassar_itf_04':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_makassar_itf_04/output/pandasHDF/cookie_parted/',\
+'fwdnorthern_moluccas_itf_05':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_moluccas_itf_05/output/pandasHDF/cookie_parted/',\
+}
+endsnippet 
+
 snippet  newdata
 '/srv/ccrc/data42/z3457920/'
 endsnippet 
@@ -649,6 +660,19 @@ ax.hlines(y=-8.5, xmin=114, xmax=140,linewidth=3, color='purple', zorder=1)
 # vertical line
 ax.vlines(x=90.1, ymin=-49, ymax=-8.5,linewidth=3, color='blue', zorder=1)
 ax.vlines(x=142.5, ymin=-11, ymax=-9,linewidth=3, color='sienna', zorder=1)
+endsnippet
+
+snippet globalsavefig
+##file for importing global settings
+from p_global_settings import *
+
+if plottype=='png':
+	plt.savefig(global_plot_outfol+'${1:output_file_name}.png',dpi=300)
+elif plottype=='pdf':
+	plt.savefig(global_plot_outfol+'$1.pdf')
+elif plottype=='both':
+	plt.savefig(global_plot_outfol+'$1.png',dpi=300)
+	plt.savefig(global_plot_outfol+'$1.pdf')
 endsnippet
 
 
