@@ -127,9 +127,6 @@ case $(hostname) in
         module load proj
         module load vim/7.4
         ;;
-esac
-
-case $(hostname) in
     ccrc165) 
         # enable programmable completion features (you don't need to enable
         # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -144,20 +141,26 @@ case $(hostname) in
         alias fixdesk='kstart plasma-desktop &'
         ;;
     ubuntudesktop) 
+        #chris home desktop dual boot
         source ~/myenv/bin/activate
         alias grabplots='rsync -avz z3457920@squall.ccrc.unsw.edu.au:/srv/ccrc/data32/z3457920/leeuwincurrent2/cookiecutting07/plots/depint/ ~/plotscratch/'
         alias open='nautilus .'
         ;;
     chris-VirtualBox2)
+        #chris home laptop 
         source ~/my_env/bin/activate
         alias r='cd ~/codescratch/cms_analysis/hp_validation/'
         alias open='pcmanfm'
         ;;
+    chris-DeskVirtualBox)
+        #chris home desktop
+        # added by Anaconda 2.3.0 installer
+        export PATH="/home/chris/anaconda/bin:$PATH"
+        ;;
 esac
 
-
-
 alias checkh='mount | grep hdrive'
+
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -167,17 +170,21 @@ alias edprof='vi ~/.bashrc'
 alias edsnip='vi ~/.vim/UltiSnips/python.snippets'
 alias edvim='vi ~/.vimrc'
 alias runprof='. ~/.bashrc'
-alias aabw='cd /home/z3457920/hdrive/aabw'
-alias pdata='cd /srv/ccrc/data15/z3263455/eocene'
+alias py='python '
+alias top='top -M'
+
+#folders
 alias ml='matlab -nodesktop'
 alias cbd='cd /srv/ccrc/data23/z3457920/leeuwincurrent/'
 alias cbd2='cd /srv/ccrc/data32/z3457920/leeuwincurrent2/'
 alias cbd3='cd /srv/ccrc/data32/z3457920/leeuwincurrent3/'
 alias cbd4='cd /srv/ccrc/data42/z3457920/'
-alias newdata='cd /srv/ccrc/data42/z3457920/'
-alias lc='cd /srv/scratch/z3457920/leeuwincurrent/expt/'
-alias m='cd /home/z3457920/hdrive/eocene/m_code_cbull'
-alias top='top -M'
+alias r='cd ~/hdrive/repos/cms_analysis/'
+alias v='cd ~/.vim/'
+alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
+alias sa='cd ~/hdrive/repos/swissarmy/'
+
+#machines
 alias typ='ssh -X typhoon'
 alias t='ssh -X typhoon'
 alias hurricane='ssh -X hurricane'
@@ -187,24 +194,19 @@ alias katana='ssh -X z3457920@katana.science.unsw.edu.au'
 alias k='ssh -X z3457920@katana.science.unsw.edu.au'
 alias tensor='ssh -X z3457920@tensor.maths.unsw.edu.au'
 alias adrift='ssh -X chris@115.146.86.89'
-alias r='cd ~/hdrive/repos/cms_analysis/'
-alias v='cd ~/.vim/'
-alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
-alias luc='cd ~/hdrive/repos/cms_analysis/papers/20140420_leeuwinundercurrent'
-alias sa='cd ~/hdrive/repos/swissarmy/'
-alias py='python '
 alias katint='qsub -I -l nodes=1:ppn=1,vmem=20gb,walltime=1:00:00'
 alias s='ssh -X z3457920@squall.ccrc.unsw.edu.au'
 alias nci='ssh -X cyb561@raijin.nci.org.au'
 alias maelstrom='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
 alias m='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
 alias monsoon='ssh -X z3457920@monsoon.ccrc.unsw.edu.au'
-alias sniped='vi ~/.vim/UltiSnips/python.snippets'
 
+#vim
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias vimhdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias hdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
+alias sniped='vi ~/.vim/UltiSnips/python.snippets'
 
 #git alias
 alias gittrack='git ls-tree --full-tree -r HEAD'
@@ -214,7 +216,6 @@ alias gitb='git branch -a --color=auto'
 alias pyt='source ~/env/my_env/bin/activate'  #for storm servers
 #alias p='pyt; ipython --pylab'
 alias ip='ipython --pylab'
-alias psr='source ~/env/newstorm_env/bin/activate; python asciplot.py'
 #export PATH=${PATH}:/home/z3457920/env/my_env/bin
 
 alias pyadrift='source ~/env/adrift_env/bin/activate'  #for storm servers
@@ -225,25 +226,10 @@ alias pyk='source ~/env/katana_env/bin/activate'   #for katana
 #for Jekyll website
 alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
 
-
 #cb added
 set -o vi
 
 
-export MATLABPATH=$HOME/.matlab
-
-
-
-#for pymatlab
-#export LD_LIBRARY_PATH=/share/apps/matlab/2011b/bin/glnxa64:${LD_LIBRARY_PATH}
-#export PATH=${PATH}:/share/apps/matlab/2011b/bin/
-
-
-##run script that puts .vimrc/.bash_profile/matlab profile etc into backup
-#python ~/hdrive/repos/code/backup_startup.py
-#
-#cd ~/hdrive/repos/cms_analysis/
-#pwd
 
 function log() #pbs log file
 {
@@ -334,20 +320,4 @@ if __name__ == "__main__":                                     #are we being run
 EOF
 vi ${1}.py
 }
-
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-
 
