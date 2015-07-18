@@ -125,6 +125,7 @@ case $(hostname) in
         module load matlab/2011b
         module load python
         module load proj
+        module load vim/7.4
         ;;
 esac
 
@@ -189,6 +190,7 @@ alias adrift='ssh -X chris@115.146.86.89'
 alias r='cd ~/hdrive/repos/cms_analysis/'
 alias v='cd ~/.vim/'
 alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
+alias luc='cd ~/hdrive/repos/cms_analysis/papers/20140420_leeuwinundercurrent'
 alias sa='cd ~/hdrive/repos/swissarmy/'
 alias py='python '
 alias katint='qsub -I -l nodes=1:ppn=1,vmem=20gb,walltime=1:00:00'
