@@ -125,6 +125,7 @@ case $(hostname) in
         module load matlab/2011b
         module load python
         module load proj
+        module load geos
         module load vim/7.4
         ;;
     ccrc165) 
