@@ -209,6 +209,7 @@ alias monsoon='ssh -X z3457920@monsoon.ccrc.unsw.edu.au'
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias vimhdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
+alias ncivi='vim scp://cyb561@raijin.nci.org.au//home/561/cyb561/repos/scripts_not_in_repo/'
 alias hdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias sniped='vi ~/.vim/UltiSnips/python.snippets'
 
