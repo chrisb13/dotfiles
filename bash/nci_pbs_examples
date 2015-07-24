@@ -1,0 +1,21 @@
+source: http://nci.org.au/user-support/getting-help/raijin-user-guide/
+#!/bin/bash
+#PBS -P a99 
+#PBS -q normal 
+#PBS -l walltime=20:00:00
+#PBS -l mem=300MB 
+#PBS -l ncpus=16
+#PBS -l wd
+./my_program.exe 
+
+
+#from NICO express 
+#!/bin/bash
+#PBS -P e14
+#PBS -q express
+#PBS -l wd
+#PBS -l ncpus=1,mem=20Gb,walltime=03:00:00
+
+
+#qsub express interactive.... (works!)
+qsub -I -q express -l ncpus=1,mem=20gb,walltime=5:00:00
