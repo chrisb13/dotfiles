@@ -83,6 +83,19 @@ function parse_git_branch {
 #neds version
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)\$ '
 
+#netcdf functions
+function nc() #file header info ncdump
+{
+  ncdump -c ${1} | less
+}
+
+
+function ncv() #variable info ncdump
+{
+  ncdump -v ${2} ${1} | less
+}
+
+
 #chris' alias
 alias vi='~/vim/src/vim'
 set -o vi
@@ -105,6 +118,7 @@ alias interactive='qsub -I -q express -l ncpus=1,mem=20gb,walltime=5:00:00'
 alias md='ssh -X cyb561@dc-dm3.nci.org.au'
 
 module load ncview
+module load netcdf
 
 #python module loads..
 #module use ~access/modules
