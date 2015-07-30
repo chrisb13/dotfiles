@@ -162,20 +162,7 @@ esac
 
 alias checkh='mount | grep hdrive'
 
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias u='cd ..'
-alias c='clear'
-alias edprof='vi ~/.bashrc'
-alias edsnip='vi ~/.vim/UltiSnips/python.snippets'
-alias edvim='vi ~/.vimrc'
-alias runprof='. ~/.bashrc'
-alias py='python '
-alias top='top -M'
-
 #folders
-alias ml='matlab -nodesktop'
 alias cbd='cd /srv/ccrc/data23/z3457920/leeuwincurrent/'
 alias cbd2='cd /srv/ccrc/data32/z3457920/leeuwincurrent2/'
 alias cbd3='cd /srv/ccrc/data32/z3457920/leeuwincurrent3/'
@@ -187,35 +174,8 @@ alias v='cd ~/.vim/'
 alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
 alias sa='cd ~/hdrive/repos/swissarmy/'
 
-#machines
-alias typ='ssh -X typhoon'
-alias t='ssh -X typhoon'
-alias hurricane='ssh -X hurricane'
-alias hurri='ssh -X hurricane'
-alias cyc='ssh -X cyclone'
-alias katana='ssh -X z3457920@katana.science.unsw.edu.au'
-alias k='ssh -X z3457920@katana.science.unsw.edu.au'
-alias tensor='ssh -X z3457920@tensor.maths.unsw.edu.au'
-alias adrift='ssh -X chris@115.146.86.89'
-alias katint='qsub -I -l nodes=1:ppn=1,vmem=20gb,walltime=1:00:00'
-alias s='ssh -X z3457920@squall.ccrc.unsw.edu.au'
-alias nci='ssh -X cyb561@raijin.nci.org.au'
-alias mdss='ssh -X cyb561@dc-dm3.nci.org.au'
-alias maelstrom='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
-alias m='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
-alias monsoon='ssh -X z3457920@monsoon.ccrc.unsw.edu.au'
-
-#vim
-alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
-alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
-alias vimhdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
-alias ncivi='vim scp://cyb561@raijin.nci.org.au//home/561/cyb561/repos/scripts_not_in_repo/'
-alias hdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
-alias sniped='vi ~/.vim/UltiSnips/python.snippets'
-
-#git alias
-alias gittrack='git ls-tree --full-tree -r HEAD'
-alias gitb='git branch -a --color=auto'
+#source common aliases
+source ~/.vim/common_bashrc
 
 #for python virtualenv
 alias pyt='source ~/env/my_env/bin/activate'  #for storm servers
@@ -223,10 +183,7 @@ alias pyt='source ~/env/my_env/bin/activate'  #for storm servers
 alias ip='ipython --pylab'
 #export PATH=${PATH}:/home/z3457920/env/my_env/bin
 
-alias pyadrift='source ~/env/adrift_env/bin/activate'  #for storm servers
-
 alias pyk='source ~/env/katana_env/bin/activate'   #for katana 
-
 
 #for Jekyll website
 alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
