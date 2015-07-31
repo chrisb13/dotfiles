@@ -221,10 +221,13 @@ tput cup 40 0;
 
 function pushit() #bash command to push file into hdrive at UNSW
 {
-rsync -avz ./${1} z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/
+rsync -avz $* z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/
 }
 
-
+function ncipush() #bash command to push file(s) into short on NCI
+{
+rsync -avPS $* cyb561@raijin.nci.org.au:/short/e14/cyb561/
+}
 
 function makepy ()
 {
