@@ -53,7 +53,7 @@ alias lr='ls -lrt'
 alias short='cd /short/e14/cyb561/'
 alias whereami='echo `whoami`@raijin.nci.org.au:`pwd`'
 alias h='history'
-alias nci='nci_account -P e14 -p 2015.q3 -v'
+alias nciusage='nci_account -P e14 -p 2015.q3 -v'
 alias qs='qstat -u cyb561'
 ## netcdf / fortran library paths for standard netcdf module :
 export NC_INC='-I /apps/netcdf/4.2.1.1/include'
