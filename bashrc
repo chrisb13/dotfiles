@@ -149,9 +149,10 @@ case $(hostname) in
         ;;
     chris-VirtualBox2)
         #chris home laptop 
-        source ~/my_env/bin/activate
         alias r='cd ~/codescratch/cms_analysis/hp_validation/'
         alias open='pcmanfm'
+        export PATH=/home/chris/anaconda/bin:$PATH
+        source activate main
         ;;
     chris-DeskVirtualBox)
         #chris home desktop
