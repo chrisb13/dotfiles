@@ -1,0 +1,253 @@
+
+#netCDF helpers
+function nc() #file header info ncdump
+{
+    ncdump -c ${1} | less
+}
+
+
+function ncv() #variable info ncdump
+{
+    ncdump -v ${2} ${1} | less
+}
+
+
+#rsync functions for grabbing
+#bash function to grab passed files into hdrive at UNSW
+function stormpull()
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   stormpull [path_from] [path_to]." 
+        echo "Purpose: rsync function to pull files from storm." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from: Path on Maelstrom to Rsync from" 
+        echo "path_to:   Path on local to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "stormpull /home/z3457920/hdrive/repos/cms_analysis/*.py ./temp"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress z3457920@maelstrom.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/*.py ./temp"
+
+        return 1
+    fi
+    rsync -avz --progress z3457920@maelstrom.ccrc.unsw.edu.au:$* 
+}
+
+
+function stormpush()
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   stormpush [path_to] [path_from]." 
+        echo "Purpose: rsync function to push files to storm." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_to:   Path on local to Rsync to" 
+        echo "path_from: Path on Maelstrom to Rsync from" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "stormpush ./temp/* /home/z3457920/hdrive/repos/cms_analysis/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress ./temp/* z3457920@maelstrom.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/"
+
+        return 1
+    fi
+    #grabs last passed argument..
+    for last; do true; done
+
+    #grabs all arguments but the last one...
+    #echo ${@:1:$(($#-1))}
+
+    rsync -avz --progress ${@:1:$(($#-1))} z3457920@maelstrom.ccrc.unsw.edu.au:$last
+}
+
+
+function pushit() #bash command to push file into hdrive at UNSW
+{
+    rsync -avz $* z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/
+}
+
+function ncipushshort() #bash command to push file(s) into short on NCI
+{
+    rsync -avPS $* cyb561@raijin.nci.org.au:/short/e14/cyb561/
+}
+
+#bash command to push file(s) into NCI
+function ncipush() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   ncipush [path_to] [path_from]." 
+        echo "Purpose: rsync function to push files to NCI." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_to:   Path on local to Rsync to" 
+        echo "path_from: Path on NCI to Rsync from" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "ncipush ./temp/* /short/e14/cyb561/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress ./temp/* cyb561@raijin.nci.org.au:/short/e14/cyb561/"
+
+        return 1
+    fi
+    #grabs last passed argument..
+    for last; do true; done
+
+    rsync -avS --progress ${@:1:$(($#-1))} cyb561@raijin.nci.org.au:$last
+}
+
+#bash command to pull file(s) into NCI
+function ncipull() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   ncipull [path_from] [path_to]." 
+        echo "Purpose: rsync function to pull files from nci." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from: Path on nci to Rsync from" 
+        echo "path_to:   Path on local to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "ncipull /short/e14/cyb561/*.py ./temp/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress cyb561@raijin.nci.org.au:/short/e14/cyb561/*.py  ./temp/"
+
+        return 1
+    fi
+
+    rsync -avS --progress cyb561@raijin.nci.org.au:$* 
+}
+
+
+#bash command to push file(s) into  massdata
+function mdsspush() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   mdsspush [path_to] [path_from]." 
+        echo "Purpose: rsync function to push files to NCI's massdata." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_to:   Path on local to Rsync to" 
+        echo "path_from: Path on massdata NCI to Rsync from" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "mdsspush ./temp/* /massdata/e14/cyb561/now/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress ./temp/* cyb561@dc-dm3.nci.org.au:/massdata/e14/cyb561/now/"
+
+        return 1
+    fi
+    #grabs last passed argument..
+    for last; do true; done
+
+    rsync -avS --progress ${@:1:$(($#-1))} cyb561@dc-dm3.nci.org.au:$last
+}
+
+#bash command to pull file(s) into massdata
+function mdsspull() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   mdsspull [path_from] [path_to]." 
+        echo "Purpose: rsync function to pull files from NCI's massdata." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from: Path on massdata NCI to Rsync from" 
+        echo "path_to:   Path on local to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "mdsspull /massdata/e14/cyb561/now/*.py ./temp/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress cyb561@dc-dm3.nci.org.au:/massdata/e14/cyb561/now/*.py  ./temp/"
+
+        return 1
+    fi
+
+    rsync -avS --progress cyb561@dc-dm3.nci.org.au:$* 
+}
+
+
+#vim netrw plugin for various servers...
+function vimnci() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   vimnci [path_from] [path_to]." 
+        echo "Purpose: Allows remote editing of files on nci servers..." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path or file: vim will either edit or open file passed" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "vimnci /home/561/cyb561/repos/scripts_not_in_repo/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "vim scp://cyb561@raijin.nci.org.au//home/561/cyb561/repos/scripts_not_in_repo/"
+
+        return 1
+    fi
+
+    vim scp://cyb561@raijin.nci.org.au/${1} 
+
+}
+
+
+function vimstorm() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   vimstorm [path_from] [path_to]." 
+        echo "Purpose: Allows remote editing of files on CCRC storm servers..." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path or file: vim will either edit or open file passed" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "vimstorm /home/z3457920/hdrive/repos/cms_analysis/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "vim scp://z3457920@maelstrom.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/"
+
+        return 1
+    fi
+
+    vim scp://z3457920@maelstrom.ccrc.unsw.edu.au/${1} 
+
+}
+
+
+function vimmdss() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   vimmdss [path_from] [path_to]." 
+        echo "Purpose: Allows remote editing of files on CCRC storm servers..." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path or file: vim will either edit or open file passed" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "vimmdss /massdata/e14/cyb561/now/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "vim scp://cyb561@dc-dm3.nci.org.au//massdata/e14/cyb561/now/"
+
+        return 1
+    fi
+
+    vim scp://cyb561@dc-dm3.nci.org.au/${1} 
+
+}
+
+
