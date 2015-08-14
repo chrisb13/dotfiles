@@ -27,6 +27,7 @@ alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/rep
 alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias vimhdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias ncivi='vim scp://cyb561@raijin.nci.org.au//home/561/cyb561/repos/scripts_not_in_repo/'
+alias ncicdftools='vim scp://cyb561@raijin.nci.org.au//short/e14/cyb561/cdftools3/'
 alias hdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias sniped='vi ~/.vim/UltiSnips/python.snippets'
 
@@ -51,3 +52,4 @@ alias md='ssh -X cyb561@dc-dm3.nci.org.au'
 alias maelstrom='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
 alias m='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
 alias monsoon='ssh -X z3457920@monsoon.ccrc.unsw.edu.au'
+alias imp='ssh -X evansebi@login.cx1.hpc.ic.ac.uk'
