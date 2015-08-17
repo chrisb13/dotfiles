@@ -40,12 +40,12 @@ function stormpull()
 function stormpush()
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   stormpush [path_to] [path_from]." 
+        echo "Usage:   stormpush [path_from] [path_to]." 
         echo "Purpose: rsync function to push files to storm." 
         echo "       " 
         echo "Mandatory arguments: " 
-        echo "path_to:   Path on local to Rsync to" 
         echo "path_from: Path on Maelstrom to Rsync from" 
+        echo "path_to:   Path on local to Rsync to" 
         echo "       " 
         echo "Example." 
         echo "This:" 
@@ -80,12 +80,12 @@ function ncipushshort() #bash command to push file(s) into short on NCI
 function ncipush() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   ncipush [path_to] [path_from]." 
+        echo "Usage:   ncipush [path_from] [path_to] ." 
         echo "Purpose: rsync function to push files to NCI." 
         echo "       " 
         echo "Mandatory arguments: " 
-        echo "path_to:   Path on local to Rsync to" 
-        echo "path_from: Path on NCI to Rsync from" 
+        echo "path_from:   Path on local to Rsync from" 
+        echo "path_to: Path on NCI to Rsync to" 
         echo "       " 
         echo "Example." 
         echo "This:" 
@@ -131,12 +131,12 @@ function ncipull()
 function mdsspush() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   mdsspush [path_to] [path_from]." 
+        echo "Usage:   mdsspush [path_from] [path_to]." 
         echo "Purpose: rsync function to push files to NCI's massdata." 
         echo "       " 
         echo "Mandatory arguments: " 
-        echo "path_to:   Path on local to Rsync to" 
         echo "path_from: Path on massdata NCI to Rsync from" 
+        echo "path_to:   Path on local to Rsync to" 
         echo "       " 
         echo "Example." 
         echo "This:" 
