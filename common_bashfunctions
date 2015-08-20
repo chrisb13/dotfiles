@@ -17,7 +17,7 @@ function ncv() #variable info ncdump
 function stormpull()
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   stormpull [path_from] [path_to]." 
+        echo "Usage:   stormpull PATH_FROM PATH_TO." 
         echo "Purpose: rsync function to pull files from storm." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -40,7 +40,7 @@ function stormpull()
 function stormpush()
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   stormpush [path_from] [path_to]." 
+        echo "Usage:   stormpush PATH_FROM PATH_TO." 
         echo "Purpose: rsync function to push files to storm." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -80,7 +80,7 @@ function ncipushshort() #bash command to push file(s) into short on NCI
 function ncipush() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   ncipush [path_from] [path_to] ." 
+        echo "Usage:   ncipush PATH_FROM PATH_TO ." 
         echo "Purpose: rsync function to push files to NCI." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -106,7 +106,7 @@ function ncipush()
 function ncipull() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   ncipull [path_from] [path_to]." 
+        echo "Usage:   ncipull PATH_FROM PATH_TO." 
         echo "Purpose: rsync function to pull files from nci." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -131,7 +131,7 @@ function ncipull()
 function mdsspush() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   mdsspush [path_from] [path_to]." 
+        echo "Usage:   mdsspush PATH_FROM PATH_TO." 
         echo "Purpose: rsync function to push files to NCI's massdata." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -157,7 +157,7 @@ function mdsspush()
 function mdsspull() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   mdsspull [path_from] [path_to]." 
+        echo "Usage:   mdsspull PATH_FROM PATH_TO." 
         echo "Purpose: rsync function to pull files from NCI's massdata." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -182,7 +182,7 @@ function mdsspull()
 function vimnci() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   vimnci [path_from] [path_to]." 
+        echo "Usage:   vimnci PATH_FROM PATH_TO." 
         echo "Purpose: Allows remote editing of files on nci servers..." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -206,7 +206,7 @@ function vimnci()
 function vimstorm() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   vimstorm [path_from] [path_to]." 
+        echo "Usage:   vimstorm PATH_FROM PATH_TO." 
         echo "Purpose: Allows remote editing of files on CCRC storm servers..." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -230,7 +230,7 @@ function vimstorm()
 function vimmdss() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   vimmdss [path_from] [path_to]." 
+        echo "Usage:   vimmdss PATH_FROM PATH_TO." 
         echo "Purpose: Allows remote editing of files on CCRC storm servers..." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -250,4 +250,22 @@ function vimmdss()
 
 }
 
+function findtype() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage: findtype TYPE" 
+        echo "Purpose: searches for files with TYPE." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "TYPE: file type " 
+        echo "       " 
+        echo "Example." 
+        echo "findtype *.txt" 
+
+        return 1
+    fi
+
+    find . -type f -name "${1}" 
+
+}
 

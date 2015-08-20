@@ -152,7 +152,8 @@ case $(hostname) in
         alias r='cd ~/codescratch/cms_analysis/hp_validation/'
         alias open='pcmanfm'
         export PATH=/home/chris/anaconda/bin:$PATH
-        #source activate main
+
+        alias ps='source activate root'
         ;;
     chris-DeskVirtualBox)
         #chris home desktop
