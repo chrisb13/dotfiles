@@ -86,6 +86,7 @@ function ncv() #variable info ncdump
 }
 
 source ~/.vim/common_bashrc
+source ~/.vim/common_bashfunctions
 
 #NCI specific  aliases
 alias r='cd ~/repos/scripts_not_in_repo/'
@@ -98,8 +99,8 @@ module load ncview
 module load netcdf
 
 #python module loads..
-#module use ~access/modules
-#module load pythonlib/iris
-#module load pythonlib/basemap
+module use ~access/modules
+module load pythonlib/iris
+module load pythonlib/basemap
 
 
