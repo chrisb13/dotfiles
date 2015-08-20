@@ -149,9 +149,11 @@ case $(hostname) in
         ;;
     chris-VirtualBox2)
         #chris home laptop 
-        source ~/my_env/bin/activate
         alias r='cd ~/codescratch/cms_analysis/hp_validation/'
         alias open='pcmanfm'
+        export PATH=/home/chris/anaconda/bin:$PATH
+
+        alias ps='source activate root'
         ;;
     chris-DeskVirtualBox)
         #chris home desktop
@@ -177,6 +179,9 @@ alias sa='cd ~/hdrive/repos/swissarmy/'
 #source common aliases
 source ~/.vim/common_bashrc
 
+#source common bash functions
+source ~/.vim/common_bashfunctions
+
 #for python virtualenv
 alias pyt='source ~/env/my_env/bin/activate'  #for storm servers
 #alias p='pyt; ipython --pylab'
@@ -192,23 +197,12 @@ alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'
 set -o vi
 
 
-
 function log() #pbs log file
 {
   less $(ls cb_rhomoc_katana.pbs.* |tail -1)
 }
 
 
-function nc() #file header info ncdump
-{
-  ncdump -c ${1} | less
-}
-
-
-function ncv() #variable info ncdump
-{
-  ncdump -v ${2} ${1} | less
-}
 
 function ll ()
 {
@@ -217,14 +211,6 @@ tput cup 0 0;
 ls --color=auto -F --color=always -lhFrt;
 tput cup 40 0;
 }
-
-
-function pushit() #bash command to push file into hdrive at UNSW
-{
-rsync -avz ./${1} z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/
-}
-
-
 
 function makepy ()
 {
