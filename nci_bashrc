@@ -106,6 +106,7 @@ case $(hostname) in
     dc-dm3) 
 	# User specific aliases and functions
 	cd /massdata/e14/cyb561/now
+	LS_COLORS=$LS_COLORS:'di=0;35:' ; export LS_COLORS
         ;;
 esac
 
