@@ -182,7 +182,7 @@ function mdsspull()
 function vimnci() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   vimnci PATH_FROM PATH_TO." 
+        echo "Usage:   vimnci PATH_TO." 
         echo "Purpose: Allows remote editing of files on nci servers..." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -206,7 +206,7 @@ function vimnci()
 function vimstorm() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   vimstorm PATH_FROM PATH_TO." 
+        echo "Usage:   vimstorm PATH_TO." 
         echo "Purpose: Allows remote editing of files on CCRC storm servers..." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -230,7 +230,7 @@ function vimstorm()
 function vimmdss() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   vimmdss PATH_FROM PATH_TO." 
+        echo "Usage:   vimmdss PATH_TO." 
         echo "Purpose: Allows remote editing of files on CCRC storm servers..." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -267,5 +267,77 @@ function findtype()
 
     find . -type f -name "${1}" 
 
+}
+
+function log() #pbs log file
+{
+  less $(ls cb_rhomoc_katana.pbs.* |tail -1)
+}
+
+
+
+function ll ()
+{
+clear;
+tput cup 0 0;
+ls --color=auto -F --color=always -lhFrt;
+tput cup 40 0;
+}
+
+function makepy ()
+{
+pipfreeze=$(pip freeze | sed 's/^/##   /')
+modulelist_storm=$(module list 2>&1 | sed 's/^/# /')
+modulelist_katana=$(module list |& sed 's/^/# /')
+cat > ${1}.py <<EOF
+##   Author: Christopher Bull. 
+##   Affiliation: Climate Change Research Centre and ARC Centre of Excellence for Climate System Science.
+##                Level 4, Mathews Building
+##                University of New South Wales
+##                Sydney, NSW, Australia, 2052
+##   Contact: z3457920@student.unsw.edu.au
+##   www:     christopherbull.com.au
+##   twitter: @@ChrisBullOceanO
+##   Date created: $(date)
+##   Machine created on: $(hostname)
+##
+
+"""
+This file is for 
+
+"""
+
+
+#
+#python logging
+import logging as lg
+import time
+#import os
+
+#import sys
+
+#sys.path.insert(1,'/home/z3457920/hdrive/repos/cms_analysis/')
+from cb2logger import *
+
+#If you want to log to a file you need to put this before you import swissarmy!
+#LogStart(sys.argv[0]+ '.log',fout=True)
+
+#sys.path.insert(1,'/home/z3457920/hdrive/repos/')
+#import swissarmy as sa
+
+if __name__ == "__main__":                                     #are we being run directly?
+    LogStart('',fout=False)
+
+    #PUT wothwhile code here!
+
+    #sa.mkdir('./blah3/')
+
+    lg.info('')
+    localtime = time.asctime( time.localtime(time.time()) )
+    lg.info("Local current time : "+ str(localtime))
+    lg.info('SCRIPT ended')
+
+EOF
+vi ${1}.py
 }
 
