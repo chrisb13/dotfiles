@@ -5,9 +5,8 @@ function parse_git_branch {
     echo "("${ref#refs/heads/}")"
 }
 
-#neds version
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)\$ '
-
+#cb added
+set -o vi
 
 #chris' alias
 set -o vi
@@ -30,6 +29,7 @@ alias ncivi='vim scp://cyb561@raijin.nci.org.au//home/561/cyb561/repos/scripts_n
 alias ncicdftools='vim scp://cyb561@raijin.nci.org.au//short/e14/cyb561/cdftools3/'
 alias hdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias sniped='vi ~/.vim/UltiSnips/python.snippets'
+alias v='cd ~/.vim/'
 
 #git alias
 alias gittrack='git ls-tree --full-tree -r HEAD'
@@ -53,3 +53,89 @@ alias maelstrom='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
 alias m='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
 alias monsoon='ssh -X z3457920@monsoon.ccrc.unsw.edu.au'
 alias imp='ssh -X cbull@login.cx1.hpc.ic.ac.uk'
+
+alias ip='ipython --pylab'
+
+# some more ls aliases
+case $(hostname) in
+    katana.science.unsw.edu.au) 
+        module load hdf5           
+        module load ncview
+        module load netcdf/3.6.3-intel 
+        #module load netcdf
+        module load intel
+        module load matlab/2011b
+        module load python
+        module load proj
+        alias qint='qsub -I -l nodes=1:ppn=1,vmem=15gb,walltime=2:00:00'
+        alias qme='qstat -nru $USER'
+        alias qme2='qstat | grep z3457920'
+        alias pyk='source ~/env/katana_env/bin/activate'   #for katana 
+        ;;
+    squall.ccrc.unsw.edu.au|maelstrom.ccrc.unsw.edu.au|monsoon.ccrc.unsw.edu.au)
+        alias open='nautilus . &'
+        #alias v='vimx'
+        alias vi='vimx'
+        alias vim='vimx'
+        alias ps='module load geos; module load perl/5.18.2;module load gdal;source ~/env/newstorm_env/bin/activate'
+        alias topme='top -u z3457920'
+        alias pyt='source ~/env/my_env/bin/activate'  #for storm servers
+        module load hdf5               #for new storm servers
+        module load ncview
+        module load netcdf/4.2.1
+        #module load netcdf
+        module load intel
+        module load matlab/2011b
+        module load python
+        module load proj
+        module load geos
+        module load vim/7.4
+        ;;
+    ccrc165) 
+        # enable programmable completion features (you don't need to enable
+        # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+        # sources /etc/bash.bashrc).
+        if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+            . /etc/bash_completion
+        fi
+        source ~/.fzf.bash
+        alias open='dolphin . &'
+        alias vi='vim'
+        alias ps='source ~/env/ccrc_env/bin/activate'
+        alias fixdesk='kstart plasma-desktop &'
+        alias checkh='mount | grep hdrive'
+        ;;
+    ubuntudesktop) 
+        #chris home desktop dual boot
+        source ~/myenv/bin/activate
+        alias grabplots='rsync -avz z3457920@squall.ccrc.unsw.edu.au:/srv/ccrc/data32/z3457920/leeuwincurrent2/cookiecutting07/plots/depint/ ~/plotscratch/'
+        alias open='nautilus .'
+        ;;
+    chris-VirtualBox2)
+        #chris home laptop 
+        alias r='cd ~/codescratch/cms_analysis/hp_validation/'
+        alias open='pcmanfm'
+        export PATH=/home/chris/anaconda/bin:$PATH
+
+        alias ps='source activate root'
+        #for Jekyll website
+        alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
+        ;;
+    chris-DeskVirtualBox)
+        #chris home desktop
+        # added by Anaconda 2.3.0 installer
+        export PATH="/home/chris/anaconda/bin:$PATH"
+        ;;
+    katana.science.unsw.edu.au|ccrc165|squall.ccrc.unsw.edu.au|maelstrom.ccrc.unsw.edu.au|monsoon.ccrc.unsw.edu.au)
+        #folders
+        alias cbd='cd /srv/ccrc/data23/z3457920/leeuwincurrent/'
+        alias cbd2='cd /srv/ccrc/data32/z3457920/leeuwincurrent2/'
+        alias cbd3='cd /srv/ccrc/data32/z3457920/leeuwincurrent3/'
+        alias cbd4='cd /srv/ccrc/data42/z3457920/'
+        alias now1='cd /srv/ccrc/data34/z3045790/nemo/cordex24_1d_BILAPLACIAN' #nico now low res
+        alias now2='cd /srv/ccrc/data34/z3045790/nemo/cordex24_nest8_1d_BILAPLACIAN' #nico high low res
+        alias r='cd ~/hdrive/repos/cms_analysis/'
+        alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
+        alias sa='cd ~/hdrive/repos/swissarmy/'
+        ;;
+esac
