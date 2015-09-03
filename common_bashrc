@@ -117,6 +117,8 @@ case $(hostname) in
         alias open='pcmanfm'
         export PATH=/home/chris/anaconda/bin:$PATH
 
+        alias sFour='cd /media/chris/sFour/'
+        alias r='cd ~/codescratch/nemo_analysis/diagnostics/'
         alias ps='source activate root'
         #for Jekyll website
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
