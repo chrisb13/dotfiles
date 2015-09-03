@@ -59,6 +59,9 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 
 source $ZSH/oh-my-zsh.sh
 
+#turn off error prone if can't glob. Messed up rsync and other remote globbing operations otherwise
+unsetopt nomatch
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -83,6 +86,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+#plugins
+source ~/.oh-my-zsh/plugins/vimman/vimman.zsh
+
 #
 #source ~/.vim/bashrc
 source ~/.vim/common_bashrc
