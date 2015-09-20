@@ -1,3 +1,6 @@
+#add home to cdpath
+CDPATH=$CDPATH:~/
+
 #prompt stuff
 #function parse git branch
 function parse_git_branch {
@@ -36,11 +39,11 @@ alias gittrack='git ls-tree --full-tree -r HEAD'
 alias gitb='git branch -a --color=auto'
 
 #machines
-alias typ='ssh -X typhoon'
-alias t='ssh -X typhoon'
-alias hurricane='ssh -X hurricane'
-alias hurri='ssh -X hurricane'
-alias cyc='ssh -X cyclone'
+alias typ='ssh -X z3457920@typhoon.ccrc.unsw.edu.au'
+alias t='ssh -X z3457920@typhoon.ccrc.unsw.edu.au'
+alias hurricane='ssh -X z3457920@hurricane.ccrc.unsw.edu.au'
+alias hurri='ssh -X z3457920@hurricane.ccrc.unsw.edu.au'
+alias cyc='ssh -X z3457920@cyclone.ccrc.unsw.edu.au'
 alias katana='ssh -X z3457920@katana.science.unsw.edu.au'
 alias k='ssh -X z3457920@katana.science.unsw.edu.au'
 alias tensor='ssh -X z3457920@tensor.maths.unsw.edu.au'
@@ -122,6 +125,7 @@ case $(hostname) in
         alias ps='source activate root'
         #for Jekyll website
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
+        alias web='cd ~/website/'  
         ;;
     chris-DeskVirtualBox)
         #chris home desktop

@@ -92,4 +92,16 @@ cd $PBS_O_WORKDIR
 source /srv/scratch/z3457920/katana_env_pbs/bin/activate
 endsnippet
 
+snippet ncicopyq 
+#!/bin/bash
+#PBS -P e14
+#PBS -q copyq
+#PBS -l wd
+#PBS -l other=mdss 
+
+#insert code here, e.g.
+cd /g/data1/e14/cyb561/cb_tempa
+mdss get -r cyb561/now/output/nemo_cordex24_ERAI01b ./
+endsnippet
+
 # vim:ft=snippets:

@@ -102,6 +102,25 @@ snippet log
 lg.info("${1:msg}: " + str(${2:non-string}))
 endsnippet
 
+
+snippet timeitcomplicated
+#this gets put in a bash script
+#see: https://docs.python.org/2/library/timeit.html
+#and one of the later answers from here:
+#http://stackoverflow.com/questions/8220801/how-to-use-timeit-module
+
+SETUP="
+#body python code
+
+def some_function(argument):
+	pass
+"
+
+# where n is the number of loops (it will self-optimise if left out)
+python -m timeit -n 5 -s "$SETUP" "some_function(argument)" 
+endsnippet
+
+
 snippet timeit
 start=time.time()
 #insert timed code here
@@ -164,7 +183,6 @@ for p in path:
 
 #subprocess.call('chmod +x ./go.sh',shell=True)
 endsnippet
-
 
 snippet updir
 def updir(dir_name,num):
