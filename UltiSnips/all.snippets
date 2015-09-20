@@ -76,6 +76,16 @@ snippet rsync
 rsync -avz --progress z3457920@squall.ccrc.unsw.edu.au:/path/to/file/on/server/*.p ~/data_temp/coookie_cutters/
 endsnippet
 
+snippet ffmpeg
+##qscale turns on VBR; see: http://www.kilobitspersecond.com/2007/05/24/ffmpeg-quality-comparison/
+#-y is overwrite
+#-an is no audio
+#-r # where # is the frame rate
+
+#assumes a number with 5 characters after 'movepar'
+ffmpeg -r 15 -qscale 3 -y -an -i ./moviepar%05d.png outputfilename.mov
+endsnippet
+
 snippet pbs
 #!/bin/bash
 #PBS -l nodes=1
