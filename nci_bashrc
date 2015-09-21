@@ -85,6 +85,8 @@ alias r='cd ~/repos/scripts_not_in_repo/'
 
 alias interactive='qsub -I -q express -l ncpus=1,mem=20gb,walltime=5:00:00'
 
+#add xclip to bash path
+PATH=$PATH:~/xclip/
 
 module load ncview
 module load netcdf
