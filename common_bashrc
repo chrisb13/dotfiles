@@ -11,6 +11,9 @@ function parse_git_branch {
 #cb added
 set -o vi
 
+#colorscheme solarised for bash shell
+export TERM="xterm-256color"
+
 #chris' alias
 set -o vi
 alias ll='ls -alF'

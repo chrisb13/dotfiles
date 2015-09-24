@@ -105,8 +105,17 @@ set bs=2 " make backspace behave like normal again
 " Color scheme
 "mkdir -p ~/.vim/colors && cd ~/.vim/colors
 "wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
-set t_Co=256
-color wombat256mod
+"set t_Co=256
+"color wombat256mod
+
+"syntax enable
+set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+let g:solarized_visibility="high"
+colorscheme solarized
+
 
 " ============================================================================
 " Python IDE Setup
@@ -155,6 +164,13 @@ inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
 "tries to fix clipboard
 set clipboard=unnamed
+
+"hotkey for tagbar
+"requires: sudo apt-get install exuberant-ctags
+"if not in path can use...
+"let g:tagbar_ctags_bin='/path/to/exuberant-ctags/'
+let g:tagbar_usearrows = 1
+nmap <F8> :TagbarToggle<CR>
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
@@ -284,8 +300,9 @@ nmap <leader>a <Esc>:!ack-grep
 map <F2> :NERDTreeToggle<CR>
 
 
-nnoremap <buffer> <F7> :exec '!mkdir ~/codescratch/' <bar>  :exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/*.py ~/codescratch/' <bar> exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cookies/*.py ~/codescratch/cookies/' <cr>
-nnoremap <buffer> <F8> :exec '!rsync -avz ~/codescratch/*.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/' <bar> exec '!rsync -avz ~/codescratch/cookies/*.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cookies/' <cr>
+"Some old rsync bound commands
+"nnoremap <buffer> <F7> :exec '!mkdir ~/codescratch/' <bar>  :exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/*.py ~/codescratch/' <bar> exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cookies/*.py ~/codescratch/cookies/' <cr>
+"nnoremap <buffer> <F8> :exec '!rsync -avz ~/codescratch/*.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/' <bar> exec '!rsync -avz ~/codescratch/cookies/*.py z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cookies/' <cr>
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
