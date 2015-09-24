@@ -36,6 +36,9 @@ alias ncicdftools='vim scp://cyb561@raijin.nci.org.au//short/e14/cyb561/cdftools
 alias hdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias sniped='vi ~/.vim/UltiSnips/python.snippets'
 alias v='cd ~/.vim/'
+alias updatesubmodvim='git submodule foreach git pull origin master'
+alias getnewsubmodsvim='git submodule update --init --recursive'
+
 
 #git alias
 alias gittrack='git ls-tree --full-tree -r HEAD'
