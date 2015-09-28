@@ -110,9 +110,14 @@ case $(hostname) in
         source ~/.fzf.bash
         alias open='dolphin . &'
         alias vi='vim'
-        alias ps='source ~/env/ccrc_env/bin/activate'
+        
+        #turned off b/c I've started to use anaconda more...
+        #alias ps='source ~/env/ccrc_env/bin/activate'
+        alias ps='source activate root'
         alias fixdesk='kstart plasma-desktop &'
         alias checkh='mount | grep hdrive'
+        export PATH="~/cmake-3.3.2/bin:$PATH"
+        export PATH="/home/nfs/z3457920/anaconda/bin:$PATH"
         ;;
     ubuntudesktop) 
         #chris home desktop dual boot
