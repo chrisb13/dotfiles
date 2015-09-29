@@ -114,4 +114,16 @@ cd /g/data1/e14/cyb561/cb_tempa
 mdss get -r cyb561/now/output/nemo_cordex24_ERAI01b ./
 endsnippet
 
+
+snippet ncinormalq
+#!/bin/bash
+#PBS -P e14
+#PBS -q express
+#PBS -l wd
+#PBS -l ncpus=1,mem=20Gb,walltime=10:00:00 
+
+#insert code here, e.g.
+endsnippet
+
+
 # vim:ft=snippets:

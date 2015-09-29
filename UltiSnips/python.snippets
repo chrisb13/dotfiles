@@ -144,6 +144,46 @@ plot_dict=collections.OrderedDict()
 endsnippet
 
 
+snippet docopt
+#see: https://github.com/docopt/docopt
+#round brackets mean required square are optional
+
+#download docopt from...
+#https://raw.githubusercontent.com/docopt/docopt/master/docopt.py
+
+`!p
+import inspect,os
+docopt_path=os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))+'/docopt.py'
+#snip.rv=docopt_path
+if not os.path.isfile(docopt_path):
+	import urllib
+	urllib.urlretrieve("https://raw.githubusercontent.com/docopt/docopt/master/docopt.py",\
+	filename=docopt_path)
+	#ret='downloaded docopt'
+#else:
+	#ret='did not download docopt'
+#snip.rv=ret
+`
+"""
+${1:Docstring for file}
+
+Usage:
+`!p
+snip.rv='    '+snip.fn
+` -h
+`!p
+snip.rv='    '+snip.fn
+` ( ${2:first_argument} | ${4:second_argument} ) 
+Options:
+    -h,--help          : show this help message
+    $2,--${3:Long_version_first_agument}           : optional argument
+    $4                 : mandatory argument (capitals or angled brackets)
+"""
+from docopt import docopt
+arguments = docopt(__doc__)
+endsnippet
+
+
 snippet parser
 import argparse
 parser = argparse.ArgumentParser(description='Parser for ${1:msg}.',\
