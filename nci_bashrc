@@ -51,6 +51,8 @@ nf_bashrc_sourced=YES
 alias ls='ls --color=auto'
 alias lr='ls -lrt'
 alias short='cd /short/e14/cyb561/'
+alias gdata='cd /g/data1/e14/cyb561/'
+alias scratch='cd /g/data3/hh5/tmp/eac_analysis/'
 alias whereami='echo `whoami`@raijin.nci.org.au:`pwd`'
 alias h='history'
 alias nciusage='nci_account -P e14 -p 2015.q3 -v'
