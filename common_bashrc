@@ -1,3 +1,6 @@
+#add home to cdpath
+CDPATH=$CDPATH:~/
+
 #prompt stuff
 #function parse git branch
 function parse_git_branch {
@@ -7,6 +10,9 @@ function parse_git_branch {
 
 #cb added
 set -o vi
+
+#colorscheme solarised for bash shell
+export TERM="xterm-256color"
 
 #chris' alias
 set -o vi
@@ -30,17 +36,20 @@ alias ncicdftools='vim scp://cyb561@raijin.nci.org.au//short/e14/cyb561/cdftools
 alias hdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias sniped='vi ~/.vim/UltiSnips/python.snippets'
 alias v='cd ~/.vim/'
+alias updatesubmodvim='git submodule foreach git pull origin master'
+alias getnewsubmodsvim='git submodule update --init --recursive'
+
 
 #git alias
 alias gittrack='git ls-tree --full-tree -r HEAD'
 alias gitb='git branch -a --color=auto'
 
 #machines
-alias typ='ssh -X typhoon'
-alias t='ssh -X typhoon'
-alias hurricane='ssh -X hurricane'
-alias hurri='ssh -X hurricane'
-alias cyc='ssh -X cyclone'
+alias typ='ssh -X z3457920@typhoon.ccrc.unsw.edu.au'
+alias t='ssh -X z3457920@typhoon.ccrc.unsw.edu.au'
+alias hurricane='ssh -X z3457920@hurricane.ccrc.unsw.edu.au'
+alias hurri='ssh -X z3457920@hurricane.ccrc.unsw.edu.au'
+alias cyc='ssh -X z3457920@cyclone.ccrc.unsw.edu.au'
 alias katana='ssh -X z3457920@katana.science.unsw.edu.au'
 alias k='ssh -X z3457920@katana.science.unsw.edu.au'
 alias tensor='ssh -X z3457920@tensor.maths.unsw.edu.au'
@@ -101,9 +110,14 @@ case $(hostname) in
         source ~/.fzf.bash
         alias open='dolphin . &'
         alias vi='vim'
-        alias ps='source ~/env/ccrc_env/bin/activate'
+        
+        #turned off b/c I've started to use anaconda more...
+        #alias ps='source ~/env/ccrc_env/bin/activate'
+        alias ps='source activate root'
         alias fixdesk='kstart plasma-desktop &'
         alias checkh='mount | grep hdrive'
+        export PATH="~/cmake-3.3.2/bin:$PATH"
+        export PATH="/home/nfs/z3457920/anaconda/bin:$PATH"
         ;;
     ubuntudesktop) 
         #chris home desktop dual boot
@@ -122,6 +136,7 @@ case $(hostname) in
         alias ps='source activate root'
         #for Jekyll website
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
+        alias web='cd ~/website/'  
         ;;
     chris-DeskVirtualBox)
         #chris home desktop

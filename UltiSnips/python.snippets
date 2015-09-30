@@ -102,6 +102,25 @@ snippet log
 lg.info("${1:msg}: " + str(${2:non-string}))
 endsnippet
 
+
+snippet timeitcomplicated
+#this gets put in a bash script
+#see: https://docs.python.org/2/library/timeit.html
+#and one of the later answers from here:
+#http://stackoverflow.com/questions/8220801/how-to-use-timeit-module
+
+SETUP="
+#body python code
+
+def some_function(argument):
+	pass
+"
+
+# where n is the number of loops (it will self-optimise if left out)
+python -m timeit -n 5 -s "$SETUP" "some_function(argument)" 
+endsnippet
+
+
 snippet timeit
 start=time.time()
 #insert timed code here
@@ -122,6 +141,46 @@ endsnippet
 snippet collections
 import collections
 plot_dict=collections.OrderedDict()
+endsnippet
+
+
+snippet docopt
+#see: https://github.com/docopt/docopt
+#round brackets mean required square are optional
+
+#download docopt from...
+#https://raw.githubusercontent.com/docopt/docopt/master/docopt.py
+
+`!p
+import inspect,os
+docopt_path=os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))+'/docopt.py'
+#snip.rv=docopt_path
+if not os.path.isfile(docopt_path):
+	import urllib
+	urllib.urlretrieve("https://raw.githubusercontent.com/docopt/docopt/master/docopt.py",\
+	filename=docopt_path)
+	#ret='downloaded docopt'
+#else:
+	#ret='did not download docopt'
+#snip.rv=ret
+`
+"""
+${1:Docstring for file}
+
+Usage:
+`!p
+snip.rv='    '+snip.fn
+` -h
+`!p
+snip.rv='    '+snip.fn
+` ( ${2:first_argument} | ${4:second_argument} ) 
+Options:
+    -h,--help          : show this help message
+    $2,--${3:Long_version_first_agument}           : optional argument
+    $4                 : mandatory argument (capitals or angled brackets)
+"""
+from docopt import docopt
+arguments = docopt(__doc__)
 endsnippet
 
 
@@ -164,7 +223,6 @@ for p in path:
 
 #subprocess.call('chmod +x ./go.sh',shell=True)
 endsnippet
-
 
 snippet updir
 def updir(dir_name,num):

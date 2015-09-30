@@ -1,0 +1,4 @@
+#use vim modes in python/pdb etc
+set editing-mode vi
+set keymap vi
+set convert-meta on

@@ -76,6 +76,16 @@ snippet rsync
 rsync -avz --progress z3457920@squall.ccrc.unsw.edu.au:/path/to/file/on/server/*.p ~/data_temp/coookie_cutters/
 endsnippet
 
+snippet ffmpeg
+##qscale turns on VBR; see: http://www.kilobitspersecond.com/2007/05/24/ffmpeg-quality-comparison/
+#-y is overwrite
+#-an is no audio
+#-r # where # is the frame rate
+
+#assumes a number with 5 characters after 'movepar'
+ffmpeg -r 15 -qscale 3 -y -an -i ./moviepar%05d.png outputfilename.mov
+endsnippet
+
 snippet pbs
 #!/bin/bash
 #PBS -l nodes=1
@@ -91,5 +101,29 @@ module load python
 cd $PBS_O_WORKDIR
 source /srv/scratch/z3457920/katana_env_pbs/bin/activate
 endsnippet
+
+snippet ncicopyq 
+#!/bin/bash
+#PBS -P e14
+#PBS -q copyq
+#PBS -l wd
+#PBS -l other=mdss 
+
+#insert code here, e.g.
+cd /g/data1/e14/cyb561/cb_tempa
+mdss get -r cyb561/now/output/nemo_cordex24_ERAI01b ./
+endsnippet
+
+
+snippet ncinormalq
+#!/bin/bash
+#PBS -P e14
+#PBS -q express
+#PBS -l wd
+#PBS -l ncpus=1,mem=20Gb,walltime=10:00:00 
+
+#insert code here, e.g.
+endsnippet
+
 
 # vim:ft=snippets:
