@@ -141,6 +141,7 @@ case $(hostname) in
     chris-DeskVirtualBox)
         #chris home desktop
         # added by Anaconda 2.3.0 installer
+        alias ps='source activate root'
         export PATH="/home/chris/anaconda/bin:$PATH"
         ;;
 esac
