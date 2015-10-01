@@ -1,0 +1,8 @@
+Setting up for the first time!
+
+ln -s ~/.vim/sshconfig ~/.ssh/config
+ln -s ~/.vim/vimrc ~/.vim/.vimrc 
+ln -s ~/.vim/bashrc ~/.bashrc 
+ln -s ~/.vim/tmux.conf ~/.tmux.conf
+ln -s ~/.vim/gitconfig ~/.gitconfig 
+ln -s ~/.vim/inputrc ~/.inputrc 
