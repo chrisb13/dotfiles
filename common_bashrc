@@ -137,12 +137,15 @@ case $(hostname) in
         #for Jekyll website
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         alias web='cd ~/website/'  
+        alias bpi='ssh -X bananapi@192.168.1.200'
         ;;
     chris-DeskVirtualBox)
         #chris home desktop
+        alias bpi='ssh -X bananapi@192.168.1.200'
         # added by Anaconda 2.3.0 installer
         alias ps='source activate root'
         export PATH="/home/chris/anaconda/bin:$PATH"
+        alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         ;;
 esac
 
