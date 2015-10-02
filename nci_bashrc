@@ -83,7 +83,8 @@ source ~/.vim/common_bashfunctions
 
 #NCI specific  aliases
 alias r='cd ~/repos/scripts_not_in_repo/'
-#alias vi='~/vim/src/vim'
+alias vi='~/vim/src/vim'
+#alias vi='~/vim2/src/vim'
 
 alias interactive='qsub -I -q express -l ncpus=1,mem=20gb,walltime=5:00:00'
 
@@ -94,9 +95,13 @@ module load ncview
 module load netcdf
 
 #python module loads..
-module use ~access/modules
-module load pythonlib/iris
-module load pythonlib/basemap
+#module use ~access/modules
+#module load pythonlib/iris
+#module load pythonlib/basemap
+
+#for anaconda
+export PATH=/g/data1/e14/cyb561/anaconda/bin:$PATH
+alias ps='source activate root'
 
 case $(hostname) in
     dc-dm3) 
