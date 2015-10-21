@@ -6,10 +6,6 @@ snippet header
 #                Sydney, NSW, Australia, 2052
 #   Contact: z3457920@student.unsw.edu.au
 #   www:     christopherbull.com.au
-
-"""
-${1:Doc string for script}
-"""
 `!p 
 import time
 snip.rv='#   Date created: '+time.strftime("%a, %d %b %Y %H:%M:%S")
@@ -19,6 +15,10 @@ import socket
 snip.rv='#   Machine created on: '+socket.gethostname()
 `
 #
+
+"""
+${1:Doc string for script}
+"""
 import sys,os
 sys.path.insert(1,os.path.expanduser('~/hdrive/repos/cms_analysis/'))
 from cb2logger import *
