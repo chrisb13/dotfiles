@@ -26,7 +26,7 @@ alias edsnip='vi ~/.vim/UltiSnips/python.snippets'
 alias edvim='vi ~/.vimrc'
 alias runprof='. ~/.bashrc'
 alias top='top -M'
-alias temp='mkdir ~/tmp/ ; cd ~/tmp/'
+alias temp='mkdir ~/temp/ ; cd ~/temp/'
 
 #vim
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
