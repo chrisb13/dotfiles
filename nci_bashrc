@@ -104,7 +104,7 @@ export PATH=/g/data1/e14/cyb561/anaconda/bin:$PATH
 alias ps='source activate root'
 
 #for starting a new nemo simulation
-alias clearnemo='rm -vr compress_nemo_?.?[1-9]* run_nemo_?.sh.?[1-9]* production_nemo.?[1-9]* *.nc export_nemo_?.s.?[1-9]* import_nemo_?.s.?[1-9]* timing.output xios_server.exe solver.stat rebuild_restart.o layout.dat ocean.output prod_nemo.db 1_timing.output app.conf 1_ocean.output start_date_duration *.o export_nemo_?.sh import_nemo_?.sh run_nemo_?.sh TMP/ OUTNEMO_*/ 1_namelist namelist time.step 1_time.step nemo.exe'
+alias clearnemo='rm -vr compress_nemo_?.?[1-9]* run_nemo_?.sh.?[1-9]* production_nemo.?[1-9]* *.nc export_nemo_?.s.?[1-9]* import_nemo_?.s.?[1-9]* timing.output xios_server.exe solver.stat 1_rebuild_restart.f90  rebuild_restart.f90 rebuild_restart.o rebuild_restart 1_rebuild_restart layout.dat ocean.output prod_nemo.db 1_timing.output app.conf 1_ocean.output start_date_duration *.o export_nemo_?.sh import_nemo_?.sh run_nemo_?.sh TMP/ OUTNEMO_*/ 1_namelist namelist time.step 1_time.step nemo.exe'
 
 case $(hostname) in
     dc-dm3) 
