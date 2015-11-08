@@ -527,6 +527,10 @@ def multi_sh(s_name,args_one):
     return
 endsnippet
 
+snippet assertf
+assert(os.path.exists(${1:variable_to_file_path})),"can't find files ${2:file_discription}"
+endsnippet
+
 snippet catch
 if ${1:msg}:
 	lg.error("${2:msg}: " + str(${3:non-string}))
@@ -903,6 +907,11 @@ plt.show()
 ## The frame is matplotlib.patches.Rectangle instance surrounding the legend.
 #frame = legend.get_frame()
 #frame.set_facecolor('0.90')
+endsnippet
+
+snippet figsize
+#width then height
+fig=plt.figure(figsize=(20.0,9.0))
 endsnippet
 
 snippet gridspecplot
