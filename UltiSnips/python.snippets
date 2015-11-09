@@ -33,6 +33,103 @@ if __name__ == "__main__":
     lg.info('SCRIPT ended')
 endsnippet 
 
+snippet mkheadlogger
+`!p
+writeme=\
+"""
+#python logging
+import logging as lg
+import time
+import subprocess
+import sys
+import os
+
+class LogStart(object):
+   "class that sets up a logger"
+   def __init__(self, fname,fout=False,level='debug'):
+       if level=='debug':
+           lvl=lg.DEBUG
+       elif level=='info':
+           lvl=lg.INFO
+       elif level=='warning':
+           lvl=lg.WARNING
+       elif level=='error':
+           lvl=lg.ERROR
+       else: 
+           raise Exception('You passed a bad logging level')
+
+       if fout:
+          lg.basicConfig(filename=fname,filemode='w',\
+                  format='%(name)s - %(levelname)s - %(message)s'\
+                  , level=lvl) #where filemode clobbers file
+       else:
+          lg.basicConfig(format='%(name)s - %(levelname)s - %(message)s',\
+                  level=lvl)
+
+       lg.info('')
+       lg.info('SCRIPT started')
+       lg.info('Logging level is: ' + level)
+       localtime = time.asctime( time.localtime(time.time()) )
+       #found from (see limitations):
+       #http://stackoverflow.com/questions/7871319/how-to-know-who-is-importing-me-in-python
+       #lg.info("Path for script is : "+os.path.dirname(os.path.realpath(__name__)) )
+       lg.info("Script name is : "+ str(sys.argv[0]))
+
+       lg.info("Local current time : "+ str(localtime))
+
+       #lg.info("Machine run on : "+ os.getenv('HOSTNAME'))
+       if hasattr(sys, 'real_prefix'):
+           lg.info("We are running inside a venv.")
+       else:
+           lg.info("We are not running inside a venv.")
+           return
+
+       lg.info("")
+       command=subprocess.Popen(['pip','freeze'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+       pipout, piperr = command.communicate()
+       lg.info("---Pip freeze (including system-wide) START...--- ")
+       for pkg in pipout.splitlines():
+           lg.info(pkg)
+       lg.info("---Pip freeze (including system-wide) END.---")
+       lg.info("")
+"""
+import contextlib as ctx
+with ctx.closing(open('./cb2logger.py','w')) as handle:
+     handle.write(writeme+"\n")
+`
+#   Author: Christopher Bull. 
+#   Affiliation: Climate Change Research Centre and ARC Centre of Excellence for Climate System Science.
+#                Level 4, Mathews Building
+#                University of New South Wales
+#                Sydney, NSW, Australia, 2052
+#   Contact: z3457920@student.unsw.edu.au
+#   www:     christopherbull.com.au
+`!p 
+import time
+snip.rv='#   Date created: '+time.strftime("%a, %d %b %Y %H:%M:%S")
+`
+`!p 
+import socket
+snip.rv='#   Machine created on: '+socket.gethostname()
+`
+#
+
+"""
+${1:Doc string for script}
+"""
+from cb2logger import *
+
+if __name__ == "__main__": 
+    LogStart('',fout=False)
+	${0:#put useful code here!}
+
+    lg.info('')
+    localtime = time.asctime( time.localtime(time.time()) )
+    lg.info("Local current time : "+ str(localtime))
+    lg.info('SCRIPT ended')
+endsnippet
+
+
 #CHRIS' paths
 snippet  cbd
 '/srv/ccrc/data23/z3457920/leeuwincurrent/'
@@ -731,8 +828,8 @@ endsnippet
 
 snippet loadnetcdf
 from netCDF4 import Dataset
-file='/path/to/netcdf4/file.nc'
-ifile=Dataset(file, 'r')
+infile='/path/to/netcdf4/file.nc'
+ifile=Dataset(infile, 'r')
 varone=ifile.variables['']
 endsnippet
 

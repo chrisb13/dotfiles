@@ -3,6 +3,12 @@ call pathogen#helptags()
 
 syntax on
 filetype plugin indent on
+
+
+"tries to fix clipboard
+set clipboard=unnamedplus
+
+
 "
 "
 " ~/.vimrc (configuration file for vim only)
@@ -56,26 +62,26 @@ endfunction
 " Get the current visual block for search and replaces
 " This function passed the visual block through a string escape function
 " Based on this - http://stackoverflow.com/questions/676600/vim-replace-selected-text/677918#677918
-function! GetVisual() range
-  " Save the current register and clipboard
-  let reg_save = getreg('"')
-  let regtype_save = getregtype('"')
-  let cb_save = &clipboard
-  set clipboard&
+"function! GetVisual() range
+  "" Save the current register and clipboard
+  "let reg_save = getreg('"')
+  "let regtype_save = getregtype('"')
+  "let cb_save = &clipboard
+  "set clipboard&
 
-  " Put the current visual selection in the " register
-  normal! ""gvy
-  let selection = getreg('"')
+  "" Put the current visual selection in the " register
+  "normal! ""gvy
+  "let selection = getreg('"')
 
-  " Put the saved registers and clipboards back
-  call setreg('"', reg_save, regtype_save)
-  let &clipboard = cb_save
+  "" Put the saved registers and clipboards back
+  "call setreg('"', reg_save, regtype_save)
+  "let &clipboard = cb_save
 
-  "Escape any special characters in the selection
-  let escaped_selection = EscapeString(selection)
+  ""Escape any special characters in the selection
+  "let escaped_selection = EscapeString(selection)
 
-  return escaped_selection
-endfunction
+  "return escaped_selection
+"endfunction
 
 " Start the find and replace command across the entire file
 vmap <leader>z <Esc>:%s/<c-r>=GetVisual()<cr>/
@@ -161,9 +167,6 @@ endfunction
 
 inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
 inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
-
-"tries to fix clipboard
-set clipboard=unnamed
 
 "hotkey for tagbar
 "requires: sudo apt-get install exuberant-ctags
@@ -416,7 +419,7 @@ set visualbell
 set t_vb=
 
 " Enable use of the mouse for all modes
-set mouse=vn
+set mouse+=a
 
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
