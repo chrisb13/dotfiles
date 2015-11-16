@@ -21,7 +21,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias u='cd ..'
 alias c='clear'
-alias edprof='vi ~/.bashrc'
+alias edprof='vi ~/.vim/common_bashrc'
 alias edsnip='vi ~/.vim/UltiSnips/python.snippets'
 alias edvim='vi ~/.vimrc'
 alias runprof='. ~/.bashrc'
@@ -120,6 +120,7 @@ case $(hostname) in
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         export PATH="~/cmake-3.3.2/bin:$PATH"
         export PATH="/home/nfs/z3457920/anaconda/bin:$PATH"
+        module load ncview
         ;;
     ubuntudesktop) 
         #chris home desktop dual boot
@@ -159,6 +160,7 @@ case $(hostname) in
         alias cbd2='cd /srv/ccrc/data32/z3457920/leeuwincurrent2/'
         alias cbd3='cd /srv/ccrc/data32/z3457920/leeuwincurrent3/'
         alias cbd4='cd /srv/ccrc/data42/z3457920/'
+        alias eac='cd /srv/ccrc/data42/z3457920/20151012_eac_sep_dynamics/'
         alias now1='cd /srv/ccrc/data34/z3045790/nemo/cordex24_1d_BILAPLACIAN' #nico now low res
         alias now2='cd /srv/ccrc/data34/z3045790/nemo/cordex24_nest8_1d_BILAPLACIAN' #nico high low res
         alias r='cd ~/hdrive/repos/cms_analysis/'
