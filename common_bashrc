@@ -87,7 +87,8 @@ case $(hostname) in
         #alias v='vimx'
         alias vi='vimx'
         alias vim='vimx'
-        alias ps='module load geos; module load perl/5.18.2;module load gdal;source ~/env/newstorm_env/bin/activate'
+        alias psv='module load geos; module load perl/5.18.2;module load gdal;source ~/env/newstorm_env/bin/activate'
+        alias ps='export PATH=/home/z3457920/anaconda/bin:$PATH;source activate root'
         alias topme='top -u z3457920'
         alias pyt='source ~/env/my_env/bin/activate'  #for storm servers
         module load hdf5               #for new storm servers
