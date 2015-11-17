@@ -125,5 +125,70 @@ snippet ncinormalq
 #insert code here, e.g.
 endsnippet
 
-
 # vim:ft=snippets:
+
+snippet figuredoc
+\title{Figures}
+\author{
+        Christopher Bull \\
+}
+\date{\today}
+
+\documentclass{scrartcl}
+
+\usepackage{caption}  % Use for \captionof(*) command
+
+% Set the page margins to accomodate space for captions and page numbers
+\usepackage[left=0.9cm,right=0.9cm,bottom=1cm,footskip=1em,includefoot]{geometry}
+% Use for 'landscape' environment to position landscape captions properly
+\usepackage{pdflscape}
+
+% Setup the new 'pagecommand*' option key-value
+\usepackage{etoolbox}
+\usepackage{pdfpages}
+\makeatletter
+\newcommand*{\AM@pagecommandstar}{}
+\define@key{pdfpages}{pagecommand*}{\def\AM@pagecommandstar{#1}}
+\patchcmd{\AM@output}{\begingroup\AM@pagecommand\endgroup}
+{\ifthenelse{\boolean{AM@firstpage}}{\begingroup\AM@pagecommandstar\endgroup}{\begingroup\AM@pagecommand\endgroup}}{}{} % Patch to use new option
+\patchcmd{\AM@split@optionsii}{\equal{pagecommand}{\AM@temp}\or}
+{\equal{pagecommand}{\AM@temp}\or\equal{pagecommand*}{\AM@temp}\or}{}{}
+\makeatother
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+These are the figures for the EAC paper\ldots
+\end{abstract}
+
+\section{Figure}
+This is time for all good men to come to the aid of their party!
+
+% Include a single PDF page
+\includepdf[
+    frame,
+    scale=0.90,
+    % Use new 'pagecommand*' to set caption on the first page, include page #
+   pagecommand*={\thispagestyle{plain}\null\vfill\captionof{figure}{This is the FIRST caption}}
+]{./expt_lc_fwdeasternboundary01conditional_networkx_fig8.pdf}
+
+%% Include a pdf-document with several pages
+%\begin{landscape} % Be sure to wrap in 'landscape' environment
+%\includepdf[
+    %pages=-,                
+    %nup=1x2,                
+    %frame,                  
+    %landscape,          
+    %delta=5mm 5mm,  
+    %scale=0.90,
+    %% Set the caption on the first page of output
+    %pagecommand*={\thispagestyle{plain}\null\vfill\captionof{figure}{This is the SECOND caption}},
+    %% Set the [continued] caption on second and subsequent pages
+    %% Use '\captionof*{...} to avoid duplicate entries in listoffigures
+    %pagecommand={\thispagestyle{plain}\null\vfill\captionof*{figure}{\figurename~\thefigure: This is the SECOND caption (Continued)}}
+%]{./expt_lc_fwdeasternboundary01conditional_networkx_fig8.pdf}
+%\end{landscape}
+
+\end{document}
+endsnippet 
