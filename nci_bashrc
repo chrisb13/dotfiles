@@ -53,9 +53,10 @@ alias lr='ls -lrt'
 alias short='cd /short/e14/cyb561/'
 alias gdata='cd /g/data1/e14/cyb561/'
 alias scratch='cd /g/data3/hh5/tmp/eac_analysis/'
+alias eac='cd /g/data3/hh5/tmp/eac_analysis/'
 alias whereami='echo `whoami`@raijin.nci.org.au:`pwd`'
 alias h='history'
-alias nciusage='nci_account -P e14 -p 2015.q3 -v'
+alias nciusage='nci_account -P e14 -p 2015.q4 -v'
 alias qs='qstat -u cyb561'
 ## netcdf / fortran library paths for standard netcdf module :
 export NC_INC='-I /apps/netcdf/4.2.1.1/include'
@@ -86,7 +87,8 @@ alias r='cd ~/repos/scripts_not_in_repo/'
 alias vi='~/vim/src/vim'
 #alias vi='~/vim2/src/vim'
 
-alias interactive='qsub -I -q express -l ncpus=1,mem=20gb,walltime=5:00:00'
+alias interactive='qsub -I -q express -l ncpus=1,mem=20gb,walltime=12:00:00'
+alias start='qsub -I -q express -l ncpus=8,mem=50gb,walltime=12:00:00'
 
 #add xclip to bash path
 PATH=$PATH:~/xclip/
