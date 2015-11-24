@@ -79,3 +79,6 @@
 [submodule "bundle/tmuxnavigator"]
 	path = bundle/tmuxnavigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
+[submodule "liquidprompt"]
+	path = liquidprompt
+	url = https://github.com/nojhan/liquidprompt.git

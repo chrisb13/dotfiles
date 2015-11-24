@@ -3,10 +3,13 @@ CDPATH=$CDPATH:~/
 
 #prompt stuff
 #function parse git branch
-function parse_git_branch {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-    echo "("${ref#refs/heads/}")"
-}
+#function parse_git_branch {
+  #ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    #echo "("${ref#refs/heads/}")"
+#}
+
+# Only load Liquid Prompt in interactive shells, not from a script or from scp
+[[ $- = *i* ]] && source ~/.vim/liquidprompt/liquidprompt
 
 #cb added
 set -o vi
