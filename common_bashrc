@@ -20,6 +20,7 @@ export TERM="xterm-256color"
 #chris' alias
 set -o vi
 alias ll='ls -alF'
+alias lsfol='ls -d */'
 alias la='ls -A'
 alias l='ls -CF'
 alias u='cd ..'
