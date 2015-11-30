@@ -71,6 +71,9 @@ alias imp='ssh -X cbull@login.cx1.hpc.ic.ac.uk'
 
 alias ip='ipython --pylab'
 
+alias sbash='LP_ENABLE_TEMP=0; LP_ENABLE_JOBS=0; LP_ENABLE_BATT=0; LP_ENABLE_LOAD=0; LP_ENABLE_GIT=0;LP_ENABLE_SVN=0;LP_ENABLE_HG=0;LP_ENABLE_BZR=0;LP_ENABLE_FOSSIL=0;LP_ENABLE_VCS_ROOT=0'
+alias giton='LP_ENABLE_GIT=1'
+
 # some more ls aliases
 case $(hostname) in
     katana.science.unsw.edu.au) 
