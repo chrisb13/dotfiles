@@ -103,6 +103,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+#turning off bits of liquid prompt that slow us down 
+LP_ENABLE_TEMP=0; LP_ENABLE_JOBS=0; LP_ENABLE_BATT=0; LP_ENABLE_LOAD=0; LP_ENABLE_GIT=0;LP_ENABLE_SVN=0;LP_ENABLE_HG=0;LP_ENABLE_BZR=0;LP_ENABLE_FOSSIL=0;LP_ENABLE_VCS_ROOT=0
+
 #source common aliases
 source ~/.vim/common_bashrc
 
