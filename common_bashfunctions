@@ -197,9 +197,27 @@ function vimnci()
 
         return 1
     fi
+    #number of arguments...
+    #echo $#
+    if [ $# == 1 ]
+      then
+        vim scp://cyb561@raijin.nci.org.au/${1} 
+    fi
 
-    vim scp://cyb561@raijin.nci.org.au/${1} 
+    if [ $# == 2 ]
+      then
+        vim -O scp://cyb561@raijin.nci.org.au/${1}  scp://cyb561@raijin.nci.org.au/${2} 
+    fi
 
+    if [ $# == 3 ]
+      then
+        vim -O scp://cyb561@raijin.nci.org.au/${1} scp://cyb561@raijin.nci.org.au/${2} scp://cyb561@raijin.nci.org.au/${3}  
+    fi
+
+    if [ $# > 3 ]
+      then
+        echo 'you passed too many arguments!'
+    fi
 }
 
 
@@ -222,35 +240,29 @@ function vimstorm()
         return 1
     fi
 
-    vim scp://z3457920@maelstrom.ccrc.unsw.edu.au/${1} 
-
-}
-
-
-function vimstormtwo() 
-{
-    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   vimstorm PATH_TO_FILE_ONE PATH_TO_FILE_TWO." 
-        echo "Purpose: Allows remote editing of files on CCRC storm servers..." 
-        echo "       " 
-        echo "Mandatory arguments: " 
-        echo "path or file: vim will either edit or open file passed" 
-        echo "       " 
-        echo "Example." 
-        echo "This:" 
-        echo "vimstorm /home/z3457920/hdrive/repos/cms_analysis/fileone /home/z3457920/hdrive/repos/cms_analysis/filetwo "
-        echo "       " 
-        echo "Becomes:" 
-        echo "vim -O scp://z3457920@maelstrom.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/fileone scp://z3457920@maelstrom.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/filetwo "
-
-        return 1
+    #number of arguments...
+    #echo $#
+    if [ $# == 1 ]
+      then
+        vim scp://z3457920@maelstrom.ccrc.unsw.edu.au/${1} 
     fi
 
-    vim -O scp://z3457920@maelstrom.ccrc.unsw.edu.au/${1} scp://z3457920@maelstrom.ccrc.unsw.edu.au/${2} 
+    if [ $# == 2 ]
+      then
+        vim -O scp://z3457920@maelstrom.ccrc.unsw.edu.au/${1}  scp://z3457920@maelstrom.ccrc.unsw.edu.au/${2} 
+    fi
+
+    if [ $# == 3 ]
+      then
+        vim -O scp://z3457920@maelstrom.ccrc.unsw.edu.au/${1} scp://z3457920@maelstrom.ccrc.unsw.edu.au/${2} scp://z3457920@maelstrom.ccrc.unsw.edu.au/${3}  
+    fi
+
+    if [ $# > 3 ]
+      then
+        echo 'you passed too many arguments!'
+    fi
 
 }
-
-
 
 function vimmdss() 
 {
