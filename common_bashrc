@@ -33,6 +33,7 @@ alias top='top -M'
 alias temp='mkdir ~/temp/ ; cd ~/temp/'
 
 #vim
+alias vi='vim -O'
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias vimhdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
@@ -120,7 +121,7 @@ case $(hostname) in
         fi
         source ~/.fzf.bash
         alias open='dolphin . &'
-        alias vi='vim'
+        #alias vi='vim'
         
         #turned off b/c I've started to use anaconda more...
         #alias ps='source ~/env/ccrc_env/bin/activate'
