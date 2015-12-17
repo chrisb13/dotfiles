@@ -160,6 +160,7 @@ case $(hostname) in
         alias ps='source activate root'
         export PATH="/home/chris/anaconda/bin:$PATH"
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
+        alias open='nautilus .'
         ;;
 esac
 
