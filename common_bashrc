@@ -152,6 +152,7 @@ case $(hostname) in
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         alias web='cd ~/website/'  
         alias bpi='ssh -X bananapi@192.168.1.200'
+        alias text='gedit '
         ;;
     chris-DeskVirtualBox)
         #chris home desktop
@@ -161,6 +162,7 @@ case $(hostname) in
         export PATH="/home/chris/anaconda/bin:$PATH"
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         alias open='nautilus .'
+        alias text='gedit '
         ;;
 esac
 
