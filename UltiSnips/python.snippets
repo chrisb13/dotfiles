@@ -435,6 +435,46 @@ print "this is diff"
 print new_grid-old_grid_data.reshape(4,3)
 endsnippet
 
+snippet mkmov
+def makemovie(path_to_png_plots,outmov,folder_for_mkmov):
+    """quick and dirty wrapper function to stitch together a bunch of png files
+
+    Parameters
+    ----------
+    path_to_png_plots: full path to png files, needs to be a very long string (fnames separated by a whitespace) or a wildcard string
+    outmov: full path to put mov file (must end in .mov)
+    folder_for_mkmov: path that we will temporarily keep mkmov in
+
+    Returns
+    -------
+    :returns: mov file
+    
+    Notes
+    -------
+    -Directories need to exist
+    -Can be rather inefficient if cloning the repo multiple times...
+    
+
+    Example
+    --------
+    >>> baseout='/srv/ccrc/data42/z3457920/20151012_eac_sep_dynamics/analysis2/ugeoplots/'
+    >>> poutdir_aviso=baseout+'plots_aviso/'
+    >>> makemovie(poutdir_aviso+'*.png',baseout+'avisogeou.mov',baseout)
+    """
+
+    print "stitching png files "+path_to_png_plots+ " into a movie"
+    import subprocess
+    cmd="git clone https://github.com/chrisb13/mkmov/ "+folder_for_mkmov+'mkmov'
+    subprocess.call(cmd,shell=True)
+
+    cmd="python "+folder_for_mkmov+'mkmov/mkmov.py '+ ' --stitch -o '+outmov+' '+ path_to_png_plots
+    subprocess.call( cmd,shell=True)
+
+    cmd="rm -rf "+folder_for_mkmov+'mkmov'
+    subprocess.call(cmd ,shell=True)
+
+    return
+endsnippet
 
 snippet mkdir
 def mkdir(p):
@@ -1047,6 +1087,20 @@ endsnippet
 snippet figsize
 #width then height
 fig=plt.figure(figsize=(20.0,9.0))
+endsnippet
+
+snippet fieldcontour
+import numpy as np
+#npu=np.load('')
+field=npu[0,:,:]
+plt.close('all')
+fig=plt.figure()
+ax=fig.add_subplot(1, 1,1)
+ax.contourf(field,levels=np.linspace(-1,1,50))
+#landmask
+#lmask = np.ma.masked_where(field ==0.,field) 
+#ax.contour(lmask.mask,levels=[-1,0],linewidths=2,alpha=.5,colors='black')
+plt.show()
 endsnippet
 
 snippet gridspecplot

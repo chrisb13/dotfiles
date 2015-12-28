@@ -15,10 +15,16 @@ set $mod Mod1
 exec VBoxClient-all 
 
 #cb customisations START - Reload with mod + shift + r
-client.focused          #3F8AC2 #096BAA #00BAA7 #00DA8E
-client.focused_inactive #333333 #5F676A #ffffff #484e50
-client.unfocused        #333333 #424242 #888888 #292d2e
-client.urgent           #C10004 #900000 #ffffff #900000
+# # startup apps and window decs
+default_orientation horizontal
+workspace_layout tabbed
+new_window 1pixel
+
+# window colours: border background text
+client.focused        #0F0F0F #7FB256 #F5F5FF
+client.focused_inactive    #0F0F0F #7FB256 #E5E5E5
+client.unfocused    #0F0F0F #5697B2 #E5E5E5
+client.urgent        #0F0F0F #BC9B54 #E5E5E5
 
 bar {
 position top
@@ -131,7 +137,7 @@ bindsym $mod+f fullscreen
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+p layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+o layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
