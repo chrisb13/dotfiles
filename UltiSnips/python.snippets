@@ -905,8 +905,10 @@ new=np.ma.MaskedArray(np.random.rand(4,3),mask=mask)
 endsnippet
 
 snippet loadnetcdf
+import os
 from netCDF4 import Dataset
 infile='/path/to/netcdf4/file.nc'
+assert(os.path.exists(infile)),"netCDF file does not exist!"
 ifile=Dataset(infile, 'r')
 varone=ifile.variables['']
 endsnippet

@@ -126,6 +126,7 @@ case $(hostname) in
         #turned off b/c I've started to use anaconda more...
         #alias ps='source ~/env/ccrc_env/bin/activate'
         alias ps='source activate root'
+        alias ps3='export PATH="/home/nfs/z3457920/anaconda3/bin:$PATH";source activate root'
         alias fixdesk='kstart plasma-desktop &'
         alias checkh='mount | grep hdrive'
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
