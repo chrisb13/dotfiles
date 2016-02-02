@@ -1023,6 +1023,16 @@ fig.savefig('./.png',dpi=300)
 fig.savefig('./.pdf',format='pdf')
 endsnippet
 
+snippet savefigtrkd
+fig.savefig(${1:path_to_png},dpi=300)
+
+import os
+import imgtrkr as it
+
+it.AddTrkr($1,{'Created with':os.path.realpath(__file__)})
+#it.RdTrkr($1)
+endsnippet
+
 snippet snsplot
 import seaborn as sns
 import itertools
