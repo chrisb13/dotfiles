@@ -190,7 +190,9 @@ bindsym $mod+Shift+q exec sudo shutdown -h now
 
 #bind firefox
 bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+s exec Spotify
 bindsym $mod+Ctrl+f [class="Firefox"] focus
+bindsym $mod+Ctrl+s [class="Spotify"] focus
 
 #bind explorer
 bindsym $mod+Shift+e exec pcmanfm
