@@ -1018,9 +1018,35 @@ ax.set_ylabel('${3:msg}')
 plt.show()
 endsnippet
 
+
+snippet contourf
+import numpy as np
+import matplotlib.pyplot as plt
+plt.close('all')
+fig=plt.figure()
+ax=fig.add_subplot(1, 1,1)
+ax.contourf(x,y,z,levels=np.linspace(np.min(z),np.max(z),30),cmap='jet')
+ax.set_title('${1:msg}')
+ax.set_xlabel('${2:msg}')
+ax.set_ylabel('${3:msg}')
+#fig.savefig('./.png',dpi=300)
+#fig.savefig('./.pdf',format='pdf')
+plt.show()
+endsnippet
+
+
 snippet savefig
 fig.savefig('./.png',dpi=300)
 fig.savefig('./.pdf',format='pdf')
+endsnippet
+
+
+snippet imgtrkr
+import imgtrkr as it
+import os
+import datetime
+import socket
+it.AddTrkr(${1:path_to_png},{'Created with':os.path.realpath(__file__),'time':datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),'machine':socket.gethostname()})
 endsnippet
 
 snippet savefigtrkd
