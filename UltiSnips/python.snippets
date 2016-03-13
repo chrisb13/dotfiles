@@ -1220,6 +1220,70 @@ snippet ylab
 ax.set_xlabel('${1:ylabel}')
 endsnippet
 
+snippet getlev
+def getlev(field,levels=30):
+    """function that returns a linspace of levels of the passed fields
+    
+    :field: field to return levels on
+    :levels (optional): number of linspace levels to return (default: 30)
+    :returns: numpy linspace array
+    """
+    return np.linspace(np.min(field),np.max(field),levels)
+endsnippet
+
+snippet cmap_centre_adjust
+def cmap_center_point_adjust(cmap, range, center):
+    '''
+    converts center to a ratio between 0 and 1 of the
+    range given and calls cmap_center_adjust(). returns
+    a new adjusted colormap accordingly
+
+    NB: nicked from https://sites.google.com/site/theodoregoetz/notes/matplotlib_colormapadjust
+    '''
+    import math
+    import copy
+    from matplotlib import colors
+
+    def cmap_center_adjust(cmap, center_ratio):
+        '''
+        returns a new colormap based on the one given
+        but adjusted so that the old center point higher
+        (>0.5) or lower (<0.5)
+        '''
+        if not (0. < center_ratio) & (center_ratio < 1.):
+            return cmap
+        a = math.log(center_ratio) / math.log(0.5)
+        return cmap_powerlaw_adjust(cmap, a)
+
+    def cmap_powerlaw_adjust(cmap, a):
+        '''
+        returns a new colormap based on the one given
+        but adjusted via power-law:
+
+        newcmap = oldcmap**a
+        '''
+        if a < 0.:
+            return cmap
+        cdict = copy.copy(cmap._segmentdata)
+        fn = lambda x : (x[0]**a, x[1], x[2])
+        for key in ('red','green','blue'):
+            cdict[key] = map(fn, cdict[key])
+            cdict[key].sort()
+            assert (cdict[key][0]<0 or cdict[key][-1]>1), \
+                "Resulting indices extend out of the [0, 1] segment."
+        return colors.LinearSegmentedColormap('colormap',cdict,1024)
+
+    if not ((range[0] < center) and (center < range[1])):
+        return cmap
+    return cmap_center_adjust(cmap,
+        abs(center - range[0]) / abs(range[1] - range[0]))
+
+#usage
+import matplolib
+orig_cmap = matplotlib.cm.seismic
+shifted_cmap1=cmap_center_point_adjust(orig_cmap,[np.min(field),np.max(field)],0)
+endsnippet
+
 snippet xlim
 #ax.set_xlim([-1,5])
 endsnippet
