@@ -11,6 +11,18 @@ function ncv() #variable info ncdump
     ncdump -v ${2} ${1} | less
 }
 
+#use imagemagick to put a textbox with filename
+function tbox() 
+{
+for i in $* 
+do
+    echo "Adding file path to: ${i}"
+    width=`identify -format %w ${i}`
+    cap=`readlink -e ${i}|tr -d '\n'`
+    convert -background '#0008' -fill white -gravity center -size ${width}x100 caption:"${cap}" ${i} +swap -gravity south -composite  ${i}
+done
+}
+
 
 #rsync functions for grabbing
 #bash function to grab passed files into hdrive at UNSW

@@ -129,6 +129,7 @@ case $(hostname) in
         alias ps3='export PATH="/home/nfs/z3457920/anaconda3/bin:$PATH";source activate root'
         alias fixdesk='kstart plasma-desktop &'
         alias checkh='mount | grep hdrive'
+        alias imgtrkr='python ~/hdrive/repos/imgtrkr/main.py '
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         export PATH="~/cmake-3.3.2/bin:$PATH"
         export PATH="/home/nfs/z3457920/anaconda/bin:$PATH"
