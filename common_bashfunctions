@@ -24,6 +24,14 @@ done
 }
 
 
+function tboxtext() 
+{
+    echo "Adding text : ${2}"
+    width=`identify -format %w ${1}`
+    convert -background '#0008' -fill white -gravity center -size ${width}x100 caption:"${2}" ${1} +swap -gravity south -composite  ${1}
+}
+
+
 #rsync functions for grabbing
 #bash function to grab passed files into hdrive at UNSW
 function stormpull()
