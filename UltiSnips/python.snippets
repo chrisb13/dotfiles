@@ -1162,6 +1162,35 @@ ax.contourf(field,levels=np.linspace(-1,1,50))
 plt.show()
 endsnippet
 
+
+snippet gridspecp
+from matplotlib import gridspec
+import matplotlib.pyplot as plt
+import collections
+import itertools
+#set up for gridspec plot...
+plt.close('all')
+#width then height
+fig=plt.figure(figsize=(20.0,9.0))
+
+gs = gridspec.GridSpec(3, 1,hspace=.225,wspace=0.065)
+
+#contour plot
+ax=collections.OrderedDict()
+pnum=itertools.cycle(np.arange(100))
+
+ax[pnum.next()] = plt.subplot(gs[0,0])
+
+# make some labels invisible
+#plt.setp(ax[].get_yticklabels()+\
+	 #ax[].get_xticklabels()+\
+	 #ax[].get_yticklabels(),\
+		 #visible=False)
+
+plt.show()
+endsnippet
+
+
 snippet gridspecplot
 from matplotlib import gridspec
 import matplotlib.pyplot as plt
