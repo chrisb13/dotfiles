@@ -14,18 +14,32 @@ function ncv() #variable info ncdump
 #use imagemagick to put a textbox with filename
 function tbox() 
 {
-for i in $* 
-do
-    echo "Adding file path to: ${i}"
-    width=`identify -format %w ${i}`
-    cap=`readlink -e ${i}|tr -d '\n'`
-    convert -background '#0008' -fill white -gravity center -size ${width}x100 caption:"${cap}" ${i} +swap -gravity south -composite  ${i}
-done
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   tbox FILE_NAME(S)" 
+        echo "Purpose: to insert file path at bottom of file name."
+        echo "       " 
+        return 1
+    fi
+
+    for i in $* 
+    do
+        echo "Adding file path to: ${i}"
+        width=`identify -format %w ${i}`
+        cap=`readlink -e ${i}|tr -d '\n'`
+        convert -background '#0008' -fill white -gravity center -size ${width}x100 caption:"${cap}" ${i} +swap -gravity south -composite  ${i}
+    done
 }
 
 
 function tboxtext() 
 {
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   tboxtext FILE_NAME 'caption'" 
+        echo "Purpose: to insert caption text at bottom of file name."
+        echo "       " 
+
+        return 1
+    fi
     echo "Adding text : ${2}"
     width=`identify -format %w ${1}`
     convert -background '#0008' -fill white -gravity center -size ${width}x100 caption:"${2}" ${1} +swap -gravity south -composite  ${1}
