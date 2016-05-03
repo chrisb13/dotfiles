@@ -776,6 +776,19 @@ exp = re.search(r'[0-9]{8}_[0-9]{8}', test_string) ; exp=exp.group()
 print exp
 endsnippet
 
+snippet regexfunc
+def regme(string):
+    """function for finding a regular expression in a passed string
+    
+    :string: @todo
+    :returns: @todo
+    """
+    #really handonline regex finder: https://regex101.com/#python
+    import re
+    exp = re.search(r'_[-].*_300_all', string) ; exp=exp.group()
+    return exp
+endsnippet
+
 # New Class
 snippet cl
 class ${1:ClassName}(${2:object}):
@@ -1049,6 +1062,16 @@ import socket
 it.AddTrkr(${1:path_to_png},{'Created with':os.path.realpath(__file__),'time':datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),'machine':socket.gethostname()})
 endsnippet
 
+snippet imgtrkrfunc
+import imgtrkr as it
+import os
+import datetime
+import socket
+import inspect
+
+it.AddTrkr(${1:path_to_png},{'Created with':os.path.realpath(__file__),'time':datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),'machine':socket.gethostname(),'function_name':inspect.currentframe().f_code.co_name})
+endsnippet
+
 snippet savefigtrkd
 fig.savefig(${1:path_to_png},dpi=300)
 
@@ -1190,6 +1213,34 @@ ax[pnum.next()] = plt.subplot(gs[0,0])
 plt.show()
 endsnippet
 
+snippet gridspecdict
+import matplotlib.pyplot as plt
+#set up for gridspec plot...
+plt.close('all')
+#width then height
+
+row=3
+col=4
+fig, ax = plt.subplots(\
+	nrows=row, ncols=col, sharex=True, sharey=True,\
+	gridspec_kw={'hspace':.225,'wspace':.065}\
+		      )
+
+for co in np.arange(col):
+    for ro in np.arange(row):
+	axis=ax[ro,co]
+	pass
+
+	import ipdb
+	ipdb.set_trace()
+# make some labels invisible
+#plt.setp(ax[].get_yticklabels()+\
+     #ax[].get_xticklabels()+\
+     #ax[].get_yticklabels(),\
+	 #visible=False)
+
+plt.show()
+endsnippet
 
 snippet gridspecplot
 from matplotlib import gridspec
