@@ -929,6 +929,21 @@ varone=ifile.variables['']
 endsnippet
 
 
+
+snippet dask
+import os
+from netCDF4 import Dataset
+infile='./cordex24-ERAI01_1d_19890101_19890105_grid_T_T3D.nc'
+assert(os.path.exists(infile)),"netCDF file does not exist!"
+ifile=Dataset(infile, 'r')
+varone=ifile.variables['thetao']
+import dask.array
+darray=dask.array.from_array(ifile.variables['thetao'],1000)
+darray=darray.mean(axis=0).compute()
+ifile.close()
+endsnippet
+
+
 snippet loadhdf
 import pandas as pd
 file='path/to/hdfstore.h5'

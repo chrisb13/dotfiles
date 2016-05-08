@@ -45,6 +45,35 @@ function tboxtext()
     convert -background '#0008' -fill white -gravity center -size ${width}x100 caption:"${2}" ${1} +swap -gravity south -composite  ${1}
 }
 
+#rsync function for watching a storm folder and pulling plots
+function stormpullwatch()
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   stormpullwatch PATH_FROM PATH_TO." 
+        echo "Purpose: rsync function to pull files from storm at 30 second intervals." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from: Path on Maelstrom to Rsync from" 
+        echo "path_to:   Path on local to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "stormpullwatch /home/z3457920/hdrive/repos/cms_analysis/*.py ./temp"
+        echo "       " 
+        echo "Becomes:" 
+        echo "    while true"
+        echo "    echo 'Pulling from storm again'"
+        echo "        do rsync -avz --progress z3457920@maelstrom.ccrc.unsw.edu.au:$/home/z3457920/hdrive/repos/cms_analysis/*.py ./temp" 
+        echo "    sleep 30"
+        echo "    done"
+        return 1
+    fi
+while true
+echo "Pulling from storm again"
+    do rsync -avz --progress z3457920@maelstrom.ccrc.unsw.edu.au:$* 
+sleep 30
+done
+}
 
 #rsync functions for grabbing
 #bash function to grab passed files into hdrive at UNSW

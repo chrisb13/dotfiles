@@ -90,7 +90,7 @@ case $(hostname) in
         alias qme='qstat -nru $USER'
         alias qme2='qstat | grep z3457920'
         alias pyk='source ~/env/katana_env/bin/activate'   #for katana 
-        alias ps='export PATH=/home/z3457920/anaconda/bin:$PATH;source activate root'
+        alias ps='export PATH=/srv/scratch/z3457920/anaconda/bin:$PATH;source activate root'
         ;;
     squall.ccrc.unsw.edu.au|maelstrom.ccrc.unsw.edu.au|monsoon.ccrc.unsw.edu.au)
         alias open='nautilus . &'
