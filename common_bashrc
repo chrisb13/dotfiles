@@ -146,6 +146,8 @@ case $(hostname) in
         alias r='cd ~/codescratch/cms_analysis/hp_validation/'
         alias mkmov='python ~/codescratch/mkmov/mkmov.py '
         alias open='pcmanfm'
+        alias fixinternet='sudo /etc/init.d/networking restart'
+        alias mountwin='/home/chris/.vim/bash/yoga_fixshortcuts.sh'
         export PATH=/home/chris/anaconda/bin:$PATH
 
         alias sFour='cd /media/chris/sFour/'
