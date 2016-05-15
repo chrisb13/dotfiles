@@ -95,6 +95,7 @@ case $(hostname) in
     squall.ccrc.unsw.edu.au|maelstrom.ccrc.unsw.edu.au|monsoon.ccrc.unsw.edu.au)
         alias open='nautilus . &'
         #alias v='vimx'
+        alias mkmov='python ~/hdrive/repos/mkmov/mkmov.py '
         alias vi='vimx'
         alias vim='vimx'
         alias psv='module load geos; module load perl/5.18.2;module load gdal;source ~/env/newstorm_env/bin/activate'
