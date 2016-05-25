@@ -521,3 +521,4 @@ nnoremap <leader>nc :vnew<Bar>0r!ncdump -c <C-R>+<CR>
 nnoremap <leader>ncv :exec '!ncview <C-R>+'<CR>
 noremap <Leader>sa :CtrlP /home/nfs/z3457920/hdrive/repos/swissarmy<cr>
 noremap <Leader>cm :CtrlP /home/nfs/z3457920/hdrive/repos/cms_analysis<cr>
+noremap <Leader>nemo :CtrlP /home/nfs/z3457920/hdrive/repos/nemo_analysis<cr>
