@@ -171,6 +171,16 @@ case $(hostname) in
         alias open='nautilus .'
         alias text='gedit '
         ;;
+    chris-VirtualBoxHome)
+        #chris home desktop
+        alias bpi='ssh -X bananapi@192.168.1.200'
+        # added by Anaconda 2.3.0 installer
+        alias ps='source activate root'
+        export PATH="/home/chris/anaconda2/bin:$PATH"
+        alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
+        alias open='nautilus .'
+        alias text='gedit '
+        ;;
 esac
 
 # a case will only be run once (I think) so this needs to be  a seperate block of cases..
