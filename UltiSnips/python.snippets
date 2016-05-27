@@ -928,7 +928,13 @@ ifile=Dataset(infile, 'r')
 varone=ifile.variables['']
 endsnippet
 
-
+snippet loadnetcdfxr
+import os
+import xarray as xr
+infile='/path/to/netcdf4/file.nc'
+assert(os.path.exists(infile)),"netCDF file does not exist!"
+ifile=xr.open_dataset(infile)
+endsnippet
 
 snippet dask
 import os
@@ -951,6 +957,52 @@ ds=da.to_dataset(name='foo')
 ds.to_netcdf('/path/to/netcdf/file')
 endsnippet
 
+snippet savenetcdfNEMO
+def ncout(nemo_template,export_dict,outputpath,numtsteps=0):
+    """function to export a bunch of variables that look like NEMO outputs into a netCDF file.
+    
+    :nemo_template: NEMO netcdf file that will be the basis for our output
+    :export_dict: dictionary containing the names and arrays you would like to output
+    :outputpath: string path to netCDF file output
+    :numtsteps (optional): number of t steps in output file
+    :returns: @todo
+    """
+    tpointsdefn=Dataset(nemo_template, 'r')
+    new_lat=tpointsdefn.variables['nav_lat'][:]
+    new_lon=tpointsdefn.variables['nav_lon'][:]
+    deptht=tpointsdefn.variables['deptht'][:]
+
+    fout = Dataset(outputpath, 'w')
+
+    #note that we have to flip all the axis because python is annoying ...
+    #note too that once we've created the dimensions and variables, 
+    #these will override what you feed from numpy (I think the arrays get reshaped)
+    fout.createDimension('time_counter', None)
+    fout.createDimension('y', new_lat.shape[0])
+    fout.createDimension('x', new_lon.shape[1])
+    fout.createDimension('deptht', deptht.shape[0])
+
+    #source for netcdf dtypes...
+    #https://netcdf4-python.googlecode.com/svn/trunk/docs/netCDF4-module.html
+    #You can specify the datatype as a numpy dtype object, or anything that can be converted to a numpy dtype object.__class__ Valid datatype specifiers include: 'f4' (32-bit floating point), 'f8' (64-bit floating point), 'i4' (32-bit signed integer), 'i2' (16-bit signed integer), 'i8' (64-bit singed integer), 'i1' (8-bit signed integer), 'u1' (8-bit unsigned integer), 'u2' (16-bit unsigned integer), 'u4' (32-bit unsigned integer), 'u8' (64-bit unsigned integer), or 'S1' (single-character string). The old Numeric single-character typecodes ('f','d','h', 's','b','B','c','i','l'), corresponding to ('f4','f8','i2','i2','i1','i1','S1','i4','i4'), will also work. The unsigned integer types and the 64-bit integer type can only be used if the file format is NETCDF4.
+
+    fout_time=fout.createVariable('time_average_1d','f4',('time_counter',))
+    fout_lat=fout.createVariable('nav_lat','f4',('y','x',))
+    fout_lon=fout.createVariable('nav_lon','f4',('y','x',))
+    fout_depth=fout.createVariable('deptht','f4',('deptht'))
+
+    fout_time[:]=np.arange(numtsteps)
+    fout_lat[:]=new_lat
+    fout_lon[:]=new_lon
+    fout_depth[:]=deptht
+
+    for var_name in export_dict.keys():
+        fout_varone=fout.createVariable(var_name,'f8',('deptht','y','x'))
+        fout_varone[:]=export_dict[var_name]
+
+    fout.close()
+    return
+endsnippet
 
 snippet loadhdf
 import pandas as pd
@@ -998,6 +1050,11 @@ endsnippet
 snippet np
 import numpy as np
 endsnippet
+
+snippet xr
+import xarray as xr
+endsnippet
+
 
 ###########################################################################
 #                               MATPLOTLIB                                #

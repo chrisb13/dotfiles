@@ -128,6 +128,7 @@ case $(hostname) in
         alias open='dolphin . &'
         #alias vi='vim'
         
+        alias eac2='cd /srv/ccrc/data48/z3457920/20160518_EACextention/'
         #turned off b/c I've started to use anaconda more...
         #alias ps='source ~/env/ccrc_env/bin/activate'
         alias ps='source activate root'
@@ -151,6 +152,8 @@ case $(hostname) in
         alias r='cd ~/codescratch/cms_analysis/hp_validation/'
         alias mkmov='python ~/codescratch/mkmov/mkmov.py '
         alias open='pcmanfm'
+        alias fixinternet='sudo /etc/init.d/networking restart'
+        alias mountwin='/home/chris/.vim/bash/yoga_fixshortcuts.sh'
         export PATH=/home/chris/anaconda/bin:$PATH
 
         alias sFour='cd /media/chris/sFour/'
@@ -172,6 +175,16 @@ case $(hostname) in
         alias open='nautilus .'
         alias text='gedit '
         ;;
+    chris-VirtualBoxHome)
+        #chris home desktop
+        alias bpi='ssh -X bananapi@192.168.1.200'
+        # added by Anaconda 2.3.0 installer
+        alias ps='source activate root'
+        export PATH="/home/chris/anaconda2/bin:$PATH"
+        alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
+        alias open='nautilus .'
+        alias text='gedit '
+        ;;
 esac
 
 # a case will only be run once (I think) so this needs to be  a seperate block of cases..
@@ -183,6 +196,7 @@ case $(hostname) in
         alias cbd3='cd /srv/ccrc/data32/z3457920/leeuwincurrent3/'
         alias cbd4='cd /srv/ccrc/data42/z3457920/'
         alias eac='cd /srv/ccrc/data42/z3457920/20151012_eac_sep_dynamics/'
+        alias eac2='cd /srv/ccrc/data48/z3457920/20160518_EACextention/'
         alias now1='cd /srv/ccrc/data34/z3045790/nemo/cordex24_1d_BILAPLACIAN' #nico now low res
         alias now2='cd /srv/ccrc/data34/z3045790/nemo/cordex24_nest8_1d_BILAPLACIAN' #nico high low res
         alias r='cd ~/hdrive/repos/'
