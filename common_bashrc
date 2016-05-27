@@ -112,6 +112,10 @@ case $(hostname) in
         module load proj
         module load geos
         module load vim/7.4
+
+        #load anaconda on login...
+        export PATH=/home/z3457920/anaconda/bin:$PATH;source activate root
+        cd /home/z3457920/hdrive/repos/nemo_analysis/diagnostics
         ;;
     ccrc165) 
         # enable programmable completion features (you don't need to enable
