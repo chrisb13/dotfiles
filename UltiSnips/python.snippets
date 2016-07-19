@@ -1103,6 +1103,15 @@ plt.close('all')
 fig=plt.figure()
 ax=fig.add_subplot(1, 1,1)
 ${0:code to plot}
+
+#if want symmetry around neg to pos..
+# ub=np.max([np.abs(np.nanmin(field)),np.nanmax(field)])
+# cs1=ax.contourf(field,levels=np.linspace(ub*-1,ub,40),cmap='seismic')
+
+#if you don't care for symmetry 
+#cs1=ax.contourf(field,levels=np.linspace(np.min(field),np.max(field),40),cmap='jet')
+#plt.colorbar(cs1,orientation='horizontal')
+
 ax.set_title('${1:msg}')
 ax.set_xlabel('${2:msg}')
 ax.set_ylabel('${3:msg}')
@@ -1443,6 +1452,13 @@ import matplolib
 orig_cmap = matplotlib.cm.seismic
 shifted_cmap1=cmap_center_point_adjust(orig_cmap,[np.min(field),np.max(field)],0)
 endsnippet
+
+
+snippet hidelab
+# make some labels invisible
+plt.setp(${1:ax}.get_yticklabels()+$1.get_xticklabels(),visible=False)
+endsnippet
+
 
 snippet xlim
 #ax.set_xlim([-1,5])
