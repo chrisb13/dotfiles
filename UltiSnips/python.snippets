@@ -933,6 +933,17 @@ old=np.ma.MaskedArray(np.random.rand(4,3),mask=mask)
 new=np.ma.MaskedArray(np.random.rand(4,3),mask=mask)
 endsnippet
 
+snippet maskedarray 
+import numpy as np
+zos=np.array([[3,6,9], \
+             [0,6,9], \
+             [3,6,9], \
+             [3,6,0]])
+
+masked=np.ma.masked_where(zos==0,zos) 
+endsnippet
+
+
 snippet loadnetcdf
 import os
 from netCDF4 import Dataset
