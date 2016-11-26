@@ -1414,6 +1414,25 @@ ax=axis[ro,co]
 plt.show()
 endsnippet
 
+snippet sgridspec_cbar
+levs=np.linspace(${1:Min,Max},30)
+plt.close('all')
+row=1
+col=3
+fig, axis = plt.subplots(\
+    nrows=row, ncols=col, sharex=False, sharey=False,\
+    gridspec_kw={'hspace':.225,'wspace':.065,'width_ratios':[1]*(col-1)+[0.1]}\
+              )
+
+ax=axis[0]
+cs1=ax.contourf(${2:variableone},levels=levs)
+ax=axis[1]
+cs1=ax.contourf(${3:variabletwo},levels=levs)
+ax=axis[2]
+plt.colorbar(cs1,cax=ax,orientation='vertical')
+plt.show()
+endsnippet
+
 snippet title
 ax.set_title('${1:Title}')
 endsnippet
