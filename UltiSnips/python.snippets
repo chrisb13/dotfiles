@@ -1266,6 +1266,15 @@ snippet figsize
 fig=plt.figure(figsize=(20.0,9.0))
 endsnippet
 
+snippet scolorbar
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.ticker import MultipleLocator
+#cs1=ax.contourf()
+plt.colorbar(cs1,\
+		cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25)\
+		,orientation='horizontal')
+endsnippet
+
 snippet colorbar
 #for one plot...
 #eg
