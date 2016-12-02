@@ -1085,6 +1085,19 @@ endsnippet
 #                               MATPLOTLIB                                #
 ###########################################################################
 
+snippet axisoff
+ax.set_axis_off()
+endsnippet
+
+snippet insetaxis
+from mpl_toolkits.axes_grid.inset_locator import inset_axes
+# this is an inset axes over the main axes
+inset_axes = inset_axes(ax, 
+                        width="14%", # width = 30% of parent_bbox
+                        height=1.4, # height : 1 inch
+                        loc=1)
+endsnippet
+
 snippet uselatex
 #nb requires latex installed on the machine, see http://matplotlib.org/users/usetex.html
 from matplotlib import rc
