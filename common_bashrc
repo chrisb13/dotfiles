@@ -141,6 +141,7 @@ case $(hostname) in
         alias imgtrkr='python ~/hdrive/repos/imgtrkr/main.py '
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         export PATH="~/cmake-3.3.2/bin:$PATH"
+        alias mkmov='python /home/nfs/z3457920/hdrive/repos/mkmov/mkmov.py '
         module load ncview
         ;;
     ubuntudesktop) 

@@ -5,7 +5,7 @@ snippet header
 #                Level 4, Mathews Building
 #                University of New South Wales
 #                Sydney, NSW, Australia, 2052
-#   Contact: z3457920@student.unsw.edu.au
+#   Contact: z3457920@unsw.edu.au
 #   www:     christopherbull.com.au
 `!p 
 import time
@@ -104,7 +104,7 @@ with ctx.closing(open('./cb2logger.py','w')) as handle:
 #                Level 4, Mathews Building
 #                University of New South Wales
 #                Sydney, NSW, Australia, 2052
-#   Contact: z3457920@student.unsw.edu.au
+#   Contact: z3457920@unsw.edu.au
 #   www:     christopherbull.com.au
 `!p 
 import time
@@ -1127,7 +1127,7 @@ snippet plot
 plt.close('all')
 fig=plt.figure()
 ax=fig.add_subplot(1, 1,1)
-${0:code to plot}
+#${0:code to plot}
 
 #if want symmetry around neg to pos..
 # ub=np.max([np.abs(np.nanmin(field)),np.nanmax(field)])
@@ -1266,6 +1266,15 @@ snippet figsize
 fig=plt.figure(figsize=(20.0,9.0))
 endsnippet
 
+snippet scolorbar
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.ticker import MultipleLocator
+#cs1=ax.contourf()
+plt.colorbar(cs1,\
+		cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25)\
+		,orientation='horizontal')
+endsnippet
+
 snippet colorbar
 #for one plot...
 #eg
@@ -1401,6 +1410,37 @@ plt.figtext(0.1, 0.77,  'b)',clip_on=False,color='black',size=22)
 plt.show()
 endsnippet
 
+snippet sgridspec
+plt.close('all')
+row=1
+col=2
+fig, axis = plt.subplots(\
+	nrows=row, ncols=col, sharex=False, sharey=False,\
+	gridspec_kw={'hspace':.225,'wspace':.065}\
+		      )
+
+ax=axis[ro,co]
+plt.show()
+endsnippet
+
+snippet sgridspec_cbar
+levs=np.linspace(${1:Min,Max},30)
+plt.close('all')
+row=1
+col=3
+fig, axis = plt.subplots(\
+    nrows=row, ncols=col, sharex=False, sharey=False,\
+    gridspec_kw={'hspace':.225,'wspace':.065,'width_ratios':[1]*(col-1)+[0.1]}\
+              )
+
+ax=axis[0]
+cs1=ax.contourf(${2:variableone},levels=levs)
+ax=axis[1]
+cs1=ax.contourf(${3:variabletwo},levels=levs)
+ax=axis[2]
+plt.colorbar(cs1,cax=ax,orientation='vertical')
+plt.show()
+endsnippet
 
 snippet title
 ax.set_title('${1:Title}')
