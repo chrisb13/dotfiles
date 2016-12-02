@@ -1085,6 +1085,14 @@ endsnippet
 #                               MATPLOTLIB                                #
 ###########################################################################
 
+snippet uselatex
+#nb requires latex installed on the machine, see http://matplotlib.org/users/usetex.html
+from matplotlib import rc
+# rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('text', usetex=True)
+cb1.set_label(r"$\displaystyle ^{\circ} C$")
+endsnippet
+
 snippet splot
 plt.close('all')
 fig=plt.figure()
@@ -1163,7 +1171,7 @@ endsnippet
 
 
 snippet savefig
-fig.savefig('./.png',dpi=300)
+fig.savefig('./.png',dpi=300,bbox_inches='tight')
 fig.savefig('./.pdf',format='pdf')
 endsnippet
 
