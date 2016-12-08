@@ -1085,6 +1085,27 @@ endsnippet
 #                               MATPLOTLIB                                #
 ###########################################################################
 
+snippet axisoff
+ax.set_axis_off()
+endsnippet
+
+snippet insetaxis
+from mpl_toolkits.axes_grid.inset_locator import inset_axes
+# this is an inset axes over the main axes
+inset_axes = inset_axes(ax, 
+                        width="14%", # width = 30% of parent_bbox
+                        height=1.4, # height : 1 inch
+                        loc=1)
+endsnippet
+
+snippet uselatex
+#nb requires latex installed on the machine, see http://matplotlib.org/users/usetex.html
+from matplotlib import rc
+# rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('text', usetex=True)
+cb1.set_label(r"$\displaystyle ^{\circ} C$")
+endsnippet
+
 snippet splot
 plt.close('all')
 fig=plt.figure()
@@ -1266,6 +1287,15 @@ snippet figsize
 fig=plt.figure(figsize=(20.0,9.0))
 endsnippet
 
+snippet scolorbar
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.ticker import MultipleLocator
+#cs1=ax.contourf()
+plt.colorbar(cs1,\
+		cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25)\
+		,orientation='horizontal')
+endsnippet
+
 snippet colorbar
 #for one plot...
 #eg
@@ -1423,6 +1453,25 @@ figsize=(5.5*enum,5)
 #colorbar
 ax=axis[x]
 plt.colorbar(cs1,cax=ax,orientation='vertical')
+endsnippet
+
+snippet sgridspec_cbar
+levs=np.linspace(${1:Min,Max},30)
+plt.close('all')
+row=1
+col=3
+fig, axis = plt.subplots(\
+    nrows=row, ncols=col, sharex=False, sharey=False,\
+    gridspec_kw={'hspace':.225,'wspace':.065,'width_ratios':[1]*(col-1)+[0.1]}\
+              )
+
+ax=axis[0]
+cs1=ax.contourf(${2:variableone},levels=levs)
+ax=axis[1]
+cs1=ax.contourf(${3:variabletwo},levels=levs)
+ax=axis[2]
+plt.colorbar(cs1,cax=ax,orientation='vertical')
+plt.show()
 endsnippet
 
 snippet title

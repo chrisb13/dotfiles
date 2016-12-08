@@ -187,6 +187,8 @@ case $(hostname) in
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         alias open='nautilus .'
         alias text='gedit '
+        alias ccrc='ssh -X z3457920@ccrc165.ccrc.unsw.edu.au'
+        alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
         ;;
 esac
 
