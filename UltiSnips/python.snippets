@@ -5,7 +5,7 @@ snippet header
 #                Level 4, Mathews Building
 #                University of New South Wales
 #                Sydney, NSW, Australia, 2052
-#   Contact: z3457920@student.unsw.edu.au
+#   Contact: z3457920@unsw.edu.au
 #   www:     christopherbull.com.au
 `!p 
 import time
@@ -104,7 +104,7 @@ with ctx.closing(open('./cb2logger.py','w')) as handle:
 #                Level 4, Mathews Building
 #                University of New South Wales
 #                Sydney, NSW, Australia, 2052
-#   Contact: z3457920@student.unsw.edu.au
+#   Contact: z3457920@unsw.edu.au
 #   www:     christopherbull.com.au
 `!p 
 import time
@@ -222,6 +222,16 @@ snippet moo "change print statement to logger" b!
 `!p snip.rv=snip.v.text`
 endsnippet
 
+
+snippet alphabet
+import itertools
+alphabet=\
+['a','b','c','d','e','f','g','h','i','j','k','l','m',\
+ 'n','o','p','q','r','s','t','u','v','w','x','y','z']
+sub_let=itertools.cycle(alphabet)
+sub_let.next()
+endsnippet
+
 snippet r
 '~/hdrive/repos/cms_analysis/'
 endsnippet
@@ -322,6 +332,10 @@ endsnippet
 snippet collections
 import collections
 plot_dict=collections.OrderedDict()
+endsnippet
+
+snippet subsetdict
+{k: bigdict[k] for k in ('l', 'm', 'n')}
 endsnippet
 
 
@@ -919,6 +933,17 @@ old=np.ma.MaskedArray(np.random.rand(4,3),mask=mask)
 new=np.ma.MaskedArray(np.random.rand(4,3),mask=mask)
 endsnippet
 
+snippet maskedarray 
+import numpy as np
+zos=np.array([[3,6,9], \
+             [0,6,9], \
+             [3,6,9], \
+             [3,6,0]])
+
+masked=np.ma.masked_where(zos==0,zos) 
+endsnippet
+
+
 snippet loadnetcdf
 import os
 from netCDF4 import Dataset
@@ -1060,6 +1085,34 @@ endsnippet
 #                               MATPLOTLIB                                #
 ###########################################################################
 
+snippet quiver
+mag=np.sqrt(np.square(arrayx)+np.square(arrayy))
+ax(lonproj,latproj,mag,levels=np.linspace(0,0.4,20),cmap='Blues_r',extend='both',alpha=0.9)
+skip=(slice(None,None,5),slice(None,None,5))
+ax.quiver(lonproj[skip], latproj[skip], arrayx[skip], arrayy[skip], pivot='mid',color='black', units='xy',headwidth=1,  headlength=4,angles='xy',scale_units='xy',alpha=0.5)
+endsnippet
+
+snippet axisoff
+ax.set_axis_off()
+endsnippet
+
+snippet insetaxis
+from mpl_toolkits.axes_grid.inset_locator import inset_axes
+# this is an inset axes over the main axes
+inset_axes = inset_axes(ax, 
+                        width="14%", # width = 30% of parent_bbox
+                        height=1.4, # height : 1 inch
+                        loc=1)
+endsnippet
+
+snippet uselatex
+#nb requires latex installed on the machine, see http://matplotlib.org/users/usetex.html
+from matplotlib import rc
+# rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('text', usetex=True)
+cb1.set_label(r"$\displaystyle ^{\circ} C$")
+endsnippet
+
 snippet splot
 plt.close('all')
 fig=plt.figure()
@@ -1102,7 +1155,16 @@ snippet plot
 plt.close('all')
 fig=plt.figure()
 ax=fig.add_subplot(1, 1,1)
-${0:code to plot}
+#${0:code to plot}
+
+#if want symmetry around neg to pos..
+# ub=np.max([np.abs(np.nanmin(field)),np.nanmax(field)])
+# cs1=ax.contourf(field,levels=np.linspace(ub*-1,ub,40),cmap='seismic')
+
+#if you don't care for symmetry 
+#cs1=ax.contourf(field,levels=np.linspace(np.min(field),np.max(field),40),cmap='jet')
+#plt.colorbar(cs1,orientation='horizontal')
+
 ax.set_title('${1:msg}')
 ax.set_xlabel('${2:msg}')
 ax.set_ylabel('${3:msg}')
@@ -1129,7 +1191,7 @@ endsnippet
 
 
 snippet savefig
-fig.savefig('./.png',dpi=300)
+fig.savefig('./.png',dpi=300,bbox_inches='tight')
 fig.savefig('./.pdf',format='pdf')
 endsnippet
 
@@ -1230,6 +1292,15 @@ endsnippet
 snippet figsize
 #width then height
 fig=plt.figure(figsize=(20.0,9.0))
+endsnippet
+
+snippet scolorbar
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.ticker import MultipleLocator
+#cs1=ax.contourf()
+plt.colorbar(cs1,\
+		cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25)\
+		,orientation='horizontal')
 endsnippet
 
 snippet colorbar
@@ -1367,6 +1438,48 @@ plt.figtext(0.1, 0.77,  'b)',clip_on=False,color='black',size=22)
 plt.show()
 endsnippet
 
+snippet sgridspec
+plt.close('all')
+row=1
+col=2
+fig, axis = plt.subplots(\
+	nrows=row, ncols=col, sharex=False, sharey=False,\
+	gridspec_kw={'hspace':.225,'wspace':.065}\
+		      )
+
+ax=axis[ro,co]
+plt.show()
+endsnippet
+
+snippet gridspecextras
+#colourbar
+'width_ratios':[1]*(col-1)+[.1] #put inside gridspec_kw
+plt.colorbar(cs1,cax=ax[0,-1],orientation='vertical')
+figsize=(5.5*enum,5)
+
+#colorbar
+ax=axis[x]
+plt.colorbar(cs1,cax=ax,orientation='vertical')
+endsnippet
+
+snippet sgridspec_cbar
+levs=np.linspace(${1:Min,Max},30)
+plt.close('all')
+row=1
+col=3
+fig, axis = plt.subplots(\
+    nrows=row, ncols=col, sharex=False, sharey=False,\
+    gridspec_kw={'hspace':.225,'wspace':.065,'width_ratios':[1]*(col-1)+[0.1]}\
+              )
+
+ax=axis[0]
+cs1=ax.contourf(${2:variableone},levels=levs)
+ax=axis[1]
+cs1=ax.contourf(${3:variabletwo},levels=levs)
+ax=axis[2]
+plt.colorbar(cs1,cax=ax,orientation='vertical')
+plt.show()
+endsnippet
 
 snippet title
 ax.set_title('${1:Title}')
@@ -1444,6 +1557,13 @@ orig_cmap = matplotlib.cm.seismic
 shifted_cmap1=cmap_center_point_adjust(orig_cmap,[np.min(field),np.max(field)],0)
 endsnippet
 
+
+snippet hidelab
+# make some labels invisible
+plt.setp(${1:ax}.get_yticklabels()+$1.get_xticklabels(),visible=False)
+endsnippet
+
+
 snippet xlim
 #ax.set_xlim([-1,5])
 endsnippet
@@ -1478,6 +1598,44 @@ elif plottype=='pdf':
 elif plottype=='both':
 	plt.savefig(global_plot_outfol+'$1.png',dpi=300)
 	plt.savefig(global_plot_outfol+'$1.pdf')
+endsnippet
+
+
+snippet landmask
+def pl_landmask(path_to_netcdf_Tfile,pltaxis,filled=False,lmaskvar='zos'):
+    """function to add a landmask from NEMO to a matplotlib axis
+    
+    :path_to_netcdf_Tfile: nemo output file that is a Tfile
+    :pltaxis: matplotlib axis that the landmask will be drawn on
+    :filled (optional): will fill in the landmask
+    :lmaskvar (optional): variable to grab landmask from
+    :returns: matplotlib axis with landmask on it
+    """
+    assert(os.path.exists(path_to_netcdf_Tfile)),"netCDF file does not exist!"
+    ifile=Dataset(path_to_netcdf_Tfile, 'r')
+    assert(lmaskvar in ifile.variables.keys()),"lmaskvar not one of the variables, options: "+", ".join(ifile.variables.keys())
+    lmask=ifile.variables[lmaskvar][:][0,:,:]
+
+    nemo_lats=ifile.variables['nav_lat'][:]
+    nemo_lons=ifile.variables['nav_lon'][:]
+    for index in np.arange(np.shape(nemo_lons)[0]):                                
+        start=np.where(np.sign(nemo_lons[index,:])==-1)[0][0]                      
+        end=  np.where(np.sign(nemo_lons[index,:])==-1)[0][-1]
+        nemo_lons[index,start:end]=nemo_lons[index,start:end]+360 
+
+    lmask = np.ma.masked_where(
+        lmask ==0.,
+        lmask ) 
+
+    if filled:
+        pltaxis.contourf(nemo_lons,nemo_lats,lmask.mask,levels=[-1,0,1],colors=('#B2D1FF','#858588'),alpha=.9) #landmask
+    else:
+        #ax.contour(x,y[1:],masksurface.mask[1:,:],levels=[0],linewidths=1,colors='black') #landmask
+        pltaxis.contour(nemo_lons,nemo_lats,lmask.mask,\
+                levels=[-1,0],linewidths=2,alpha=.5,colors='black')
+
+    ifile.close()
+    return pltaxis
 endsnippet
 
 

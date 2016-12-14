@@ -29,7 +29,7 @@ alias edprof='vi ~/.vim/common_bashrc'
 alias edsnip='vi ~/.vim/UltiSnips/python.snippets'
 alias edvim='vi ~/.vimrc'
 alias runprof='. ~/.bashrc'
-alias top='top -M'
+#alias top='top -M'
 alias temp='mkdir ~/temp/ ; cd ~/temp/'
 
 #vim
@@ -64,7 +64,8 @@ alias adrift='ssh -X chris@115.146.86.89'
 alias katint='qsub -I -l nodes=1:ppn=1,vmem=20gb,walltime=1:00:00'
 alias s='ssh -X z3457920@squall.ccrc.unsw.edu.au'
 alias nci='ssh -X cyb561@raijin.nci.org.au'
-alias md='ssh -X cyb561@dc-dm3.nci.org.au'
+alias md='ssh -X cyb561@dc-dm3.nci.org.au'  #been decomissioned, well not quite!
+#alias md='ssh -X cyb561@dm1.nci.org.au'
 alias maelstrom='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
 alias m='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
 alias monsoon='ssh -X z3457920@monsoon.ccrc.unsw.edu.au'
@@ -112,6 +113,10 @@ case $(hostname) in
         module load proj
         module load geos
         module load vim/7.4
+
+        #load anaconda on login...
+        export PATH=/home/z3457920/anaconda/bin:$PATH;source activate root
+        cd /home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics
         ;;
     ccrc165) 
         # enable programmable completion features (you don't need to enable
@@ -124,16 +129,19 @@ case $(hostname) in
         alias open='dolphin . &'
         #alias vi='vim'
         
+        alias eac2='cd /srv/ccrc/data48/z3457920/20160518_EACextention/'
         #turned off b/c I've started to use anaconda more...
         #alias ps='source ~/env/ccrc_env/bin/activate'
-        alias ps='source activate root'
+        alias ps='export PATH="/home/nfs/z3457920/anaconda/bin:$PATH";source activate root'
         alias ps3='export PATH="/home/nfs/z3457920/anaconda3/bin:$PATH";source activate root'
         alias fixdesk='kstart plasma-desktop &'
         alias checkh='mount | grep hdrive'
+        alias makeeac='cd /home/nfs/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics;python makepaper.py ; /srv/ccrc/data42/z3457920/20151012_eac_sep_dynamics/analysis/paperfigsdoc/copyplots.sh'
+        alias makenonz='cd /home/nfs/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics;python 20160804_EAC_NoNZ_makepaper.py; /srv/ccrc/data48/z3457920/20160804_EAC_NoNZ/analysis/paperfigsdoc/copyplots.sh'
         alias imgtrkr='python ~/hdrive/repos/imgtrkr/main.py '
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         export PATH="~/cmake-3.3.2/bin:$PATH"
-        export PATH="/home/nfs/z3457920/anaconda/bin:$PATH"
+        alias mkmov='python /home/nfs/z3457920/hdrive/repos/mkmov/mkmov.py '
         module load ncview
         ;;
     ubuntudesktop) 
@@ -179,6 +187,8 @@ case $(hostname) in
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         alias open='nautilus .'
         alias text='gedit '
+        alias ccrc='ssh -X z3457920@ccrc165.ccrc.unsw.edu.au'
+        alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
         ;;
 esac
 
@@ -190,11 +200,14 @@ case $(hostname) in
         alias cbd2='cd /srv/ccrc/data32/z3457920/leeuwincurrent2/'
         alias cbd3='cd /srv/ccrc/data32/z3457920/leeuwincurrent3/'
         alias cbd4='cd /srv/ccrc/data42/z3457920/'
-        alias eac='cd /srv/ccrc/data42/z3457920/20151012_eac_sep_dynamics/'
+        alias cbd5='cd /srv/ccrc/data48/z3457920/'
+        alias nonz='cd /srv/ccrc/data48/z3457920/20160804_EAC_NoNZ/analysis/'
+        alias eac='cd /srv/ccrc/data42/z3457920/20151012_eac_sep_dynamics/analysis/'
+        alias eac2='cd /srv/ccrc/data48/z3457920/20160518_EACextention/'
         alias now1='cd /srv/ccrc/data34/z3045790/nemo/cordex24_1d_BILAPLACIAN' #nico now low res
         alias now2='cd /srv/ccrc/data34/z3045790/nemo/cordex24_nest8_1d_BILAPLACIAN' #nico high low res
         alias r='cd ~/hdrive/repos/'
-        alias nemo='cd ~/hdrive/repos/nemo_analysis/'
+        alias nemo='cd ~/hdrive/repos/nemo/nemo_analysis/diagnostics/'
         alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
         alias sa='cd ~/hdrive/repos/swissarmy/'
         ;;
