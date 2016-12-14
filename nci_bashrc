@@ -89,7 +89,7 @@ alias r='cd ~/repos/scripts_not_in_repo/'
 alias vi='~/vim/src/vim'
 #alias vi='~/vim2/src/vim'
 
-alias interactive='qsub -I -q express -l ncpus=1,mem=20gb,walltime=12:00:00'
+alias interactive='qsub -I -q express -l ncpus=1,mem=40gb,walltime=12:00:00'
 alias start='qsub -I -q express -l ncpus=8,mem=50gb,walltime=12:00:00'
 
 #add xclip to bash path
