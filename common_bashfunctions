@@ -453,6 +453,18 @@ ls --color=auto -F --color=always -lhFrt;
 tput cup 40 0;
 }
 
+
+#nci mass data helpers
+function mdlsi() #insert argument for mass data on nci
+{
+    mdss ls cyb561/now/input/${1}
+}
+
+function mdlso() #insert argument for mass data on nci
+{
+    mdss ls cyb561/now/output/${1}
+}
+
 function makepy ()
 {
 pipfreeze=$(pip freeze | sed 's/^/##   /')

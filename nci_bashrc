@@ -87,6 +87,9 @@ source ~/.vim/common_bashfunctions
 #NCI specific  aliases
 alias r='cd ~/repos/scripts_not_in_repo/'
 alias vi='~/vim/src/vim'
+#alias mdlsi='mdss ls cyb561/now/input/'
+#alias mdlso='mdss ls cyb561/now/output/'
+alias nrun='cd /short/e14/cyb561/now/run/'
 #alias vi='~/vim2/src/vim'
 
 alias interactive='qsub -I -q express -l ncpus=1,mem=40gb,walltime=12:00:00'
