@@ -167,6 +167,8 @@ case $(hostname) in
         alias web='cd ~/website/'  
         alias bpi='ssh -X bananapi@192.168.1.200'
         alias text='gedit '
+        alias ccrc='ssh -X z3457920@ccrc165.ccrc.unsw.edu.au'
+        alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
         ;;
     chris-DeskVirtualBox)
         #chris home desktop
