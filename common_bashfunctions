@@ -467,7 +467,7 @@ function mdlso() #insert argument for mass data on nci
 
 
 
-function nemostat() #insert argument for mass data on nci
+function nemostat()
 {
 
     echo "Getting status of running nemo jobs."
@@ -485,15 +485,18 @@ function nemostat() #insert argument for mass data on nci
 
         echo "    JobID found is: "
         echo "    ${runme}"
-        echo ""
+        #echo ""
         # ask qstat for fulld etails | find working dir | find bit after run command | chop out ',' at the end
         runmetwo="$(qstat -f ${runme}|grep PBS_O_WORKDIR| sed 's/.*run//'| sed '$s/.$//')"
         
         echo "    Mass Data has: "
         echo ${runmetwo}
         # get mass data contents
-        mdss ls cyb561/now/output${runmetwo}
+        #
+        runmethree="$(mdss ls cyb561/now/output${runmetwo}  < /dev/null)"
         echo "      "
+        echo "    ${runmethree}"
+        echo ""
         done <<< "$OUTPUT"
 }
 
