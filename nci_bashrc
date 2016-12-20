@@ -69,6 +69,7 @@ export CLICOLOR="true"
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
 module load nco
+module load cdo
 module load dot
 module load openmpi/1.6.3
 module load intel-fc/12.1.9.293

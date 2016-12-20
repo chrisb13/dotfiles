@@ -87,6 +87,7 @@ case $(hostname) in
         module load matlab/2011b
         module load python
         module load proj
+        module load cdo
         alias qint='qsub -I -l nodes=1:ppn=1,vmem=15gb,walltime=2:00:00'
         alias qme='qstat -nru $USER'
         alias qme2='qstat | grep z3457920'
@@ -113,6 +114,7 @@ case $(hostname) in
         module load proj
         module load geos
         module load vim/7.4
+        module load cdo
 
         #load anaconda on login...
         export PATH=/home/z3457920/anaconda/bin:$PATH;source activate root
