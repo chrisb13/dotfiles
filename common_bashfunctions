@@ -455,17 +455,25 @@ tput cup 40 0;
 
 
 #nci mass data helpers
-function mdlsi() #insert argument for mass data on nci
+function mdi() #insert argument for mass data on nci
 {
     mdss ls cyb561/now/input/${1}
 }
 
-function mdlso() #insert argument for mass data on nci
+function mdo() #insert argument for mass data on nci
 {
     mdss ls cyb561/now/output/${1}
 }
 
+function mdr() #insert argument for mass data on nci
+{
+    mdss ls cyb561/now/restart/${1}
+}
 
+function mddu() #insert argument for mass data on nci
+{
+    mdss dmdu -ch cyb561/now/output/${1}
+}
 
 function nemostat()
 {
@@ -493,7 +501,7 @@ function nemostat()
         echo ${runmetwo}
         # get mass data contents
         #
-        runmethree="$(mdss ls cyb561/now/output${runmetwo}  < /dev/null)"
+        runmethree="$(mdss dmdu -ch cyb561/now/output${runmetwo}  < /dev/null)"
         echo "      "
         echo "    ${runmethree}"
         echo ""
