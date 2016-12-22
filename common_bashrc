@@ -159,6 +159,9 @@ case $(hostname) in
         alias open='pcmanfm'
         alias fixinternet='sudo /etc/init.d/networking restart'
         alias mountwin='/home/chris/.vim/bash/yoga_fixshortcuts.sh'
+        #aliases to wrap the vim functions
+        alias vs='vimstorm '
+        alias vn='vimnci '
         export PATH=/home/chris/anaconda/bin:$PATH
 
         alias sFour='cd /media/chris/sFour/'
@@ -212,6 +215,7 @@ case $(hostname) in
         alias now2='cd /srv/ccrc/data34/z3045790/nemo/cordex24_nest8_1d_BILAPLACIAN' #nico high low res
         alias r='cd ~/hdrive/repos/'
         alias nemo='cd ~/hdrive/repos/nemo/nemo_analysis/diagnostics/'
+        alias nemoc='cd ~/hdrive/repos/nemo/nemo_analysis/configs/'
         alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
         alias sa='cd ~/hdrive/repos/swissarmy/'
         ;;
