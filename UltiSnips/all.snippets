@@ -107,11 +107,27 @@ snippet ncicopyq
 #PBS -P e14
 #PBS -q copyq
 #PBS -l wd
-#PBS -l other=mdss 
+#PBS -l other=mdss,walltime=24:00:00,mem=8Gb
 
 #insert code here, e.g.
 cd /g/data1/e14/cyb561/cb_tempa
 mdss get -r cyb561/now/output/nemo_cordex24_ERAI01b ./
+
+#!/bin/bash
+#PBS -P e14
+#PBS -q copyq
+#PBS -l wd
+#PBS -l other=mdss 
+
+#insert code here, e.g.
+
+#DESTDIR=/g/data3/hh5/tmp/eac_analysis/20161216_temp_mass_datanemopull/
+
+#ENAME=nemo_cordex24_CURLFX_FLUXFCE
+#mdss get -r cyb561/now/output/${ENAME} ${DESTDIR}
+
+#ENAME=nemo_cordex24_CURLFX_ERAI01
+#mdss get -r cyb561/now/output/${ENAME} ${DESTDIR}
 endsnippet
 
 

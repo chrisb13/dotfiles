@@ -69,6 +69,7 @@ export CLICOLOR="true"
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
 module load nco
+module load cdo
 module load dot
 module load openmpi/1.6.3
 module load intel-fc/12.1.9.293
@@ -87,9 +88,12 @@ source ~/.vim/common_bashfunctions
 #NCI specific  aliases
 alias r='cd ~/repos/scripts_not_in_repo/'
 alias vi='~/vim/src/vim'
+#alias mdlsi='mdss ls cyb561/now/input/'
+#alias mdlso='mdss ls cyb561/now/output/'
+alias nrun='cd /short/e14/cyb561/now/run/'
 #alias vi='~/vim2/src/vim'
 
-alias interactive='qsub -I -q express -l ncpus=1,mem=20gb,walltime=12:00:00'
+alias interactive='qsub -I -q express -l ncpus=1,mem=40gb,walltime=12:00:00'
 alias start='qsub -I -q express -l ncpus=8,mem=50gb,walltime=12:00:00'
 
 #add xclip to bash path
@@ -108,8 +112,9 @@ export PATH=/g/data1/e14/cyb561/anaconda/bin:$PATH
 alias ps='source activate root'
 
 #for starting a new nemo simulation
-alias clearnemo='rm -vr compress_nemo_?.?[1-9]* run_nemo_?.sh.?[1-9]* production_nemo.?[1-9]* *.nc export_nemo_?.s.?[1-9]* import_nemo_?.s.?[1-9]* timing.output xios_server.exe solver.stat 1_rebuild_restart.f90  rebuild_restart.f90 rebuild_restart.o rebuild_restart 1_rebuild_restart layout.dat ocean.output prod_nemo.db 1_timing.output app.conf 1_ocean.output start_date_duration *.o export_nemo_?.sh import_nemo_?.sh run_nemo_?.sh TMP/ OUTNEMO_*/ 1_namelist namelist time.step 1_time.step nemo.exe'
+alias clearnemo='rm -vr compress_nemo_?.?[1-9]* run_nemo_?.sh.?[1-9]* production_nemo.?[1-9]* *.nc export_nemo_?.s.?[1-9]* import_nemo_?.s.?[1-9]* timing.output xios_server.exe solver.stat 1_rebuild_restart.f90  rebuild_restart.f90 rebuild_restart.o rebuild_restart 1_rebuild_restart layout.dat ocean.output prod_nemo.db 1_timing.output app.conf 1_ocean.output start_date_duration *.o export_nemo_?.sh import_nemo_?.sh run_nemo_?.sh TMP/ OUTNEMO_*/ 1_namelist namelist time.step 1_time.step nemo.exe calculate_end_date'
 
+alias clearnemologs='rm *.sh.*'
 
 alias nciusage2='module purge ; module use ~access/modules ; module load ncimonitor ; ncimonitor -P e14 --usage --byuser'
 

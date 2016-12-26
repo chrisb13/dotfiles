@@ -222,6 +222,14 @@ snippet moo "change print statement to logger" b!
 `!p snip.rv=snip.v.text`
 endsnippet
 
+snippet cdost
+# Load required module
+from cdo import *
+cdo = Cdo()
+cdo.debug = True
+# Compute the global mean monthly precipitation (as in section 7) and return it as a numpy array:
+#mean_pr = np.squeeze(cdo.fldmean(input=file, returnArray=’precip’))
+endsnippet
 
 snippet alphabet
 import itertools
@@ -230,6 +238,7 @@ alphabet=\
  'n','o','p','q','r','s','t','u','v','w','x','y','z']
 sub_let=itertools.cycle(alphabet)
 sub_let.next()
+#sm.pl_inset_title_box(axis,sub_let.next(),bwidth="5%",location=2)
 endsnippet
 
 snippet r
@@ -1085,6 +1094,13 @@ endsnippet
 #                               MATPLOTLIB                                #
 ###########################################################################
 
+snippet quiver
+mag=np.sqrt(np.square(arrayx)+np.square(arrayy))
+ax(lonproj,latproj,mag,levels=np.linspace(0,0.4,20),cmap='Blues_r',extend='both',alpha=0.9)
+skip=(slice(None,None,5),slice(None,None,5))
+ax.quiver(lonproj[skip], latproj[skip], arrayx[skip], arrayy[skip], pivot='mid',color='black', units='xy',headwidth=1,  headlength=4,angles='xy',scale_units='xy',alpha=0.5)
+endsnippet
+
 snippet axisoff
 ax.set_axis_off()
 endsnippet
@@ -1444,6 +1460,17 @@ ax=axis[ro,co]
 plt.show()
 endsnippet
 
+snippet gridspecextras
+#colourbar
+'width_ratios':[1]*(col-1)+[.1] #put inside gridspec_kw
+plt.colorbar(cs1,cax=ax[0,-1],orientation='vertical')
+figsize=(5.5*enum,5)
+
+#colorbar
+ax=axis[x]
+plt.colorbar(cs1,cax=ax,orientation='vertical')
+endsnippet
+
 snippet sgridspec_cbar
 levs=np.linspace(${1:Min,Max},30)
 plt.close('all')
@@ -1580,6 +1607,44 @@ elif plottype=='pdf':
 elif plottype=='both':
 	plt.savefig(global_plot_outfol+'$1.png',dpi=300)
 	plt.savefig(global_plot_outfol+'$1.pdf')
+endsnippet
+
+
+snippet landmask
+def pl_landmask(path_to_netcdf_Tfile,pltaxis,filled=False,lmaskvar='zos'):
+    """function to add a landmask from NEMO to a matplotlib axis
+    
+    :path_to_netcdf_Tfile: nemo output file that is a Tfile
+    :pltaxis: matplotlib axis that the landmask will be drawn on
+    :filled (optional): will fill in the landmask
+    :lmaskvar (optional): variable to grab landmask from
+    :returns: matplotlib axis with landmask on it
+    """
+    assert(os.path.exists(path_to_netcdf_Tfile)),"netCDF file does not exist!"
+    ifile=Dataset(path_to_netcdf_Tfile, 'r')
+    assert(lmaskvar in ifile.variables.keys()),"lmaskvar not one of the variables, options: "+", ".join(ifile.variables.keys())
+    lmask=ifile.variables[lmaskvar][:][0,:,:]
+
+    nemo_lats=ifile.variables['nav_lat'][:]
+    nemo_lons=ifile.variables['nav_lon'][:]
+    for index in np.arange(np.shape(nemo_lons)[0]):                                
+        start=np.where(np.sign(nemo_lons[index,:])==-1)[0][0]                      
+        end=  np.where(np.sign(nemo_lons[index,:])==-1)[0][-1]
+        nemo_lons[index,start:end]=nemo_lons[index,start:end]+360 
+
+    lmask = np.ma.masked_where(
+        lmask ==0.,
+        lmask ) 
+
+    if filled:
+        pltaxis.contourf(nemo_lons,nemo_lats,lmask.mask,levels=[-1,0,1],colors=('#B2D1FF','#858588'),alpha=.9) #landmask
+    else:
+        #ax.contour(x,y[1:],masksurface.mask[1:,:],levels=[0],linewidths=1,colors='black') #landmask
+        pltaxis.contour(nemo_lons,nemo_lats,lmask.mask,\
+                levels=[-1,0],linewidths=2,alpha=.5,colors='black')
+
+    ifile.close()
+    return pltaxis
 endsnippet
 
 

@@ -87,6 +87,7 @@ case $(hostname) in
         module load matlab/2011b
         module load python
         module load proj
+        module load cdo
         alias qint='qsub -I -l nodes=1:ppn=1,vmem=15gb,walltime=2:00:00'
         alias qme='qstat -nru $USER'
         alias qme2='qstat | grep z3457920'
@@ -113,6 +114,7 @@ case $(hostname) in
         module load proj
         module load geos
         module load vim/7.4
+        module load cdo
 
         #load anaconda on login...
         export PATH=/home/z3457920/anaconda/bin:$PATH;source activate root
@@ -157,6 +159,9 @@ case $(hostname) in
         alias open='pcmanfm'
         alias fixinternet='sudo /etc/init.d/networking restart'
         alias mountwin='/home/chris/.vim/bash/yoga_fixshortcuts.sh'
+        #aliases to wrap the vim functions
+        alias vs='vimstorm '
+        alias vn='vimnci '
         export PATH=/home/chris/anaconda/bin:$PATH
 
         alias sFour='cd /media/chris/sFour/'
@@ -167,6 +172,8 @@ case $(hostname) in
         alias web='cd ~/website/'  
         alias bpi='ssh -X bananapi@192.168.1.200'
         alias text='gedit '
+        alias ccrc='ssh -X z3457920@ccrc165.ccrc.unsw.edu.au'
+        alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
         ;;
     chris-DeskVirtualBox)
         #chris home desktop
@@ -208,6 +215,7 @@ case $(hostname) in
         alias now2='cd /srv/ccrc/data34/z3045790/nemo/cordex24_nest8_1d_BILAPLACIAN' #nico high low res
         alias r='cd ~/hdrive/repos/'
         alias nemo='cd ~/hdrive/repos/nemo/nemo_analysis/diagnostics/'
+        alias nemoc='cd ~/hdrive/repos/nemo/nemo_analysis/configs/'
         alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
         alias sa='cd ~/hdrive/repos/swissarmy/'
         ;;

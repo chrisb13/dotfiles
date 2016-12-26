@@ -481,6 +481,62 @@ ls --color=auto -F --color=always -lhFrt;
 tput cup 40 0;
 }
 
+
+#nci mass data helpers
+function mdi() #insert argument for mass data on nci
+{
+    mdss ls cyb561/now/input/${1}
+}
+
+function mdo() #insert argument for mass data on nci
+{
+    mdss ls cyb561/now/output/${1}
+}
+
+function mdr() #insert argument for mass data on nci
+{
+    mdss ls cyb561/now/restart/${1}
+}
+
+function mddu() #insert argument for mass data on nci
+{
+    mdss dmdu -ch cyb561/now/output/${1}
+}
+
+function nemostat()
+{
+
+    echo "Getting status of running nemo jobs."
+    echo ""
+
+    # go to scheduler and getting running jobs..
+    OUTPUT="$(qstat -u cyb561 | grep run_nemo)"
+    while read -r OUTPUT; do
+        echo "Job ... "
+        echo "    ... $OUTPUT..."
+        echo ""
+
+        # get jobid
+        runme="$(echo $OUTPUT | head -n1 | awk '{print $1;}')"
+
+        echo "    JobID found is: "
+        echo "    ${runme}"
+        #echo ""
+        # ask qstat for fulld etails | find working dir | find bit after run command | chop out ',' at the end
+        runmetwo="$(qstat -f ${runme}|grep PBS_O_WORKDIR| sed 's/.*run//'| sed '$s/.$//')"
+        
+        echo "    Mass Data has: "
+        echo ${runmetwo}
+        # get mass data contents
+        #
+        runmethree="$(mdss dmdu -ch cyb561/now/output${runmetwo}  < /dev/null)"
+        echo "      "
+        echo "    ${runmethree}"
+        echo ""
+        done <<< "$OUTPUT"
+}
+
+
 function makepy ()
 {
 pipfreeze=$(pip freeze | sed 's/^/##   /')
