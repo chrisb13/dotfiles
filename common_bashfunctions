@@ -1,4 +1,4 @@
-
+#!/bin/bash
 #netCDF helpers
 function nc() #file header info ncdump
 {
@@ -281,6 +281,34 @@ function vimnci()
       then
         echo 'you passed too many arguments!'
     fi
+}
+
+
+function vimstormsimple() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   vimstorm PATH_TO." 
+        echo "Purpose: Allows remote editing of files on CCRC storm servers..." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path or file: vim will either edit or open file passed" 
+        echo "       " 
+        echo "This is useful for zsh which doesn't like my fancier bash function." 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "vimstorm /home/z3457920/hdrive/repos/cms_analysis/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "vim scp://z3457920@maelstrom.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/"
+
+        return 1
+    fi
+
+    #number of arguments...
+    #echo $#
+    vim scp://z3457920@maelstrom.ccrc.unsw.edu.au/${1} 
+
 }
 
 
