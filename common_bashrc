@@ -176,7 +176,7 @@ case $(hostname) in
         alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
         ;;
     chris-DeskVirtualBox)
-        #chris home desktop
+        #chris home desktop -- don't really use this machine so mostly redundant
         alias bpi='ssh -X bananapi@192.168.1.200'
         # added by Anaconda 2.3.0 installer
         alias ps='source activate root'
@@ -196,6 +196,8 @@ case $(hostname) in
         alias text='gedit '
         alias ccrc='ssh -X z3457920@ccrc165.ccrc.unsw.edu.au'
         alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
+        alias vs='vimstorm '
+        alias vn='vimnci '
         ;;
 esac
 
