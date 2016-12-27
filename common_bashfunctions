@@ -495,7 +495,11 @@ function nemostat()
         echo "    ${runme}"
         #echo ""
         # ask qstat for fulld etails | find working dir | find bit after run command | chop out ',' at the end
-        runmetwo="$(qstat -f ${runme}|grep PBS_O_WORKDIR| sed 's/.*run//'| sed '$s/.$//')"
+        #runmetwo="$(qstat -f ${runme}|grep PBS_O_WORKDIR| sed 's/.*run//'| sed '$s/.$//')"
+        
+        # ask qstat for fulld etails | find working dir | find bit after run command 
+        #runmetwo="$(qstat -f ${runme}|grep PBS_O_WORKDIR| sed 's/.*run//'| sed '$s/.$//')"
+        runmetwo="$(qstat -f ${runme}|grep PBS_O_WORKDIR| sed 's/.*run//')"
         
         echo "    Mass Data has: "
         echo ${runmetwo}
