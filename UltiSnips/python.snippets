@@ -1490,6 +1490,33 @@ plt.colorbar(cs1,cax=ax,orientation='vertical')
 plt.show()
 endsnippet
 
+snippet sgridspec_indvid_cbar
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.ticker import MultipleLocator
+
+levs=np.linspace(${1:Min,Max},30)
+plt.close('all')
+row=1
+col=2
+fig, axis = plt.subplots(\
+    nrows=row, ncols=col, sharex=False, sharey=False,\
+    gridspec_kw={'hspace':.225,'wspace':.065}\
+	      )
+
+ax=axis[0]
+cs1=ax.contourf(variableone,levels=levs)
+plt.colorbar(cs1,\
+	cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25)\
+	,orientation='horizontal')
+ax=axis[1]
+cs1=ax.contourf(variabletwo,levels=levs)
+plt.colorbar(cs1,\
+	cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25)\
+	,orientation='horizontal')
+plt.show()
+endsnippet
+
+
 snippet title
 ax.set_title('${1:Title}')
 endsnippet
