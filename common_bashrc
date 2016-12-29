@@ -198,6 +198,7 @@ case $(hostname) in
         alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
         alias vs='vimstorm '
         alias vn='vimnci '
+        alias mountwin='/home/chris/.vim/bash/homepc_fixshortcuts.sh'
         ;;
 esac
 
@@ -210,7 +211,8 @@ case $(hostname) in
         alias cbd3='cd /srv/ccrc/data32/z3457920/leeuwincurrent3/'
         alias cbd4='cd /srv/ccrc/data42/z3457920/'
         alias cbd5='cd /srv/ccrc/data48/z3457920/'
-        alias rw1='cd /srv/ccrc/data42/z3457920/RawData/'
+        alias rw0='cd /srv/ccrc/data32/z3457920/RawData/NEMO/'
+        alias rw1='cd /srv/ccrc/data42/z3457920/RawData/NEMO/'
         alias rw2='cd /srv/ccrc/data48/z3457920/RawData/NEMO/'
         alias nonz='cd /srv/ccrc/data48/z3457920/20160804_EAC_NoNZ/analysis/'
         alias eac='cd /srv/ccrc/data42/z3457920/20151012_eac_sep_dynamics/analysis/'
