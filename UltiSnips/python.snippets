@@ -980,6 +980,10 @@ import xarray as xr
 da=xr.DataArray(np.random.rand(3,2))
 ds=da.to_dataset(name='foo')
 ds.to_netcdf('/path/to/netcdf/file')
+
+#if trying to pick up an existing netcdf file and change something..
+ifilev['variablename']=\
+xr.DataArray(v10,dims=('time','y','x'),coords=ifilev.variablename.coords)
 endsnippet
 
 snippet savenetcdfNEMO
@@ -1015,6 +1019,19 @@ def ncout(nemo_template,export_dict,outputpath,numtsteps=0):
     fout_lat=fout.createVariable('nav_lat','f4',('y','x',))
     fout_lon=fout.createVariable('nav_lon','f4',('y','x',))
     fout_depth=fout.createVariable('deptht','f4',('deptht'))
+
+    # Copy variable attributes and history (wrong names!)
+    #attrvals=[tpointsdefn.variables['time'].getncattr(k) for k in tpointsdefn.variables['time'].ncattrs()]
+    #fout_time.setncatts({key:value for (key,value) in zip(tpointsdefn.variables['time'].ncattrs(),attrvals)})
+
+    #attrvals=[tpointsdefn.variables['lat0'].getncattr(k) for k in tpointsdefn.variables['lat0'].ncattrs()]
+    #fout_lat.setncatts({key:value for (key,value) in zip(tpointsdefn.variables['lat0'].ncattrs(),attrvals)})
+
+    #attrvals=[tpointsdefn.variables['lon0'].getncattr(k) for k in tpointsdefn.variables['lon0'].ncattrs()]
+    #fout_lon.setncatts({key:value for (key,value) in zip(tpointsdefn.variables['lon0'].ncattrs(),attrvals)})
+
+    #fout.setncatts({'history':tpointsdefn.getncattr('history')+' \n. Smoothed with'+os.path.realpath(__file__)+' time: '+datetime.datetime.now().strftime("%Y-%m-%d %H:%M")+' machine: '+socket.gethostname()+' function_name: '+inspect.currentframe().f_code.co_name})
+
 
     fout_time[:]=np.arange(numtsteps)
     fout_lat[:]=new_lat
