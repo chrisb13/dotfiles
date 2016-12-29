@@ -132,6 +132,7 @@ case $(hostname) in
         #alias vi='vim'
         
         alias eac2='cd /srv/ccrc/data48/z3457920/20160518_EACextention/'
+        alias eac3='cd /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis/'
         #turned off b/c I've started to use anaconda more...
         #alias ps='source ~/env/ccrc_env/bin/activate'
         alias ps='export PATH="/home/nfs/z3457920/anaconda/bin:$PATH";source activate root'
@@ -217,6 +218,7 @@ case $(hostname) in
         alias nonz='cd /srv/ccrc/data48/z3457920/20160804_EAC_NoNZ/analysis/'
         alias eac='cd /srv/ccrc/data42/z3457920/20151012_eac_sep_dynamics/analysis/'
         alias eac2='cd /srv/ccrc/data48/z3457920/20160518_EACextention/'
+        alias eac3='cd /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis/'
         alias now1='cd /srv/ccrc/data34/z3045790/nemo/cordex24_1d_BILAPLACIAN' #nico now low res
         alias now2='cd /srv/ccrc/data34/z3045790/nemo/cordex24_nest8_1d_BILAPLACIAN' #nico high low res
         alias r='cd ~/hdrive/repos/'
