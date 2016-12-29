@@ -222,6 +222,14 @@ snippet moo "change print statement to logger" b!
 `!p snip.rv=snip.v.text`
 endsnippet
 
+snippet cdost
+# Load required module
+from cdo import *
+cdo = Cdo()
+cdo.debug = True
+# Compute the global mean monthly precipitation (as in section 7) and return it as a numpy array:
+#mean_pr = np.squeeze(cdo.fldmean(input=file, returnArray=’precip’))
+endsnippet
 
 snippet alphabet
 import itertools
@@ -230,6 +238,7 @@ alphabet=\
  'n','o','p','q','r','s','t','u','v','w','x','y','z']
 sub_let=itertools.cycle(alphabet)
 sub_let.next()
+#sm.pl_inset_title_box(axis,sub_let.next(),bwidth="5%",location=2)
 endsnippet
 
 snippet r
@@ -1497,6 +1506,33 @@ ax=axis[2]
 plt.colorbar(cs1,cax=ax,orientation='vertical')
 plt.show()
 endsnippet
+
+snippet sgridspec_indvid_cbar
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.ticker import MultipleLocator
+
+levs=np.linspace(${1:Min,Max},30)
+plt.close('all')
+row=1
+col=2
+fig, axis = plt.subplots(\
+    nrows=row, ncols=col, sharex=False, sharey=False,\
+    gridspec_kw={'hspace':.225,'wspace':.065}\
+	      )
+
+ax=axis[0]
+cs1=ax.contourf(variableone,levels=levs)
+plt.colorbar(cs1,\
+	cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25)\
+	,orientation='horizontal')
+ax=axis[1]
+cs1=ax.contourf(variabletwo,levels=levs)
+plt.colorbar(cs1,\
+	cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25)\
+	,orientation='horizontal')
+plt.show()
+endsnippet
+
 
 snippet title
 ax.set_title('${1:Title}')
