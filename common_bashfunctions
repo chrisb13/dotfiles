@@ -397,6 +397,53 @@ function findtype()
 
 }
 
+
+function htopfind() 
+{
+    #stolen from: http://stackoverflow.com/questions/3727793/limit-the-output-of-the-top-command-to-a-specific-process-name
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage: htopfind PROCESS_NAME" 
+        echo "Purpose: displays a filtered list of htop on the process you search for." 
+        echo "       " 
+        echo "Requires: htop" 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "PROCESS_NAME: string of process you want to find" 
+        echo "       " 
+        echo "Example." 
+        echo "htopfind python" 
+        echo "       " 
+        echo "becomes:       " 
+        echo 'htop -p `pgrep python | tr "\\n" "," | sed "s/,$//"`'
+
+        return 1
+    fi
+  htop -p `pgrep ${1} | tr "\\n" "," | sed "s/,$//"`   
+}
+ 
+function topfind() 
+{
+    #stolen from: http://stackoverflow.com/questions/3727793/limit-the-output-of-the-top-command-to-a-specific-process-name
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage: topfind PROCESS_NAME" 
+        echo "Purpose: displays a filtered list of htop on the process you search for." 
+        echo "       " 
+        echo "Requires: top" 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "PROCESS_NAME: string of process you want to find" 
+        echo "       " 
+        echo "Example." 
+        echo "topfind python" 
+        echo "       " 
+        echo "becomes:       " 
+        echo 'top -p `pgrep python | tr "\\n" "," | sed "s/,$//"`'
+
+        return 1
+    fi
+  top -p `pgrep ${1} | tr "\\n" "," | sed "s/,$//"`   
+}
+
 function log() #pbs log file
 {
   less $(ls cb_rhomoc_katana.pbs.* |tail -1)
