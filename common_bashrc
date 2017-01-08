@@ -212,6 +212,7 @@ case $(hostname) in
         alias cbd3='cd /srv/ccrc/data32/z3457920/leeuwincurrent3/'
         alias cbd4='cd /srv/ccrc/data42/z3457920/'
         alias cbd5='cd /srv/ccrc/data48/z3457920/'
+        alias cbd6='cd /srv/ccrc/data49/z3457920/'
         alias rw0='cd /srv/ccrc/data32/z3457920/RawData/NEMO/'
         alias rw1='cd /srv/ccrc/data42/z3457920/RawData/NEMO/'
         alias rw2='cd /srv/ccrc/data48/z3457920/RawData/NEMO/'
