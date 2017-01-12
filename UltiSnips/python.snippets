@@ -1111,6 +1111,20 @@ endsnippet
 #                               MATPLOTLIB                                #
 ###########################################################################
 
+snippet fixcbarticks
+#fix colourbar ticks
+import matplotlib.ticker as ticker
+def fmt(x, pos):
+    """
+    Ripped from: 
+    http://stackoverflow.com/questions/25983218/scientific-notation-colorbar-in-matplotlib
+    """
+    return '{:.1f}'.format(x)
+cbar=plt.colorbar(cs1,\
+cax=ax0
+,orientation='vertical',format=ticker.FuncFormatter(fmt))
+endsnippet
+
 snippet quiver
 mag=np.sqrt(np.square(arrayx)+np.square(arrayy))
 ax(lonproj,latproj,mag,levels=np.linspace(0,0.4,20),cmap='Blues_r',extend='both',alpha=0.9)
