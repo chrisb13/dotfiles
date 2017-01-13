@@ -1705,6 +1705,30 @@ def pl_landmask(path_to_netcdf_Tfile,pltaxis,filled=False,lmaskvar='zos'):
     return pltaxis
 endsnippet
 
+######################
+#  shareme/inputdirs snippets  #
+######################
+
+snippet shareme
+import shareme as sm
+sm.pl_landmask(path_to_netcdf_Tfile,pltaxis,filled=False,cropped=[])
+sm.change_tick_labels_add_dirs(axes)
+sm.ins_legend(pltaxis,exp_subset=None,lw=3,location=0,invisible=False,ncols=4)
+sm.ins_legend_nonz(pltaxis,exp_subset=None,lw=3,location=0,invisible=False,ncols=4)
+endsnippet
+
+snippet paperstruct
+import inputdirs as ind
+if ind.paper_case=='20150706_EACseperation':
+    lg.warning("We are doing case: " + ind.paper_case)
+elif ind.paper_case=='20160804_EAC_NoNZ':
+    lg.warning("We are doing case: " + ind.paper_case)
+elif ind.paper_case=='20170113_EACnowClimateChange01':
+    lg.warning("We are doing case: " + ind.paper_case)
+else:
+    lg.error("I don't know what to do here!"+ ind.paper_case)
+    sys.exit()
+endsnippet
 
 #stolen from:
 #http://bazaar.launchpad.net/~sirver/ultisnips/trunk/view/head:/UltiSnips/python.snippets
