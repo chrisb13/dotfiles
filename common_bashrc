@@ -115,6 +115,7 @@ case $(hostname) in
         module load geos
         module load vim/7.4
         module load cdo
+        module load nco
 
         #load anaconda on login...
         export PATH=/home/z3457920/anaconda/bin:$PATH;source activate root
