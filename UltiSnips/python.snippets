@@ -1560,6 +1560,10 @@ snippet ylab
 ax.set_xlabel('${1:ylabel}')
 endsnippet
 
+snippet cbarlab
+cbar.set_label('v-velocity (m/s)')
+endsnippet
+
 snippet getlev
 def getlev(field,levels=30):
     """function that returns a linspace of levels of the passed fields
@@ -1715,6 +1719,10 @@ sm.pl_landmask(path_to_netcdf_Tfile,pltaxis,filled=False,cropped=[])
 sm.change_tick_labels_add_dirs(axes)
 sm.ins_legend(pltaxis,exp_subset=None,lw=3,location=0,invisible=False,ncols=4)
 sm.ins_legend_nonz(pltaxis,exp_subset=None,lw=3,location=0,invisible=False,ncols=4)
+sm.pl_inset_title_box(ax,title,bwidth="20%",location=1)
+sm.raw_nemo_globber_specifytpe(exp_path,file_type,child='',return_dates=False)
+sm.nemo_fixdateline(netcdf_datasetobj)
+sm.nemo_lon_lat_finder(infile,want_latitude,want_longitude,resolution)
 endsnippet
 
 snippet paperstruct
