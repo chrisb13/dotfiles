@@ -208,3 +208,11 @@ This is time for all good men to come to the aid of their party!
 
 \end{document}
 endsnippet 
+
+snippet cdo
+#extract a time
+cdo seltimestep,1,2,5 cordex24_CURLFX-FLUXFCE_3h_20040101_20041231_grid_U_2D.nc  test.nc
+
+#do simple arithmatic
+cdo expr,'sum=qsr+qns-qt' cordex24_CURLFX-FLUXFCE_3h_19980101_19981231_grid_T_2D.nc ofile.nc
+endsnippet 

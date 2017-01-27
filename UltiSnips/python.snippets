@@ -1148,8 +1148,14 @@ endsnippet
 snippet uselatex
 #nb requires latex installed on the machine, see http://matplotlib.org/users/usetex.html
 from matplotlib import rc
-# rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+import matplotlib
 rc('text', usetex=True)
+
+#this makes the font the same.. http://stackoverflow.com/questions/11367736/matplotlib-consistent-font-using-latex
+matplotlib.rcParams['mathtext.fontset'] = 'custom'
+matplotlib.rcParams['mathtext.rm'] = 'Bitstream Vera Sans'
+matplotlib.rcParams['mathtext.it'] = 'Bitstream Vera Sans:italic'
+matplotlib.rcParams['mathtext.bf'] = 'Bitstream Vera Sans:bold'
 cb1.set_label(r"$\displaystyle ^{\circ} C$")
 endsnippet
 
