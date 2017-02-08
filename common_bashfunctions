@@ -1,4 +1,4 @@
-
+#!/bin/bash
 #netCDF helpers
 function nc() #file header info ncdump
 {
@@ -284,6 +284,34 @@ function vimnci()
 }
 
 
+function vimstormsimple() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   vimstorm PATH_TO." 
+        echo "Purpose: Allows remote editing of files on CCRC storm servers..." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path or file: vim will either edit or open file passed" 
+        echo "       " 
+        echo "This is useful for zsh which doesn't like my fancier bash function." 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "vimstorm /home/z3457920/hdrive/repos/cms_analysis/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "vim scp://z3457920@maelstrom.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/"
+
+        return 1
+    fi
+
+    #number of arguments...
+    #echo $#
+    vim scp://z3457920@maelstrom.ccrc.unsw.edu.au/${1} 
+
+}
+
+
 function vimstorm() 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
@@ -367,6 +395,53 @@ function findtype()
 
     find . -type f -name "${1}" 
 
+}
+
+
+function htopfind() 
+{
+    #stolen from: http://stackoverflow.com/questions/3727793/limit-the-output-of-the-top-command-to-a-specific-process-name
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage: htopfind PROCESS_NAME" 
+        echo "Purpose: displays a filtered list of htop on the process you search for." 
+        echo "       " 
+        echo "Requires: htop" 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "PROCESS_NAME: string of process you want to find" 
+        echo "       " 
+        echo "Example." 
+        echo "htopfind python" 
+        echo "       " 
+        echo "becomes:       " 
+        echo 'htop -p `pgrep python | tr "\\n" "," | sed "s/,$//"`'
+
+        return 1
+    fi
+  htop -p `pgrep ${1} | tr "\\n" "," | sed "s/,$//"`   
+}
+ 
+function topfind() 
+{
+    #stolen from: http://stackoverflow.com/questions/3727793/limit-the-output-of-the-top-command-to-a-specific-process-name
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage: topfind PROCESS_NAME" 
+        echo "Purpose: displays a filtered list of htop on the process you search for." 
+        echo "       " 
+        echo "Requires: top" 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "PROCESS_NAME: string of process you want to find" 
+        echo "       " 
+        echo "Example." 
+        echo "topfind python" 
+        echo "       " 
+        echo "becomes:       " 
+        echo 'top -p `pgrep python | tr "\\n" "," | sed "s/,$//"`'
+
+        return 1
+    fi
+  top -p `pgrep ${1} | tr "\\n" "," | sed "s/,$//"`   
 }
 
 function log() #pbs log file
@@ -495,7 +570,11 @@ function nemostat()
         echo "    ${runme}"
         #echo ""
         # ask qstat for fulld etails | find working dir | find bit after run command | chop out ',' at the end
-        runmetwo="$(qstat -f ${runme}|grep PBS_O_WORKDIR| sed 's/.*run//'| sed '$s/.$//')"
+        #runmetwo="$(qstat -f ${runme}|grep PBS_O_WORKDIR| sed 's/.*run//'| sed '$s/.$//')"
+        
+        # ask qstat for fulld etails | find working dir | find bit after run command 
+        #runmetwo="$(qstat -f ${runme}|grep PBS_O_WORKDIR| sed 's/.*run//'| sed '$s/.$//')"
+        runmetwo="$(qstat -f ${runme}|grep PBS_O_WORKDIR| sed 's/.*run//')"
         
         echo "    Mass Data has: "
         echo ${runmetwo}

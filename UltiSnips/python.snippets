@@ -989,6 +989,10 @@ import xarray as xr
 da=xr.DataArray(np.random.rand(3,2))
 ds=da.to_dataset(name='foo')
 ds.to_netcdf('/path/to/netcdf/file')
+
+#if trying to pick up an existing netcdf file and change something..
+ifilev['variablename']=\
+xr.DataArray(v10,dims=('time','y','x'),coords=ifilev.variablename.coords)
 endsnippet
 
 snippet savenetcdfNEMO
@@ -1024,6 +1028,19 @@ def ncout(nemo_template,export_dict,outputpath,numtsteps=0):
     fout_lat=fout.createVariable('nav_lat','f4',('y','x',))
     fout_lon=fout.createVariable('nav_lon','f4',('y','x',))
     fout_depth=fout.createVariable('deptht','f4',('deptht'))
+
+    # Copy variable attributes and history (wrong names!)
+    #attrvals=[tpointsdefn.variables['time'].getncattr(k) for k in tpointsdefn.variables['time'].ncattrs()]
+    #fout_time.setncatts({key:value for (key,value) in zip(tpointsdefn.variables['time'].ncattrs(),attrvals)})
+
+    #attrvals=[tpointsdefn.variables['lat0'].getncattr(k) for k in tpointsdefn.variables['lat0'].ncattrs()]
+    #fout_lat.setncatts({key:value for (key,value) in zip(tpointsdefn.variables['lat0'].ncattrs(),attrvals)})
+
+    #attrvals=[tpointsdefn.variables['lon0'].getncattr(k) for k in tpointsdefn.variables['lon0'].ncattrs()]
+    #fout_lon.setncatts({key:value for (key,value) in zip(tpointsdefn.variables['lon0'].ncattrs(),attrvals)})
+
+    #fout.setncatts({'history':tpointsdefn.getncattr('history')+' \n. Smoothed with'+os.path.realpath(__file__)+' time: '+datetime.datetime.now().strftime("%Y-%m-%d %H:%M")+' machine: '+socket.gethostname()+' function_name: '+inspect.currentframe().f_code.co_name})
+
 
     fout_time[:]=np.arange(numtsteps)
     fout_lat[:]=new_lat
@@ -1094,6 +1111,20 @@ endsnippet
 #                               MATPLOTLIB                                #
 ###########################################################################
 
+snippet fixcbarticks
+#fix colourbar ticks
+import matplotlib.ticker as ticker
+def fmt(x, pos):
+    """
+    Ripped from: 
+    http://stackoverflow.com/questions/25983218/scientific-notation-colorbar-in-matplotlib
+    """
+    return '{:.1f}'.format(x)
+cbar=plt.colorbar(cs1,\
+cax=ax0
+,orientation='vertical',format=ticker.FuncFormatter(fmt))
+endsnippet
+
 snippet quiver
 mag=np.sqrt(np.square(arrayx)+np.square(arrayy))
 ax(lonproj,latproj,mag,levels=np.linspace(0,0.4,20),cmap='Blues_r',extend='both',alpha=0.9)
@@ -1117,8 +1148,14 @@ endsnippet
 snippet uselatex
 #nb requires latex installed on the machine, see http://matplotlib.org/users/usetex.html
 from matplotlib import rc
-# rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+import matplotlib
 rc('text', usetex=True)
+
+#this makes the font the same.. http://stackoverflow.com/questions/11367736/matplotlib-consistent-font-using-latex
+matplotlib.rcParams['mathtext.fontset'] = 'custom'
+matplotlib.rcParams['mathtext.rm'] = 'Bitstream Vera Sans'
+matplotlib.rcParams['mathtext.it'] = 'Bitstream Vera Sans:italic'
+matplotlib.rcParams['mathtext.bf'] = 'Bitstream Vera Sans:bold'
 cb1.set_label(r"$\displaystyle ^{\circ} C$")
 endsnippet
 
@@ -1490,6 +1527,33 @@ plt.colorbar(cs1,cax=ax,orientation='vertical')
 plt.show()
 endsnippet
 
+snippet sgridspec_indvid_cbar
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.ticker import MultipleLocator
+
+levs=np.linspace(${1:Min,Max},30)
+plt.close('all')
+row=1
+col=2
+fig, axis = plt.subplots(\
+    nrows=row, ncols=col, sharex=False, sharey=False,\
+    gridspec_kw={'hspace':.225,'wspace':.065}\
+	      )
+
+ax=axis[0]
+cs1=ax.contourf(variableone,levels=levs)
+plt.colorbar(cs1,\
+	cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25)\
+	,orientation='horizontal')
+ax=axis[1]
+cs1=ax.contourf(variabletwo,levels=levs)
+plt.colorbar(cs1,\
+	cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25)\
+	,orientation='horizontal')
+plt.show()
+endsnippet
+
+
 snippet title
 ax.set_title('${1:Title}')
 endsnippet
@@ -1500,6 +1564,10 @@ endsnippet
 
 snippet ylab
 ax.set_xlabel('${1:ylabel}')
+endsnippet
+
+snippet cbarlab
+cbar.set_label('v-velocity (m/s)')
 endsnippet
 
 snippet getlev
@@ -1647,6 +1715,34 @@ def pl_landmask(path_to_netcdf_Tfile,pltaxis,filled=False,lmaskvar='zos'):
     return pltaxis
 endsnippet
 
+######################
+#  shareme/inputdirs snippets  #
+######################
+
+snippet shareme
+import shareme as sm
+sm.pl_landmask(path_to_netcdf_Tfile,pltaxis,filled=False,cropped=[])
+sm.change_tick_labels_add_dirs(axes)
+sm.ins_legend(pltaxis,exp_subset=None,lw=3,location=0,invisible=False,ncols=4)
+sm.ins_legend_nonz(pltaxis,exp_subset=None,lw=3,location=0,invisible=False,ncols=4)
+sm.pl_inset_title_box(ax,title,bwidth="20%",location=1)
+sm.raw_nemo_globber_specifytpe(exp_path,file_type,child='',return_dates=False)
+sm.nemo_fixdateline(netcdf_datasetobj)
+sm.nemo_lon_lat_finder(infile,want_latitude,want_longitude,resolution)
+endsnippet
+
+snippet paperstruct
+import inputdirs as ind
+if ind.paper_case=='20150706_EACseperation':
+    lg.warning("We are doing case: " + ind.paper_case)
+elif ind.paper_case=='20160804_EAC_NoNZ':
+    lg.warning("We are doing case: " + ind.paper_case)
+elif ind.paper_case=='20170113_EACnowClimateChange01':
+    lg.warning("We are doing case: " + ind.paper_case)
+else:
+    lg.error("I don't know what to do here!"+ ind.paper_case)
+    sys.exit()
+endsnippet
 
 #stolen from:
 #http://bazaar.launchpad.net/~sirver/ultisnips/trunk/view/head:/UltiSnips/python.snippets
