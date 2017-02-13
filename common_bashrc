@@ -179,6 +179,7 @@ case $(hostname) in
         alias text='gedit '
         alias ccrc='ssh -X z3457920@ccrc165.ccrc.unsw.edu.au'
         alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
+        alias eacobs='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/eacobs/diagnostics/'
         ;;
     chris-DeskVirtualBox)
         #chris home desktop -- don't really use this machine so mostly redundant
@@ -201,6 +202,7 @@ case $(hostname) in
         alias text='gedit '
         alias ccrc='ssh -X z3457920@ccrc165.ccrc.unsw.edu.au'
         alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
+        alias eacobs='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/eacobs/diagnostics/'
         alias vs='vimstorm '
         alias vn='vimnci '
         alias mountwin='/home/chris/.vim/bash/homepc_fixshortcuts.sh'
@@ -230,6 +232,7 @@ case $(hostname) in
         alias r='cd ~/hdrive/repos/'
         alias nemo='cd ~/hdrive/repos/nemo/nemo_analysis/diagnostics/'
         alias nemoc='cd ~/hdrive/repos/nemo/nemo_analysis/configs/'
+        alias eacobs='cd ~/hdrive/repos/eacobs/diagnostics/'
         alias p='cd ~/hdrive/repos/cms_analysis/papers/20141202_leeuwincurrent'
         alias sa='cd ~/hdrive/repos/swissarmy/'
         ;;
