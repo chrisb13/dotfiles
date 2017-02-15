@@ -225,6 +225,9 @@ cdo chname,time_average_3h,time_counter sum.nc sum2.nc
 
 #add two files together
 cdo  enssum ERAI_high_500/cordex24_CURLFX-FLUXFCE_3h_19970101_19971231_grid_U_2D.nc  ERAI_low_500/cordex24_CURLFX-FLUXFCE_3h_19970101_19971231_grid_U_2D.nc sum.nc
+
+#extract time steps
+cdo seltimestep,1/1200 ifile ofile
 endsnippet 
 
 snippet nco
