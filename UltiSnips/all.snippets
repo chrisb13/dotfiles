@@ -228,6 +228,22 @@ cdo  enssum ERAI_high_500/cordex24_CURLFX-FLUXFCE_3h_19970101_19971231_grid_U_2D
 
 #extract time steps
 cdo seltimestep,1/1200 ifile ofile
+
+#calculate monthly averages
+cdo monavg IMOS_OceanCurrent_HV_1993_C-20150521T030649Z.nc test.nc
+
+#merge times in bash friendly
+cdo cat cordex24_CURLFX-FLUXFCE_3h_20000101_20001231_grid_U_2D.nc cordex24_CURLFX-FLUXFCE_3h_20010101_20011231_grid_U_2D.nc ../cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp.nc
+
+#merge times in an intelligent way
+cdo mergetime cordex24_CURLFX-FLUXFCE_3h_20000101_20001231_grid_U_2D.nc cordex24_CURLFX-FLUXFCE_3h_20010101_20011231_grid_U_2D.nc ../cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp.nc
+
+#latlonbox
+cdo sellonlatbox,160,170,-30,-20 cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp.nc cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice.nc
+
+#filtering
+cdo lowpass,0.9125 cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice.nc cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice_low.nc
+cdo highpass,0.9125 cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice.nc cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice_high.nc
 endsnippet 
 
 snippet nco

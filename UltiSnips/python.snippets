@@ -1366,6 +1366,9 @@ divider = make_axes_locatable(ax)
 caxis = divider.append_axes("bottom", size="10%", pad=0.05)
 
 plt.colorbar(cs1,cax=caxis,ticks=MultipleLocator(0.5),orientation='horizontal')
+
+#really great when you have lots of panels and want a global cbar..
+fig.colorbar(cs1, ax=axis.ravel().tolist(), pad=0.04, aspect = 30)
 endsnippet
 
 snippet fieldcontour
