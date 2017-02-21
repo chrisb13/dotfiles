@@ -241,6 +241,10 @@ cdo mergetime cordex24_CURLFX-FLUXFCE_3h_20000101_20001231_grid_U_2D.nc cordex24
 #latlonbox
 cdo sellonlatbox,160,170,-30,-20 cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp.nc cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice.nc
 
+#select a single variable from a bunch of files
+#see: https://code.zmaw.de/boards/1/topics/350
+cdo select,name=zos /srv/ccrc/data49/z3457920/RawData/NEMO/now_cordex24_eastaus8_png8_BMJv2_BILAP/{1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008}/1_cord*grid_T*.nc ${OUTFOLD}1_cordex24-BMJv2_BILAP_1d_ONEFILE_grid_T_2D_zos_only_four.nc
+
 #filtering
 cdo lowpass,0.9125 cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice.nc cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice_low.nc
 cdo highpass,0.9125 cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice.nc cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice_high.nc
