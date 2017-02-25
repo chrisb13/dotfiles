@@ -134,7 +134,7 @@ case $(hostname) in
         #alias vi='vim'
         
         alias eac2='cd /srv/ccrc/data48/z3457920/20160518_EACextention/'
-        alias eac3='cd /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis/'
+        alias eac3='cd /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis2/'
         alias now='cd /srv/ccrc/data49/z3457920/20170113_EACnowClimateChange01/analysis/'
         #turned off b/c I've started to use anaconda more...
         #alias ps='source ~/env/ccrc_env/bin/activate'
@@ -230,7 +230,7 @@ case $(hostname) in
         alias nonz='cd /srv/ccrc/data48/z3457920/20160804_EAC_NoNZ/analysis/'
         alias eac='cd /srv/ccrc/data42/z3457920/20151012_eac_sep_dynamics/analysis/'
         alias eac2='cd /srv/ccrc/data48/z3457920/20160518_EACextention/'
-        alias eac3='cd /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis/'
+        alias eac3='cd /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis2/'
         alias eac4='cd /srv/ccrc/data49/z3457920/20170211_EACwarmingIMOS/'
         alias now1='cd /srv/ccrc/data34/z3045790/nemo/cordex24_1d_BILAPLACIAN' #nico now low res
         alias now2='cd /srv/ccrc/data34/z3045790/nemo/cordex24_nest8_1d_BILAPLACIAN' #nico high low res
