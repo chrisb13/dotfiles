@@ -142,10 +142,11 @@ case $(hostname) in
         alias ps3='export PATH="/home/nfs/z3457920/anaconda3/bin:$PATH";source activate root'
         alias fixdesk='kstart plasma-desktop &'
         alias checkh='mount | grep hdrive'
-        alias makeeac="cd /home/nfs/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics;python makepaper.py ; /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis/paperfigsdoc/copyplots.sh ;echo 'just ran copy script: /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis/paperfigsdoc/copyplots.sh' "
+        alias makeeac="cd /home/nfs/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics;python makepaper.py ; /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis2/paperfigsdoc/copyplots.sh ;echo 'just ran copy script: /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis2/paperfigsdoc/copyplots.sh' "
         alias makenonz='cd /home/nfs/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics;python 20160804_EAC_NoNZ_makepaper.py; /srv/ccrc/data48/z3457920/20160804_EAC_NoNZ/analysis/paperfigsdoc/copyplots.sh'
         alias makenow='cd /home/nfs/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics;python 20170113_EACnowClimateChange01_makepaper.py; /srv/ccrc/data49/z3457920/20170113_EACnowClimateChange01/analysis/paperfigsdoc/copyplots.sh'
         alias makewarm='cd /home/nfs/z3457920/hdrive/repos/eacobs/diagnostics/;python 20170211_EACwarmingIMOS_makepaper.py;rm /home/nfs/z3457920/Dropbox/Cbull_PapersThesisSupSHARE/20170211_EACwarmingIMOS/plots/*.png ;/srv/ccrc/data49/z3457920/20170211_EACwarmingIMOS/paperfigsdoc/copyplots.sh'
+        alias cdocheat="awk '/snippet cdo/{flag=1;next}/endsnippet/{flag=0}flag' ~/.vim/UltiSnips/all.snippets"
         alias imgtrkr='python ~/hdrive/repos/imgtrkr/main.py '
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         export PATH="~/cmake-3.3.2/bin:$PATH"
@@ -181,6 +182,8 @@ case $(hostname) in
         alias ccrc='ssh -X z3457920@ccrc165.ccrc.unsw.edu.au'
         alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
         alias eacobs='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/eacobs/diagnostics/'
+        alias cdocheat="awk '/snippet cdo/{flag=1;next}/endsnippet/{flag=0}flag' ~/.vim/UltiSnips/all.snippets"
+        
         ;;
     chris-DeskVirtualBox)
         #chris home desktop -- don't really use this machine so mostly redundant
