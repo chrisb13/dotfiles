@@ -151,6 +151,7 @@ case $(hostname) in
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         export PATH="~/cmake-3.3.2/bin:$PATH"
         alias mkmov='python /home/nfs/z3457920/hdrive/repos/mkmov/mkmov.py '
+        alias ipy='ipython --TerminalInteractiveShell.editing_mode=vi'
         module load ncview
         ;;
     ubuntudesktop) 
@@ -227,6 +228,7 @@ case $(hostname) in
         alias rw1='cd /srv/ccrc/data42/z3457920/RawData/NEMO/'
         alias rw2='cd /srv/ccrc/data48/z3457920/RawData/NEMO/'
         alias rw3='cd /srv/ccrc/data49/z3457920/RawData/NEMO/'
+        alias rw4='cd /srv/ccrc/data13/z3457920/RawData/NEMO/'
         alias nonz='cd /srv/ccrc/data48/z3457920/20160804_EAC_NoNZ/analysis/'
         alias eac='cd /srv/ccrc/data42/z3457920/20151012_eac_sep_dynamics/analysis/'
         alias eac2='cd /srv/ccrc/data48/z3457920/20160518_EACextention/'
