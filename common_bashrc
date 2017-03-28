@@ -68,8 +68,12 @@ alias nci1='ssh -X cyb561@raijin1.nci.org.au'
 alias md='ssh -X cyb561@dc-dm3.nci.org.au'  #been decomissioned, well not quite!
 #alias md='ssh -X cyb561@dm1.nci.org.au'
 alias maelstrom='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
-alias m='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
-alias monsoon='ssh -X z3457920@monsoon.ccrc.unsw.edu.au'
+alias ma='ssh -X z3457920@maelstrom.ccrc.unsw.edu.au'
+alias mo='ssh -X z3457920@monsoon.ccrc.unsw.edu.au'
+#new storm servers (temp)
+alias newstormc='ssh -X z3457920@cyclone2.ccrc.unsw.edu.au'
+alias newstormh='ssh -X z3457920@hurricane2.ccrc.unsw.edu.au'
+alias newstormt='ssh -X z3457920@typhoon2.ccrc.unsw.edu.au'
 alias imp='ssh -X cbull@login.cx1.hpc.ic.ac.uk'
 
 alias ip='ipython --pylab'
@@ -95,7 +99,7 @@ case $(hostname) in
         alias pyk='source ~/env/katana_env/bin/activate'   #for katana 
         alias ps='export PYTHONPATH=/srv/scratch/z3457920/anaconda/pkgs;export PATH=/srv/scratch/z3457920/anaconda/bin:$PATH;source activate root'
         ;;
-    squall.ccrc.unsw.edu.au|maelstrom.ccrc.unsw.edu.au|monsoon.ccrc.unsw.edu.au)
+    squall.ccrc.unsw.edu.au|maelstrom.ccrc.unsw.edu.au|monsoon.ccrc.unsw.edu.au|cyclone2.ccrc.unsw.edu.au)
         alias open='nautilus . &'
         #alias v='vimx'
         alias mkmov='python ~/hdrive/repos/mkmov/mkmov.py '

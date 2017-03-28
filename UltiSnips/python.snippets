@@ -1732,6 +1732,8 @@ sm.pl_inset_title_box(ax,title,bwidth="20%",location=1)
 sm.raw_nemo_globber_specifytpe(exp_path,file_type,child='',return_dates=False)
 sm.nemo_fixdateline(netcdf_datasetobj)
 sm.nemo_lon_lat_finder(infile,want_latitude,want_longitude,resolution)
+mesh_mask=sm.get_meshmask("nemo_cordex24_FLATFCNG_ERAI01")
+tfile=sm.get_tfile("nemo_cordex24_FLATFCNG_ERAI01")
 endsnippet
 
 snippet paperstruct

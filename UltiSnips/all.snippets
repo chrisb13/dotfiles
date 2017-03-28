@@ -229,6 +229,12 @@ cdo  enssum ERAI_high_500/cordex24_CURLFX-FLUXFCE_3h_19970101_19971231_grid_U_2D
 #extract time steps
 cdo seltimestep,1/1200 ifile ofile
 
+#get just one variable and the first (I think) 35 of the timesteps
+cdo select,name=zos -seltimestep,1/35 cordex24_DFLX-CTRL02_1d_20050101_20051231_grid_T_2D.nc ../toy.nc
+
+#crop NEMO
+cdo  selindexbox,191,410,19,209 toy.nc toy_crop.nc
+
 #calculate monthly averages
 cdo monavg IMOS_OceanCurrent_HV_1993_C-20150521T030649Z.nc test.nc
 
@@ -244,6 +250,11 @@ cdo sellonlatbox,160,170,-30,-20 cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_
 #select a single variable from a bunch of files
 #see: https://code.zmaw.de/boards/1/topics/350
 cdo select,name=zos /srv/ccrc/data49/z3457920/RawData/NEMO/now_cordex24_eastaus8_png8_BMJv2_BILAP/{1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008}/1_cord*grid_T*.nc ${OUTFOLD}1_cordex24-BMJv2_BILAP_1d_ONEFILE_grid_T_2D_zos_only_four.nc
+
+#remove monthly anomalies from daily values..
+cdo mergetime avhrr-only-v2.199* out.nc       #one big file
+cdo ymonmean out.nc monthly.nc                #calc monthly timeseries
+cdo ymonsub out.nc monthly.nc out_anom.nc     #remove monthly values from full time-series
 
 #filtering
 cdo lowpass,0.9125 cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice.nc cordex24_CURLFX-FLUXFCE_3h_2001_2002_grid_U_2D_temp_slice_low.nc
