@@ -1539,8 +1539,8 @@ plt.close('all')
 row=1
 col=2
 fig, axis = plt.subplots(\
-    nrows=row, ncols=col, sharex=False, sharey=False,\
-    gridspec_kw={'hspace':.225,'wspace':.065}\
+    nrows=row, ncols=col, sharex=False, sharey=False,figsize=(5.0*col,5),\
+    gridspec_kw={'hspace':.025,'wspace':.065,'width_ratios':[1]*(col),'height_ratios':[1]}\
 	      )
 
 ax=axis[0]
@@ -1556,6 +1556,21 @@ plt.colorbar(cs1,\
 plt.show()
 endsnippet
 
+snippet phandy
+def phandy(pltaxis,title,hidex=False,hidey=False):
+    #tf=sm.get_tfile(ename)
+    #ename is the experiment (real) name
+    #sm.pl_landmask(tf,pltaxis,filled=True,cropped=[])
+    pltaxis.set_ylim([-49,-7])
+    pltaxis.set_xlim([138,200])
+    #sm.pl_inset_title_box(pltaxis,title,bwidth="35%",location=4)
+    if hidex:
+	plt.setp(ax.get_xticklabels(),visible=False)
+    if hidey:
+	plt.setp(ax.get_yticklabels(),visible=False)
+    sm.change_tick_labels_add_dirs(pltaxis)
+    return
+endsnippet
 
 snippet title
 ax.set_title('${1:Title}')
