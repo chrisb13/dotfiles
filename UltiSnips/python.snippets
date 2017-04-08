@@ -34,6 +34,61 @@ if __name__ == "__main__":
     lg.info('SCRIPT ended')
 endsnippet 
 
+
+snippet nemoheader
+#!/usr/bin/env python 
+#   Author: Christopher Bull. 
+#   Affiliation: Climate Change Research Centre and ARC Centre of Excellence for Climate System Science.
+#                Level 4, Mathews Building
+#                University of New South Wales
+#                Sydney, NSW, Australia, 2052
+#   Contact: z3457920@unsw.edu.au
+#   www:     christopherbull.com.au
+`!p 
+import time
+snip.rv='#   Date created: '+time.strftime("%a, %d %b %Y %H:%M:%S")
+`
+`!p 
+import socket
+snip.rv='#   Machine created on: '+socket.gethostname()
+`
+#
+
+"""
+${1:Doc string for script}
+"""
+import logging as lg
+import time
+import os
+import sys
+pathfile = os.path.dirname(os.path.realpath(__file__)) 
+sys.path.insert(1,os.path.dirname(pathfile)+'/')
+from cb2logger import *
+import inputdirs as ind
+import shareme as sm
+
+if __name__ == "__main__": 
+    LogStart('',fout=False)
+    if ind.paper_case=='20150706_EACseperation':
+	lg.warning("We are doing case: " + ind.paper_case)
+    elif ind.paper_case=='20160804_EAC_NoNZ':
+	lg.warning("We are doing case: " + ind.paper_case)
+    elif ind.paper_case=='20170113_EACnowClimateChange01':
+	lg.warning("We are doing case: " + ind.paper_case)
+    else:
+	lg.error("I don't know what to do here!"+ ind.paper_case)
+	sys.exit()
+
+    output_folder=ind.output_folder
+    nemo_fols=ind.nemo_fols
+
+    lg.info('')
+    localtime = time.asctime( time.localtime(time.time()) )
+    lg.info("Local current time : "+ str(localtime))
+    lg.info('SCRIPT ended')
+endsnippet 
+
+
 snippet mkheadlogger
 `!p
 writeme=\
@@ -1126,10 +1181,11 @@ cax=ax0
 endsnippet
 
 snippet quiver
-mag=np.sqrt(np.square(arrayx)+np.square(arrayy))
-ax(lonproj,latproj,mag,levels=np.linspace(0,0.4,20),cmap='Blues_r',extend='both',alpha=0.9)
-skip=(slice(None,None,5),slice(None,None,5))
-ax.quiver(lonproj[skip], latproj[skip], arrayx[skip], arrayy[skip], pivot='mid',color='black', units='xy',headwidth=1,  headlength=4,angles='xy',scale_units='xy',alpha=0.5)
+velmag_ctr=np.sqrt(np.square(arrayx)+np.square(arrayy))
+cs1=ax.contourf(lon_new,lat_new,velmag_ctr,levels=np.linspace(0,0.7,30),alpha=0.9,cmap='Blues_r',extend='max')
+skip=(slice(None,None,3),slice(None,None,3))
+quivopts={'pivot':'mid','color':'black', 'units':'xy','headwidth':4,  'headlength':2,'angles':'xy','scale_units':'xy','alpha':0.9, 'headaxislength':5}
+Q=ax.quiver(lon_new[skip],lat_new[skip],uvel_ctrl[skip],vvel_ctrl[skip],**quivopts)
 endsnippet
 
 snippet axisoff
@@ -1556,6 +1612,24 @@ plt.colorbar(cs1,\
 plt.show()
 endsnippet
 
+
+snippet sgridspec_stretchy_cbar
+from matplotlib import gridspec
+plt.close('all')
+row=3
+col=4
+fig=plt.figure(figsize=(5.0*col,5*row))
+gs = gridspec.GridSpec(row, col,height_ratios=[1]*row,width_ratios=[1]*col,hspace=.075,wspace=0.075)
+
+ax = plt.subplot(gs[0,0])
+
+# cs1=ax.contourf(self.nemo_lons,self.nemo_lats,z,levels=levs,cmap='seismic',extend='both')
+
+ax = plt.subplot(gs[0,1])
+
+plt.colorbar(cs1,cax=plt.subplot(gs[2,0:2]),orientation='horizontal')
+endsnippet
+
 snippet phandy
 def phandy(pltaxis,title,hidex=False,hidey=False):
     #tf=sm.get_tfile(ename)
@@ -1749,6 +1823,7 @@ sm.nemo_fixdateline(netcdf_datasetobj)
 sm.nemo_lon_lat_finder(infile,want_latitude,want_longitude,resolution)
 mesh_mask=sm.get_meshmask("nemo_cordex24_FLATFCNG_ERAI01")
 tfile=sm.get_tfile("nemo_cordex24_FLATFCNG_ERAI01")
+meanu=sm.get_meanfile('nemo_cordex24_ERAI01',file_type=['grid_T_2D','grid_U_3D_U','grid_V_3D_V','grid_U_2D_U','grid_V_2D_V'])
 endsnippet
 
 snippet paperstruct
