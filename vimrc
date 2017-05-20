@@ -265,6 +265,9 @@ let g:UltiSnipsExpandTrigger="<leader>k"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+" activated by doing shift + s, and then 't'
+let g:surround_116 = "lg.info(str(np.round( \"\r\" ),2))"
+
 "remap escape key
 :imap jj <Esc>
 
