@@ -1294,7 +1294,7 @@ endsnippet
 
 snippet savefig
 fig.savefig('./.png',dpi=300,bbox_inches='tight')
-fig.savefig('./.pdf',format='pdf')
+fig.savefig('./.pdf',format='pdf',bbox_inches='tight')
 endsnippet
 
 
@@ -1612,6 +1612,42 @@ plt.colorbar(cs1,\
 plt.show()
 endsnippet
 
+snippet sgridspec_awesomeshared
+#Pzos was a dictinoary containing names and the number of subplots
+
+plt.close('all')
+row=2
+col=3
+fig=plt.figure(figsize=(5.0*col,5*row))
+gs = gridspec.GridSpec(row, col,height_ratios=[1]*row,width_ratios=[1]*col,hspace=.045,wspace=0.045)
+
+axis=[]
+for r in range(row):
+    for c in range(col):
+	axis.append(plt.subplot(gs[r,c]))
+
+for idx,ax in enumerate(axis):
+    #stop when we run out of arrays
+    if idx==len(Pzos):
+	fig.delaxes(ax)
+	break
+
+    if idx==0 or idx==col:
+	# print idx,'printlat'
+	ax.set_ylabel('Latitude')
+
+    if idx>=col:
+	ax.set_xlabel('Longitude')
+
+    # make the right labels invisible
+    if idx<col:
+	plt.setp(ax.get_xticklabels(),visible=False)
+
+    if idx!=0:
+	if idx!=col:
+	    # print idx,'killy'
+	    plt.setp(ax.get_yticklabels(),visible=False)
+endsnippet
 
 snippet sgridspec_stretchy_cbar
 from matplotlib import gridspec
@@ -1769,6 +1805,35 @@ elif plottype=='both':
 	plt.savefig(global_plot_outfol+'$1.pdf')
 endsnippet
 
+snippet lonlat
+infile=''
+assert(os.path.exists(infile)),"netCDF file does not exist!"
+ifile=xr.open_dataset(infile)
+lons=sm.nemo_fixdateline(ifile)
+lats=ifile['nav_lat'][:]
+endsnippet
+
+snippet ldoc
+"""
+docstring for .
+
+Parameters
+----------
+arg: 
+
+Returns
+-------
+
+Notes
+-------
+
+
+Example
+--------
+>>> 
+>>> 
+"""
+endsnippet
 
 snippet landmask
 def pl_landmask(path_to_netcdf_Tfile,pltaxis,filled=False,lmaskvar='zos'):

@@ -474,6 +474,29 @@ function grab() #grab path
   readlink -e ${1}|tr -d '\n'|xclip -selection c
 }
 
+function gvim() #grab path 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage: grab FILENAME_PATHNAME" 
+        echo "Purpose: gets full path of file or path and places in clipboard with the full path to edit from vim." 
+        echo "       " 
+        echo "Requires: xclip" 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "FILENAME_PATHNAME: path to folder or file" 
+        echo "       " 
+        echo "Example." 
+        echo "grab filename.txt" 
+        echo "       " 
+        echo "becomes:       " 
+        echo "readlink -e filename.txt|tr -d '\n'|xclip -selection c"
+
+        return 1
+    fi
+    OUTPUT="$(readlink -e ${1}|tr -d '\n')"
+    echo "vim scp://z3457920@maelstrom.ccrc.unsw.edu.au/${OUTPUT}"|xclip -selection c
+}
+
 
 function loadnc() #load netcdf file in python
 {
