@@ -188,6 +188,8 @@ case $(hostname) in
         alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
         alias eacobs='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/eacobs/diagnostics/'
         alias cdocheat="awk '/snippet cdo/{flag=1;next}/endsnippet/{flag=0}flag' ~/.vim/UltiSnips/all.snippets"
+
+        alias ipy='ipython --TerminalInteractiveShell.editing_mode=vi'
         
         ;;
     chris-DeskVirtualBox)
