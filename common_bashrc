@@ -31,6 +31,7 @@ alias edvim='vi ~/.vimrc'
 alias runprof='. ~/.bashrc'
 #alias top='top -M'
 alias temp='mkdir ~/temp/ ; cd ~/temp/'
+alias foldersize='du -h --max-depth=1 .'
 
 #vim
 alias vi='vim -O'
