@@ -116,7 +116,8 @@ alias clearnemo='rm -vr compress_nemo_?.?[1-9]* run_nemo_?.sh.?[1-9]* production
 
 alias clearnemologs='rm *.sh.*'
 
-alias nciusage2='module purge ; module use ~access/modules ; module load ncimonitor ; ncimonitor -P e14 --usage --byuser'
+alias nciusagegdata='module use ~access/modules ; module load ncimonitor ; ncimonitor -P e14 --gdata --byuser -c 0.02'
+alias nciusageshort='module use ~access/modules ; module load ncimonitor ; ncimonitor -P e14 --short --byuser -c 0.02'
 
 case $(hostname) in
     dc-dm3) 
