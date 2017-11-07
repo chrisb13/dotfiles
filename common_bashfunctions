@@ -494,7 +494,7 @@ function gvim() #grab path
         return 1
     fi
     OUTPUT="$(readlink -e ${1}|tr -d '\n')"
-    echo "vim scp://z3457920@maelstrom.ccrc.unsw.edu.au/${OUTPUT}"|xclip -selection c
+    echo "vim scp://z3457920@maelstrom.ccrc.unsw.edu.au/${OUTPUT}"
 }
 
 
