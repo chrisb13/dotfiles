@@ -141,45 +141,6 @@ case $(hostname) in
         #export PATH=/home/z3457920/anaconda/bin:$PATH;source activate root
         #cd /home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics
         ;;
-    ccrc165) 
-        # enable programmable completion features (you don't need to enable
-        # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-        # sources /etc/bash.bashrc).
-        if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-            . /etc/bash_completion
-        fi
-        source ~/.fzf.bash
-        alias open='dolphin . &'
-        #alias vi='vim'
-        
-        alias eac2='cd /srv/ccrc/data48/z3457920/20160518_EACextention/'
-        alias eac3='cd /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis2/'
-        alias eacmech='cd /srv/ccrc/data49/z3457920/20180316_EacSpinMech/'
-        alias now='cd /srv/ccrc/data49/z3457920/20170113_EACnowClimateChange01/analysis/'
-        #turned off b/c I've started to use anaconda more...
-        #alias ps='source ~/env/ccrc_env/bin/activate'
-        alias ps='export PATH="/home/nfs/z3457920/anaconda/bin:$PATH";source activate root'
-        alias ps3='export PATH="/home/nfs/z3457920/anaconda3/bin:$PATH";source activate root'
-        alias fixdesk='kstart plasma-desktop &'
-        alias checkh='mount | grep hdrive'
-        alias makeeac="cd /home/nfs/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics;python makepaper.py ; /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis2/paperfigsdoc/copyplots.sh ;echo 'just ran copy script: /srv/ccrc/data48/z3457920/20151012_eac_sep_dynamics_fxd_stress/analysis2/paperfigsdoc/copyplots.sh' "
-        alias makenonz='cd /home/nfs/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics;python 20160804_EAC_NoNZ_makepaper.py; /srv/ccrc/data48/z3457920/20160804_EAC_NoNZ/analysis/paperfigsdoc/copyplots.sh'
-        alias makenow='cd /home/nfs/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics;python 20170113_EACnowClimateChange01_makepaper.py; /srv/ccrc/data49/z3457920/20170113_EACnowClimateChange01/analysis/paperfigsdoc/copyplots.sh'
-        alias makewarm='cd /home/nfs/z3457920/hdrive/repos/eacobs/diagnostics/;python 20170211_EACwarmingIMOS_makepaper.py;rm /home/nfs/z3457920/Dropbox/Cbull_PapersThesisSupSHARE/20170211_EACwarmingIMOS/plots/*.png ;/srv/ccrc/data49/z3457920/20170211_EACwarmingIMOS/paperfigsdoc/copyplots.sh'
-        alias cdocheat="awk '/snippet cdo/{flag=1;next}/endsnippet/{flag=0}flag' ~/.vim/UltiSnips/all.snippets"
-        alias imgtrkr='python ~/hdrive/repos/imgtrkr/main.py '
-        alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
-        export PATH="~/cmake-3.3.2/bin:$PATH"
-        alias mkmov='python /home/nfs/z3457920/hdrive/repos/mkmov/mkmov.py '
-        alias ipy='ipython --TerminalInteractiveShell.editing_mode=vi'
-        module load ncview
-        ;;
-    ubuntudesktop) 
-        #chris home desktop dual boot
-        source ~/myenv/bin/activate
-        alias grabplots='rsync -avz z3457920@squall.ccrc.unsw.edu.au:/srv/ccrc/data32/z3457920/leeuwincurrent2/cookiecutting07/plots/depint/ ~/plotscratch/'
-        alias open='nautilus .'
-        ;;
     chris-VirtualBox2)
         #chris home laptop 
         alias r='cd ~/codescratch/cms_analysis/hp_validation/'
@@ -207,32 +168,6 @@ case $(hostname) in
 
         alias ipy='ipython --TerminalInteractiveShell.editing_mode=vi'
         
-        ;;
-    chris-DeskVirtualBox)
-        #chris home desktop -- don't really use this machine so mostly redundant
-        alias bpi='ssh -X bananapi@192.168.1.200'
-        # added by Anaconda 2.3.0 installer
-        alias ps='source activate root'
-        export PATH="/home/chris/anaconda/bin:$PATH"
-        alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
-        alias open='nautilus .'
-        alias text='gedit '
-        ;;
-    chris-VirtualBoxHome)
-        #chris home desktop
-        alias bpi='ssh -X bananapi@192.168.1.200'
-        # added by Anaconda 2.3.0 installer
-        alias ps='source activate root'
-        export PATH="/home/chris/anaconda2/bin:$PATH"
-        alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
-        alias open='nautilus .'
-        alias text='gedit '
-        alias ccrc='ssh -X z3457920@ccrc165.ccrc.unsw.edu.au'
-        alias nemo='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/nemo/nemo_analysis/diagnostics/'
-        alias eacobs='vim scp://z3457920@monsoon.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/eacobs/diagnostics/'
-        alias vs='vimstorm '
-        alias vn='vimnci '
-        alias mountwin='/home/chris/.vim/bash/homepc_fixshortcuts.sh'
         ;;
 esac
 
