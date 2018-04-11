@@ -77,6 +77,17 @@ alias newstormh='ssh -X z3457920@hurricane2.ccrc.unsw.edu.au'
 alias newstormt='ssh -X z3457920@typhoon2.ccrc.unsw.edu.au'
 alias imp='ssh -X cbull@login.cx1.hpc.ic.ac.uk'
 
+#BAS machines
+alias bhop='ssh -X  chbull@bslcenb.nerc-bas.ac.uk'
+alias bhop2='ssh -X chbull@bslcenc.nerc-bas.ac.uk'
+alias bc1='ssh -X chbull@bslscihub-ws1.nerc-bas.ac.uk'
+alias bc2='ssh -X chbull@bslscihub-ws2.nerc-bas.ac.uk'
+alias bc3='ssh -X chbull@bslscihub-ws3.nerc-bas.ac.uk'
+alias bc4='ssh -X chbull@bslscihub-ws4.nerc-bas.ac.uk'
+alias bc5='ssh -X chbull@bslceng.nerc-bas.ac.uk'
+alias bc6='ssh -X chbull@bslcenh.nerc-bas.ac.uk'
+
+
 alias ip='ipython --pylab'
 
 alias fbash='LP_ENABLE_TEMP=1; LP_ENABLE_JOBS=1; LP_ENABLE_BATT=1; LP_ENABLE_LOAD=1; LP_ENABLE_GIT=1;LP_ENABLE_SVN=1;LP_ENABLE_HG=1;LP_ENABLE_BZR=1;LP_ENABLE_FOSSIL=1;LP_ENABLE_VCS_ROOT=1'
@@ -84,6 +95,9 @@ alias giton='LP_ENABLE_GIT=1'
 
 # some more ls aliases
 case $(hostname) in
+    bslscihub-ws1.nerc-bas.ac.uk|bslscihub-ws2.nerc-bas.ac.uk|bslscihub-ws3.nerc-bas.ac.uk|bslscihub-ws4.nerc-bas.ac.uk|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk)
+        alias rw1='cd /data/oceans_output/shelf/chbull'
+        ;;
     katana.science.unsw.edu.au) 
         module load hdf5           
         module load ncview

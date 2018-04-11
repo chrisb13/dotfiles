@@ -1,5 +1,10 @@
 Setting up for the first time!
 
+Clone and install YCM with:
+git clone --recurse-submodules https://cbull@bitbucket.org/cbull/dotfiles.git 
+cd ~/.vim/home/chris/.vim/bundle/YouCompleteMe;./install.sh
+
+Make links:
 ln -s ~/.vim/sshconfig ~/.ssh/config
 ln -s ~/.vim/vimrc ~/.vim/.vimrc 
 ln -s ~/.vim/bashrc ~/.bashrc 
