@@ -88,6 +88,8 @@ alias bc5='ssh -X chbull@bslceng.nerc-bas.ac.uk'
 alias bc6='ssh -X chbull@bslcenh.nerc-bas.ac.uk'
 alias arc='ssh -X chbull@login.archer.ac.uk'
 alias archer='ssh -X chbull@login.archer.ac.uk'
+alias archerrdf='ssh -X ssh -X chbull@login.rdf.ac.uk'
+
 
 
 alias ip='ipython --pylab'
@@ -97,7 +99,7 @@ alias giton='LP_ENABLE_GIT=1'
 
 # some more ls aliases
 case $(hostname) in
-    bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk)
+    bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk|bslws01)
         alias rw1='cd /data/oceans_output/shelf/chbull'
         ;;
     katana.science.unsw.edu.au) 
