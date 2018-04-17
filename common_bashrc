@@ -24,6 +24,8 @@ alias lsfol='ls -d */'
 alias la='ls -A'
 alias l='ls -CF'
 alias u='cd ..'
+alias uu='cd ../..'
+alias uuu='cd ../../..'
 alias c='clear'
 alias edprof='vi ~/.vim/common_bashrc'
 alias edsnip='vi ~/.vim/UltiSnips/python.snippets'
@@ -103,6 +105,10 @@ case $(hostname) in
         alias rw1='cd /data/oceans_output/shelf/chbull'
         ;;
     eslogin*)
+        module load cray-netcdf-hdf5parallel
+        module load cray-hdf5-parallel
+        module swap PrgEnv-cray PrgEnv-intel
+
         #new prompt (doesn't support liquid) for archer
         function proml {
         local BLUE="\[\033[0;34m\]"
