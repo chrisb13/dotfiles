@@ -103,6 +103,7 @@ alias giton='LP_ENABLE_GIT=1'
 case $(hostname) in
     bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk|bslws01)
         alias rw1='cd /data/oceans_output/shelf/chbull'
+        alias bc7='ssh -X chbull@bslws01.nerc-bas.ac.uk'
         ;;
     eslogin*)
         module load cray-netcdf-hdf5parallel
@@ -133,6 +134,19 @@ case $(hostname) in
         PS4='+ '
         }
         alias models='cd /work/n02/n02/chbull/models'
+        ;;
+    VBoxBAS)
+        #virtual box at BAS
+        #Fixes cliipboard issue. seems to be something about “bracketed paste mode”
+        printf "\e[?2004l"
+
+        # for website stuff
+        # Install Ruby Gems to ~/gems
+        export GEM_HOME=$HOME/gems
+        export PATH=$HOME/gems/bin:$PATH
+        ;;
+    bslws01)
+        module add git
         ;;
     katana.science.unsw.edu.au) 
         module load hdf5           
