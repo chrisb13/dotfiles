@@ -6,7 +6,7 @@ cd ~/.vim/home/chris/.vim/bundle/YouCompleteMe;./install.sh
 
 Make links:
 ln -s ~/.vim/sshconfig ~/.ssh/config
-ln -s ~/.vim/vimrc ~/.vim/.vimrc 
+ln -s ~/.vim/vimrc ~/.vimrc 
 ln -s ~/.vim/bashrc ~/.bashrc 
 ln -s ~/.vim/tmux.conf ~/.tmux.conf
 ln -s ~/.vim/gitconfig ~/.gitconfig 

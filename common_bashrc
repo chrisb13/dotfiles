@@ -134,11 +134,17 @@ case $(hostname) in
         PS4='+ '
         }
         alias models='cd /work/n02/n02/chbull/models'
+
+        alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
+        alias ps3='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
         ;;
     VBoxBAS)
         #virtual box at BAS
         #Fixes cliipboard issue. seems to be something about “bracketed paste mode”
         printf "\e[?2004l"
+
+        alias ps='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
+        alias ps3='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
 
         # for website stuff
         # Install Ruby Gems to ~/gems
@@ -147,6 +153,8 @@ case $(hostname) in
         ;;
     bslws01)
         module add git
+        alias ps='export PYTHONPATH=/data/oceans_output/shelf/chbull/anaconda2/pkgs;export PATH=/data/oceans_output/shelf/chbull/anaconda2/bin:$PATH;source activate root'
+        alias ps3='export PYTHONPATH=/data/oceans_output/shelf/chbull/anaconda3/pkgs;export PATH=/data/oceans_output/shelf/chbull/anaconda3/bin:$PATH;source activate root'
         ;;
     katana.science.unsw.edu.au) 
         module load hdf5           
