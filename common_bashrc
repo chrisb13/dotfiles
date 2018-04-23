@@ -105,7 +105,7 @@ case $(hostname) in
         alias rw1='cd /data/oceans_output/shelf/chbull'
         alias bc7='ssh -X chbull@bslws01.nerc-bas.ac.uk'
         ;;
-    eslogin*)
+    eslogin*|esPP001|esPP002)
         module load cray-netcdf-hdf5parallel
         module load cray-hdf5-parallel
         module swap PrgEnv-cray PrgEnv-intel
