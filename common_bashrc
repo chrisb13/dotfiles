@@ -92,7 +92,11 @@ alias arc='ssh -X chbull@login.archer.ac.uk'
 alias archer='ssh -X chbull@login.archer.ac.uk'
 alias archerrdf='ssh -X chbull@login.rdf.ac.uk'
 
-
+#jasmin log-in needs to hop
+function jas() 
+{
+ssh -tX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk'
+}
 
 alias ip='ipython --pylab'
 
@@ -132,8 +136,8 @@ case $(hostname) in
         $BLUE[$RED\$(date +%H%M)$BLUE]\
         $BLUE[$LIGHT_RED\u@\h:\w$BLUE]\
         $WHITE\$$NO_COLOUR "
-        PS2='> '
-        PS4='+ '
+        ps2='> '
+        ps4='+ '
         }
         alias models='cd /work/n02/n02/chbull/models'
 
@@ -144,6 +148,18 @@ case $(hostname) in
         alias pp2='ssh -X espp2'
         
         alias models='cd /work/n02/n02/chbull/models'
+        ;;
+
+    jasmin-login1.ceda.ac.uk|jasmin-sci1.ceda.ac.uk|jasmin-sci2.ceda.ac.uk|jasmin-sci3.ceda.ac.uk|jasmin-sci4.ceda.ac.uk|jasmin-sci5.ceda.ac.uk|cems-sci1.cems.rl.ac.uk|cems-sci2.cems.rl.ac.uk)
+        #jasmin
+        alias j1='ssh -AX chbull@jasmin-sci1.ceda.ac.uk '
+        alias j2='ssh -AX chbull@jasmin-sci2.ceda.ac.uk '
+        alias j3='ssh -AX chbull@jasmin-sci3.ceda.ac.uk '
+        alias j4='ssh -AX chbull@jasmin-sci4.ceda.ac.uk '
+        alias j5='ssh -AX chbull@jasmin-sci5.ceda.ac.uk '
+        alias j6='ssh -AX chbull@cems-sci1.cems.rl.ac.uk'
+        alias j7='ssh -AX chbull@cems-sci2.cems.rl.ac.uk'
+        alias rw1='cd /group_workspaces/jasmin2/bas_pog/chbull'
         ;;
     VBoxBAS)
         #virtual box at BAS
