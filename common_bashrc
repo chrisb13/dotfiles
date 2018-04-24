@@ -104,7 +104,8 @@ case $(hostname) in
     bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk|bslcenb|bslcenc)
         alias rw1='cd /data/oceans_output/shelf/chbull'
         alias bc7='ssh -X chbull@bslws01.nerc-bas.ac.uk'
-        alias jas='echo "ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk";exec ssh-agent $SHELL'
+        #alias jas='echo "ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk";exec ssh-agent $SHELL'
+        alias jas='eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk'
         ;;
     eslogin*|esPP001|esPP002)
         module load cray-netcdf-hdf5parallel
@@ -147,6 +148,7 @@ case $(hostname) in
     VBoxBAS)
         #virtual box at BAS
         #Fixes cliipboard issue. seems to be something about “bracketed paste mode”
+        #alias fixclip="echo 'printf "\e[?2004l"'"
         printf "\e[?2004l"
 
         alias ps='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
