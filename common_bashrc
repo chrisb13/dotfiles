@@ -110,6 +110,9 @@ case $(hostname) in
         alias bc7='ssh -X chbull@bslws01.nerc-bas.ac.uk'
         #alias jas='echo "ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk";exec ssh-agent $SHELL'
         alias jas='eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk'
+
+        #add xclip to the end of bash path
+        PATH=$PATH:~/xclip/
         ;;
     eslogin*|esPP001|esPP002)
         module load cray-netcdf-hdf5parallel
@@ -148,6 +151,9 @@ case $(hostname) in
         alias pp2='ssh -X espp2'
         
         alias models='cd /work/n02/n02/chbull/models'
+
+        #add xclip to the end of bash path
+        PATH=$PATH:~/xclip/
         ;;
 
     jasmin-login1.ceda.ac.uk|jasmin-sci1.ceda.ac.uk|jasmin-sci2.ceda.ac.uk|jasmin-sci3.ceda.ac.uk|jasmin-sci4.ceda.ac.uk|jasmin-sci5.ceda.ac.uk|cems-sci1.cems.rl.ac.uk|cems-sci2.cems.rl.ac.uk)
@@ -160,6 +166,8 @@ case $(hostname) in
         alias j6='ssh -AX chbull@cems-sci1.cems.rl.ac.uk'
         alias j7='ssh -AX chbull@cems-sci2.cems.rl.ac.uk'
         alias rw1='cd /group_workspaces/jasmin2/bas_pog/chbull'
+        #add xclip to the end of bash path
+        PATH=$PATH:~/xclip/
         ;;
     VBoxBAS)
         #virtual box at BAS
