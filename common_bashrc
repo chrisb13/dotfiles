@@ -192,6 +192,9 @@ case $(hostname) in
         alias ps='export PYTHONPATH=/data/oceans_output/shelf/chbull/anaconda2/pkgs;export PATH=/data/oceans_output/shelf/chbull/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/data/oceans_output/shelf/chbull/anaconda3/pkgs;export PATH=/data/oceans_output/shelf/chbull/anaconda3/bin:$PATH;source activate root'
         alias rw1='cd /data/oceans_output/shelf/chbull'
+
+        #add xclip to the end of bash path
+        PATH=$PATH:~/xclip/
         ;;
     katana.science.unsw.edu.au) 
         module load hdf5           
