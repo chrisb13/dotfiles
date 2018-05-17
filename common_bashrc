@@ -108,6 +108,9 @@ alias giton='LP_ENABLE_GIT=1'
 case $(hostname) in
     bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk|bslcenb|bslcenc)
         alias rw1='cd /data/oceans_output/shelf/chbull'
+        alias r='cd /users/chbull/repos/nemo_analysis/diagnostics'
+        alias nemo='cd /users/chbull/repos/nemo_analysis/diagnostics'
+        
         alias bc7='ssh -X chbull@bslws01.nerc-bas.ac.uk'
         #alias jas='echo "ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk";exec ssh-agent $SHELL'
         alias jas='eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk'
@@ -195,6 +198,23 @@ case $(hostname) in
 
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
+        ;;
+    SB2Vbox)
+        #virtual box on surface book 2
+        #Fixes cliipboard issue. seems to be something about “bracketed paste mode”
+        #alias fixclip="echo 'printf "\e[?2004l"'"
+        printf "\e[?2004l"
+        alias r='cd /home/chris/repos'
+        alias ps='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
+        alias ps3='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
+        alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
+
+        alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/'
+
+        # for website stuff
+        # Install Ruby Gems to ~/gems
+        export GEM_HOME=$HOME/gems
+        export PATH=$HOME/gems/bin:$PATH
         ;;
     katana.science.unsw.edu.au) 
         module load hdf5           
