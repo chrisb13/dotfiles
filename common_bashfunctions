@@ -271,6 +271,30 @@ function arcpush()
 
 
 #rsync functions for grabbing
+#bash function to grab passed files from ARCHER
+function arcpull()
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   arcpull PATH_FROM PATH_TO." 
+        echo "Purpose: rsync function to pull files from ARCHER." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from: Path on Maelstrom to Rsync from" 
+        echo "path_to:   Path on local to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "arcpull /users/chbull/temp/*.png ./temp"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress chbull@login.archer.ac.uk:/users/chbull/temp/*.png ./temp"
+
+        return 1
+    fi
+    rsync -avz --progress chbull@login.archer.ac.uk:$* 
+}
+
+#rsync functions for grabbing
 #bash function to grab passed files from BAS cluster
 function bcpull()
 {

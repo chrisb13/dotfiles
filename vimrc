@@ -8,7 +8,8 @@ filetype plugin indent on
 "tries to fix clipboard
 set clipboard=unnamedplus
 
-
+"other ycm wasn't woprking for markdown
+let g:ycm_filetype_blacklist = {}
 "
 "
 " ~/.vimrc (configuration file for vim only)
