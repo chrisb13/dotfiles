@@ -116,12 +116,15 @@ set bs=2 " make backspace behave like normal again
 "color wombat256mod
 
 "syntax enable
-set background=dark
+set background=light
+"set background=dark
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 colorscheme solarized
+"https://unix.stackexchange.com/questions/316347/set-solarized-scheme-on-lxterminal
+"Update: LXTerminal .. the background color and foreground color of Solarized palette is not correct. If you find it bothering, you can change Background color to #002b36 and Foreground color to #839496. For Solarized Light, use #fdf6e3 and #657b83 respectively. This will be fixed in the next release.
 
 
 " ============================================================================

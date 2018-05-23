@@ -13,3 +13,4 @@ ln -s ~/.vim/gitconfig ~/.gitconfig
 ln -s ~/.vim/inputrc ~/.inputrc 
 ln -s ~/.vim/liquidpromptrc ~/.liquidpromptrc
 ln -s ~/.vim/i3config ~/.i3/config
+ln -s ~/.vim/dircolors_light ~/.dircolors OR ln -s ~/.vim/dircolors_dark ~/.dircolors
