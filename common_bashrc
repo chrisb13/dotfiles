@@ -151,7 +151,7 @@ case $(hostname) in
         alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
         alias ncv='module unload cray-hdf5-parallel/1.10.0.1;module unload cray-netcdf-hdf5parallel/4.4.1.1;module load ncview'
-
+        alias arcpp='qsub -IVl select=serial=true:ncpus=1,walltime=1:0:0 -A n02-FISSA -X'
 
         alias pp1='ssh -X espp1'
         alias pp2='ssh -X espp2'
