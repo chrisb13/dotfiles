@@ -21,6 +21,7 @@ export TERM="xterm-256color"
 set -o vi
 alias ll='ls -alF'
 alias lsfol='ls -d */'
+alias ls='ls --color=auto'
 alias la='ls -A'
 alias l='ls -CF'
 alias u='cd ..'
