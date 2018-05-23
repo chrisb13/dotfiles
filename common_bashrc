@@ -120,8 +120,8 @@ case $(hostname) in
         PATH=$PATH:~/xclip/
         ;;
     eslogin*|esPP001|esPP002)
-        module load cray-netcdf-hdf5parallel
-        module load cray-hdf5-parallel
+	module load cray-netcdf-hdf5parallel/4.4.1.1 
+	module load cray-hdf5-parallel/1.10.0.1
         module swap PrgEnv-cray PrgEnv-intel
 
         #new prompt (doesn't support liquid) for archer
