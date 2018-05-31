@@ -103,6 +103,8 @@ ssh -tX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_ja
 }
 
 alias ip='ipython --pylab'
+alias ipy='ipython --TerminalInteractiveShell.editing_mode=vi --pylab'
+
 
 alias fbash='LP_ENABLE_TEMP=1; LP_ENABLE_JOBS=1; LP_ENABLE_BATT=1; LP_ENABLE_LOAD=1; LP_ENABLE_GIT=1;LP_ENABLE_SVN=1;LP_ENABLE_HG=1;LP_ENABLE_BZR=1;LP_ENABLE_FOSSIL=1;LP_ENABLE_VCS_ROOT=1'
 alias giton='LP_ENABLE_GIT=1'
@@ -335,3 +337,4 @@ case $(hostname) in
         alias sa='cd ~/hdrive/repos/swissarmy/'
         ;;
 esac
+printf "\e[?2004l"
