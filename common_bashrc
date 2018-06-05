@@ -21,11 +21,14 @@ export TERM="xterm-256color"
 set -o vi
 alias ll='ls -alF'
 alias lsfol='ls -d */'
+alias ls='ls --color=auto'
 alias la='ls -A'
 alias l='ls -CF'
 alias u='cd ..'
 alias uu='cd ../..'
 alias uuu='cd ../../..'
+alias uuuu='cd ../../../..'
+alias uuuuu='cd ../../../../../'
 alias c='clear'
 alias edprof='vi ~/.vim/common_bashrc'
 alias edsnip='vi ~/.vim/UltiSnips/python.snippets'
@@ -101,6 +104,8 @@ ssh -tX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_ja
 }
 
 alias ip='ipython --pylab'
+alias ipy='ipython --TerminalInteractiveShell.editing_mode=vi --pylab'
+
 
 alias fbash='LP_ENABLE_TEMP=1; LP_ENABLE_JOBS=1; LP_ENABLE_BATT=1; LP_ENABLE_LOAD=1; LP_ENABLE_GIT=1;LP_ENABLE_SVN=1;LP_ENABLE_HG=1;LP_ENABLE_BZR=1;LP_ENABLE_FOSSIL=1;LP_ENABLE_VCS_ROOT=1'
 alias giton='LP_ENABLE_GIT=1'
@@ -109,6 +114,9 @@ alias giton='LP_ENABLE_GIT=1'
 case $(hostname) in
     bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk|bslcenb|bslcenc)
         alias rw1='cd /data/oceans_output/shelf/chbull'
+        alias r='cd /users/chbull/repos/'
+        alias nemo='cd /users/chbull/repos/nemo_analysis/diagnostics'
+        
         alias bc7='ssh -X chbull@bslws01.nerc-bas.ac.uk'
         #alias jas='echo "ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk";exec ssh-agent $SHELL'
         alias jas='eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk'
@@ -117,8 +125,8 @@ case $(hostname) in
         PATH=$PATH:~/xclip/
         ;;
     eslogin*|esPP001|esPP002)
-        module load cray-netcdf-hdf5parallel
-        module load cray-hdf5-parallel
+	module load cray-netcdf-hdf5parallel/4.4.1.1 
+	module load cray-hdf5-parallel/1.10.0.1
         module swap PrgEnv-cray PrgEnv-intel
 
         #new prompt (doesn't support liquid) for archer
@@ -144,16 +152,22 @@ case $(hostname) in
         ps2='> '
         ps4='+ '
         }
-        alias models='cd /work/n02/n02/chbull/models'
+        alias short='cd /work/n02/n02/chbull/'
+        alias models='cd /fs2/n02/n02/chbull/nemo/models'
+        alias configs='cd /fs2/n02/n02/chbull/nemo/bld_configs'
+        alias qme='qstat | grep chbull'
+
+        alias rw1='cd /fs2/n02/n02/chbull/RawData'
 
         alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
+        alias ncv='module unload cray-hdf5-parallel/1.10.0.1;module unload cray-netcdf-hdf5parallel/4.4.1.1;module load ncview'
+        alias arcpp='qsub -IVl select=serial=true:ncpus=1,walltime=1:0:0 -A n02-FISSA -X'
+        alias arcint='qsub -IVl select=1,walltime=0:20:0 -q short -A n02-FISSA -m b'
 
         alias pp1='ssh -X espp1'
         alias pp2='ssh -X espp2'
         
-        alias models='cd /work/n02/n02/chbull/models'
-
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
         ;;
@@ -190,12 +204,34 @@ case $(hostname) in
     bslws01)
         module add git
         module load cmake
+        module load netcdf
+        module load ncview 
+
         alias ps='export PYTHONPATH=/data/oceans_output/shelf/chbull/anaconda2/pkgs;export PATH=/data/oceans_output/shelf/chbull/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/data/oceans_output/shelf/chbull/anaconda3/pkgs;export PATH=/data/oceans_output/shelf/chbull/anaconda3/bin:$PATH;source activate root'
         alias rw1='cd /data/oceans_output/shelf/chbull'
+        alias r='cd /users/chbull/repos/'
+        alias nemo='cd /users/chbull/repos/nemo_analysis/diagnostics'
 
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
+        ;;
+    SB2Vbox)
+        #virtual box on surface book 2
+        #Fixes cliipboard issue. seems to be something about “bracketed paste mode”
+        #alias fixclip="echo 'printf "\e[?2004l"'"
+        printf "\e[?2004l"
+        alias r='cd /home/chris/repos'
+        alias ps='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
+        alias ps3='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
+        alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
+
+        alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/'
+
+        # for website stuff
+        # Install Ruby Gems to ~/gems
+        export GEM_HOME=$HOME/gems
+        export PATH=$HOME/gems/bin:$PATH
         ;;
     katana.science.unsw.edu.au) 
         module load hdf5           
@@ -302,3 +338,4 @@ case $(hostname) in
         alias sa='cd ~/hdrive/repos/swissarmy/'
         ;;
 esac
+printf "\e[?2004l"

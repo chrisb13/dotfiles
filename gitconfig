@@ -1,5 +1,5 @@
 [user]
-	email = z3457920@student.unsw.edu.au
+	email = christopher.ys.bull@gmail.com
 	name = Christopher Bull 
 [diff]
 	tool = vimdiff
@@ -16,5 +16,10 @@
 
 [color]
 	ui = auto
+        diff = auto
+        status = auto
+        branch = auto
+        interactive = auto
+        pager = true
 [core]
 	editor = vim

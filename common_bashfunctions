@@ -271,6 +271,30 @@ function arcpush()
 
 
 #rsync functions for grabbing
+#bash function to grab passed files from ARCHER
+function arcpull()
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   arcpull PATH_FROM PATH_TO." 
+        echo "Purpose: rsync function to pull files from ARCHER." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from: Path on Maelstrom to Rsync from" 
+        echo "path_to:   Path on local to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "arcpull /users/chbull/temp/*.png ./temp"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress chbull@login.archer.ac.uk:/users/chbull/temp/*.png ./temp"
+
+        return 1
+    fi
+    rsync -avz --progress chbull@login.archer.ac.uk:$* 
+}
+
+#rsync functions for grabbing
 #bash function to grab passed files from BAS cluster
 function bcpull()
 {
@@ -364,6 +388,49 @@ function vimbc()
         echo 'you passed too many arguments!'
     fi
 }
+
+
+function vimarc() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   vimnci PATH_TO." 
+        echo "Purpose: Allows remote editing of files on ARCHER ..." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path or file: vim will either edit or open file passed" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "vimnci /users/chbull/repos/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "vim scp://chbull@login.archer.ac.uk//users/chbull/repos/"
+
+        return 1
+    fi
+    #number of arguments...
+    #echo $#
+    if [ $# == 1 ]
+      then
+        vim scp://chbull@login.archer.ac.uk/${1} 
+    fi
+
+    if [ $# == 2 ]
+      then
+        vim -O scp://chbull@login.archer.ac.uk/${1}  scp://chbull@login.archer.ac.uk/${2} 
+    fi
+
+    if [ $# == 3 ]
+      then
+        vim -O scp://chbull@login.archer.ac.uk/${1} scp://chbull@login.archer.ac.uk/${2} scp://chbull@login.archer.ac.uk/${3}  
+    fi
+
+    if [ $# > 3 ]
+      then
+        echo 'you passed too many arguments!'
+    fi
+}
+
 
 
 
