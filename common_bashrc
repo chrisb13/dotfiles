@@ -27,6 +27,8 @@ alias l='ls -CF'
 alias u='cd ..'
 alias uu='cd ../..'
 alias uuu='cd ../../..'
+alias uuuu='cd ../../../..'
+alias uuuuu='cd ../../../../../'
 alias c='clear'
 alias edprof='vi ~/.vim/common_bashrc'
 alias edsnip='vi ~/.vim/UltiSnips/python.snippets'
@@ -38,6 +40,7 @@ alias foldersize='du -h --max-depth=1 .'
 
 #vim
 alias vi='vim -O'
+alias feh='feh --scale-down --auto-zoom '
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias vimhdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
@@ -149,18 +152,22 @@ case $(hostname) in
         ps2='> '
         ps4='+ '
         }
-        alias models='cd /work/n02/n02/chbull/models'
+        alias short='cd /work/n02/n02/chbull/'
+        alias models='cd /fs2/n02/n02/chbull/nemo/models'
+        alias configs='cd /fs2/n02/n02/chbull/nemo/bld_configs'
+        alias qme='qstat | grep chbull'
+
+        alias rw1='cd /fs2/n02/n02/chbull/RawData'
 
         alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
         alias ncv='module unload cray-hdf5-parallel/1.10.0.1;module unload cray-netcdf-hdf5parallel/4.4.1.1;module load ncview'
         alias arcpp='qsub -IVl select=serial=true:ncpus=1,walltime=1:0:0 -A n02-FISSA -X'
+        alias arcint='qsub -IVl select=1,walltime=0:20:0 -q short -A n02-FISSA -m b'
 
         alias pp1='ssh -X espp1'
         alias pp2='ssh -X espp2'
         
-        alias models='cd /work/n02/n02/chbull/models'
-
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
         ;;
