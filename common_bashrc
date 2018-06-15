@@ -40,6 +40,7 @@ alias foldersize='du -h --max-depth=1 .'
 
 #vim
 alias vi='vim -O'
+alias cdo="cdo -C"
 alias feh='feh --scale-down --auto-zoom '
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
@@ -96,7 +97,7 @@ alias bc7="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws01.nerc-bas
 alias arc='ssh -X chbull@login.archer.ac.uk'
 alias archer='ssh -X chbull@login.archer.ac.uk'
 alias archerrdf='ssh -X chbull@login.rdf.ac.uk'
-alias mhop='ssh -Y chrbu@lander.monsoon-metoffice.co.uk'
+alias mhop='ssh -Y chrbu@lander.monsoon-metoffice.co.uk'     #met office
 
 
 #jasmin log-in needs to hop
@@ -197,6 +198,7 @@ case $(hostname) in
         alias ps3='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
 
         alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/'
+        alias vb='cd /home/chris/VBoxSHARED'
         alias r='cd /home/chris/repos'
 
         # for website stuff
@@ -215,6 +217,7 @@ case $(hostname) in
         alias rw1='cd /data/oceans_output/shelf/chbull'
         alias r='cd /users/chbull/repos/'
         alias nemo='cd /users/chbull/repos/nemo_analysis/diagnostics'
+        alias now='cd  /data/oceans_output/shelf/chbull/20170113_EACnowClimateChange01/analysis/'
 
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
