@@ -40,6 +40,8 @@ alias foldersize='du -h --max-depth=1 .'
 
 #vim
 alias vi='vim -O'
+alias cdo="cdo -C"
+alias feh='feh --scale-down --auto-zoom '
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias vimhdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
@@ -95,6 +97,14 @@ alias bc7="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws01.nerc-bas
 alias arc='ssh -X chbull@login.archer.ac.uk'
 alias archer='ssh -X chbull@login.archer.ac.uk'
 alias archerrdf='ssh -X chbull@login.rdf.ac.uk'
+alias archerdtn='ssh -X chbull@dtn01.rdf.ac.uk'
+alias archerdtn2='ssh -X chbull@dtn02.rdf.ac.uk'
+
+#met office
+alias mhop='ssh -Y chrbu@lander.monsoon-metoffice.co.uk'     
+alias mxcx="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y xcs-c'"       #xcs-c log-in needs to m-lander-hop
+alias mpp="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y postproc'"     #postproc log-in needs to m-lander-hop
+alias mrose="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y exvmsrose'"  #rose log-in needs to m-lander-hop
 
 #jasmin log-in needs to hop
 function jas() 
@@ -199,6 +209,8 @@ case $(hostname) in
         alias ps3='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
 
         alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/'
+        alias vb='cd /home/chris/VBoxSHARED'
+        alias r='cd /home/chris/repos'
 
         # for website stuff
         # Install Ruby Gems to ~/gems
@@ -216,6 +228,7 @@ case $(hostname) in
         alias rw1='cd /data/oceans_output/shelf/chbull'
         alias r='cd /users/chbull/repos/'
         alias nemo='cd /users/chbull/repos/nemo_analysis/diagnostics'
+        alias now='cd  /data/oceans_output/shelf/chbull/20170113_EACnowClimateChange01/analysis/'
 
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
@@ -225,7 +238,7 @@ case $(hostname) in
         #Fixes cliipboard issue. seems to be something about “bracketed paste mode”
         #alias fixclip="echo 'printf "\e[?2004l"'"
         printf "\e[?2004l"
-        alias r='cd /home/chris/repos'
+        alias r='cd ~/VBoxSHARED/repos'
         alias ps='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
