@@ -97,6 +97,8 @@ alias bc7="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws01.nerc-bas
 alias arc='ssh -X chbull@login.archer.ac.uk'
 alias archer='ssh -X chbull@login.archer.ac.uk'
 alias archerrdf='ssh -X chbull@login.rdf.ac.uk'
+alias archerdtn='ssh -X chbull@dtn01.rdf.ac.uk'
+alias archerdtn2='ssh -X chbull@dtn02.rdf.ac.uk'
 
 #met office
 alias mhop='ssh -Y chrbu@lander.monsoon-metoffice.co.uk'     
