@@ -1115,6 +1115,13 @@ dataframe=pd.HDFStore(file)
 df=dataframe.select('DF')
 endsnippet
 
+snippet loadmat
+import scipy.io
+infile='file.mat'
+assert(os.path.exists(infile)),"File does not exist!"
+mat = scipy.io.loadmat(infile)
+endsnippet
+
 
 snippet glob
 import glob
