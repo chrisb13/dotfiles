@@ -15,3 +15,4 @@ ln -s ~/.vim/liquidpromptrc ~/.liquidpromptrc
 ln -s ~/.vim/i3config ~/.i3/config
 ln -s ~/.vim/dircolors_light ~/.dircolors OR ln -s ~/.vim/dircolors_dark ~/.dircolors
 ln -s ~/.vim/lxterminal ~/.config/lxterminal/lxterminal.conf
+ln -s ~/.vim/screenrc ~/.screenrc

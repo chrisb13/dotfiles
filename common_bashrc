@@ -170,6 +170,7 @@ case $(hostname) in
         alias nemoerror="grep -A 4 'E R R' ocean.output"
 
         alias rw1='cd /fs2/n02/n02/chbull/RawData'
+        alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
 
         alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
@@ -177,7 +178,6 @@ case $(hostname) in
         alias arcpp='qsub -IVl select=serial=true:ncpus=1,walltime=1:0:0 -A n02-FISSA -X'
         alias arcint='qsub -IVl select=1,walltime=0:20:0 -q short -A n02-FISSA -m b -M chbull@bas.ac.uk'
         alias arcint_big='qsub -IVl select=7,walltime=0:20:0 -A n02-FISSA -m b -M chbull@bas.ac.uk'
-
 
         alias pp1='ssh -X espp1'
         alias pp2='ssh -X espp2'
@@ -195,6 +195,8 @@ case $(hostname) in
         alias j5='ssh -AX chbull@jasmin-sci5.ceda.ac.uk '
         alias j6='ssh -AX chbull@cems-sci1.cems.rl.ac.uk'
         alias j7='ssh -AX chbull@cems-sci2.cems.rl.ac.uk'
+        alias jmass='ssh -X chbull@mass-cli1.ceda.ac.uk'
+
         alias rw1='cd /group_workspaces/jasmin2/bas_pog/chbull'
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
