@@ -11,3 +11,23 @@ do
     echo $i
 done
 endsnippet 
+
+snippet arcpp_pbs
+#!/bin/bash --login
+#PBS -l select=serial=true:ncpus=1
+#PBS -l walltime=06:00:00
+#PBS -A n02-FISSA
+
+# Make sure any symbolic links are resolved to absolute path
+export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)               
+
+# Change to the directory that the job was submitted from
+cd $PBS_O_WORKDIR
+
+export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root
+
+module load cdo
+
+cd /fs2/n02/n02/chbull/nemo/bld_configs/input_WED025/CICE2LIM
+python cice2lim_cdowrap.py /fs2/n02/n02/chbull/RawData/mi-an854/inm.nc.file/
+endsnippet
