@@ -5,10 +5,17 @@ function nc() #file header info ncdump
     ncdump -c ${1} | less
 }
 
-
 function ncv() #variable info ncdump
 {
     ncdump -v ${2} ${1} | less
+}
+
+function qmefind() #find path for passed job on ARCHER
+{
+    que=$(qstat -f ${1}|grep -A 1 Output_Path|tr -d '\040\011\012\015')
+    que2=$(dirname $que |sed 's/^.*://')
+    echo $que2
+    echo $que2| sed 's/\r$//' | xclip -selection c  # remove carriage return and pass to clipboard
 }
 
 #use imagemagick to put a textbox with filename
