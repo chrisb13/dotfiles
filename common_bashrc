@@ -168,6 +168,8 @@ case $(hostname) in
         alias bld='cd /fs2/n02/n02/chbull/nemo/bld_configs'
         alias qme='qstat | grep chbull'
         alias nemoerror="grep -A 4 'E R R' ocean.output"
+        alias nemostep='echo "Nemos time.step:";cat time.step;echo "";echo "in days: ";cat time.step | while read word; do python -c "print $word*720/(60*60*24)" ; done '
+        alias nemorun='cd /fs2/n02/n02/chbull/nemo/run/nemo_WED025_CORE_01_BAK'
 
         alias rw1='cd /fs2/n02/n02/chbull/RawData'
         alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
@@ -175,9 +177,13 @@ case $(hostname) in
         alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
         alias ncv='module unload cray-hdf5-parallel/1.10.0.1;module unload cray-netcdf-hdf5parallel/4.4.1.1;module load ncview'
+        alias nco='module unload cray-netcdf-hdf5parallel/4.4.1.1;module unload cray-hdf5-parallel/1.10.0.1;module load nco'
+
         alias arcpp='qsub -IVl select=serial=true:ncpus=1,walltime=1:0:0 -A n02-FISSA -X'
         alias arcint='qsub -IVl select=1,walltime=0:20:0 -q short -A n02-FISSA -m b -M chbull@bas.ac.uk'
-        alias arcint_big='qsub -IVl select=7,walltime=0:20:0 -A n02-FISSA -m b -M chbull@bas.ac.uk'
+        alias arcint_max='qsub -IVl select=8,walltime=0:20:0 -q short -A n02-FISSA -m b -M chbull@bas.ac.uk'
+        alias arcint_big='qsub -IVl select=14,walltime=1:00:0 -A n02-FISSA -m b -M chbull@bas.ac.uk'
+        alias arcint_long='qsub -IVl select=8,walltime=1:00:0 -A n02-FISSA -m b -M chbull@bas.ac.uk'
 
         alias pp1='ssh -X espp1'
         alias pp2='ssh -X espp2'
