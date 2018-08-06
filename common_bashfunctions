@@ -10,14 +10,6 @@ function ncv() #variable info ncdump
     ncdump -v ${2} ${1} | less
 }
 
-function qmefind() #find path for passed job on ARCHER
-{
-    que=$(qstat -f ${1}|grep -A 1 Output_Path|tr -d '\040\011\012\015')
-    que2=$(dirname $que |sed 's/^.*://')
-    echo $que2
-    echo $que2| sed 's/\r$//' | xclip -selection c  # remove carriage return and pass to clipboard
-}
-
 #use imagemagick to put a textbox with filename
 function tbox() 
 {
@@ -773,7 +765,25 @@ function mddu() #insert argument for mass data on nci
     mdss dmdu -ch cyb561/now/output/${1}
 }
 
-function nemostat()
+function qmemore()
+{
+    echo "Running jobs on ARCHER..."
+    OUTPUT0=$(qstat -u chbull)
+    echo "$OUTPUT0"
+    echo ""
+    echo "Getting path of running jobs on ARCHER..."
+    # go to scheduler and getting running jobs..
+    OUTPUT="$(qstat -u chbull|grep chbull| cut -c1-11)"
+    while read -r OUTPUT; do
+        que=$(qstat -f ${OUTPUT}|grep -A 1 Output_Path|tr -d '\040\011\012\015')
+        que2=$(dirname $que |sed 's/^.*://'|sed 's/\r$//')
+        echo $OUTPUT":" $que2
+    done <<< "$OUTPUT"
+    echo ""
+}
+
+
+function ncinemostat()
 {
 
     echo "Getting status of running nemo jobs."
