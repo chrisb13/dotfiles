@@ -173,6 +173,7 @@ case $(hostname) in
 
         alias nemorun='cd /fs2/n02/n02/chbull/nemo/run/nemo_WED025_CORE_01_BAK'
         alias nemocode='cd /fs2/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/CONFIG/WED025_3/BLD/ppsrc/nemo'
+        alias rebuildnemo='/fs2/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/TOOLS/REBUILD_NEMO/rebuild_nemo '
 
         alias rw1='cd /fs2/n02/n02/chbull/RawData'
         alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
