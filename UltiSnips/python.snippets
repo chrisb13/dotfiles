@@ -1976,7 +1976,7 @@ snippet wedmeans
 tfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_T',return_dates=False)
 tmean=sm.get_timemean(exp,tfiles,'grid_T',output_folder)
 
-ufiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_T',return_dates=False)
+ufiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_U',return_dates=False)
 umean=sm.get_timemean(exp,ufiles,'grid_U',output_folder)
 
 vfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_V',return_dates=False)
