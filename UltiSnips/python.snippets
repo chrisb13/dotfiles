@@ -83,6 +83,55 @@ if __name__ == "__main__":
     lg.info('SCRIPT ended')
 endsnippet 
 
+snippet wedheader
+#!/usr/bin/env python 
+#   Author: Christopher Bull. 
+#   Affiliation:  British Antarctic Survey
+#                 Cambridge, UK
+#   Contact: chbull@bas.ac.uk
+#   www:     christopherbull.com.au
+`!p 
+import time
+snip.rv='#   Date created: '+time.strftime("%a, %d %b %Y %H:%M:%S")
+`
+`!p 
+import socket
+snip.rv='#   Machine created on: '+socket.gethostname()
+`
+#
+
+"""
+${1:Doc string for script}
+"""
+import logging as lg
+import time
+import os
+import sys
+pathfile = os.path.dirname(os.path.realpath(__file__)) 
+sys.path.insert(1,os.path.dirname(pathfile)+'/')
+from cb2logger import *
+import inputdirs as ind
+import shareme as sm
+
+if __name__ == "__main__": 
+    LogStart('',fout=False)
+    lg.warning("We are doing case: " + ind.paper_case)
+    output_folder=ind.output_folder
+    nemo_fols=ind.nemo_fols
+    if ind.paper_case=='20180810_wed_reanalysis_atmo':
+	for exp in nemo_fols.keys():
+	    pass
+	    lg.info("We are working experiment :" + exp)
+    else:
+	lg.error("I don't know what to do here!"+ ind.paper_case)
+	sys.exit()
+
+    lg.info('')
+    localtime = time.asctime( time.localtime(time.time()) )
+    lg.info("Local current time : "+ str(localtime))
+    lg.info('SCRIPT ended')
+endsnippet 
+
 
 snippet mkheadlogger
 `!p
@@ -1907,6 +1956,34 @@ elif ind.paper_case=='20170113_EACnowClimateChange01':
 else:
     lg.error("I don't know what to do here!"+ ind.paper_case)
     sys.exit()
+endsnippet
+
+snippet paperstructwed
+import inputdirs as ind
+lg.warning("We are doing case: " + ind.paper_case)
+output_folder=ind.output_folder
+nemo_fols=ind.nemo_fols
+if ind.paper_case=='20180810_wed_reanalysis_atmo':
+    for exp in nemo_fols.keys():
+	pass
+    lg.info("We are working experiment :" + exp)
+else:
+    lg.error("I don't know what to do here!"+ ind.paper_case)
+    sys.exit()
+endsnippet
+
+snippet wedmeans
+tfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_T',return_dates=False)
+tmean=sm.get_timemean(exp,tfiles,'grid_T',output_folder)
+
+ufiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_U',return_dates=False)
+umean=sm.get_timemean(exp,ufiles,'grid_U',output_folder)
+
+vfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_V',return_dates=False)
+vmean=sm.get_timemean(exp,vfiles,'grid_V',output_folder)
+
+wfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_W',return_dates=False)
+wmean=sm.get_timemean(exp,wfiles,'grid_W',output_folder)
 endsnippet
 
 #stolen from:
