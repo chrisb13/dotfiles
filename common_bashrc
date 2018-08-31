@@ -41,7 +41,7 @@ alias foldersize='du -h --max-depth=1 .'
 
 #vim
 alias vi='vim -O'
-alias cdo="cdo -C"
+#alias cdo="cdo -C"
 alias feh='feh --scale-down --auto-zoom '
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
@@ -165,6 +165,7 @@ case $(hostname) in
         alias short='cd /work/n02/n02/chbull/'
         alias models='cd /fs2/n02/n02/chbull/nemo/models'
         alias run='cd /fs2/n02/n02/chbull/nemo/run'
+        alias nemowed='cd /home2/n02/n02/chbull/repos/nemo_wed_analysis'
         alias configs='cd /fs2/n02/n02/chbull/nemo/bld_configs'
         alias bld='cd /fs2/n02/n02/chbull/nemo/bld_configs'
         alias qme='qstat | grep chbull'
