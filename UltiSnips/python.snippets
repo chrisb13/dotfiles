@@ -1943,6 +1943,7 @@ sm.nemo_lon_lat_finder(infile,want_latitude,want_longitude,resolution)
 mesh_mask=sm.get_meshmask("nemo_cordex24_FLATFCNG_ERAI01")
 tfile=sm.get_tfile("nemo_cordex24_FLATFCNG_ERAI01")
 meanu=sm.get_meanfile('nemo_cordex24_ERAI01',file_type=['grid_T_2D','grid_U_3D_U','grid_V_3D_V','grid_U_2D_U','grid_V_2D_V'])
+icemasks=sm.ice_shelf_mask()
 endsnippet
 
 snippet paperstruct
