@@ -775,10 +775,15 @@ function qmemore()
     echo "Getting path of running jobs on ARCHER..."
     # go to scheduler and getting running jobs..
     OUTPUT="$(qstat -u chbull|grep chbull| cut -c1-11)"
+    echo "--"
     while read -r OUTPUT; do
         que=$(qstat -f ${OUTPUT}|grep -A 1 Output_Path|tr -d '\040\011\012\015')
         que2=$(dirname $que |sed 's/^.*://'|sed 's/\r$//')
         echo $OUTPUT":" $que2
+	echo $OUTPUT":";cat $que2/time.step | while read word; do python -c "print $word*720/(60*60*24)"; done  
+	cat $que2/time.step | while read word; do python -c "print $word*720/(60*60*24*365.0)"; done  
+	grep -A 4 'E R R' $que2/ocean.output
+        echo "--"
     done <<< "$OUTPUT"
     echo ""
 }
