@@ -788,6 +788,13 @@ function qmemore()
     echo ""
 }
 
+function rdfstat() # progress of nemo experiments
+{
+for f in /nerc/n02/n02/chbull/RawData/NEMO/nemo_WED025_3_*; do
+	var=`du $f/???? | wc -l`
+	echo "Exp: -> $f ${var} years"
+done
+}
 
 function ncinemostat()
 {

@@ -172,8 +172,8 @@ case $(hostname) in
         alias nemoerror="grep -A 4 'E R R' ocean.output"
         alias nemostep='echo "Nemos time.step:";cat time.step;echo "";echo "in days: ";cat time.step | while read word; do python -c "print $word*720/(60*60*24)" ; done '
         alias nemodesc='grep  "DESC=" /fs2/n02/n02/chbull/nemo/run/*/GoGoNEMO.py'
+        alias nemorun='cd /fs2/n02/n02/chbull/nemo/run/WED025_runscripts'
 
-        alias nemorun='cd /fs2/n02/n02/chbull/nemo/run/nemo_WED025_CORE_01_BAK'
         alias nemocode='cd /fs2/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/CONFIG/WED025_3/BLD/ppsrc/nemo'
         alias rebuildnemo='/fs2/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/TOOLS/REBUILD_NEMO/rebuild_nemo '
 
@@ -196,6 +196,11 @@ case $(hostname) in
         
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
+        ;;
+    dtn01|dtn02)
+        alias ps='export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
+        alias ps3='export PYTHONPATH=/nerc/n02/n02/chbull/anaconda3/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
+        alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
         ;;
 
     jasmin-login1.ceda.ac.uk|jasmin-sci1.ceda.ac.uk|jasmin-sci2.ceda.ac.uk|jasmin-sci3.ceda.ac.uk|jasmin-sci4.ceda.ac.uk|jasmin-sci5.ceda.ac.uk|cems-sci1.cems.rl.ac.uk|cems-sci2.cems.rl.ac.uk)
