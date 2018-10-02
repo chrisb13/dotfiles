@@ -166,7 +166,8 @@ case $(hostname) in
         alias short='cd /work/n02/n02/chbull/'
         alias models='cd /fs2/n02/n02/chbull/nemo/models'
         alias run='cd /fs2/n02/n02/chbull/nemo/run'
-        alias nemowed='cd /home2/n02/n02/chbull/repos/nemo_wed_analysis'
+        alias nemo='cd /nerc/n02/n02/chbull/repos/nemo_analysis'
+        alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
         alias configs='cd /fs2/n02/n02/chbull/nemo/bld_configs'
         alias bld='cd /fs2/n02/n02/chbull/nemo/bld_configs'
         alias qme='qstat | grep chbull'
@@ -202,6 +203,11 @@ case $(hostname) in
         alias ps='export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/nerc/n02/n02/chbull/anaconda3/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
         alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
+        alias nemo='cd /nerc/n02/n02/chbull/repos/nemo_analysis'
+        alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
+
+        #add xclip to the end of bash path
+        PATH=$PATH:~/xclip/
         ;;
 
     jasmin-login1.ceda.ac.uk|jasmin-sci1.ceda.ac.uk|jasmin-sci2.ceda.ac.uk|jasmin-sci3.ceda.ac.uk|jasmin-sci4.ceda.ac.uk|jasmin-sci5.ceda.ac.uk|cems-sci1.cems.rl.ac.uk|cems-sci2.cems.rl.ac.uk)
