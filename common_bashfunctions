@@ -796,6 +796,17 @@ for f in /nerc/n02/n02/chbull/RawData/NEMO/nemo_WED025_3_*; do
 done
 }
 
+function mnemo() #compile NEMO on archer with passed config
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:  mnemo CONFIG" 
+        echo "Purpose: compile NEMO on archer with passed config., i.e., ./makenemo -n CONFIG -m XC_ARCHER_INTEL -j 8" 
+        echo "       " 
+        return 1
+    fi
+    ./makenemo -n ${1} -m XC_ARCHER_INTEL -j 8
+}
+
 function ncinemostat()
 {
 
