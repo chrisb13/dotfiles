@@ -431,8 +431,12 @@ function vimarc()
     fi
 }
 
-
-
+function varc() #grab path from clipboard and edit using archer
+{
+    OUTPUT="$(xclip -o -selection clipboard)"
+    echo "Executing: vim scp://chbull@login.archer.ac.uk/${OUTPUT}"
+    vim scp://chbull@login.archer.ac.uk/${OUTPUT} 
+}
 
 #vim netrw plugin for various servers...
 function vimnci() 
@@ -662,7 +666,7 @@ function grab() #grab path
 
         return 1
     fi
-  readlink -e ${1}|tr -d '\n'|xclip -selection c
+  readlink -e ${1}|tr -d '\n'|xclip -selection clipboard
 }
 
 function gvim() #grab path 
