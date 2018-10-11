@@ -258,6 +258,8 @@ case $(hostname) in
 
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
+        PATH=/users/chbull/vim/bin:$PATH
+        
         ;;
     SB2Vbox)
         #virtual box on surface book 2
