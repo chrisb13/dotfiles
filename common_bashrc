@@ -24,6 +24,7 @@ alias lsfol='ls -d */'
 alias ls='ls --color=auto'
 alias la='ls -A'
 alias l='ls -CF'
+alias ud='cd ..;cd -'
 alias u='cd ..'
 alias uu='cd ../..'
 alias uuu='cd ../../..'
@@ -40,7 +41,7 @@ alias foldersize='du -h --max-depth=1 .'
 
 #vim
 alias vi='vim -O'
-alias cdo="cdo -C"
+#alias cdo="cdo -C"
 alias feh='feh --scale-down --auto-zoom '
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias hdrivevim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
@@ -87,16 +88,20 @@ alias imp='ssh -X cbull@login.cx1.hpc.ic.ac.uk'
 #BAS machines
 alias bhop='ssh -X  chbull@bslcenb.nerc-bas.ac.uk'
 alias bhop2='ssh -X chbull@bslcenc.nerc-bas.ac.uk'
-alias bc1='ssh -X chbull@bslscihub-ws1.nerc-bas.ac.uk'
-alias bc2='ssh -X chbull@bslscihub-ws2.nerc-bas.ac.uk'
-alias bc3='ssh -X chbull@bslscihub-ws3.nerc-bas.ac.uk'
-alias bc4='ssh -X chbull@bslscihub-ws4.nerc-bas.ac.uk'
-alias bc5='ssh -X chbull@bslceng.nerc-bas.ac.uk'
-alias bc6='ssh -X chbull@bslcenh.nerc-bas.ac.uk'
-alias bc7="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws01.nerc-bas.ac.uk'"  #bc7 log-in needs to hop
+alias bc1="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws01.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc2="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws02.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc3="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws03.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc4="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws04.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc5="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws05.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc6="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws06.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc7="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws07.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc8='ssh -X chbull@bslcenh.nerc-bas.ac.uk' # due to be de-comissioned soon, see jeremy email
 alias arc='ssh -X chbull@login.archer.ac.uk'
 alias archer='ssh -X chbull@login.archer.ac.uk'
 alias archerrdf='ssh -X chbull@login.rdf.ac.uk'
+alias arcdac='ssh -X chbull@login.rdf.ac.uk'
+alias archerdtn='ssh -X chbull@dtn01.rdf.ac.uk'
+alias archerdtn2='ssh -X chbull@dtn02.rdf.ac.uk'
 
 #met office
 alias mhop='ssh -Y chrbu@lander.monsoon-metoffice.co.uk'     
@@ -174,20 +179,47 @@ case $(hostname) in
         }
         alias short='cd /work/n02/n02/chbull/'
         alias models='cd /fs2/n02/n02/chbull/nemo/models'
+        alias run='cd /fs2/n02/n02/chbull/nemo/run'
+        alias nemo='cd /nerc/n02/n02/chbull/repos/nemo_analysis'
+        alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
         alias configs='cd /fs2/n02/n02/chbull/nemo/bld_configs'
+        alias bld='cd /fs2/n02/n02/chbull/nemo/bld_configs'
         alias qme='qstat | grep chbull'
+        alias nemoerror="grep -A 4 'E R R' ocean.output"
+        alias nemostep='echo "Nemos time.step:";cat time.step;echo "";echo "in days: ";cat time.step | while read word; do python -c "print $word*720/(60*60*24)" ; done '
+        alias nemodesc='grep  "DESC=" /fs2/n02/n02/chbull/nemo/run/*/GoGoNEMO.py'
+        alias nemorun='cd /fs2/n02/n02/chbull/nemo/run/WED025_runscripts'
+
+        alias nemocode='cd /fs2/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/CONFIG/WED025_3/BLD/ppsrc/nemo'
+        alias rebuildnemo='/fs2/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/TOOLS/REBUILD_NEMO/rebuild_nemo '
 
         alias rw1='cd /fs2/n02/n02/chbull/RawData'
+        alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
 
         alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
         alias ncv='module unload cray-hdf5-parallel/1.10.0.1;module unload cray-netcdf-hdf5parallel/4.4.1.1;module load ncview'
+        alias nco='module unload cray-netcdf-hdf5parallel/4.4.1.1;module unload cray-hdf5-parallel/1.10.0.1;module load nco'
+
         alias arcpp='qsub -IVl select=serial=true:ncpus=1,walltime=1:0:0 -A n02-FISSA -X'
-        alias arcint='qsub -IVl select=1,walltime=0:20:0 -q short -A n02-FISSA -m b'
+        alias arcint='qsub -IVl select=1,walltime=0:20:0 -q short -A n02-FISSA -m b -M chbull@bas.ac.uk'
+        alias arcint_max='qsub -IVl select=8,walltime=0:20:0 -q short -A n02-FISSA -m b -M chbull@bas.ac.uk'
+        alias arcint_big='qsub -IVl select=14,walltime=1:00:0 -A n02-FISSA -m b -M chbull@bas.ac.uk'
+        alias arcint_long='qsub -IVl select=8,walltime=1:00:0 -A n02-FISSA -m b -M chbull@bas.ac.uk'
 
         alias pp1='ssh -X espp1'
         alias pp2='ssh -X espp2'
         
+        #add xclip to the end of bash path
+        PATH=$PATH:~/xclip/
+        ;;
+    dtn01|dtn02|rdf-comp-ns10)
+        alias ps='export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
+        alias ps3='export PYTHONPATH=/nerc/n02/n02/chbull/anaconda3/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
+        alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
+        alias nemo='cd /nerc/n02/n02/chbull/repos/nemo_analysis'
+        alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
+
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
         ;;
@@ -201,6 +233,8 @@ case $(hostname) in
         alias j5='ssh -AX chbull@jasmin-sci5.ceda.ac.uk '
         alias j6='ssh -AX chbull@cems-sci1.cems.rl.ac.uk'
         alias j7='ssh -AX chbull@cems-sci2.cems.rl.ac.uk'
+        alias jmass='ssh -X chbull@mass-cli1.ceda.ac.uk'
+
         alias rw1='cd /group_workspaces/jasmin2/bas_pog/chbull'
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
@@ -238,6 +272,8 @@ case $(hostname) in
 
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
+        PATH=/users/chbull/vim/bin:$PATH
+        
         ;;
     SB2Vbox)
         #virtual box on surface book 2
@@ -245,6 +281,8 @@ case $(hostname) in
         #alias fixclip="echo 'printf "\e[?2004l"'"
         printf "\e[?2004l"
         alias r='cd ~/VBoxSHARED/repos'
+        alias nemoeac='cd ~/VBoxSHARED/repos/nemo_analysis'
+        alias nemowed='cd ~/VBoxSHARED/repos/nemo_wed_analysis'
         alias ps='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
