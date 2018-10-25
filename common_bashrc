@@ -136,6 +136,19 @@ case $(hostname) in
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
         ;;
+    xcslc0|exvmsrose.monsoon-metoffice.co.uk)
+        #MetOffice Monsoon machines..
+        
+        #so ncdump works..
+        module load cray-netcdf
+        #add xclip to the end of bash path
+        PATH=$PATH:~/xclip/
+
+        alias rw1='cd /projects/jmmp/chrbu/RawData'
+        alias ncview='/projects/ocean/nemo/ncview/ncview-default/bin/ncview '
+        alias bld='cd /projects/jmmp/chrbu/nemo/bld_configs'
+        alias configs='cd /projects/jmmp/chrbu/nemo/bld_configs'
+        ;;
     eslogin*|esPP001|esPP002)
 	module load cray-netcdf-hdf5parallel/4.4.1.1 
 	module load cray-hdf5-parallel/1.10.0.1
