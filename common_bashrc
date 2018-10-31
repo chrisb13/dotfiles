@@ -205,6 +205,9 @@ case $(hostname) in
         alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
         alias nemo='cd /nerc/n02/n02/chbull/repos/nemo_analysis'
         alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
+        alias qme='qstat | grep chbull'
+        alias eac='cd /nerc/n02/n02/chbull/RawData/NEMO/ccrc_analysis/20180316_EacSpinMech/'
+        
 
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
