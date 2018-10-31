@@ -268,6 +268,31 @@ function arcpush()
     rsync -avS --progress ${@:1:$(($#-1))} chbull@login.archer.ac.uk:$last
 }
 
+function arcdacpush() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   arcdacpush PATH_FROM PATH_TO ." 
+        echo "Purpose: rsync function to push files to archer." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from:   Path on local to Rsync from" 
+        echo "path_to: Path on archer to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "arcdacpush ./temp/* /short/e14/cyb561/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress ./temp/* chbull@login.rdf.ac.uk:/massdata/e14/cyb561/now/"
+
+        return 1
+    fi
+    #grabs last passed argument..
+    for last; do true; done
+
+    rsync -avS --progress ${@:1:$(($#-1))} chbull@login.dac.ac.uk:$last
+}
+
 
 #rsync functions for grabbing
 #bash function to grab passed files from ARCHER
@@ -431,8 +456,12 @@ function vimarc()
     fi
 }
 
-
-
+function varc() #grab path from clipboard and edit using archer
+{
+    OUTPUT="$(xclip -o -selection clipboard)"
+    echo "Executing: vim scp://chbull@login.archer.ac.uk/${OUTPUT}"
+    vim scp://chbull@login.archer.ac.uk/${OUTPUT} 
+}
 
 #vim netrw plugin for various servers...
 function vimnci() 
@@ -662,7 +691,7 @@ function grab() #grab path
 
         return 1
     fi
-  readlink -e ${1}|tr -d '\n'|xclip -selection c
+  readlink -e ${1}|tr -d '\n'|xclip -selection clipboard
 }
 
 function gvim() #grab path 
@@ -790,10 +819,21 @@ function qmemore()
 
 function rdfstat() # progress of nemo experiments
 {
-for f in /nerc/n02/n02/chbull/RawData/NEMO/nemo_WED025_3_*; do
+for f in /nerc/n02/n02/chbull/RawData/NEMO/nemo_WED025_*; do
 	var=`du $f/???? | wc -l`
 	echo "Exp: -> $f ${var} years"
 done
+}
+
+function mnemo() #compile NEMO on archer with passed config
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:  mnemo CONFIG" 
+        echo "Purpose: compile NEMO on archer with passed config., i.e., ./makenemo -n CONFIG -m XC_ARCHER_INTEL -j 8" 
+        echo "       " 
+        return 1
+    fi
+    ./makenemo -n ${1} -m XC_ARCHER_INTEL -j 8
 }
 
 function ncinemostat()
