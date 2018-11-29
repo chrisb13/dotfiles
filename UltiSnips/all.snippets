@@ -141,6 +141,32 @@ snippet ncinormalq
 #insert code here, e.g.
 endsnippet
 
+snippet xcs-cpbs_monsoon
+#!/bin/ksh 
+# 
+#PBS -N downloadg07
+#PBS -q normal
+#PBS -l select=1   # number of nodes
+#PBS -l walltime=02:59:00  
+
+cd $PBS_O_WORKDIR 
+#cd /projects/jmmp/chrbu/RawData/u-bc337/onm.nc.file
+#moo get  moose:crum/u-bc337/onm.nc.file/*  -vi .
+
+cd /projects/jmmp/chrbu/RawData/u-bc337/inm.nc.file
+moo get  moose:crum/u-bc337/inm.nc.file/*  -vi .
+
+cd /projects/jmmp/chrbu/RawData/u-bc337/ony.nc.file
+moo get  moose:crum/u-bc337/ony.nc.file/*  -vi .
+
+#source: https://collab.metoffice.gov.uk/twiki/bin/view/Support/CrayRunningBatchJobs#Basic%20PBS%20Workflow
+#The aprun command is used to launch parallel applications. The -n option specifies the total number of CPUs (PEs) required, while the -N option specifies the number of CPUs per node.
+
+#If the aprun command fails with the error:
+    #apsched: claim exceeds reservation's node-count
+#the total number of CPUs or CPUs per node specified on the command line is larger than the number of resources requested via the PBS directive.
+endsnippet
+
 # vim:ft=snippets:
 
 snippet figuredoc
