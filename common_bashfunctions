@@ -342,7 +342,7 @@ function bcpush()
     for last; do true; done
 
     #rsync -avS --progress ${@:1:$(($#-1))} chbull@bslcenb.nerc-bas.ac.uk:$last
-    rsync -avS --progress ${@:1:$(($#-1))} chbull@bslws01.nerc-bas.ac.uk:$last
+    rsync -avS --progress ${@:1:$(($#-1))} chbull@bslcenb.nerc-bas.ac.uk:$last
 }
 
 
