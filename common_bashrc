@@ -287,6 +287,7 @@ case $(hostname) in
         printf "\e[?2004l"
         alias r='cd ~/VBoxSHARED/repos'
         alias nemoeac='cd ~/VBoxSHARED/repos/nemo_analysis'
+        alias nemo='cd ~/VBoxSHARED/repos/nemo_analysis'
         alias nemowed='cd ~/VBoxSHARED/repos/nemo_wed_analysis'
         alias ps='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
