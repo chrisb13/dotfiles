@@ -213,12 +213,17 @@ case $(hostname) in
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
         ;;
-    dtn01|dtn02|rdf-comp-ns10)
-        alias ps='export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
-        alias ps3='export PYTHONPATH=/nerc/n02/n02/chbull/anaconda3/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
-        alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
-        alias nemo='cd /nerc/n02/n02/chbull/repos/nemo_analysis'
-        alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
+    dtn01|dtn02|rdf-comp-ns10|rdf-comp-hm03)
+        alias ps='export PYTHONPATH=~/anaconda2/pkgs;export PATH=~/anaconda2/bin:$PATH;source activate root'
+        alias ps3='export PYTHONPATH=~/anaconda3/pkgs;export PATH=~/anaconda3/bin:$PATH;source activate root'
+        alias rdf1='cd ~/RawData/NEMO'
+        alias nemo='cd ~/repos/nemo_analysis'
+        alias nemowed='cd ~/repos/nemo_wed_analysis'
+        alias qme='qstat | grep chbull'
+        alias eac='cd ~/RawData/NEMO/ccrc_analysis/20180316_EacSpinMech/'
+
+        alias arcdacpp='echo "export PYTHONPATH=~/anaconda2/pkgs;export PATH=~/anaconda2/bin:$PATH;source activate root";qsub -IVX -lwalltime=8:00:00,ncpus=1 -q hm03 -A n02-FISSA'
+        
 
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/

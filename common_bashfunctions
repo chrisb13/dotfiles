@@ -268,6 +268,31 @@ function arcpush()
     rsync -avS --progress ${@:1:$(($#-1))} chbull@login.archer.ac.uk:$last
 }
 
+function arcdacpush() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   arcdacpush PATH_FROM PATH_TO ." 
+        echo "Purpose: rsync function to push files to archer." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from:   Path on local to Rsync from" 
+        echo "path_to: Path on archer to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "arcdacpush ./temp/* /short/e14/cyb561/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress ./temp/* chbull@login.rdf.ac.uk:/massdata/e14/cyb561/now/"
+
+        return 1
+    fi
+    #grabs last passed argument..
+    for last; do true; done
+
+    rsync -avS --progress ${@:1:$(($#-1))} chbull@login.dac.ac.uk:$last
+}
+
 
 #rsync functions for grabbing
 #bash function to grab passed files from ARCHER
