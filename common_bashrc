@@ -293,6 +293,7 @@ case $(hostname) in
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
 
         alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/'
+        alias vb='cd /home/chris/VBoxSHARED'
 
         # for website stuff
         # Install Ruby Gems to ~/gems
