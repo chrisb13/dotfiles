@@ -750,10 +750,14 @@ function loadnc() #load netcdf file in python
 OUTPUT="$(readlink -e ${1}|tr -d '\n')"
 cat << EOF > loadvar.py
 import os
-from netCDF4 import Dataset
+import xarray as xr
+import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.ticker import MultipleLocator
 infile='${OUTPUT}'
-ifile=Dataset(infile, 'r')
-#varone=ifile.variables['']
+assert(os.path.exists(infile)),"netCDF file does not exist!"
+ifile=xr.open_dataset(infile)
+#varone=ifile['']
 print ""
 print "NetCDF file loaded with bash loadnc function..."
 print os.path.basename(infile)
@@ -770,6 +774,13 @@ print ""
 print ""
 print "'ifile' is name of netCDF4 object... "
 print ""
+
+#plt.close('all')
+#fig=plt.figure()
+#ax=fig.add_subplot(1, 1,1)
+##cs1=ax.contourf()
+#plt.colorbar(cs1,cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25),orientation='horizontal')
+#plt.show()
 EOF
 ipython -i loadvar.py
 }
