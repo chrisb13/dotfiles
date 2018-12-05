@@ -463,6 +463,16 @@ function varc() #grab path from clipboard and edit using archer
     vim scp://chbull@login.archer.ac.uk/${OUTPUT} 
 }
 
+
+function vbas() #grab path from clipboard and edit using bas cluster
+{
+    OUTPUT="$(xclip -o -selection clipboard)"
+    echo "Executing: vim scp://chbull@bslcenc.nerc-bas.ac.uk/${OUTPUT}"
+    
+    vim scp://chbull@bslcenc.nerc-bas.ac.uk/${OUTPUT} 
+}
+
+
 #vim netrw plugin for various servers...
 function vimnci() 
 {
