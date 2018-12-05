@@ -38,6 +38,7 @@ alias runprof='. ~/.bashrc'
 #alias top='top -M'
 alias temp='mkdir ~/temp/ ; cd ~/temp/'
 alias foldersize='du -h --max-depth=1 .'
+alias p='python '
 
 #vim
 alias vi='vim -O'
