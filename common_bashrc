@@ -129,6 +129,7 @@ case $(hostname) in
         alias rw1='cd /data/oceans_output/shelf/chbull'
         alias r='cd /users/chbull/repos/'
         alias nemo='cd /users/chbull/repos/nemo_analysis/diagnostics'
+        alias nemowed='cd /users/chbull/repos/nemo_wed_analysis/'
         
         alias bc7='ssh -X chbull@bslws01.nerc-bas.ac.uk'
         #alias jas='echo "ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk";exec ssh-agent $SHELL'
@@ -278,6 +279,7 @@ case $(hostname) in
         alias rw1='cd /data/oceans_output/shelf/chbull'
         alias r='cd /users/chbull/repos/'
         alias nemo='cd /users/chbull/repos/nemo_analysis/diagnostics'
+        alias nemowed='cd /users/chbull/repos/nemo_wed_analysis/'
         alias now='cd  /data/oceans_output/shelf/chbull/20170113_EACnowClimateChange01/analysis/'
 
         #add xclip to the end of bash path
