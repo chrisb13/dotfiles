@@ -183,13 +183,17 @@ case $(hostname) in
         alias run='cd /fs2/n02/n02/chbull/nemo/run'
         alias nemo='cd /nerc/n02/n02/chbull/repos/nemo_analysis'
         alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
+        alias misomip='cd /nerc/n02/n02/chbull/repos/misomip_bas'
+	alias share='cd /fs2/n02/shared/chbull'
         alias configs='cd /fs2/n02/n02/chbull/nemo/bld_configs'
         alias bld='cd /fs2/n02/n02/chbull/nemo/bld_configs'
         alias qme='qstat | grep chbull'
         alias nemoerror="grep -A 4 'E R R' ocean.output"
         alias nemostep='echo "Nemos time.step:";cat time.step;echo "";echo "in days: ";cat time.step | while read word; do python -c "print $word*720/(60*60*24)" ; done '
         alias nemodesc='grep  "DESC=" /fs2/n02/n02/chbull/nemo/run/*/GoGoNEMO.py'
-        alias nemorun='cd /fs2/n02/n02/chbull/nemo/run/WED025_runscripts'
+        alias nemorun='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/wed/configs/wed025/rnemo_ARCHER'
+        alias misomiprun='cd /nerc/n02/n02/chbull/repos/misomip_bas/configs/rnemo_ARCHER'
+        alias r='cd /nerc/n02/n02/chbull/repos'
 
         alias nemocode='cd /fs2/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/CONFIG/WED025_3/BLD/ppsrc/nemo'
         alias rebuildnemo='/fs2/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/TOOLS/REBUILD_NEMO/rebuild_nemo '
