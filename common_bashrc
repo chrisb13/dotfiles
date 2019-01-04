@@ -186,8 +186,9 @@ case $(hostname) in
         alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
         alias misomip='cd /nerc/n02/n02/chbull/repos/misomip_bas'
 	alias share='cd /fs2/n02/shared/chbull'
-        alias configs='cd /fs2/n02/n02/chbull/nemo/bld_configs'
-        alias bld='cd /fs2/n02/n02/chbull/nemo/bld_configs'
+        alias configs='cd /nerc/n02/n02/chbull/nemo/bld_configs'
+        alias bld='cd /nerc/n02/n02/chbull/nemo/bld_configs'
+        alias bldscratch='cd /fs2/n02/n02/chbull/nemo/bld_configs'
         alias qme='qstat | grep chbull'
         alias nemoerror="grep -A 4 'E R R' ocean.output"
         alias nemostep='echo "Nemos time.step:";cat time.step;echo "";echo "in days: ";cat time.step | while read word; do python -c "print $word*720/(60*60*24)" ; done '
