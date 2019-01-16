@@ -829,9 +829,13 @@ function qmemore()
     while read -r OUTPUT; do
         que=$(qstat -f ${OUTPUT}|grep -A 1 Output_Path|tr -d '\040\011\012\015')
         que2=$(dirname $que |sed 's/^.*://'|sed 's/\r$//')
-        echo $OUTPUT":" $que2
-	echo $OUTPUT":";cat $que2/time.step | while read word; do python -c "print $word*720/(60*60*24)"; done  
-	cat $que2/time.step | while read word; do python -c "print $word*720/(60*60*24*365.0)"; done  
+
+        rn_rdt=$(grep 'rn_rdt' $que2/namelist_cfg | head -n 1 |  cut -c1-30 | grep -o -E '[0-9]+ | head -n 1')
+        rn_rdt=720.
+
+        echo $OUTPUT":" $que2 ". rn_rdt:" $rn_rdt
+	echo $OUTPUT":";cat $que2/time.step | while read word; do python -c "print $word*$rn_rdt/(60*60*24)"; done  
+	cat $que2/time.step | while read word; do python -c "print $word*$rn_rdt/(60*60*24*365.0)"; done  
 	grep -A 4 'E R R' $que2/ocean.output
         echo "--"
     done <<< "$OUTPUT"

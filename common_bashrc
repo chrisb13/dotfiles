@@ -186,6 +186,7 @@ case $(hostname) in
         alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
         alias misomip='cd /nerc/n02/n02/chbull/repos/misomip_bas'
 	alias share='cd /fs2/n02/shared/chbull'
+	alias sharerdf='cd /nerc/n02/shared/chbull'
         alias configs='cd /nerc/n02/n02/chbull/nemo/bld_configs'
         alias bld='cd /nerc/n02/n02/chbull/nemo/bld_configs'
         alias bldscratch='cd /fs2/n02/n02/chbull/nemo/bld_configs'
