@@ -103,6 +103,7 @@ alias archerrdf='ssh -X chbull@login.rdf.ac.uk'
 alias arcdac='ssh -X chbull@login.rdf.ac.uk'
 alias archerdtn='ssh -X chbull@dtn01.rdf.ac.uk'
 alias archerdtn2='ssh -X chbull@dtn02.rdf.ac.uk'
+alias dacme='echo "arcdac";echo "arcdacpp";echo "cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/wed/diagnostics";echo "export PYTHONPATH=~/anaconda2/pkgs;export PATH=~/anaconda2/bin:/opt/torque/4.2.6.1/gcc/4.4.7/bin:/opt/maui/3.3.1/gcc/4.4.7/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/ibutils/bin:/nerc/n02/n02/chbull/xclip/:/nerc/n02/n02/chbull/bin;source activate root"'
 
 #met office
 alias mhop='ssh -Y chrbu@lander.monsoon-metoffice.co.uk'     

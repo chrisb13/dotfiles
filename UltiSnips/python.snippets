@@ -1070,6 +1070,8 @@ import xarray as xr
 infile='/path/to/netcdf4/file.nc'
 assert(os.path.exists(infile)),"netCDF file does not exist!"
 ifile=xr.open_dataset(infile)
+
+#fls=xr.open_mfdataset(filelist[0:3],concat_dim='time_counter')
 endsnippet
 
 snippet dask
@@ -1219,6 +1221,33 @@ endsnippet
 ###########################################################################
 #                               MATPLOTLIB                                #
 ###########################################################################
+
+snippet catopyegwed025
+import cartopy.crs as ccrs
+import cartopy
+#CArtopy example for WED025
+plt.close('all')
+
+fig = plt.figure()
+ax2 = plt.subplot(1, 1, 1, projection=ccrs.SouthPolarStereo(central_longitude=30.0-80))
+
+# Limit the map to -60 degrees latitude and below.
+ax2.set_extent([-75, 10, -80, -52], ccrs.PlateCarree())
+gl=ax2.gridlines(crs=ccrs.PlateCarree(), linewidth=1, color='gray', alpha=0.2)
+
+ax2.add_feature(cartopy.feature.LAND,facecolor='#858588')
+# ax2.add_feature(cartopy.feature.OCEAN)
+
+# cs1=ax2.scatter(df['lon'],df['lat'],transform=ccrs.Geodetic())
+cs1=ax2.contourf(ifile['nav_lon'],ifile['nav_lat'],ifile['sossheig'][0,:],cmap='inferno_r',extend='max',transform=ccrs.PlateCarree())
+
+# #WED025 box
+# x, y = [-91.19742, -0.5, -0.5, -91.19742, -91.19742], [-82.09814, -82.09814, -62.490463, -62.490463, -82.09814]
+# ax2.plot(x, y, marker='o',lw=1.5 ,transform=ccrs.PlateCarree(),color='g',linestyle='--',alpha=0.75)
+
+plt.show()
+end snippet
+
 
 snippet fixcbarticks
 #fix colourbar ticks
@@ -1701,6 +1730,45 @@ for idx,ax in enumerate(axis):
 	if idx!=col:
 	    # print idx,'killy'
 	    plt.setp(ax.get_yticklabels(),visible=False)
+endsnippet
+
+snippet sgridspec_biasplots
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import gridspec
+fakedata=True
+if fakedata:
+    pme=np.random.rand(50,30)
+plt.close('all')
+row=4
+col=5
+fig=plt.figure(figsize=(3*col,4*2))
+gs = gridspec.GridSpec(row, col,height_ratios=[1,1,.1,.1],width_ratios=[.1,.25,1,1,1],hspace=.075,wspace=0.075)
+
+for r in range(0,2):
+    for c in range(2,5):
+        ax = plt.subplot(gs[r,c])
+
+        if fakedata:
+            cs1=ax.contourf(pme)
+
+        # make the labels you don't want invisible
+        if c!=2:
+            plt.setp(ax.get_yticklabels(),visible=False)
+        else:
+            ax.set_ylabel('Latitude')
+
+        if r==0:
+            plt.setp(ax.get_xticklabels(),visible=False)
+        else:
+            ax.set_xlabel('Longitude')
+
+cb1=plt.colorbar(cs1,cax=plt.subplot(gs[-1,2:]),orientation='horizontal')
+cb2=plt.colorbar(cs1,cax=plt.subplot(gs[0,0]),orientation='vertical')
+cb1.set_label('v-velocity (m/s)')
+cb2.set_label('u-velocity (m/s)')
+# fig.savefig('./meh.png',dpi=300,bbox_inches='tight')
+plt.show()
 endsnippet
 
 snippet sgridspec_stretchy_cbar
