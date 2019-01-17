@@ -1495,6 +1495,17 @@ ax.contourf(field,levels=np.linspace(-1,1,50))
 plt.show()
 endsnippet
 
+snippet gspec_basic
+from matplotlib import gridspec
+plt.close('all')
+#fig=plt.figure(figsize=(20.0,9.0))
+fig=plt.figure()
+gs = gridspec.GridSpec(5, 2,hspace=.225,wspace=0.065)
+#width_ratios=[5,1]
+ax = plt.subplot(gs[0,0])
+cs1=ax.contourf()
+plt.colorbar(cs1,cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25),orientation='horizontal')
+endsnippet
 
 snippet gridspecp
 from matplotlib import gridspec
