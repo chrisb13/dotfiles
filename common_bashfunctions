@@ -682,7 +682,7 @@ function log() #pbs log file
 }
 
 
-function grab() #grab path 
+function g() #grab path 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
         echo "Usage: grab FILENAME_PATHNAME" 
