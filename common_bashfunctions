@@ -816,6 +816,26 @@ function mddu() #insert argument for mass data on nci
     mdss dmdu -ch cyb561/now/output/${1}
 }
 
+function qmeless()
+{
+    echo "Running jobs on ARCHER..."
+    OUTPUT0=$(qstat -u chbull)
+    echo "$OUTPUT0"
+    echo ""
+    echo "Getting path of running jobs on ARCHER..."
+    # go to scheduler and getting running jobs..
+    OUTPUT="$(qstat -u chbull|grep chbull| cut -c1-11)"
+    echo "--"
+    while read -r OUTPUT; do
+        que=$(qstat -f ${OUTPUT}|grep -A 1 Output_Path|tr -d '\040\011\012\015')
+        que2=$(dirname $que |sed 's/^.*://'|sed 's/\r$//')
+
+        echo $OUTPUT":" $que2 
+    done <<< "$OUTPUT"
+    echo ""
+}
+
+
 function qmemore()
 {
     echo "Running jobs on ARCHER..."
@@ -830,11 +850,14 @@ function qmemore()
         que=$(qstat -f ${OUTPUT}|grep -A 1 Output_Path|tr -d '\040\011\012\015')
         que2=$(dirname $que |sed 's/^.*://'|sed 's/\r$//')
 
-        rn_rdt=$(grep 'rn_rdt' $que2/namelist_cfg | head -n 1 |  cut -c1-30 | grep -o -E '[0-9]+ | head -n 1')
-        rn_rdt=720.
+        #rn_rdt=$(grep 'rn_rdt' $que2/namelist_cfg | head -n 1 |  cut -c1-30 | grep -o -E '[0-9]+ | head -n 1')
+        #rn_rdt=720.
+	rn_rdt=`cat $que2/qme`
 
         echo $OUTPUT":" $que2 ". rn_rdt:" $rn_rdt
-	echo $OUTPUT":";cat $que2/time.step | while read word; do python -c "print $word*$rn_rdt/(60*60*24)"; done  
+        desc=$(grep 'Desc' $que2/README)
+	echo "$desc"
+	echo $OUTPUT" (days / years) :";cat $que2/time.step | while read word; do python -c "print $word*$rn_rdt/(60*60*24)"; done  
 	cat $que2/time.step | while read word; do python -c "print $word*$rn_rdt/(60*60*24*365.0)"; done  
 	grep -A 4 'E R R' $que2/ocean.output
         echo "--"
