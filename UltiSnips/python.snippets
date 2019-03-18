@@ -1097,6 +1097,11 @@ ds.to_netcdf('/path/to/netcdf/file')
 #if trying to pick up an existing netcdf file and change something..
 ifilev['variablename']=\
 xr.DataArray(v10,dims=('time','y','x'),coords=ifilev.variablename.coords)
+
+import datetime
+ifilev.attrs['creation_date']=   str(datetime.datetime.now())
+ifilev.to_netcdf('/path/to/netcdf/file')
+
 endsnippet
 
 snippet savenetcdfNEMO
