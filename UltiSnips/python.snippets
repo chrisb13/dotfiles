@@ -1303,6 +1303,25 @@ matplotlib.rcParams['mathtext.bf'] = 'Bitstream Vera Sans:bold'
 cb1.set_label(r"$\displaystyle ^{\circ} C$")
 endsnippet
 
+snippet flipyaxis
+plt.gca().invert_yaxis()
+endsnippet
+
+snippet killalllabs
+frame1 = plt.gca()
+frame1.axes.get_xaxis().set_ticks([])
+frame1.axes.get_yaxis().set_ticks([])
+endsnippet
+
+killxlab
+plt.setp(ax.get_xticklabels(),visible=False)
+endsnippet
+
+killylab
+plt.setp(ax.get_yticklabels(),visible=False)
+endsnippet
+
+
 snippet splot
 plt.close('all')
 fig=plt.figure()
