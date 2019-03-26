@@ -1102,6 +1102,22 @@ import datetime
 ifilev.attrs['creation_date']=   str(datetime.datetime.now())
 ifilev.to_netcdf('/path/to/netcdf/file')
 
+#if trying to just have a new file with just y,x / nav_lon/nav_lat
+xr.DataArray(new_grid,dims=('y','x'),coords=nemomeltf.nav_lon.coords,name='melt_actual').to_netcdf('./moo.nc')
+
+#handy if you want to inherit units/attributes..
+newnc['melt_actual'].attrs=JMmeltf['melt_actual'].attrs
+
+endsnippet
+
+
+snippet savenetcdf_robin
+ncfile_out = Dataset('bathy_meter.nc','w',format='NETCDF3_CLASSIC')
+ncfile_out.createDimension('x',isf.shape[2])
+ncfile_out.createDimension('y',isf.shape[1])
+bathy_nc=ncfile_out.createVariable('Bathymetry_isf',np.dtype('float64').char,('y','x'))
+bathy_nc[:]=bathy[slice-1,:,:]
+ncfile_out.close()
 endsnippet
 
 snippet savenetcdfNEMO
