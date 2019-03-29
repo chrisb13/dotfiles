@@ -830,7 +830,8 @@ function qmeless()
         que=$(qstat -f ${OUTPUT}|grep -A 1 Output_Path|tr -d '\040\011\012\015')
         que2=$(dirname $que |sed 's/^.*://'|sed 's/\r$//')
 
-        echo $OUTPUT":" $que2 
+        que3=$(qstat -f ${OUTPUT}|grep Account_Name)
+        echo $OUTPUT":$que3:" $que2 
     done <<< "$OUTPUT"
     echo ""
 }
