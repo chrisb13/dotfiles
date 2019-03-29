@@ -562,6 +562,35 @@ print "this is diff"
 print new_grid-old_grid_data.reshape(4,3)
 endsnippet
 
+snippet cKDTree
+#an awesome way of finding the closest point in the grid
+#see: https://stackoverflow.com/questions/32909087/efficiently-find-indices-of-nearest-points-on-non-rectangular-2d-grid
+import scipy.interpolate
+eastsecpts='./east_sec_pts.npz'
+secs=np.load(eastsecpts)
+assert(os.path.exists(eastsecpts)),"can't find files file_discription"
+bsosef=xr.open_dataset(bsose)
+bsosef_salt=xr.open_dataset(bsose_Salt)
+lon,lat=np.meshgrid(bsosef['YC'],bsosef['XC']-360)
+
+points=[[-60.725048,-1],[-61.725048,-2],[-61.725048,-2]]
+points=[[j,i] for j,i in zip(secs['east_lats'],secs['east_lons'])]
+points=[p for p in points if np.sum(p)!=0]
+
+lonlat = np.column_stack((lon.ravel(),lat.ravel()))
+tree = scipy.spatial.cKDTree(lonlat)
+
+lg.info('creating the tree')
+dist,idx = tree.query(points,k=1)
+ind = np.column_stack(np.unravel_index(idx,lon.shape))
+idxs=[(i,j) for i,j in ind]
+idxs_lonlat=[(lon[id[0],id[1]],lat[id[0],id[1]]) for id in idxs]
+
+lg.info('Extracting points, THETA')
+theta_tmean=np.mean(bsosef['THETA'][:],axis=0)
+theta=np.array([theta_tmean[:,k[1],k[0]] for k in idxs])
+endsnippet
+
 snippet mkmov
 def makemovie(path_to_png_plots,outmov,folder_for_mkmov):
     """quick and dirty wrapper function to stitch together a bunch of png files
@@ -2084,9 +2113,43 @@ lg.warning("We are doing case: " + ind.paper_case)
 output_folder=ind.output_folder
 nemo_fols=ind.nemo_fols
 if ind.paper_case=='20180810_wed_reanalysis_atmo':
+    lg.warning("We are doing case: " + ind.paper_case)
+    output_folder=ind.output_folder
+
+    nemo_fols=ind.nemo_fols
+
+    plotoutputs=output_folder+'plots/'
+    sm.mkdir(plotoutputs)
+
     for exp in nemo_fols.keys():
-	pass
-    lg.info("We are working experiment :" + exp)
+	lg.info("We are working experiment :" + exp)
+
+	plotoutputs=output_folder+'plots/'
+	sm.mkdir(plotoutputs)
+
+	tfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_T',return_dates=False)
+	nemomelt=sm.get_timemean(exp,tfiles,'grid_T',output_folder)
+
+
+	mesh_mask=sm.get_meshmask(exp)
+
+	tstd=sm.get_annual_std(exp,tfiles,'grid_T',output_folder)
+
+	ufiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_U',return_dates=False)
+	umean=sm.get_timemean(exp,ufiles,'grid_U',output_folder)
+	
+	vfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_V',return_dates=False)
+	vmean=sm.get_timemean(exp,vfiles,'grid_V',output_folder)
+	
+	# wfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_W',return_dates=False)
+	# wmean=sm.get_timemean(exp,wfiles,'grid_W',output_folder)
+
+	#plotting
+	sm.pmask(mesh_mask,ax)
+	if bathy!='':
+	    sm.pmask_ice(bathy,ax)
+	sm.pl_inset_title_box(ax,nemo_fols[exp][1],bwidth="15%",location=2)
+
 else:
     lg.error("I don't know what to do here!"+ ind.paper_case)
     sys.exit()
