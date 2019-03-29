@@ -201,6 +201,7 @@ case $(hostname) in
         alias wed025r='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/wed/configs/wed025/rnemo_ARCHER'
         alias wed12r='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/wed/configs/wed12/rnemo_ARCHER'
         alias ajr='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER'
+        alias ajrun='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER'
         alias misomiprun='cd /nerc/n02/n02/chbull/repos/misomip_bas/configs/rnemo_ARCHER'
         alias r='cd /nerc/n02/n02/chbull/repos'
 
@@ -220,6 +221,7 @@ case $(hostname) in
         alias arcint_max='qsub -IVl select=8,walltime=0:20:0 -q short -A n02-FISSA -m b -M chbull@bas.ac.uk'
         alias arcint_big='qsub -IVl select=14,walltime=1:00:0 -A n02-FISSA -m b -M chbull@bas.ac.uk'
         alias arcint_long='qsub -IVl select=8,walltime=1:00:0 -A n02-FISSA -m b -M chbull@bas.ac.uk'
+        alias arcint_rlong='qsub -IVl select=1,walltime=8:00:0 -A n02-FISSA -m b -M chbull@bas.ac.uk'
 
         alias pp1='ssh -X espp1'
         alias pp2='ssh -X espp2'
