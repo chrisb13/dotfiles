@@ -1149,6 +1149,19 @@ bathy_nc[:]=bathy[slice-1,:,:]
 ncfile_out.close()
 endsnippet
 
+snippet modifynetcdf
+#https://github.com/Unidata/netcdf4-python/issues/109
+ifile2=xr.open_dataset(f)
+ifile=Dataset(outfol+os.path.basename(f),'r+')
+ifile['vosaline'][:]=ifile2['vosaline'][:]*200
+ifile.close()
+
+# (untested!) doesn't work on netcdf3 files it seems..
+# https://stackoverflow.com/questions/42627367/it-it-possible-to-define-attributes-of-a-group-in-a-netcdf4-file-using-python
+#group1 = ifile.createGroup("creation_cbhack_date")
+#group1.long_name = str(datetime.datetime.now())
+endsnippet
+
 snippet savenetcdfNEMO
 def ncout(nemo_template,export_dict,outputpath,numtsteps=0):
     """function to export a bunch of variables that look like NEMO outputs into a netCDF file.
