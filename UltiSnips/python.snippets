@@ -1367,7 +1367,10 @@ import datetime
 import socket
 import inspect
 
+path_to_png=ind.plot_outputs+''
+fig.savefig(path_to_png,dpi=300,bbox_inches='tight')
 it.AddTrkr(${1:path_to_png},{'Created with':os.path.realpath(__file__),'time':datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),'machine':socket.gethostname(),'function_name':inspect.currentframe().f_code.co_name})
+lg.info("Figure created: "+path_to_png)
 endsnippet
 
 snippet savefigtrkd
@@ -1479,6 +1482,11 @@ plt.colorbar(cs1,cax=caxis,ticks=MultipleLocator(0.5),orientation='horizontal')
 
 #really great when you have lots of panels and want a global cbar..
 fig.colorbar(cs1, ax=axis.ravel().tolist(), pad=0.04, aspect = 30)
+endsnippet
+
+snippet colorbar_label
+cb1=plt.colorbar()
+cb1.set_label('')
 endsnippet
 
 snippet fieldcontour
