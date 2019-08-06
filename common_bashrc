@@ -25,6 +25,7 @@ alias ls='ls --color=auto'
 alias la='ls -A'
 alias l='ls -CF'
 alias grab='g '
+alias sillyalias='cd '
 alias ud='cd ..;cd -'
 alias u='cd ..'
 alias uu='cd ../..'
@@ -148,7 +149,10 @@ case $(hostname) in
         #MetOffice Monsoon machines..
         
         #so ncdump works..
-        module load cray-netcdf
+        if [[ $- == *i* ]]
+        then
+            module load cray-netcdf
+        fi
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
 
