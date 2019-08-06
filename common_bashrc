@@ -201,6 +201,7 @@ case $(hostname) in
         alias nemostep='echo "Nemos time.step:";cat time.step;echo "";echo "in days: ";cat time.step | while read word; do python -c "print $word*720/(60*60*24)" ; done '
         alias nemodesc='grep  "DESC=" /fs2/n02/n02/chbull/nemo/run/*/GoGoNEMO.py'
         alias wed025r='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/wed/configs/wed025/rnemo_ARCHER'
+        alias wedana='cd /nerc/n02/n02/chbull/20180810_wed_reanalysis_atmo/analysis'
         alias wed12r='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/wed/configs/wed12/rnemo_ARCHER'
 	alias chknemordf='echo "Checking that WED025_ts runs went to the RDF with: ls nemo_WED025_ts_*/OUTNEMO*/*1m*grid_T.nc: ";ls -1 /fs2/n02/n02/chbull/nemo/run/nemo_WED025_ts_*/OUTNEMO*/*1m*grid_T.nc; echo "This is file number: "; ls -1 /fs2/n02/n02/chbull/nemo/run/nemo_WED025_ts_*/OUTNEMO*/*1m*grid_T.nc| wc -l'
         alias ajr='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER'
