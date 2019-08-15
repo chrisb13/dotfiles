@@ -221,8 +221,9 @@ case $(hostname) in
         alias nemowed='cd ~/repos/nemo_wed_analysis'
         alias qme='qstat | grep chbull'
         alias eac='cd ~/RawData/NEMO/ccrc_analysis/20180316_EacSpinMech/'
+        alias sharerdf='cd /nerc/n02/shared/chbull'
 
-        alias arcdacpp='echo "export PYTHONPATH=~/anaconda2/pkgs;export PATH=~/anaconda2/bin:$PATH;source activate root";qsub -IVX -lwalltime=8:00:00,ncpus=1 -q hm03 -A n02-FISSA'
+        alias arcdacpp='echo "export PYTHONPATH=~/anaconda2/pkgs;export PATH=~/anaconda2/bin:$PATH;source activate root";qsub -IVX -lwalltime=12:00:00,ncpus=1 -q hm03 -A n02-FISSA'
         
 
         #add xclip to the end of bash path
