@@ -29,6 +29,49 @@ function tbox()
     done
 }
 
+function qsubdac()
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   qsubdac 'submit this line to ARCHERDAC' (single proc job)" 
+        echo "Purpose: To submit a line to the ARCHER DAC"
+        echo "Note:    You need to be logged onto the ARCHER DAC"
+        echo "       " 
+        return 1
+    fi
+
+echo "We are going to submit the following command to the ARCHERDAC: "
+echo "$1"
+#OUTPUT="$(readlink -e ${1}|tr -d '\n')"
+cat << 'EOF' > qsubdac.sh
+#!/bin/bash --login
+#PBS -l select=serial=true:ncpus=1
+#PBS -l walltime=04:30:00
+#PBS -A n02-FISSA
+
+# Make sure any symbolic links are resolved to absolute path
+export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
+
+# Change to the directory that the job was submitted from
+cd $PBS_O_WORKDIR
+
+export PYTHONPATH=/nerc/n02/n02/chbull/anaconda3/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda3/bin:$PATH;source activate root
+
+module unload cray-netcdf-hdf5parallel/4.4.1.1
+module unload cray-hdf5-parallel/1.10.0.1
+module load nco
+
+EOF
+cat << EOF >> qsubdac.sh
+${1}
+EOF
+
+qsub qsubdac.sh
+#rm qsubdac.sh
+
+#echo ''
+#echo ''
+#cat qsubdac.sh
+}
 
 function tboxtext() 
 {
