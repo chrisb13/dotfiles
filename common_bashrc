@@ -320,6 +320,8 @@ case $(hostname) in
 
         alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/'
         alias vb='cd /home/chris/VBoxSHARED'
+        alias imgtrkr='python /home/chris/VBoxSHARED/repos/imgtrkr/main.py '
+
 
         # for website stuff
         # Install Ruby Gems to ~/gems
