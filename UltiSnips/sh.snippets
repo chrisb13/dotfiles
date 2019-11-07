@@ -24,7 +24,7 @@ export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
 # Change to the directory that the job was submitted from
 cd $PBS_O_WORKDIR
 
-export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root
+export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2/bin:$PATH;source activate root
 
 module load cdo
 
@@ -43,7 +43,7 @@ export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
 # Change to the directory that the job was submitted from
 cd $PBS_O_WORKDIR
 
-export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root
+export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2/bin:$PATH;source activate root
 
 module unload cray-netcdf-hdf5parallel/4.4.1.1
 module unload cray-hdf5-parallel/1.10.0.1
