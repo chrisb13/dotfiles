@@ -87,6 +87,8 @@ alias newstormc='ssh -X z3457920@cyclone2.ccrc.unsw.edu.au'
 alias newstormh='ssh -X z3457920@hurricane2.ccrc.unsw.edu.au'
 alias newstormt='ssh -X z3457920@typhoon2.ccrc.unsw.edu.au'
 alias imp='ssh -X cbull@login.cx1.hpc.ic.ac.uk'
+alias rpi='ssh -X pi@192.168.1.101'
+alias rpipytick='vim scp://pi@192.168.1.101//home/pi/repos/PyTick/portfoliotrk.py'
 
 #BAS machines
 alias bhop='ssh -X  chbull@bslcenb.nerc-bas.ac.uk'
