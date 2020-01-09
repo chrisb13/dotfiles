@@ -44,6 +44,7 @@ alias p='python '
 alias getwedplots='watch rsync -avz --progress chbull@login.archer.ac.uk:/nerc/n02/n02/chbull/20180810_wed_reanalysis_atmo/analysis/plots .'
 alias getwedpaper='watch rsync -avz --progress chbull@login.archer.ac.uk:/nerc/n02/n02/chbull/20180810_wed_reanalysis_atmo/analysis/paperfigsdoc/wed025_figures_main.docx .'
 alias getwedpapersupp='watch rsync -avz --progress chbull@login.archer.ac.uk:/nerc/n02/n02/chbull/20180810_wed_reanalysis_atmo/analysis/paperfigsdoc/wed025_figures_supp.docx .'
+alias getwedjcr='watch rsync -avz --progress chris@10.104.2.73:/home/chris/VBoxSHARED/goship /home/chris/VBoxSHARED'
 
 
 #vim
@@ -91,10 +92,11 @@ alias newstormc='ssh -X z3457920@cyclone2.ccrc.unsw.edu.au'
 alias newstormh='ssh -X z3457920@hurricane2.ccrc.unsw.edu.au'
 alias newstormt='ssh -X z3457920@typhoon2.ccrc.unsw.edu.au'
 alias imp='ssh -X cbull@login.cx1.hpc.ic.ac.uk'
-alias rpi='ssh -X pi@192.168.1.101'
-alias rpipytick='vim scp://pi@192.168.1.101//home/pi/repos/PyTick/portfoliotrk.py'
+alias rpi='ssh -X pi@192.168.1.106'
+alias rpipytick='vim scp://pi@192.168.1.106//home/pi/repos/PyTick/portfoliotrk.py'
 
 #BAS machines
+alias bcjcr="ssh chris@10.104.2.73"
 alias bhop='ssh -X  chbull@bslcenb.nerc-bas.ac.uk'
 alias bhop2='ssh -X chbull@bslcenc.nerc-bas.ac.uk'
 alias bc1="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws01.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
