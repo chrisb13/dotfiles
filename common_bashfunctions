@@ -438,6 +438,50 @@ function bcpush()
     rsync -avS --progress ${@:1:$(($#-1))} chbull@bslcenb.nerc-bas.ac.uk:$last
 }
 
+#vim netrw plugin for various servers...
+function vimjcr() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   vimjcr PATH_TO." 
+        echo "Purpose: Allows remote editing of files on BAS servers..." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path or file: vim will either edit or open file passed" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "vimjcr /users/chbull/repos/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "vim scp://chris@10.104.2.73//users/chbull/repos/"
+        
+
+        return 1
+    fi
+    #number of arguments...
+    #echo $#
+    if [ $# == 1 ]
+      then
+        vim scp://chris@10.104.2.73/${1} 
+    fi
+
+    if [ $# == 2 ]
+      then
+        vim -O scp://chris@10.104.2.73/${1}  scp://chris@10.104.2.73/${2} 
+    fi
+
+    if [ $# == 3 ]
+      then
+        vim -O scp://chris@10.104.2.73/${1} scp://chris@10.104.2.73/${2} scp://chris@10.104.2.73/${3}  
+    fi
+
+    if [ $# > 3 ]
+      then
+        echo 'you passed too many arguments!'
+    fi
+}
+
+
 
 
 #vim netrw plugin for various servers...
