@@ -196,7 +196,11 @@ case $(hostname) in
         alias j6='ssh -AX chbull@cems-sci1.cems.rl.ac.uk'
         alias j7='ssh -AX chbull@cems-sci2.cems.rl.ac.uk'
         alias jmass='ssh -X chbull@mass-cli1.ceda.ac.uk'
-
+        alias et='ssh -X et1.ceda.ac.uk'
+        
+        alias ps='export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root'
+        alias ps3='export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda3/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda3/bin:$PATH;source activate root'
+        
         alias rw1='cd /group_workspaces/jasmin2/bas_pog/chbull'
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
