@@ -11,3 +11,48 @@ do
     echo $i
 done
 endsnippet 
+
+snippet arcpp_pbs
+#!/bin/bash --login
+#PBS -l select=serial=true:ncpus=1
+#PBS -l walltime=06:00:00
+#PBS -A n02-FISSA
+
+# Make sure any symbolic links are resolved to absolute path
+export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)               
+
+# Change to the directory that the job was submitted from
+cd $PBS_O_WORKDIR
+
+export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2/bin:$PATH;source activate root
+
+module load cdo
+
+cd /fs2/n02/n02/chbull/nemo/bld_configs/input_WED025/CICE2LIM
+python cice2lim_cdowrap.py /fs2/n02/n02/chbull/RawData/mi-an854/inm.nc.file/
+
+##### alternatively for multiple procs
+#!/bin/bash --login
+#PBS -l select=serial=true:ncpus=2
+#PBS -l walltime=01:00:00
+#PBS -A n02-FISSA
+
+# Make sure any symbolic links are resolved to absolute path
+export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
+
+# Change to the directory that the job was submitted from
+cd $PBS_O_WORKDIR
+
+export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2/bin:$PATH;source activate root
+
+module unload cray-netcdf-hdf5parallel/4.4.1.1
+module unload cray-hdf5-parallel/1.10.0.1
+module load nco
+
+cd /nerc/n02/n02/chbull/RawData/NEMO/new_temp/20180901_New_AUS_doughnuts/nemo_cordex24_DFLX_VERAIW002innW/meh
+
+ncra /nerc/n02/n02/chbull/RawData/NEMO/new_temp/20180901_New_AUS_doughnuts/nemo_cordex24_DFLX_VERAIW002innW/meh/cordex24_CURLFX-FLUXFCE_3h_20090101_20091231_grid_V_2D.nc /nerc/n02/n02/chbull/RawData/NEMO/new_temp/20180901_New_AUS_doughnuts/nemo_cordex24_DFLX_VERAIW002innW/meh/cordex24_CURLFX-meh1.nc &
+ncra /nerc/n02/n02/chbull/RawData/NEMO/new_temp/20180901_New_AUS_doughnuts/nemo_cordex24_DFLX_VERAIW002innW/meh/cordex24_CURLFX-FLUXFCE_3h_20090101_20091231_grid_V_2D.nc /nerc/n02/n02/chbull/RawData/NEMO/new_temp/20180901_New_AUS_doughnuts/nemo_cordex24_DFLX_VERAIW002innW/meh/cordex24_CURLFX-meh2.nc &
+
+wait
+endsnippet

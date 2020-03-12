@@ -5,7 +5,6 @@ function nc() #file header info ncdump
     ncdump -c ${1} | less
 }
 
-
 function ncv() #variable info ncdump
 {
     ncdump -v ${2} ${1} | less
@@ -30,6 +29,49 @@ function tbox()
     done
 }
 
+function qsubdac()
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   qsubdac 'submit this line to ARCHERDAC' (single proc job)" 
+        echo "Purpose: To submit a line to the ARCHER DAC"
+        echo "Note:    You need to be logged onto the ARCHER DAC"
+        echo "       " 
+        return 1
+    fi
+
+echo "We are going to submit the following command to the ARCHERDAC: "
+echo "$1"
+#OUTPUT="$(readlink -e ${1}|tr -d '\n')"
+cat << 'EOF' > qsubdac.sh
+#!/bin/bash --login
+#PBS -l select=serial=true:ncpus=1
+#PBS -l walltime=04:30:00
+#PBS -A n02-FISSA
+
+# Make sure any symbolic links are resolved to absolute path
+export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
+
+# Change to the directory that the job was submitted from
+cd $PBS_O_WORKDIR
+
+export PYTHONPATH=/nerc/n02/n02/chbull/anaconda3/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda3/bin:$PATH;source activate root
+
+module unload cray-netcdf-hdf5parallel/4.4.1.1
+module unload cray-hdf5-parallel/1.10.0.1
+module load nco
+
+EOF
+cat << EOF >> qsubdac.sh
+${1}
+EOF
+
+qsub qsubdac.sh
+rm qsubdac.sh
+
+#echo ''
+#echo ''
+#cat qsubdac.sh
+}
 
 function tboxtext() 
 {
@@ -242,6 +284,31 @@ function mdsspull()
     rsync -avS --progress cyb561@dc-dm3.nci.org.au:$* 
 }
 
+#bash command to push file(s) onto raspberry pi
+function pipush() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   pipush PATH_FROM PATH_TO ." 
+        echo "Purpose: rsync function to push files to raspberry pi NAS." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from:   Path on local to Rsync from" 
+        echo "path_to: Path on pi to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "arcpush jrabdy /"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress jrabdy root@192.168.1.106:/sharedfolders/bigone/"
+
+        return 1
+    fi
+    #grabs last passed argument..
+    for last; do true; done
+
+    rsync -avS --progress ${@:1:$(($#-1))} root@192.168.1.106:/sharedfolders/bigone$last
+}
 
 #bash command to push file(s) onto ARCHER (UK)
 function arcpush() 
@@ -267,6 +334,31 @@ function arcpush()
     for last; do true; done
 
     rsync -avS --progress ${@:1:$(($#-1))} chbull@login.archer.ac.uk:$last
+}
+
+function arcdacpush() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   arcdacpush PATH_FROM PATH_TO ." 
+        echo "Purpose: rsync function to push files to archer." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from:   Path on local to Rsync from" 
+        echo "path_to: Path on archer to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "arcdacpush ./temp/* /short/e14/cyb561/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress ./temp/* chbull@login.rdf.ac.uk:/massdata/e14/cyb561/now/"
+
+        return 1
+    fi
+    #grabs last passed argument..
+    for last; do true; done
+
+    rsync -avS --progress ${@:1:$(($#-1))} chbull@login.dac.ac.uk:$last
 }
 
 
@@ -342,8 +434,53 @@ function bcpush()
     #grabs last passed argument..
     for last; do true; done
 
+    #rsync -avS --progress ${@:1:$(($#-1))} chbull@bslcenb.nerc-bas.ac.uk:$last
     rsync -avS --progress ${@:1:$(($#-1))} chbull@bslcenb.nerc-bas.ac.uk:$last
 }
+
+#vim netrw plugin for various servers...
+function vimjcr() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   vimjcr PATH_TO." 
+        echo "Purpose: Allows remote editing of files on BAS servers..." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path or file: vim will either edit or open file passed" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "vimjcr /users/chbull/repos/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "vim scp://chris@10.104.2.73//users/chbull/repos/"
+        
+
+        return 1
+    fi
+    #number of arguments...
+    #echo $#
+    if [ $# == 1 ]
+      then
+        vim scp://chris@10.104.2.73/${1} 
+    fi
+
+    if [ $# == 2 ]
+      then
+        vim -O scp://chris@10.104.2.73/${1}  scp://chris@10.104.2.73/${2} 
+    fi
+
+    if [ $# == 3 ]
+      then
+        vim -O scp://chris@10.104.2.73/${1} scp://chris@10.104.2.73/${2} scp://chris@10.104.2.73/${3}  
+    fi
+
+    if [ $# > 3 ]
+      then
+        echo 'you passed too many arguments!'
+    fi
+}
+
 
 
 
@@ -431,7 +568,21 @@ function vimarc()
     fi
 }
 
+function varc() #grab path from clipboard and edit using archer
+{
+    OUTPUT="$(xclip -o -selection clipboard)"
+    echo "Executing: vim scp://chbull@login.archer.ac.uk/${OUTPUT}"
+    vim scp://chbull@login.archer.ac.uk/${OUTPUT} 
+}
 
+
+function vbas() #grab path from clipboard and edit using bas cluster
+{
+    OUTPUT="$(xclip -o -selection clipboard)"
+    echo "Executing: vim scp://chbull@bslcenc.nerc-bas.ac.uk/${OUTPUT}"
+    
+    vim scp://chbull@bslcenc.nerc-bas.ac.uk/${OUTPUT} 
+}
 
 
 #vim netrw plugin for various servers...
@@ -643,7 +794,7 @@ function log() #pbs log file
 }
 
 
-function grab() #grab path 
+function g() #grab path 
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
         echo "Usage: grab FILENAME_PATHNAME" 
@@ -662,7 +813,7 @@ function grab() #grab path
 
         return 1
     fi
-  readlink -e ${1}|tr -d '\n'|xclip -selection c
+  readlink -e ${1}|tr -d '\n'|xclip -selection clipboard
 }
 
 function gvim() #grab path 
@@ -711,10 +862,14 @@ function loadnc() #load netcdf file in python
 OUTPUT="$(readlink -e ${1}|tr -d '\n')"
 cat << EOF > loadvar.py
 import os
-from netCDF4 import Dataset
+import xarray as xr
+import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.ticker import MultipleLocator
 infile='${OUTPUT}'
-ifile=Dataset(infile, 'r')
-#varone=ifile.variables['']
+assert(os.path.exists(infile)),"netCDF file does not exist!"
+ifile=xr.open_dataset(infile)
+#varone=ifile['']
 print ""
 print "NetCDF file loaded with bash loadnc function..."
 print os.path.basename(infile)
@@ -731,6 +886,13 @@ print ""
 print ""
 print "'ifile' is name of netCDF4 object... "
 print ""
+
+#plt.close('all')
+#fig=plt.figure()
+#ax=fig.add_subplot(1, 1,1)
+##cs1=ax.contourf()
+#plt.colorbar(cs1,cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25),orientation='horizontal')
+#plt.show()
 EOF
 ipython -i loadvar.py
 }
@@ -766,7 +928,76 @@ function mddu() #insert argument for mass data on nci
     mdss dmdu -ch cyb561/now/output/${1}
 }
 
-function nemostat()
+function qmeless()
+{
+    echo "Running jobs on ARCHER..."
+    OUTPUT0=$(qstat -u chbull)
+    echo "$OUTPUT0"
+    echo ""
+    echo "Getting path of running jobs on ARCHER..."
+    # go to scheduler and getting running jobs..
+    OUTPUT="$(qstat -u chbull|grep chbull| cut -c1-11)"
+    echo "--"
+    while read -r OUTPUT; do
+        que=$(qstat -f ${OUTPUT}|grep -A 1 Output_Path|tr -d '\040\011\012\015')
+        que2=$(dirname $que |sed 's/^.*://'|sed 's/\r$//')
+
+        que3=$(qstat -f ${OUTPUT}|grep Account_Name)
+        echo $OUTPUT":$que3:" $que2 
+    done <<< "$OUTPUT"
+    echo ""
+}
+
+
+function qmemore()
+{
+    echo "Running jobs on ARCHER..."
+    OUTPUT0=$(qstat -u chbull)
+    echo "$OUTPUT0"
+    echo ""
+    echo "Getting path of running jobs on ARCHER..."
+    # go to scheduler and getting running jobs..
+    OUTPUT="$(qstat -u chbull|grep chbull| cut -c1-11)"
+    echo "--"
+    while read -r OUTPUT; do
+        que=$(qstat -f ${OUTPUT}|grep -A 1 Output_Path|tr -d '\040\011\012\015')
+        que2=$(dirname $que |sed 's/^.*://'|sed 's/\r$//')
+
+        #rn_rdt=$(grep 'rn_rdt' $que2/namelist_cfg | head -n 1 |  cut -c1-30 | grep -o -E '[0-9]+ | head -n 1')
+        #rn_rdt=720.
+	rn_rdt=`cat $que2/qme`
+
+        echo $OUTPUT":" $que2 ". rn_rdt:" $rn_rdt
+        desc=$(grep 'Desc' $que2/README)
+	echo "$desc"
+	echo $OUTPUT" (days / years) :";cat $que2/time.step | while read word; do python -c "print $word*$rn_rdt/(60*60*24)"; done  
+	cat $que2/time.step | while read word; do python -c "print $word*$rn_rdt/(60*60*24*365.0)"; done  
+	grep -A 4 'E R R' $que2/ocean.output
+        echo "--"
+    done <<< "$OUTPUT"
+    echo ""
+}
+
+function rdfstat() # progress of nemo experiments
+{
+for f in /nerc/n02/n02/chbull/RawData/NEMO/nemo_WED025_*; do
+	var=`du $f/???? | wc -l`
+	echo "Exp: -> $f ${var} years"
+done
+}
+
+function mnemo() #compile NEMO on archer with passed config
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:  mnemo CONFIG" 
+        echo "Purpose: compile NEMO on archer with passed config., i.e., ./makenemo -n CONFIG -m XC_ARCHER_INTEL -j 8" 
+        echo "       " 
+        return 1
+    fi
+    ./makenemo -n ${1} -m XC_ARCHER_INTEL -j 8
+}
+
+function ncinemostat()
 {
 
     echo "Getting status of running nemo jobs."
