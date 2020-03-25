@@ -128,7 +128,7 @@ alias mrose="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y exvmsrose'"  #
 #jasmin log-in needs to hop
 function jas() 
 {
-ssh -tX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk'
+ssh -tAX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk'
 }
 
 alias ip='ipython --pylab'
