@@ -41,6 +41,11 @@ alias runprof='. ~/.bashrc'
 alias temp='mkdir ~/temp/ ; cd ~/temp/'
 alias foldersize='du -h --max-depth=1 .'
 alias p='python '
+alias getwedplots='watch rsync -avz --progress chbull@login.archer.ac.uk:/nerc/n02/n02/chbull/20180810_wed_reanalysis_atmo/analysis/plots .'
+alias getwedpaper='watch rsync -avz --progress chbull@login.archer.ac.uk:/nerc/n02/n02/chbull/20180810_wed_reanalysis_atmo/analysis/paperfigsdoc/wed025_figures_main.docx .'
+alias getwedpapersupp='watch rsync -avz --progress chbull@login.archer.ac.uk:/nerc/n02/n02/chbull/20180810_wed_reanalysis_atmo/analysis/paperfigsdoc/wed025_figures_supp.docx .'
+alias getwedjcr='watch rsync -avz --progress chris@10.104.2.73:/home/chris/VBoxSHARED/goship /home/chris/VBoxSHARED'
+
 
 #vim
 alias vi='vim -O'
@@ -64,6 +69,7 @@ alias gittrack='git ls-tree --full-tree -r HEAD'
 alias gitb='git branch -a --color=auto'
 
 #machines
+alias os='ssh -X oswald'
 alias typ='ssh -X z3457920@typhoon.ccrc.unsw.edu.au'
 alias t='ssh -X z3457920@typhoon.ccrc.unsw.edu.au'
 alias hurricane='ssh -X z3457920@hurricane.ccrc.unsw.edu.au'
@@ -87,17 +93,20 @@ alias newstormc='ssh -X z3457920@cyclone2.ccrc.unsw.edu.au'
 alias newstormh='ssh -X z3457920@hurricane2.ccrc.unsw.edu.au'
 alias newstormt='ssh -X z3457920@typhoon2.ccrc.unsw.edu.au'
 alias imp='ssh -X cbull@login.cx1.hpc.ic.ac.uk'
+alias rpi='ssh -X pi@192.168.1.106'
+alias rpipytick='vim scp://pi@192.168.1.106//home/pi/repos/PyTick/portfoliotrk.py'
 
 #BAS machines
-alias bhop='ssh -X  chbull@bslcenb.nerc-bas.ac.uk'
-alias bhop2='ssh -X chbull@bslcenc.nerc-bas.ac.uk'
-alias bc1="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws01.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
-alias bc2="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws02.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
-alias bc3="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws03.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
-alias bc4="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws04.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
-alias bc5="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws05.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
-alias bc6="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws06.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
-alias bc7="ssh -tX chbull@bslcenb.nerc-bas.ac.uk 'ssh -X chbull@bslws07.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bcjcr="ssh chris@10.104.2.73"
+alias bhop='ssh -CY  chbull@bslcenb.nerc-bas.ac.uk'
+alias bhop2='ssh -CY chbull@bslcenc.nerc-bas.ac.uk'
+alias bc1="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws01.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc2="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws02.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc3="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws03.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc4="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws04.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc5="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws05.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc6="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws06.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
+alias bc7="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws07.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
 alias bc8='ssh -X chbull@bslcenh.nerc-bas.ac.uk' # due to be de-comissioned soon, see jeremy email
 alias arc='ssh -X chbull@login.archer.ac.uk'
 alias archer='ssh -X chbull@login.archer.ac.uk'
@@ -120,7 +129,12 @@ alias mrose="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y exvmsrose'"  #
 #jasmin log-in needs to hop
 function jas() 
 {
-ssh -tX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk'
+ssh -tAX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk'
+}
+
+function j1() 
+{
+ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AtCY chbull@jasmin-login1.ceda.ac.uk "ssh -ACY chbull@jasmin-sci1.ceda.ac.uk" '
 }
 
 alias ip='ipython --pylab'
@@ -144,6 +158,12 @@ case $(hostname) in
 
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
+        ;;
+    oswald|oswald.campus.unn.ac.uk)
+        module load gcc
+        module load slurm 
+        alias r='cd /home/osw_lhly6/repos'
+        alias rw1='cd /lustre/lzfs/osw_lhly6'
         ;;
     xcslc0|exvmsrose.monsoon-metoffice.co.uk)
         #MetOffice Monsoon machines..
@@ -265,7 +285,14 @@ case $(hostname) in
         alias j6='ssh -AX chbull@cems-sci1.cems.rl.ac.uk'
         alias j7='ssh -AX chbull@cems-sci2.cems.rl.ac.uk'
         alias jmass='ssh -X chbull@mass-cli1.ceda.ac.uk'
+        alias et='ssh -X et1.ceda.ac.uk'
+        
+        alias ps='export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root'
+        alias ps3='export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda3/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda3/bin:$PATH;source activate root'
 
+        alias r='cd /home/users/chbull/repos'
+        alias nemowed='cd /home/users/chbull/repos/nemo_wed_analysis/'
+        
         alias rw1='cd /group_workspaces/jasmin2/bas_pog/chbull'
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/

@@ -1887,6 +1887,64 @@ ax = plt.subplot(gs[0,1])
 plt.colorbar(cs1,cax=plt.subplot(gs[2,0:2]),orientation='horizontal')
 endsnippet
 
+snippet sgridspec_stretchy_cbar_fulleg
+import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.ticker import MultipleLocator
+import numpy as np
+
+
+import itertools
+alphabet=\
+['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+sub_let=itertools.cycle(alphabet)
+
+from matplotlib import gridspec
+plt.close('all')
+row=6
+col=3
+fig=plt.figure(figsize=(5.0*col,5*2))
+gs = gridspec.GridSpec(row, col,height_ratios=[1,.05,.1,1,.05,.1],width_ratios=[1]*col,hspace=.075,wspace=0.075)
+
+ax = plt.subplot(gs[0,0])
+#sm.pl_inset_title_box(axis,sub_let.next(),bwidth="5%",location=2)
+cs1=ax.contourf(np.random.rand(100,80),cmap='seismic',extend='both')
+cbar=plt.colorbar(cs1,cax=plt.subplot(gs[1,0]),orientation='horizontal')
+plt.setp(ax.get_xticklabels()+ax.get_yticklabels(),visible=False)
+cbar.set_label('v-velocity (m/s)')
+
+ax = plt.subplot(gs[0,1])
+#sm.pl_inset_title_box(axis,sub_let.next(),bwidth="5%",location=2)
+cs1=ax.contourf(np.random.rand(100,80),cmap='jet',extend='both')
+cbar=plt.colorbar(cs1,cax=plt.subplot(gs[1,1]),orientation='horizontal')
+plt.setp(ax.get_xticklabels()+ax.get_yticklabels(),visible=False)
+cbar.set_label('v-velocity (m/s)')
+
+ax = plt.subplot(gs[0,2])
+#sm.pl_inset_title_box(axis,sub_let.next(),bwidth="5%",location=2)
+cs1=ax.contourf(np.random.rand(100,80),cmap='inferno')
+cbar=plt.colorbar(cs1,cax=plt.subplot(gs[1,2]),orientation='horizontal')
+plt.setp(ax.get_xticklabels()+ax.get_yticklabels(),visible=False)
+cbar.set_label('v-velo (m/s)')
+
+ax = plt.subplot(gs[3,0])
+#sm.pl_inset_title_box(axis,sub_let.next(),bwidth="5%",location=2)
+cs1=ax.contourf(np.random.rand(100,80),cmap='jet')
+cbar=plt.colorbar(cs1,cax=plt.subplot(gs[4,0]),orientation='horizontal')
+plt.setp(ax.get_xticklabels()+ax.get_yticklabels(),visible=False)
+cbar.set_label('meh (m/s)')
+
+ax = plt.subplot(gs[3,1])
+#sm.pl_inset_title_box(axis,sub_let.next(),bwidth="5%",location=2)
+cs1=ax.contourf(np.random.rand(100,80),cmap='Greys')
+cbar=plt.colorbar(cs1,cax=plt.subplot(gs[4,1]),orientation='horizontal')
+plt.setp(ax.get_xticklabels()+ax.get_yticklabels(),visible=False)
+cbar.set_label('moo (m/s)')
+
+# fig.savefig('./moo.png',dpi=300,bbox_inches='tight')
+plt.show()
+endsnippet
+
 snippet phandy
 def phandy(pltaxis,title,hidex=False,hidey=False):
     #tf=sm.get_tfile(ename)
@@ -1989,6 +2047,9 @@ snippet hidelab
 plt.setp(${1:ax}.get_yticklabels()+$1.get_xticklabels(),visible=False)
 endsnippet
 
+snippet resamplecm
+cmappy=matplotlib.cm.seismic._resample(13)
+endsnippet
 
 snippet xlim
 #ax.set_xlim([-1,5])

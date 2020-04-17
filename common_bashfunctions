@@ -284,6 +284,60 @@ function mdsspull()
     rsync -avS --progress cyb561@dc-dm3.nci.org.au:$* 
 }
 
+#bash command to push file(s) onto raspberry pi
+function pipush() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   pipush PATH_FROM PATH_TO ." 
+        echo "Purpose: rsync function to push files to raspberry pi NAS." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from:   Path on local to Rsync from" 
+        echo "path_to: Path on pi to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "arcpush jrabdy /"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress jrabdy root@192.168.1.106:/sharedfolders/bigone/"
+
+        return 1
+    fi
+    #grabs last passed argument..
+    for last; do true; done
+
+    rsync -avS --progress ${@:1:$(($#-1))} root@192.168.1.106:/sharedfolders/bigone$last
+}
+
+#bash command to push file(s) onto ARCHER (UK)
+function ospush() 
+{
+    RED='\033[0;31m'
+    NC='\033[0m'
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo -e "Usage:  ${RED}ospush${NC} PATH_FROM PATH_TO ." 
+        echo -e "Purpose: rsync function to push files to ${RED}oswald (Northumbria)${NC} " 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from:   Path on local to Rsync from" 
+        echo "path_to: Path on osher to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "ospush ./temp/* /lustre/lzfs/osw_lhly6/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress ./temp/* osw_lhly6@oswald:/lustre/lzfs/osw_lhly6/"
+
+        return 1
+    fi
+    #grabs last passed argument..
+    for last; do true; done
+
+    rsync -avS --progress ${@:1:$(($#-1))} osw_lhly6@oswald:$last
+}
+
 
 #bash command to push file(s) onto ARCHER (UK)
 function arcpush() 
@@ -361,6 +415,24 @@ function arcpull()
     rsync -avz --progress chbull@login.archer.ac.uk:$* 
 }
 
+
+function jaspullplots() 
+{
+# pull plots from Jasmin via ARCHER
+ssh -tX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -tAX chbull@jasmin-xfer1.ceda.ac.uk "rsync -avz --progress /group_workspaces/jasmin2/bas_pog/chbull/20180810_wed_reanalysis_atmo/analysis/plots chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP"'
+rsync -avz --progress chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP /home/chris/VBoxSHARED
+#ssh -t chbull@login.archer.ac.uk 'rm -r /home/n02/n02/chbull/plots_TEMP'
+}
+
+function jaspullplots2() 
+{
+# pull plots from Jasmin via ARCHER
+ssh -tX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -tAX chbull@jasmin-xfer1.ceda.ac.uk "rsync -avz --progress /group_workspaces/jasmin2/bas_pog/chbull/20200105_wed_1998xtreme/analysis/plots chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP2"'
+rsync -avz --progress chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP2 /home/chris/VBoxSHARED
+#ssh -t chbull@login.archer.ac.uk 'rm -r /home/n02/n02/chbull/plots_TEMP2'
+}
+
+
 #rsync functions for grabbing
 #bash function to grab passed files from BAS cluster
 function bcpull()
@@ -412,6 +484,50 @@ function bcpush()
     #rsync -avS --progress ${@:1:$(($#-1))} chbull@bslcenb.nerc-bas.ac.uk:$last
     rsync -avS --progress ${@:1:$(($#-1))} chbull@bslcenb.nerc-bas.ac.uk:$last
 }
+
+#vim netrw plugin for various servers...
+function vimjcr() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   vimjcr PATH_TO." 
+        echo "Purpose: Allows remote editing of files on BAS servers..." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path or file: vim will either edit or open file passed" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "vimjcr /users/chbull/repos/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "vim scp://chris@10.104.2.73//users/chbull/repos/"
+        
+
+        return 1
+    fi
+    #number of arguments...
+    #echo $#
+    if [ $# == 1 ]
+      then
+        vim scp://chris@10.104.2.73/${1} 
+    fi
+
+    if [ $# == 2 ]
+      then
+        vim -O scp://chris@10.104.2.73/${1}  scp://chris@10.104.2.73/${2} 
+    fi
+
+    if [ $# == 3 ]
+      then
+        vim -O scp://chris@10.104.2.73/${1} scp://chris@10.104.2.73/${2} scp://chris@10.104.2.73/${3}  
+    fi
+
+    if [ $# > 3 ]
+      then
+        echo 'you passed too many arguments!'
+    fi
+}
+
 
 
 

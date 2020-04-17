@@ -1,0 +1,14 @@
+# ssh/config
+Host *
+    ForwardAgent yes
+    ForwardX11 yes
+
+Host garrett.unn.ac.uk
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+
+Host oswald
+    User osw_lhly6
+    IdentityFile /home/chris/.ssh/id_rsa
+    HostName oswald.campus.unn.ac.uk
+    ProxyCommand ssh -W %h:%p -p 4219 prx_lhly6@garrett.unn.ac.uk 2> /dev/null
