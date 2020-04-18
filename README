@@ -5,7 +5,8 @@ git clone --recurse-submodules https://cbull@bitbucket.org/cbull/dotfiles.git
 cd ~/.vim/home/chris/.vim/bundle/YouCompleteMe;./install.sh
 
 Make links:
-ln -s ~/.vim/sshconfig ~/.ssh/config
+#ln -s ~/.vim/sshconfig ~/.ssh/config
+ln -s ~/.vim/ssh_config ~/.ssh/config #for oswald NU
 ln -s ~/.vim/vimrc ~/.vimrc 
 ln -s ~/.vim/bashrc ~/.bashrc 
 ln -s ~/.vim/tmux.conf ~/.tmux.conf

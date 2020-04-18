@@ -69,6 +69,7 @@ alias gittrack='git ls-tree --full-tree -r HEAD'
 alias gitb='git branch -a --color=auto'
 
 #machines
+alias os='ssh -X oswald'
 alias typ='ssh -X z3457920@typhoon.ccrc.unsw.edu.au'
 alias t='ssh -X z3457920@typhoon.ccrc.unsw.edu.au'
 alias hurricane='ssh -X z3457920@hurricane.ccrc.unsw.edu.au'
@@ -157,6 +158,12 @@ case $(hostname) in
 
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
+        ;;
+    oswald|oswald.campus.unn.ac.uk)
+        module load gcc
+        module load slurm 
+        alias r='cd /home/osw_lhly6/repos'
+        alias rw1='cd /lustre/lzfs/osw_lhly6'
         ;;
     xcslc0|exvmsrose.monsoon-metoffice.co.uk)
         #MetOffice Monsoon machines..
