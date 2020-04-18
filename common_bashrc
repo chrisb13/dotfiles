@@ -285,6 +285,7 @@ case $(hostname) in
 
         alias r='cd /home/users/chbull/repos'
         alias nemowed='cd /home/users/chbull/repos/nemo_wed_analysis/'
+        alias nemo='cd /home/users/chbull/repos/nemo_wed_analysis/'
         
         alias rw1='cd /group_workspaces/jasmin2/bas_pog/chbull'
         #add xclip to the end of bash path
