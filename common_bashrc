@@ -129,8 +129,14 @@ alias mrose="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y exvmsrose'"  #
 #jasmin log-in needs to hop
 function jas() 
 {
-ssh -tAX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk'
+ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -ACY chbull@jasmin-login1.ceda.ac.uk'
 }
+
+function jascode() 
+{
+ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;vim scp://chbull@jasmin-login1.ceda.ac.uk//home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/'
+}
+
 
 function j1() 
 {

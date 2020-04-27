@@ -1,9 +1,9 @@
 snippet header
 #!/usr/bin/env python 
 #   Author: Christopher Bull. 
-#   Affiliation:  British Antarctic Survey
-#                 Cambridge, UK
-#   Contact: chbull@bas.ac.uk
+#   Affiliation:  Department of Geography and Environmental Sciences, 
+#                 Northumbria University, Newcastle upon Tyne, UK
+#   Contact: christopher.bull@northumbria.ac.uk
 `!p 
 import time
 snip.rv='#   Date created: '+time.strftime("%a, %d %b %Y %H:%M:%S")
@@ -81,6 +81,11 @@ if __name__ == "__main__":
     localtime = time.asctime( time.localtime(time.time()) )
     lg.info("Local current time : "+ str(localtime))
     lg.info('SCRIPT ended')
+endsnippet 
+
+snippet pdb
+import pdb
+pdb.set_trace()
 endsnippet 
 
 snippet wedheader
@@ -1346,6 +1351,36 @@ inset_axes = inset_axes(ax,
                         height=1.4, # height : 1 inch
                         loc=1)
 endsnippet
+
+snippet patches
+#little box
+patch=axis.fill([pts[0],pts[1],pts[1],pts[0]],[pts[2],pts[2],pts[3],pts[3]],'w', alpha=1, edgecolor='b',lw=2, facecolor='none')
+
+#insert text
+def makebox(axis,text,xpos,ypos,rot=0,fs=9.5,co='w'):
+    axis.annotate(text,
+    xy = (xpos,ypos),
+    xycoords = 'axes fraction',
+    horizontalalignment = 'center',
+    verticalalignment = 'bottom',
+    fontsize = fs,
+    fontweight = 'light',# animated=True,
+    color=co,
+    bbox = dict(boxstyle="round", fc='black',
+    ec="0.5", alpha=0.7),rotation=rot)
+return axis
+
+#insert zonal arrow (I think, see dx, from Tasman Sea transport budget plots)
+import matplotlib.patches as patches
+ax.add_patch(patches.Arrow(
+-68,            # x
+1700,            # y
+-2,           # dx
+0 ,           # dy
+width=2,       # optional - defaults to 1.0
+color='k'))
+endsnippet
+
 
 snippet uselatex
 #nb requires latex installed on the machine, see http://matplotlib.org/users/usetex.html
