@@ -126,26 +126,6 @@ alias mxcx="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y xcs-c'"       #
 alias mpp="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y postproc'"     #postproc log-in needs to m-lander-hop
 alias mrose="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y exvmsrose'"  #rose log-in needs to m-lander-hop
 
-#jasmin log-in needs to hop
-function jas() 
-{
-ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -ACY chbull@jasmin-login1.ceda.ac.uk'
-}
-
-function jascode() 
-{
-ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;vim scp://chbull@jasmin-login1.ceda.ac.uk//home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/'
-}
-
-function jascode2() 
-{
-ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;vim scp://chbull@jasmin-login1.ceda.ac.uk//home/users/chbull/repos/nemo_wed_analysis/wed/'
-}
-
-function j1() 
-{
-ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AtCY chbull@jasmin-login1.ceda.ac.uk "ssh -ACY chbull@jasmin-sci1.ceda.ac.uk" '
-}
 
 alias ip='ipython --pylab'
 alias ipy='ipython --TerminalInteractiveShell.editing_mode=vi --pylab'
