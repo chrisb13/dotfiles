@@ -1354,6 +1354,14 @@ endsnippet
 
 snippet patches
 #little box
+#upright=(-33.433537, 159.48608)
+#lowleft=(-51.030285, 142.7417)
+
+#pts=[0,0,0,0]
+#pts[0]=lowleft[1]
+#pts[1]=upright[1]
+#pts[2]=lowleft[0]
+#pts[3]=upright[0]
 patch=axis.fill([pts[0],pts[1],pts[1],pts[0]],[pts[2],pts[2],pts[3],pts[3]],'w', alpha=1, edgecolor='b',lw=2, facecolor='none')
 
 #insert text
@@ -2021,6 +2029,24 @@ def getlev(field,levels=30):
     :returns: numpy linspace array
     """
     return np.linspace(np.min(field),np.max(field),levels)
+endsnippet
+
+snippet cmap_centre_adjust
+#used for horizontal vs depth plots where you want the bathymetry to be correctly coloured
+#was perfect for having a centre adjusted colormap using pcolormesh
+#allows an asymmetric colourmap to have appropriate colours for small values on the 'small side'
+#set_bad also coloured the landmask effectively
+
+def truncate_colormap(cmap, minval=0.0, maxval=1.0, n=100):
+    "https://stackoverflow.com/questions/18926031/how-to-extract-a-subset-of-a-colormap-as-a-new-colormap-in-matplotlib"
+    new_cmap = colors.LinearSegmentedColormap.from_list(
+    'trunc({n},{a:.2f},{b:.2f})'.format(n=cmap.name, a=minval, b=maxval),
+    cmap(np.linspace(minval, maxval, n)))
+    return new_cmap
+
+new_cmap = truncate_colormap(cmappy, 0.45, .99)
+new_cmap.set_bad('#858588', 1)
+cs2=ax.pcolormesh(hoz,dep,dT*-1,vmin=-0.2,vmax=2.49,cmap=new_cmap)
 endsnippet
 
 snippet cmap_centre_adjust
