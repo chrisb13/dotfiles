@@ -1404,6 +1404,11 @@ matplotlib.rcParams['mathtext.bf'] = 'Bitstream Vera Sans:bold'
 cb1.set_label(r"$\displaystyle ^{\circ} C$")
 endsnippet
 
+snippet uselatex2
+ax.set_ylabel(r'Eastern boundary salinity ($\frac{g}{kg}*m^{2}$)')
+ax.set_ylabel('Eastern boundary entrant temperature ($^{\circ}C*m^{2}$ )')
+endsnippet
+
 snippet flipyaxis
 plt.gca().invert_yaxis()
 endsnippet
