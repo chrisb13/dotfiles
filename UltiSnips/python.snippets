@@ -1,9 +1,9 @@
 snippet header
 #!/usr/bin/env python 
 #   Author: Christopher Bull. 
-#   Affiliation:  British Antarctic Survey
-#                 Cambridge, UK
-#   Contact: chbull@bas.ac.uk
+#   Affiliation:  Department of Geography and Environmental Sciences, 
+#                 Northumbria University, Newcastle upon Tyne, UK
+#   Contact: christopher.bull@northumbria.ac.uk
 `!p 
 import time
 snip.rv='#   Date created: '+time.strftime("%a, %d %b %Y %H:%M:%S")
@@ -81,6 +81,11 @@ if __name__ == "__main__":
     localtime = time.asctime( time.localtime(time.time()) )
     lg.info("Local current time : "+ str(localtime))
     lg.info('SCRIPT ended')
+endsnippet 
+
+snippet pdb
+import pdb
+pdb.set_trace()
 endsnippet 
 
 snippet wedheader
@@ -1347,6 +1352,44 @@ inset_axes = inset_axes(ax,
                         loc=1)
 endsnippet
 
+snippet patches
+#little box
+#upright=(-33.433537, 159.48608)
+#lowleft=(-51.030285, 142.7417)
+
+#pts=[0,0,0,0]
+#pts[0]=lowleft[1]
+#pts[1]=upright[1]
+#pts[2]=lowleft[0]
+#pts[3]=upright[0]
+patch=axis.fill([pts[0],pts[1],pts[1],pts[0]],[pts[2],pts[2],pts[3],pts[3]],'w', alpha=1, edgecolor='b',lw=2, facecolor='none')
+
+#insert text
+def makebox(axis,text,xpos,ypos,rot=0,fs=9.5,co='w'):
+    axis.annotate(text,
+    xy = (xpos,ypos),
+    xycoords = 'axes fraction',
+    horizontalalignment = 'center',
+    verticalalignment = 'bottom',
+    fontsize = fs,
+    fontweight = 'light',# animated=True,
+    color=co,
+    bbox = dict(boxstyle="round", fc='black',
+    ec="0.5", alpha=0.7),rotation=rot)
+return axis
+
+#insert zonal arrow (I think, see dx, from Tasman Sea transport budget plots)
+import matplotlib.patches as patches
+ax.add_patch(patches.Arrow(
+-68,            # x
+1700,            # y
+-2,           # dx
+0 ,           # dy
+width=2,       # optional - defaults to 1.0
+color='k'))
+endsnippet
+
+
 snippet uselatex
 #nb requires latex installed on the machine, see http://matplotlib.org/users/usetex.html
 from matplotlib import rc
@@ -1359,6 +1402,11 @@ matplotlib.rcParams['mathtext.rm'] = 'Bitstream Vera Sans'
 matplotlib.rcParams['mathtext.it'] = 'Bitstream Vera Sans:italic'
 matplotlib.rcParams['mathtext.bf'] = 'Bitstream Vera Sans:bold'
 cb1.set_label(r"$\displaystyle ^{\circ} C$")
+endsnippet
+
+snippet uselatex2
+ax.set_ylabel(r'Eastern boundary salinity ($\frac{g}{kg}*m^{2}$)')
+ax.set_ylabel('Eastern boundary entrant temperature ($^{\circ}C*m^{2}$ )')
 endsnippet
 
 snippet flipyaxis
@@ -1986,6 +2034,24 @@ def getlev(field,levels=30):
     :returns: numpy linspace array
     """
     return np.linspace(np.min(field),np.max(field),levels)
+endsnippet
+
+snippet cmap_centre_adjust
+#used for horizontal vs depth plots where you want the bathymetry to be correctly coloured
+#was perfect for having a centre adjusted colormap using pcolormesh
+#allows an asymmetric colourmap to have appropriate colours for small values on the 'small side'
+#set_bad also coloured the landmask effectively
+
+def truncate_colormap(cmap, minval=0.0, maxval=1.0, n=100):
+    "https://stackoverflow.com/questions/18926031/how-to-extract-a-subset-of-a-colormap-as-a-new-colormap-in-matplotlib"
+    new_cmap = colors.LinearSegmentedColormap.from_list(
+    'trunc({n},{a:.2f},{b:.2f})'.format(n=cmap.name, a=minval, b=maxval),
+    cmap(np.linspace(minval, maxval, n)))
+    return new_cmap
+
+new_cmap = truncate_colormap(cmappy, 0.45, .99)
+new_cmap.set_bad('#858588', 1)
+cs2=ax.pcolormesh(hoz,dep,dT*-1,vmin=-0.2,vmax=2.49,cmap=new_cmap)
 endsnippet
 
 snippet cmap_centre_adjust
