@@ -42,10 +42,10 @@ Host jashop
   HostName jasmin-login1.ceda.ac.uk
   User chbull
   ProxyCommand ssh chbull@bas -W %h:%p
-  IdentityFile /home/chris/.ssh/id_rsa_jasmin
+  IdentityFile ~/.ssh/id_rsa_jasmin
 
 Host jas
   HostName jasmin-sci1.ceda.ac.uk
   User chbull
   ProxyCommand ssh chbull@jashop -W %h:%p
-  IdentityFile /home/chris/.ssh/id_rsa_jasmin
+  IdentityFile ~/.ssh/id_rsa_jasmin
