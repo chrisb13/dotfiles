@@ -108,7 +108,7 @@ alias bc5="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws05.nerc-b
 alias bc6="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws06.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
 alias bc7="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws07.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
 alias bc8='ssh -X chbull@bslcenh.nerc-bas.ac.uk' # due to be de-comissioned soon, see jeremy email
-alias arc='ssh -X chbull@login.archer.ac.uk'
+alias arc='ssh -CY chbull@login.archer.ac.uk'
 alias archer='ssh -X chbull@login.archer.ac.uk'
 alias archerrdf='ssh -X chbull@login.rdf.ac.uk'
 alias arcdac='ssh -X chbull@login.rdf.ac.uk'
@@ -126,16 +126,6 @@ alias mxcx="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y xcs-c'"       #
 alias mpp="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y postproc'"     #postproc log-in needs to m-lander-hop
 alias mrose="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y exvmsrose'"  #rose log-in needs to m-lander-hop
 
-#jasmin log-in needs to hop
-function jas() 
-{
-ssh -tAX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AX chbull@jasmin-login1.ceda.ac.uk'
-}
-
-function j1() 
-{
-ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AtCY chbull@jasmin-login1.ceda.ac.uk "ssh -ACY chbull@jasmin-sci1.ceda.ac.uk" '
-}
 
 alias ip='ipython --pylab'
 alias ipy='ipython --TerminalInteractiveShell.editing_mode=vi --pylab'
@@ -292,7 +282,10 @@ case $(hostname) in
         alias ps3='export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda3/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda3/bin:$PATH;source activate root'
 
         alias r='cd /home/users/chbull/repos'
-        alias nemowed='cd /home/users/chbull/repos/nemo_wed_analysis/'
+        alias nemowed='cd /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics'
+        alias nemo='cd /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics'
+        alias imgtrkr='python /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/imgtrkr/main.py'
+        
         
         alias rw1='cd /group_workspaces/jasmin2/bas_pog/chbull'
         #add xclip to the end of bash path

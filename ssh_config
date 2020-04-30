@@ -12,3 +12,21 @@ Host oswald
     IdentityFile /home/chris/.ssh/id_rsa
     HostName oswald.campus.unn.ac.uk
     ProxyCommand ssh -W %h:%p -p 4219 prx_lhly6@garrett.unn.ac.uk 2> /dev/null
+
+Host oswaldvis
+    User osw_lhly6
+    IdentityFile /home/chris/.ssh/id_rsa
+    HostName oswald-vis1.campus.unn.ac.uk
+    ProxyCommand ssh -W %h:%p -p 4219 prx_lhly6@garrett.unn.ac.uk 2> /dev/null
+
+Host jasproxy
+    User chbull
+    HostName  bslcenc.nerc-bas.ac.uk
+    LocalForward 55555 jasmin-login1.ceda.ac.uk:22
+
+Host jas
+  User chbull
+  HostName localhost
+  Port 55555
+  IdentityFile /home/chris/.ssh/id_rsa_jasmin
+
