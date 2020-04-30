@@ -19,14 +19,33 @@ Host oswaldvis
     HostName oswald-vis1.campus.unn.ac.uk
     ProxyCommand ssh -W %h:%p -p 4219 prx_lhly6@garrett.unn.ac.uk 2> /dev/null
 
-Host jasproxy
-    User chbull
-    HostName  bslcenc.nerc-bas.ac.uk
-    LocalForward 55555 jasmin-login1.ceda.ac.uk:22
+############ Edgar port forwarding way.... (does work)
+#Host jasproxy
+    #User chbull
+    #HostName  bslcenc.nerc-bas.ac.uk
+    #LocalForward 55555 jasmin-login1.ceda.ac.uk:22
 
-Host jas
+#Host jas
+  #User chbull
+  #HostName localhost
+  #Port 55555
+  #IdentityFile /home/chris/.ssh/id_rsa_jasmin
+############ Edgar port forwarding way.... (STOP)
+
+#sortof modelled on...
+#http://rubenlaguna.com/post/2014-06-10-ssh-port-forwarding-through-multiple-hops-slash-dot-ssh-slash-config-slash/
+Host bas
   User chbull
-  HostName localhost
-  Port 55555
+  HostName  bslcenc.nerc-bas.ac.uk
+
+Host jashop
+  HostName jasmin-login1.ceda.ac.uk
+  User chbull
+  ProxyCommand ssh chbull@bas -W %h:%p
   IdentityFile /home/chris/.ssh/id_rsa_jasmin
 
+Host jas
+  HostName jasmin-sci1.ceda.ac.uk
+  User chbull
+  ProxyCommand ssh chbull@jashop -W %h:%p
+  IdentityFile /home/chris/.ssh/id_rsa_jasmin
