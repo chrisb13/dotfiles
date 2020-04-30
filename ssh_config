@@ -19,28 +19,14 @@ Host oswaldvis
     HostName oswald-vis1.campus.unn.ac.uk
     ProxyCommand ssh -W %h:%p -p 4219 prx_lhly6@garrett.unn.ac.uk 2> /dev/null
 
+Host jasproxy
+    User chbull
+    HostName  bslcenc.nerc-bas.ac.uk
+    LocalForward 55555 jasmin-login1.ceda.ac.uk:22
 
-Host bhop
+Host jas
   User chbull
-  HostName bslcenc.nerc-bas.ac.uk
+  HostName localhost
+  Port 55555
+  IdentityFile /home/chris/.ssh/id_rsa_jasmin
 
-Host jass
-  User chbull
-  HostName jasmin-login1.ceda.ac.uk
-  ForwardAgent yes
-  IdentityFile /users/chbull/.ssh/id_rsa_jasmin
-  ProxyJump bhop
-
-
-Host C
- User chbull
- HostName jasmin-login1.ceda.ac.uk
- ProxyCommand ssh -T -q -o 'ForwardAgent yes' bhop #'ssh-add -t 1 /users/chbull/.ssh/id_rsa_jasmin '
-
-#ProxyCommand ssh -o 'ForwardAgent yes' chbull@bslcenc.nerc-bas.ac.uk 'ssh-add /users/chbull/.ssh/id_rsa_jasmin && nc %h %p'
-#ProxyCommand ssh -vACY chbull@bslcenc.nerc-bas.ac.uk 2> /dev/null
-#IdentityFile /users/chbull/.ssh/id_rsa_jasmin
-#function jas() 
-#{
-#ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -ACY chbull@jasmin-login1.ceda.ac.uk'
-#}
