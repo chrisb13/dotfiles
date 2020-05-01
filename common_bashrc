@@ -149,9 +149,10 @@ case $(hostname) in
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
         ;;
-    oswald|oswald.campus.unn.ac.uk)
+    oswald|oswald.campus.unn.ac.uk|vis1)
         module load gcc
         module load slurm 
+        module load netcdf
         alias r='cd /home/osw_lhly6/repos'
         alias rw1='cd /lustre/lzfs/osw_lhly6'
         ;;
