@@ -153,13 +153,6 @@ set wildignore+=*_build/*
 set wildignore+=*/coverage/*
 
 
-" Settings for jedi-vim
-" cd ~/.vim/bundle
-" git clone git://github.com/davidhalter/jedi-vim.git
-let g:jedi#usages_command = "<leader>z"
-"let g:jedi#popup_on_dot = 0
-"let g:jedi#popup_select_first = 0
-let g:jedi#use_splits_not_buffers = "right"
 
 " Better navigating through omnicomplete option list
 " See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
@@ -177,13 +170,6 @@ endfunction
 
 inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
 inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
-
-"hotkey for tagbar
-"requires: sudo apt-get install exuberant-ctags
-"if not in path can use...
-"let g:tagbar_ctags_bin='/path/to/exuberant-ctags/'
-let g:tagbar_usearrows = 1
-nmap <F8> :TagbarToggle<CR>
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
@@ -225,9 +211,6 @@ nnoremap <F4> :GundoToggle<CR>
 
 "GitGutter Toggle changed highlights
 nnoremap <F3> :GitGutterLineHighlightsToggle<CR>
-
-"Flake8 remap
-autocmd FileType python map <buffer> <F5> :call Flake8()<CR>
 
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
 inoremap <Nul> <C-x><C-o>
@@ -281,26 +264,10 @@ let g:surround_116 = "lg.info(str(np.round( \"\r\" ),2))"
 "remap escape key
 :imap jj <Esc>
 
-" IndentGuide stuff
-let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_auto_colors = 0
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red ctermbg=lightgrey
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=white
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=4
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-
-"colorscheme delek "needs to go after the indent guide
-"colorscheme elflord
-"colorscheme elflord
-let g:indent_guides_start_level=2
-let g:indent_guides_guide_size=1
 
 "docs 
 set completeopt=menuone,longest,preview
 
-"Rope
-map <leader>j :RopeGotoDefinition<CR>
-map <leader>r :RopeRename<CR>
 
 "folding
 set foldmethod=indent
@@ -535,3 +502,4 @@ nnoremap <leader>ncv :exec '!ncview <C-R>+'<CR>
 noremap <Leader>sa :CtrlP /home/nfs/z3457920/hdrive/repos/swissarmy<cr>
 noremap <Leader>cm :CtrlP /home/nfs/z3457920/hdrive/repos/cms_analysis<cr>
 noremap <Leader>nemo :CtrlP /home/nfs/z3457920/hdrive/repos/nemo_analysis<cr>
+noremap <Leader>jas :!source /home/chris/.vim/common_bashfunctions;ssh -t jas 'export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root;python /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/mkpaper_20180810_wed_reanalysis_atmo.py';jaspullplots<cr>

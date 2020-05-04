@@ -419,10 +419,24 @@ function arcpull()
 function jaspullplots() 
 {
 # pull plots from Jasmin via ARCHER
-ssh -tX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -tAX chbull@jasmin-xfer1.ceda.ac.uk "rsync -avz --progress /group_workspaces/jasmin2/bas_pog/chbull/20180810_wed_reanalysis_atmo/analysis/plots chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP"'
-rsync -avz --progress chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP /home/chris/VBoxSHARED
+#ssh -tX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -tAX chbull@jasmin-xfer1.ceda.ac.uk "rsync -avz --progress /group_workspaces/jasmin2/bas_pog/chbull/20180810_wed_reanalysis_atmo/analysis/plots chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP"'
+#rsync -avz --progress chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP /home/chris/VBoxSHARED
 #ssh -t chbull@login.archer.ac.uk 'rm -r /home/n02/n02/chbull/plots_TEMP'
+
+rsync -avz --progress jas:/group_workspaces/jasmin2/bas_pog/chbull/20180810_wed_reanalysis_atmo/analysis/plots  /home/chris/VBoxSHARED
 }
+
+function jaswatchplots() 
+{
+watch -n 2 rsync -avz --progress jas:/group_workspaces/jasmin2/bas_pog/chbull/20180810_wed_reanalysis_atmo/analysis/plots  /home/chris/VBoxSHARED
+}
+
+
+function mkpaper() 
+{
+ssh -t jas 'export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root;watch -n 6 python /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/mkpaper_20180810_wed_reanalysis_atmo.py'
+}
+
 
 function jaspullplots2() 
 {
@@ -432,19 +446,6 @@ rsync -avz --progress chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP2
 #ssh -t chbull@login.archer.ac.uk 'rm -r /home/n02/n02/chbull/plots_TEMP2'
 }
 
-#function jaspull() 
-#{
-#RED='\033[0;31m'
-#NC='\033[0m'
-## pull data from Jasmin via ARCHER
-#echo -e "${RED}Pulling  " ${*} " from JASMIN, into /home/chris/VBoxSHARED ${NC}"
-#str1='eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -tAX chbull@jasmin-xfer1.ceda.ac.uk rsync -avz --progress '${*}' chbull@login.archer.ac.uk:/home/n02/n02/chbull/'
-#str2='rm -r /home/n02/n02/chbull/'$(basename ${*})
-##echo ${str2}
-#ssh -tX chbull@bslcenc.nerc-bas.ac.uk $str1
-#rsync -avz --progress chbull@login.archer.ac.uk:/home/n02/n02/chbull/$(basename ${*}) /home/chris/VBoxSHARED
-#ssh -t chbull@login.archer.ac.uk $str2
-#}
 
 function vimjas() 
 {
@@ -550,7 +551,8 @@ ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_
 
 function jascode() 
 {
-ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;vim scp://chbull@jasmin-login1.ceda.ac.uk//home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/'
+#ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;vim scp://chbull@jasmin-login1.ceda.ac.uk//home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/'
+vim scp://jas//home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/
 }
 
 function jascode2() 
