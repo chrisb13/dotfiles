@@ -434,7 +434,15 @@ watch -n 2 rsync -avz --progress jas:/group_workspaces/jasmin2/bas_pog/chbull/20
 
 function mkpaper() 
 {
-ssh -t jas 'export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root;watch -n 6 python /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/mkpaper_20180810_wed_reanalysis_atmo.py'
+#ssh -t jas 'export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root;watch -n 6 python /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/mkpaper_20180810_wed_reanalysis_atmo.py'
+ssh -t jas 'export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root;python /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/mkpaper_20180810_wed_reanalysis_atmo.py'
+rsync -avz --progress jas:/group_workspaces/jasmin2/bas_pog/chbull/20180810_wed_reanalysis_atmo/analysis/plots  /home/chris/VBoxSHARED
+}
+
+function mkpaper2() 
+{
+ssh -t jas 'export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root;python /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/mkpaper_20200105_wed_1998xtreme.py'
+rsync -avz --progress jas:/group_workspaces/jasmin2/bas_pog/chbull/20200105_wed_1998xtreme/analysis/plots  /home/chris/VBoxSHARED/plots2
 }
 
 

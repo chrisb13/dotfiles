@@ -122,7 +122,7 @@ alias dacme3='echo "arcdac";echo "arcdacpp";echo "cd /nerc/n02/n02/chbull/repos/
 
 #met office
 alias mhop='ssh -Y chrbu@lander.monsoon-metoffice.co.uk'     
-alias mxcx="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y xcs-c'"       #xcs-c log-in needs to m-lander-hop
+alias mxcx="ssh -tCY chrbu@lander.monsoon-metoffice.co.uk 'ssh -CY xcs-c'"       #xcs-c log-in needs to m-lander-hop
 alias mpp="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y postproc'"     #postproc log-in needs to m-lander-hop
 alias mrose="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y exvmsrose'"  #rose log-in needs to m-lander-hop
 

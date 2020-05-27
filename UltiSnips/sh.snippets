@@ -56,3 +56,22 @@ ncra /nerc/n02/n02/chbull/RawData/NEMO/new_temp/20180901_New_AUS_doughnuts/nemo_
 
 wait
 endsnippet
+
+
+snippet jas_pbs
+#!/bin/bash
+#BSUB -q short-serial
+#BSUB -o %J.out
+#BSUB -e %J.err
+#BSUB -W 04:00
+
+export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root
+
+
+cd /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics
+
+echo "Running hostname"
+python mk_tdiogs_timeseries.py
+#to submit bsub < demo.bsub
+#more info https://help.jasmin.ac.uk/article/113-submit-jobs
+endsnippet
