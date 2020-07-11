@@ -449,9 +449,12 @@ rsync -avz --progress jas:/group_workspaces/jasmin2/bas_pog/chbull/20200105_wed_
 function jaspullplots2() 
 {
 # pull plots from Jasmin via ARCHER
-ssh -tX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -tAX chbull@jasmin-xfer1.ceda.ac.uk "rsync -avz --progress /group_workspaces/jasmin2/bas_pog/chbull/20200105_wed_1998xtreme/analysis/plots chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP2"'
-rsync -avz --progress chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP2 /home/chris/VBoxSHARED
+#ssh -tX chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -tAX chbull@jasmin-xfer1.ceda.ac.uk "rsync -avz --progress /group_workspaces/jasmin2/bas_pog/chbull/20200105_wed_1998xtreme/analysis/plots chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP2"'
+#rsync -avz --progress chbull@login.archer.ac.uk:/home/n02/n02/chbull/plots_TEMP2 /home/chris/VBoxSHARED
 #ssh -t chbull@login.archer.ac.uk 'rm -r /home/n02/n02/chbull/plots_TEMP2'
+
+rsync -avz --progress jas:/group_workspaces/jasmin2/bas_pog/chbull/20200105_wed_1998xtreme/analysis/plots/  /home/chris/VBoxSHARED/plots2
+
 }
 
 
