@@ -1659,6 +1659,18 @@ ax.contourf(field,levels=np.linspace(-1,1,50))
 plt.show()
 endsnippet
 
+snippet customlegend
+from matplotlib.lines import Line2D
+from matplotlib.legend import Legend
+legend_elements = [
+Line2D([0], [0], color='r', lw=2, label='one'),
+Line2D([0], [0], color='b', lw=2, label='two'),
+Line2D([0], [0], marker='s', color='m', label='CNTRL',markerfacecolor='m', markersize=10),
+Line2D([0], [0], marker='D', color='w', label='dT',markerfacecolor='b', markersize=10),
+Line2D([0], [0], marker='X', color='w', label='dS',markerfacecolor='r', markersize=10)]
+ax.legend(handles=legend_elements, loc=3)
+endsnippet
+
 snippet gspec_basic
 from matplotlib import gridspec
 plt.close('all')
