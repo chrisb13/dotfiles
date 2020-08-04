@@ -7,17 +7,19 @@ Host garrett.unn.ac.uk
     StrictHostKeyChecking no
     UserKnownHostsFile=/dev/null
 
-Host oswald
+Host oswaldnovis
     User osw_lhly6
     IdentityFile /home/chris/.ssh/id_rsa
     HostName oswald.campus.unn.ac.uk
     ProxyCommand ssh -W %h:%p -p 4219 prx_lhly6@garrett.unn.ac.uk 2> /dev/null
+    ServerAliveInterval 240
 
-Host oswaldvis
+Host oswald
     User osw_lhly6
     IdentityFile /home/chris/.ssh/id_rsa
     HostName oswald-vis1.campus.unn.ac.uk
     ProxyCommand ssh -W %h:%p -p 4219 prx_lhly6@garrett.unn.ac.uk 2> /dev/null
+    ServerAliveInterval 240
 
 ############ Edgar port forwarding way.... (does work)
 #Host jasproxy
@@ -49,3 +51,4 @@ Host jas
   User chbull
   ProxyCommand ssh chbull@jashop -XCYW %h:%p
   IdentityFile ~/.ssh/id_rsa_jasmin
+  ServerAliveInterval 240

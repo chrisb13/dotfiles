@@ -571,6 +571,23 @@ function jascode2()
 ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;vim scp://chbull@jasmin-login1.ceda.ac.uk//home/users/chbull/repos/nemo_wed_analysis/wed/'
 }
 
+#OSwald code functions
+function oscode() 
+{
+vim scp://oswald//home/osw_lhly6/
+}
+
+function osrepos()
+{
+vim scp://oswald//lustre/lzfs/osw_lhly6/repos/
+}
+
+function osnemo()
+{
+vim scp://oswald//lustre/lzfs/osw_lhly6/repos/nemo_wed_analysis/
+
+}
+
 function j1() 
 {
 ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -AtCY chbull@jasmin-login1.ceda.ac.uk "ssh -ACY chbull@jasmin-sci1.ceda.ac.uk" '
@@ -772,6 +789,47 @@ function vbas() #grab path from clipboard and edit using bas cluster
     echo "Executing: vim scp://chbull@bslcenc.nerc-bas.ac.uk/${OUTPUT}"
     
     vim scp://chbull@bslcenc.nerc-bas.ac.uk/${OUTPUT} 
+}
+
+function vimos() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   vimos PATH_TO." 
+        echo "Purpose: Allows remote editing of files on ARCHER ..." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path or file: vim will either edit or open file passed" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "vimos /users/chbull/repos/"
+        echo "       " 
+        echo "Becomes:" 
+        echo "vim scp://oswald//users/chbull/repos/"
+
+        return 1
+    fi
+    #number of arguments...
+    #echo $#
+    if [ $# == 1 ]
+      then
+        vim scp://oswald/${1} 
+    fi
+
+    if [ $# == 2 ]
+      then
+        vim -O scp://oswald/${1}  scp://oswald/${2} 
+    fi
+
+    if [ $# == 3 ]
+      then
+        vim -O scp://oswald/${1} scp://oswald/${2} scp://oswald/${3}  
+    fi
+
+    if [ $# > 3 ]
+      then
+        echo 'you passed too many arguments!'
+    fi
 }
 
 
