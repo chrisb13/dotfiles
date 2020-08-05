@@ -355,14 +355,18 @@ function arcpush()
         echo "arcpush ./temp/* /short/e14/cyb561/"
         echo "       " 
         echo "Becomes:" 
-        echo "rsync -avz --progress ./temp/* chbull@login.archer.ac.uk:/massdata/e14/cyb561/now/"
+        echo "rsync -avz --progress ./temp/* arc:/massdata/e14/cyb561/now/"
 
         return 1
     fi
     #grabs last passed argument..
     for last; do true; done
 
-    rsync -avS --progress ${@:1:$(($#-1))} chbull@login.archer.ac.uk:$last
+    RED='\033[0;31m'
+    NC='\033[0m'
+    echo -e "${RED}Pushing  " ${@:1:$(($#-1))} " into ARCHER, specifically: " $last " ${NC}"
+
+    rsync -avS --progress ${@:1:$(($#-1))} arc:$last
 }
 
 function arcdacpush() 
@@ -387,7 +391,7 @@ function arcdacpush()
     #grabs last passed argument..
     for last; do true; done
 
-    rsync -avS --progress ${@:1:$(($#-1))} chbull@login.dac.ac.uk:$last
+    rsync -avS --progress ${@:1:$(($#-1))} arc:$last
 }
 
 
@@ -412,7 +416,11 @@ function arcpull()
 
         return 1
     fi
-    rsync -avz --progress chbull@login.archer.ac.uk:$* 
+
+    RED='\033[0;31m'
+    NC='\033[0m'
+    echo -e "${RED}Pulling " ${@:1:$(($#-1))} " from ARCHER" " ${NC}"
+    rsync -avz --progress arc:$* 
 }
 
 
@@ -756,17 +764,17 @@ function vimarc()
     #echo $#
     if [ $# == 1 ]
       then
-        vim scp://chbull@login.archer.ac.uk/${1} 
+        vim scp://arc/${1} 
     fi
 
     if [ $# == 2 ]
       then
-        vim -O scp://chbull@login.archer.ac.uk/${1}  scp://chbull@login.archer.ac.uk/${2} 
+        vim -O scp://arc/${1}  scp://arc/${2} 
     fi
 
     if [ $# == 3 ]
       then
-        vim -O scp://chbull@login.archer.ac.uk/${1} scp://chbull@login.archer.ac.uk/${2} scp://chbull@login.archer.ac.uk/${3}  
+        vim -O scp://arc/${1} scp://arc/${2} scp://arc/${3}  
     fi
 
     if [ $# > 3 ]
@@ -779,7 +787,7 @@ function varc() #grab path from clipboard and edit using archer
 {
     OUTPUT="$(xclip -o -selection clipboard)"
     echo "Executing: vim scp://chbull@login.archer.ac.uk/${OUTPUT}"
-    vim scp://chbull@login.archer.ac.uk/${OUTPUT} 
+    vim scp://arc/${OUTPUT} 
 }
 
 

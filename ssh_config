@@ -38,7 +38,7 @@ Host oswald
 #http://rubenlaguna.com/post/2014-06-10-ssh-port-forwarding-through-multiple-hops-slash-dot-ssh-slash-config-slash/
 Host bas
   User chbull
-  HostName  bslcenc.nerc-bas.ac.uk
+  HostName  bslcenb.nerc-bas.ac.uk
 
 Host jashop
   HostName jasmin-login1.ceda.ac.uk
@@ -52,3 +52,14 @@ Host jas
   ProxyCommand ssh chbull@jashop -XCYW %h:%p
   IdentityFile ~/.ssh/id_rsa_jasmin
   ServerAliveInterval 240
+
+Host arc
+  HostName login.archer.ac.uk
+  User chbull
+  ProxyCommand ssh chbull@bas -XCYW %h:%p
+  IdentityFile ~/.ssh/id_rsa_arc
+  ControlMaster auto
+  ControlPersist yes
+  ControlPath ~/.ssh/archer-sockets/%r
+  #NB: create this folder on your local machine:  ~/.ssh/archer-sockets
+  #see email from support: Aug 5, 2020, 6:52 PM

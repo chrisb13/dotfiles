@@ -108,7 +108,10 @@ alias bc5="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws05.nerc-b
 alias bc6="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws06.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
 alias bc7="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws07.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
 alias bc8='ssh -X chbull@bslcenh.nerc-bas.ac.uk' # due to be de-comissioned soon, see jeremy email
-alias arc='ssh -CY chbull@login.archer.ac.uk'
+
+
+#alias arc="ssh -tCY -o ServerAliveInterval=60 chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY -o ServerAliveInterval=60 chbull@login.archer.ac.uk'"  #archer needs to hop via BAS
+alias arc='ssh -tCY -o ServerAliveInterval=60 arc' # now uses the ssh config method
 alias archer='ssh -X chbull@login.archer.ac.uk'
 alias archerrdf='ssh -X chbull@login.rdf.ac.uk'
 alias arcdac='ssh -X chbull@login.rdf.ac.uk'
