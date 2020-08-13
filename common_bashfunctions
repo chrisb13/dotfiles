@@ -1150,7 +1150,91 @@ print ""
 #plt.colorbar(cs1,cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25),orientation='horizontal')
 #plt.show()
 EOF
-ipython -i loadvar.py
+#ipython -i loadvar.py
+vi loadvar.py
+}
+
+
+function diffnc() #load netcdf file in python
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage: diffnc FILENAME_PATHNAME FILENAME_PATHNAME2" 
+        echo "Purpose: loads path of two files into vim (creates diffnc.py in your current dir). Prints file info and available variables. 'ifile/ifile2' is name of netCDF4 object." 
+        echo "       " 
+        echo "Requires: python netCDF4" 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "FILENAME_PATHNAME: path to netCDF file" 
+        echo "FILENAME_PATHNAME2: path to second netCDF file" 
+        echo "       " 
+        echo "Example." 
+        echo "loadnc netcdffilename.nc netfilename2.nc" 
+        echo "loadnc /path/to/netcdffilename.nc /path/to/netcdffilename2.nc" 
+        echo "       " 
+
+        return 1
+    fi
+  
+OUTPUT="$(readlink -e ${1}|tr -d '\n')"
+OUTPUT2="$(readlink -e ${2}|tr -d '\n')"
+cat << EOF > diffnc.py
+import os
+import xarray as xr
+import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from matplotlib.ticker import MultipleLocator
+infile='${OUTPUT}'
+infile2='${OUTPUT2}'
+assert(os.path.exists(infile)),"netCDF file does not exist!"
+ifile=xr.open_dataset(infile)
+
+assert(os.path.exists(infile2)),"netCDF file does not exist!"
+ifile2=xr.open_dataset(infile2)
+print ""
+print "NetCDF file loaded with bash diffnc function..."
+print ""
+print "--------------------------------------------"
+print "FILE ONE"
+print "--------------------------------------------"
+print os.path.basename(infile)
+print ""
+print "File Details"
+print ifile
+
+print ""
+print "Variable Names: "
+print ""
+print ifile.variables.keys()
+print ""
+print "--------------------------------------------"
+print "FILE TWO"
+print "--------------------------------------------"
+print os.path.basename(infile2)
+print ""
+print "File Details"
+print ifile2
+
+print ""
+print "Variable Names: "
+print ""
+print ifile2.variables.keys()
+print ""
+
+#varone=ifile['']
+#vartwo=ifile2['']
+
+#plt.close('all')
+#fig=plt.figure()
+#ax=fig.add_subplot(1, 2,1)
+##cs1=ax.contourf()
+#plt.colorbar(cs1,cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25),orientation='horizontal')
+
+#ax=fig.add_subplot(1, 2,2)
+##cs1=ax.contourf()
+#plt.colorbar(cs1,cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25),orientation='horizontal')
+#plt.show()
+EOF
+vi diffnc.py
 }
 
 
