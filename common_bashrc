@@ -276,13 +276,22 @@ case $(hostname) in
 
     jasmin-login1.ceda.ac.uk|jasmin-sci1.ceda.ac.uk|jasmin-sci2.ceda.ac.uk|jasmin-sci3.ceda.ac.uk|jasmin-sci4.ceda.ac.uk|jasmin-sci5.ceda.ac.uk|cems-sci1.cems.rl.ac.uk|cems-sci2.cems.rl.ac.uk)
         #jasmin
-        alias j1='ssh -AX chbull@jasmin-sci1.ceda.ac.uk '
-        alias j2='ssh -AX chbull@jasmin-sci2.ceda.ac.uk '
-        alias j3='ssh -AX chbull@jasmin-sci3.ceda.ac.uk '
-        alias j4='ssh -AX chbull@jasmin-sci4.ceda.ac.uk '
-        alias j5='ssh -AX chbull@jasmin-sci5.ceda.ac.uk '
-        alias j6='ssh -AX chbull@cems-sci1.cems.rl.ac.uk'
-        alias j7='ssh -AX chbull@cems-sci2.cems.rl.ac.uk'
+        #alias j1='ssh -AX chbull@jasmin-sci1.ceda.ac.uk '
+        #alias j2='ssh -AX chbull@jasmin-sci2.ceda.ac.uk '
+        #alias j3='ssh -AX chbull@jasmin-sci3.ceda.ac.uk '
+        #alias j4='ssh -AX chbull@jasmin-sci4.ceda.ac.uk '
+        #alias j5='ssh -AX chbull@jasmin-sci5.ceda.ac.uk '
+        #alias j6='ssh -AX chbull@cems-sci1.cems.rl.ac.uk'
+        #alias j7='ssh -AX chbull@cems-sci2.cems.rl.ac.uk'
+
+        alias j1='ssh -AX chbull@sci1.jasmin.ac.uk'
+        alias j2='ssh -AX chbull@sci2.jasmin.ac.uk'
+        alias j3='ssh -AX chbull@sci3.jasmin.ac.uk'
+        alias j4='ssh -AX chbull@sci4.jasmin.ac.uk'
+        alias j5='ssh -AX chbull@sci5.jasmin.ac.uk'
+        alias j6='ssh -AX chbull@sci6.jasmin.ac.uk'
+        alias j7='ssh -AX chbull@sci8.jasmin.ac.uk'
+
         alias jmass='ssh -X chbull@mass-cli1.ceda.ac.uk'
         alias et='ssh -X et1.ceda.ac.uk'
         
