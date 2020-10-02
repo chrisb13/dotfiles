@@ -23,5 +23,6 @@
         pager = true
 [core]
 	editor = vim
+        pager = less -r
 [push]
 	default = simple
