@@ -23,3 +23,5 @@
         pager = true
 [core]
 	editor = vim
+[push]
+	default = simple

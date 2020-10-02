@@ -14,6 +14,11 @@ CDPATH=$CDPATH:~/
 #cb added
 set -o vi
 
+# restore last saved path
+#if [ -f ~/.last_dir ]
+    #then cd `cat ~/.last_dir`
+#fi
+
 #colorscheme solarised for bash shell
 export TERM="xterm-256color"
 
@@ -337,17 +342,20 @@ case $(hostname) in
         #alias fixclip="echo 'printf "\e[?2004l"'"
         printf "\e[?2004l"
         alias r='cd ~/VBoxSHARED/repos'
+        alias rr="lxterminal -e bash -c 'cd /home/chris/VBoxSHARED/repos;bash'"
+        alias ajr='cd ~/VBoxSHARED/repos/nemo_wed_analysis/ajtoy'
+        alias ajrout='cd ~/VBoxSHARED/20200804_slopeVmelt/analysis'
         alias nemoeac='cd ~/VBoxSHARED/repos/nemo_analysis'
         alias nemo='cd ~/VBoxSHARED/repos/nemo_analysis'
         alias nemowed='cd ~/VBoxSHARED/repos/nemo_wed_analysis'
-        alias ps='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
-        alias ps3='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
+        alias ps2='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
+        alias ps='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
+        alias h='cd_;lxterminal'  
 
         alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/'
         alias vb='cd /home/chris/VBoxSHARED'
         alias imgtrkr='python /home/chris/VBoxSHARED/repos/imgtrkr/main.py '
-
 
         # for website stuff
         # Install Ruby Gems to ~/gems

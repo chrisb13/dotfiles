@@ -10,6 +10,15 @@ function ncv() #variable info ncdump
     ncdump -v ${2} ${1} | less
 }
 
+#saves current path and opens a new terminal in that path (if lxterminal is used), also note:
+#alias cdt='cd_;lxterminal'  
+function cd_
+{
+  [[ -d "$@" ]] || return 1
+  echo "$@" > ~/.last_dir
+  cd "$@"
+}
+
 #use imagemagick to put a textbox with filename
 function tbox() 
 {
@@ -421,6 +430,17 @@ function arcpull()
     NC='\033[0m'
     echo -e "${RED}Pulling " ${@:1:$(($#-1))} " from ARCHER" " ${NC}"
     rsync -avz --progress arc:$* 
+}
+
+
+function arcpullajr()
+{
+    RED='\033[0;31m'
+    NC='\033[0m'
+    echo "Usage:   Pull AJR experiments from ARCHER into laptop"
+
+    echo -e "${RED}Pulling /fs2/n02/n02/chbull/nemo/nemo_output into /home/chris/VBoxSHARED/"
+    rsync -avz --progress arc:/fs2/n02/n02/chbull/nemo/nemo_output /home/chris/VBoxSHARED/
 }
 
 
@@ -1120,6 +1140,7 @@ cat << EOF > loadvar.py
 import os
 import xarray as xr
 import matplotlib.pyplot as plt
+import numpy as np
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from matplotlib.ticker import MultipleLocator
 infile='${OUTPUT}'
@@ -1146,6 +1167,10 @@ print ""
 #plt.close('all')
 #fig=plt.figure()
 #ax=fig.add_subplot(1, 1,1)
+##x,y=np.meshgrid(ifile['nav_lat'][:,7],ifile['deptht'][:])
+##zos=ifile['votemper'][t,:,:,7]
+##pme=np.ma.masked_where(zos==0,zos) 
+##cs1=ax.contourf(x,y,pme)
 ##cs1=ax.contourf()
 #plt.colorbar(cs1,cax=make_axes_locatable(ax).append_axes("bottom", size="5%", pad=0.25),orientation='horizontal')
 #plt.show()
