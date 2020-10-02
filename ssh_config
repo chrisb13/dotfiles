@@ -47,7 +47,7 @@ Host jashop
   IdentityFile ~/.ssh/id_rsa_jasmin
 
 Host jas
-  HostName jasmin-sci2.ceda.ac.uk
+  HostName sci1.jasmin.ac.uk
   User chbull
   ProxyCommand ssh chbull@jashop -XCYW %h:%p
   IdentityFile ~/.ssh/id_rsa_jasmin
