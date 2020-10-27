@@ -585,7 +585,7 @@ function jaspush()
 #jasmin log-in needs to hop
 function jas() 
 {
-ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -ACY chbull@jasmin-login1.ceda.ac.uk'
+ssh -tACY chbull@bslcenc.nerc-bas.ac.uk 'eval `ssh-agent`;ssh-add ~/.ssh/id_rsa_jasmin;ssh -ACY chbull@login1.jasmin.ac.uk'
 }
 
 function jascode() 

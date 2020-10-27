@@ -142,6 +142,10 @@ alias ipy='ipython --TerminalInteractiveShell.editing_mode=vi --pylab'
 alias fbash='LP_ENABLE_TEMP=1; LP_ENABLE_JOBS=1; LP_ENABLE_BATT=1; LP_ENABLE_LOAD=1; LP_ENABLE_GIT=1;LP_ENABLE_SVN=1;LP_ENABLE_HG=1;LP_ENABLE_BZR=1;LP_ENABLE_FOSSIL=1;LP_ENABLE_VCS_ROOT=1'
 alias giton='LP_ENABLE_GIT=1'
 
+
+alias gitcountlines="git ls-files |  xargs wc -l"
+alias gitcountpylines="git ls-files |  grep  '.py' |xargs wc -l"
+
 # some more ls aliases
 case $(hostname) in
     bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk|bslcenb|bslcenc)

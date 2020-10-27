@@ -1100,6 +1100,10 @@ zos=np.array([[3,6,9], \
 masked=np.ma.masked_where(zos==0,zos) 
 endsnippet
 
+snippet smasked
+pme=np.ma.masked_where(${1:maskarray}==0,${2:maskarray2seton}) 
+endsnippet
+
 
 snippet loadnetcdf
 import os
