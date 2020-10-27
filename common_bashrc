@@ -275,7 +275,7 @@ case $(hostname) in
         PATH=$PATH:~/xclip/
         ;;
 
-    jasmin-login1.ceda.ac.uk|jasmin-sci1.ceda.ac.uk|jasmin-sci2.ceda.ac.uk|jasmin-sci3.ceda.ac.uk|jasmin-sci4.ceda.ac.uk|jasmin-sci5.ceda.ac.uk|cems-sci1.cems.rl.ac.uk|cems-sci2.cems.rl.ac.uk|sci1.jasmin.ac.uk|sci2.jasmin.ac.uk|sci3.jasmin.ac.uk|sci4.jasmin.ac.uk|sci5.jasmin.ac.uk|sci6.jasmin.ac.uk|sci8.jasmin.ac.uk)
+    jasmin-login1.ceda.ac.uk|jasmin-sci1.ceda.ac.uk|jasmin-sci2.ceda.ac.uk|jasmin-sci3.ceda.ac.uk|jasmin-sci4.ceda.ac.uk|jasmin-sci5.ceda.ac.uk|cems-sci1.cems.rl.ac.uk|cems-sci2.cems.rl.ac.uk|sci1.jasmin.ac.uk|sci2.jasmin.ac.uk|sci3.jasmin.ac.uk|sci4.jasmin.ac.uk|sci5.jasmin.ac.uk|sci6.jasmin.ac.uk|sci8.jasmin.ac.uk|host425.jc.rl.ac.uk|host596.jc.rl.ac.uk)
         #jasmin
         #alias j1='ssh -AX chbull@jasmin-sci1.ceda.ac.uk '
         #alias j2='ssh -AX chbull@jasmin-sci2.ceda.ac.uk '
