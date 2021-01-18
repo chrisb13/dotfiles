@@ -72,4 +72,4 @@ Host arc2
   IdentityFile ~/.ssh/id_rsa_arc2
   ControlMaster auto
   ControlPersist yes
-  ControlPath ~/.ssh/archer-sockets/%r
+  ControlPath ~/.ssh/archer2-sockets/%r
