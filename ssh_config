@@ -68,7 +68,7 @@ Host arc
 Host arc2
   HostName login.archer2.ac.uk
   User chbull
-  ProxyCommand ssh chbull@bas -XCYW %h:%p
+  #ProxyCommand ssh chbull@bas -XCYW %h:%p
   IdentityFile ~/.ssh/id_rsa_arc2
   ControlMaster auto
   ControlPersist yes
