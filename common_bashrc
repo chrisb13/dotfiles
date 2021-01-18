@@ -357,7 +357,7 @@ case $(hostname) in
         printf "\e[?2004l"
         alias r='cd ~/VBoxSHARED/repos'
         alias rr="lxterminal -e bash -c 'cd /home/chris/VBoxSHARED/repos;bash'"
-        alias ajr='cd ~/VBoxSHARED/repos/nemo_wed_analysis/ajtoy'
+        alias ajr='cd ~/VBoxSHARED/repos/nemo_wed_analysis/ajtoy/diagnostics'
         alias ajrout='cd ~/VBoxSHARED/20200804_slopeVmelt/analysis'
         alias nemoeac='cd ~/VBoxSHARED/repos/nemo_analysis'
         alias nemo='cd ~/VBoxSHARED/repos/nemo_analysis'
