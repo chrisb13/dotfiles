@@ -184,6 +184,24 @@ case $(hostname) in
         alias bld='cd /projects/jmmp/chrbu/nemo/bld_configs'
         alias configs='cd /projects/jmmp/chrbu/nemo/bld_configs'
         ;;
+    uan02)
+        alias models='cd /work/n02/n02/chbull/nemo/models'
+        alias run='cd /work/n02/n02/chbull/nemo/run'
+        alias nemo='cd /work/n02/n02/chbull/repos/nemo_analysis'
+        alias nemowed='cd /work/n02/n02/chbull/repos/nemo_wed_analysis'
+        alias configs='cd /work/n02/n02/chbull/nemo/bld_configs'
+        alias bld='cd /work/n02/n02/chbull/nemo/bld_configs'
+        alias bldscratch='cd /work/n02/n02/chbull/nemo/bld_configs'
+        alias nemodesc='grep  "DESC=" /work/n02/n02/chbull/nemo/run/*/GoGoNEMO.py'
+        alias ajr='cd /work/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER'
+        alias ajrun='cd /work/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER'
+        alias r='cd /work/n02/n02/chbull/repos'
+        alias nemocode='cd /work/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/CONFIG/WED025_3/BLD/ppsrc/nemo'
+        alias rebuildnemo='/work/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/TOOLS/REBUILD_NEMO/rebuild_nemo '
+        alias rw1='cd /work/n02/n02/chbull/RawData'
+        alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
+        alias ps2='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
+        ;;
     eslogin*|esPP001|esPP002)
 	module load cray-netcdf-hdf5parallel/4.4.1.1 
 	module load cray-hdf5-parallel/1.10.0.1
@@ -215,12 +233,12 @@ case $(hostname) in
         alias short='cd /work/n02/n02/chbull/'
         alias models='cd /fs2/n02/n02/chbull/nemo/models'
         alias run='cd /fs2/n02/n02/chbull/nemo/run'
-        alias nemo='cd /nerc/n02/n02/chbull/repos/nemo_analysis'
-        alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
-        alias misomip='cd /nerc/n02/n02/chbull/repos/misomip_bas'
+        #alias nemo='cd /nerc/n02/n02/chbull/repos/nemo_analysis'
+        #alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
+        #alias misomip='cd /nerc/n02/n02/chbull/repos/misomip_bas'
 	alias share='cd /fs2/n02/shared/chbull'
-	alias sharerdf='cd /nerc/n02/shared/chbull'
-        alias configs='cd /nerc/n02/n02/chbull/nemo/bld_configs'
+	#alias sharerdf='cd /nerc/n02/shared/chbull'
+        #alias configs='cd /nerc/n02/n02/chbull/nemo/bld_configs'
         alias bld='cd /nerc/n02/n02/chbull/nemo/bld_configs'
         alias bldscratch='cd /fs2/n02/n02/chbull/nemo/bld_configs'
         alias qme='qstat | grep chbull'
@@ -241,7 +259,7 @@ case $(hostname) in
         alias rebuildnemo='/fs2/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/TOOLS/REBUILD_NEMO/rebuild_nemo '
 
         alias rw1='cd /fs2/n02/n02/chbull/RawData'
-        alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
+        #alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
 
         alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
         alias psrdf='export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2_old/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2_old/bin:$PATH;source activate root'
