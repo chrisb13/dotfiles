@@ -353,18 +353,18 @@ function arcpush()
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
         echo "Usage:   arcpush PATH_FROM PATH_TO ." 
-        echo "Purpose: rsync function to push files to archer." 
+        echo "Purpose: rsync function to push files to archer2." 
         echo "       " 
         echo "Mandatory arguments: " 
         echo "path_from:   Path on local to Rsync from" 
-        echo "path_to: Path on archer to Rsync to" 
+        echo "path_to: Path on archer2 to Rsync to" 
         echo "       " 
         echo "Example." 
         echo "This:" 
         echo "arcpush ./temp/* /short/e14/cyb561/"
         echo "       " 
         echo "Becomes:" 
-        echo "rsync -avz --progress ./temp/* arc:/massdata/e14/cyb561/now/"
+        echo "rsync -avz --progress ./temp/* arc2:/massdata/e14/cyb561/now/"
 
         return 1
     fi
@@ -375,7 +375,7 @@ function arcpush()
     NC='\033[0m'
     echo -e "${RED}Pushing  " ${@:1:$(($#-1))} " into ARCHER, specifically: " $last " ${NC}"
 
-    rsync -avS --progress ${@:1:$(($#-1))} arc:$last
+    rsync -avS --progress ${@:1:$(($#-1))} arc2:$last
 }
 
 function arcdacpush() 
@@ -410,7 +410,7 @@ function arcpull()
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
         echo "Usage:   arcpull PATH_FROM PATH_TO." 
-        echo "Purpose: rsync function to pull files from ARCHER." 
+        echo "Purpose: rsync function to pull files from ARCHER2." 
         echo "       " 
         echo "Mandatory arguments: " 
         echo "path_from: Path on Maelstrom to Rsync from" 
@@ -428,8 +428,8 @@ function arcpull()
 
     RED='\033[0;31m'
     NC='\033[0m'
-    echo -e "${RED}Pulling " ${@:1:$(($#-1))} " from ARCHER" " ${NC}"
-    rsync -avz --progress arc:$* 
+    echo -e "${RED}Pulling " ${@:1:$(($#-1))} " from ARCHER2" " ${NC}"
+    rsync -avz --progress arc2:$* 
 }
 
 
@@ -437,10 +437,10 @@ function arcpullajr()
 {
     RED='\033[0;31m'
     NC='\033[0m'
-    echo "Usage:   Pull AJR experiments from ARCHER into laptop"
+    echo "Usage:   Pull AJR experiments from ARCHER2 into laptop"
 
     echo -e "${RED}Pulling /fs2/n02/n02/chbull/nemo/nemo_output into /home/chris/VBoxSHARED/"
-    rsync -avz --progress arc:/fs2/n02/n02/chbull/nemo/nemo_output /home/chris/VBoxSHARED/
+    rsync -avz --progress arc2:/fs2/n02/n02/chbull/nemo/nemo_output /home/chris/VBoxSHARED/
 }
 
 
@@ -766,7 +766,7 @@ function vimarc()
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
         echo "Usage:   vimnci PATH_TO." 
-        echo "Purpose: Allows remote editing of files on ARCHER ..." 
+        echo "Purpose: Allows remote editing of files on ARCHER2 ..." 
         echo "       " 
         echo "Mandatory arguments: " 
         echo "path or file: vim will either edit or open file passed" 
@@ -776,7 +776,7 @@ function vimarc()
         echo "vimnci /users/chbull/repos/"
         echo "       " 
         echo "Becomes:" 
-        echo "vim scp://chbull@login.archer.ac.uk//users/chbull/repos/"
+        echo "vim scp://chbull@login.archer2.ac.uk//users/chbull/repos/"
 
         return 1
     fi
@@ -784,17 +784,17 @@ function vimarc()
     #echo $#
     if [ $# == 1 ]
       then
-        vim scp://arc/${1} 
+        vim scp://arc2/${1} 
     fi
 
     if [ $# == 2 ]
       then
-        vim -O scp://arc/${1}  scp://arc/${2} 
+        vim -O scp://arc2/${1}  scp://arc2/${2} 
     fi
 
     if [ $# == 3 ]
       then
-        vim -O scp://arc/${1} scp://arc/${2} scp://arc/${3}  
+        vim -O scp://arc2/${1} scp://arc2/${2} scp://arc2/${3}  
     fi
 
     if [ $# > 3 ]
@@ -807,7 +807,7 @@ function varc() #grab path from clipboard and edit using archer
 {
     OUTPUT="$(xclip -o -selection clipboard)"
     echo "Executing: vim scp://chbull@login.archer.ac.uk/${OUTPUT}"
-    vim scp://arc/${OUTPUT} 
+    vim scp://arc2/${OUTPUT} 
 }
 
 
