@@ -201,6 +201,15 @@ case $(hostname) in
         alias rw1='cd /work/n02/n02/chbull/RawData'
         alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
         alias ps2='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
+
+        #hacks for a pbs guy..
+        alias qme='squeue -u chbull'
+        alias qdel='scancel '
+        alias qsub='sbatch '
+        alias qshort='sbatch --reservation=shortqos '
+        
+
+        PATH=$PATH:~/xclip/bin/
         ;;
     eslogin*|esPP001|esPP002)
 	module load cray-netcdf-hdf5parallel/4.4.1.1 
