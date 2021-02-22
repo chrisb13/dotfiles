@@ -1,6 +1,6 @@
 #!/bin/bash
 #netCDF helpers
-function nc() #file header info ncdump
+function ncd() #file header info ncdump
 {
     ncdump -c ${1} | less
 }

@@ -185,19 +185,22 @@ case $(hostname) in
         alias configs='cd /projects/jmmp/chrbu/nemo/bld_configs'
         ;;
     uan02|uan01)
+        alias short='cd /work/n02/n02/chbull/'
         alias models='cd /work/n02/n02/chbull/nemo/models'
         alias run='cd /work/n02/n02/chbull/nemo/run'
         alias nemo='cd /work/n02/n02/chbull/repos/nemo_analysis'
         alias nemowed='cd /work/n02/n02/chbull/repos/nemo_wed_analysis'
         alias configs='cd /work/n02/n02/chbull/nemo/bld_configs'
         alias bld='cd /work/n02/n02/chbull/nemo/bld_configs'
-        alias bldscratch='cd /work/n02/n02/chbull/nemo/bld_configs'
         alias nemodesc='grep  "DESC=" /work/n02/n02/chbull/nemo/run/*/GoGoNEMO.py'
-        alias ajr='cd /work/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER'
-        alias ajrun='cd /work/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER'
+        alias wed025r='cd /work/n02/n02/chbull/repos/nemo_wed_analysis/wed/configs/wed025/rnemo_ARCHER'
+        alias ajr='cd /work/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER2'
+        alias ajrun='cd /work/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER2'
         alias r='cd /work/n02/n02/chbull/repos'
         alias nemocode='cd /work/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/CONFIG/WED025_3/BLD/ppsrc/nemo'
-        alias rebuildnemo='/work/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/TOOLS/REBUILD_NEMO/rebuild_nemo '
+        alias rebuildnemo='/lus/cls01095/work/n02/n02/chbull/nemo/models/NEMO4/tools/REBUILD_NEMO/rebuild_nemo'
+        alias cnemo='echo "cleaning nemo run folder .";rm *restart* *grid_T* *grid_U.nc *grid_V.nc mesh_mask_00* ocean.output time.step solver.stat slurm-* core index.html output.namelist.dyn output.init_* output.abort_*'
+        
         alias rw1='cd /work/n02/n02/chbull/RawData'
         alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
         alias ps2='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
@@ -207,7 +210,44 @@ case $(hostname) in
         alias qdel='scancel '
         alias qsub='sbatch '
         alias qshort='sbatch --reservation=shortqos '
-        
+
+        #/lus/cls01095/work/n01/shared/acc/n01_modules/ucx_env
+        module -s restore /work/n01/shared/acc/n01_modules/ucx_env
+        #which is:
+        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-pyvenvs
+        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-utils
+        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-libs
+        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-apps
+        #module use --append /opt/cray/pe/perftools/20.10.0/modulefiles
+        #module use --append /opt/cray/pe/perftools/20.09.0/modulefiles
+        #module use --append /opt/cray/pe/craype/2.7.0/modulefiles
+        #module use --append /usr/local/Modules/modulefiles
+        #module use --append /opt/cray/pe/cpe-prgenv/7.0.0
+        #module use --append /opt/cray/pe/modulefiles
+        #module use --append /opt/cray/pe/craype-targets/default/modulefiles
+        #module use --append /opt/modulefiles
+        #module use --append /opt/cray/modulefiles
+        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse
+        #module load cpe-cray
+        #module load cce
+        #module load craype
+        #module load craype-x86-rome
+        #module load cray-dsmml
+        #module load perftools-base
+        #module load xpmem
+        #module load cray-libsci
+        #module load /work/y07/shared/archer2-modules/modulefiles-cse/epcc-setup-env
+        #module load cray-hdf5-parallel
+        #module load cray-netcdf-hdf5parallel
+        #module load gcc
+        #module load --notuasked cray-ucx
+        #module load craype-network-ucx
+        #module load cray-mpich-ucx
+        #module load libfabric
+
+        #and then for ncdump to work..
+        module load cray-python
+        module load python-netCDF4/1.5.5.1
 
         PATH=$PATH:~/xclip/bin/
         ;;
@@ -258,8 +298,6 @@ case $(hostname) in
         alias wedana='cd /nerc/n02/n02/chbull/20180810_wed_reanalysis_atmo/analysis'
         alias wed12r='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/wed/configs/wed12/rnemo_ARCHER'
 	alias chknemordf='echo "Checking that WED025_ts runs went to the RDF with: ls nemo_WED025_ts_*/OUTNEMO*/*1m*grid_T.nc: ";ls -1 /fs2/n02/n02/chbull/nemo/run/nemo_WED025_ts_*/OUTNEMO*/*1m*grid_T.nc; echo "This is file number: "; ls -1 /fs2/n02/n02/chbull/nemo/run/nemo_WED025_ts_*/OUTNEMO*/*1m*grid_T.nc| wc -l'
-        alias ajr='cd /fs2/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER'
-        alias ajrun='cd /fs2/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER'
         
         alias misomiprun='cd /nerc/n02/n02/chbull/repos/misomip_bas/configs/rnemo_ARCHER'
         alias r='cd /fs2/n02/n02/chbull/repos'
