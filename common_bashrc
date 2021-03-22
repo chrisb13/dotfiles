@@ -9,7 +9,8 @@ CDPATH=$CDPATH:~/
 #}
 
 # Only load Liquid Prompt in interactive shells, not from a script or from scp
-[[ $- = *i* ]] && source ~/.vim/liquidprompt/liquidprompt
+#https://ezprompt.net/
+PS1="[\e[34m\]\u\[\e[m\]:\[\e[36m\]\h\[\e[m\]:\A@\[\e[35m\]\w\[\e[m\]]"
 
 #cb added
 set -o vi
@@ -122,7 +123,7 @@ alias dacme3='echo "arcdac";echo "arcdacpp";echo "cd /nerc/n02/n02/chbull/repos/
 
 #met office
 alias mhop='ssh -Y chrbu@lander.monsoon-metoffice.co.uk'     
-alias mxcx="ssh -tCY chrbu@lander.monsoon-metoffice.co.uk 'ssh -CY xcs-c'"       #xcs-c log-in needs to m-lander-hop
+alias mxcx="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y xcs-c'"       #xcs-c log-in needs to m-lander-hop
 alias mpp="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y postproc'"     #postproc log-in needs to m-lander-hop
 alias mrose="ssh -tY chrbu@lander.monsoon-metoffice.co.uk 'ssh -Y exvmsrose'"  #rose log-in needs to m-lander-hop
 
@@ -152,9 +153,29 @@ case $(hostname) in
     oswald|oswald.campus.unn.ac.uk|vis1)
         module load gcc
         module load slurm 
-        module load netcdf
-        alias r='cd /home/osw_lhly6/repos'
+        module load netcdf-fortran/intel/4.4.1
+        module load intel/compiler/64/2018/18.0.5
+        module load hdf5/intel/1.8.17-parallel
+        module load mpich/ge/gcc/64/3.2
+
+        #from JAN START
+        #note that he doesn't have any hdf5 modules..
+        #module load intel/compiler/64/16.0.4/2016.4.258
+        #module load openmpi/intel-opa/intel-hfi/64/1.10.4
+        #module load netcdf/intel/4.4.1
+        #module load netcdf-fortran/intel/4.4.1
+        #module load slurm
+        #module load anaconda2/5.0.1
+        ## netcdf
+        #export LD_LIBRARY_PATH=/cm/shared/oswald-apps/netcdf-fortran/intel/4.4.1/lib:$LD_LIBRARY_PATH
+        #export LD_LIBRARY_PATH=/cm/shared/oswald-apps/szip/intel/2.1/lib:$LD_LIBRARY_PATH
+        #from JAN END
+
+        alias r='cd /lustre/lzfs/osw_lhly6/repos/'
         alias rw1='cd /lustre/lzfs/osw_lhly6'
+
+        alias ps='export PYTHONPATH=/lustre/lzfs/osw_lhly6/anaconda2/pkgs;export PATH=/lustre/lzfs/osw_lhly6/anaconda2/bin:$PATH;source activate root'
+        alias ps3='export PYTHONPATH=/lustre/lzfs/osw_lhly6/anaconda3/pkgs;export PATH=/lustre/lzfs/osw_lhly6/anaconda3/bin:$PATH;source activate root'
         ;;
     xcslc0|exvmsrose.monsoon-metoffice.co.uk)
         #MetOffice Monsoon machines..
