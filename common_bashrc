@@ -15,6 +15,11 @@ PS1="[\e[34m\]\u\[\e[m\]:\[\e[36m\]\h\[\e[m\]:\A@\[\e[35m\]\w\[\e[m\]]"
 #cb added
 set -o vi
 
+# restore last saved path
+#if [ -f ~/.last_dir ]
+    #then cd `cat ~/.last_dir`
+#fi
+
 #colorscheme solarised for bash shell
 export TERM="xterm-256color"
 
@@ -109,7 +114,10 @@ alias bc5="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws05.nerc-b
 alias bc6="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws06.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
 alias bc7="ssh -tCY chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY chbull@bslws07.nerc-bas.ac.uk'"  #bslws? log-in needs to hop
 alias bc8='ssh -X chbull@bslcenh.nerc-bas.ac.uk' # due to be de-comissioned soon, see jeremy email
-alias arc='ssh -CY chbull@login.archer.ac.uk'
+
+
+#alias arc="ssh -tCY -o ServerAliveInterval=60 chbull@bslcenb.nerc-bas.ac.uk 'ssh -CY -o ServerAliveInterval=60 chbull@login.archer.ac.uk'"  #archer needs to hop via BAS
+alias arc='ssh -tCY -o ServerAliveInterval=60 arc2' # now uses the ssh config method
 alias archer='ssh -X chbull@login.archer.ac.uk'
 alias archerrdf='ssh -X chbull@login.rdf.ac.uk'
 alias arcdac='ssh -X chbull@login.rdf.ac.uk'
@@ -134,6 +142,10 @@ alias ipy='ipython --TerminalInteractiveShell.editing_mode=vi --pylab'
 
 alias fbash='LP_ENABLE_TEMP=1; LP_ENABLE_JOBS=1; LP_ENABLE_BATT=1; LP_ENABLE_LOAD=1; LP_ENABLE_GIT=1;LP_ENABLE_SVN=1;LP_ENABLE_HG=1;LP_ENABLE_BZR=1;LP_ENABLE_FOSSIL=1;LP_ENABLE_VCS_ROOT=1'
 alias giton='LP_ENABLE_GIT=1'
+
+
+alias gitcountlines="git ls-files |  xargs wc -l"
+alias gitcountpylines="git ls-files |  grep  '.py' |xargs wc -l"
 
 # some more ls aliases
 case $(hostname) in
@@ -193,6 +205,73 @@ case $(hostname) in
         alias bld='cd /projects/jmmp/chrbu/nemo/bld_configs'
         alias configs='cd /projects/jmmp/chrbu/nemo/bld_configs'
         ;;
+    uan02|uan01)
+        alias short='cd /work/n02/n02/chbull/'
+        alias models='cd /work/n02/n02/chbull/nemo/models'
+        alias run='cd /work/n02/n02/chbull/nemo/run'
+        alias nemo='cd /work/n02/n02/chbull/repos/nemo_analysis'
+        alias nemowed='cd /work/n02/n02/chbull/repos/nemo_wed_analysis'
+        alias configs='cd /work/n02/n02/chbull/nemo/bld_configs'
+        alias bld='cd /work/n02/n02/chbull/nemo/bld_configs'
+        alias nemodesc='grep  "DESC=" /work/n02/n02/chbull/nemo/run/*/GoGoNEMO.py'
+        alias wed025r='cd /work/n02/n02/chbull/repos/nemo_wed_analysis/wed/configs/wed025/rnemo_ARCHER'
+        alias ajr='cd /work/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER2'
+        alias ajrun='cd /work/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER2'
+        alias r='cd /work/n02/n02/chbull/repos'
+        alias nemocode='cd /work/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/CONFIG/WED025_3/BLD/ppsrc/nemo'
+        alias rebuildnemo='/lus/cls01095/work/n02/n02/chbull/nemo/models/NEMO4/tools/REBUILD_NEMO/rebuild_nemo'
+        alias cnemo='echo "cleaning nemo run folder .";rm *restart* *grid_T* *grid_U.nc *grid_V.nc mesh_mask_00* ocean.output time.step solver.stat slurm-* core index.html output.namelist.dyn output.init_* output.abort_*'
+        
+        alias rw1='cd /work/n02/n02/chbull/RawData'
+        alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
+        alias ps2='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
+
+        #hacks for a pbs guy..
+        alias qme='squeue -u chbull'
+        alias qdel='scancel '
+        alias qsub='sbatch '
+        alias qshort='sbatch --reservation=shortqos '
+
+        #/lus/cls01095/work/n01/shared/acc/n01_modules/ucx_env
+        module -s restore /work/n01/shared/acc/n01_modules/ucx_env
+        #which is:
+        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-pyvenvs
+        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-utils
+        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-libs
+        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-apps
+        #module use --append /opt/cray/pe/perftools/20.10.0/modulefiles
+        #module use --append /opt/cray/pe/perftools/20.09.0/modulefiles
+        #module use --append /opt/cray/pe/craype/2.7.0/modulefiles
+        #module use --append /usr/local/Modules/modulefiles
+        #module use --append /opt/cray/pe/cpe-prgenv/7.0.0
+        #module use --append /opt/cray/pe/modulefiles
+        #module use --append /opt/cray/pe/craype-targets/default/modulefiles
+        #module use --append /opt/modulefiles
+        #module use --append /opt/cray/modulefiles
+        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse
+        #module load cpe-cray
+        #module load cce
+        #module load craype
+        #module load craype-x86-rome
+        #module load cray-dsmml
+        #module load perftools-base
+        #module load xpmem
+        #module load cray-libsci
+        #module load /work/y07/shared/archer2-modules/modulefiles-cse/epcc-setup-env
+        #module load cray-hdf5-parallel
+        #module load cray-netcdf-hdf5parallel
+        #module load gcc
+        #module load --notuasked cray-ucx
+        #module load craype-network-ucx
+        #module load cray-mpich-ucx
+        #module load libfabric
+
+        #and then for ncdump to work..
+        module load cray-python
+        module load python-netCDF4/1.5.5.1
+
+        PATH=$PATH:~/xclip/bin/
+        ;;
     eslogin*|esPP001|esPP002)
 	module load cray-netcdf-hdf5parallel/4.4.1.1 
 	module load cray-hdf5-parallel/1.10.0.1
@@ -224,12 +303,12 @@ case $(hostname) in
         alias short='cd /work/n02/n02/chbull/'
         alias models='cd /fs2/n02/n02/chbull/nemo/models'
         alias run='cd /fs2/n02/n02/chbull/nemo/run'
-        alias nemo='cd /nerc/n02/n02/chbull/repos/nemo_analysis'
-        alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
-        alias misomip='cd /nerc/n02/n02/chbull/repos/misomip_bas'
+        #alias nemo='cd /nerc/n02/n02/chbull/repos/nemo_analysis'
+        #alias nemowed='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis'
+        #alias misomip='cd /nerc/n02/n02/chbull/repos/misomip_bas'
 	alias share='cd /fs2/n02/shared/chbull'
-	alias sharerdf='cd /nerc/n02/shared/chbull'
-        alias configs='cd /nerc/n02/n02/chbull/nemo/bld_configs'
+	#alias sharerdf='cd /nerc/n02/shared/chbull'
+        #alias configs='cd /nerc/n02/n02/chbull/nemo/bld_configs'
         alias bld='cd /nerc/n02/n02/chbull/nemo/bld_configs'
         alias bldscratch='cd /fs2/n02/n02/chbull/nemo/bld_configs'
         alias qme='qstat | grep chbull'
@@ -240,16 +319,15 @@ case $(hostname) in
         alias wedana='cd /nerc/n02/n02/chbull/20180810_wed_reanalysis_atmo/analysis'
         alias wed12r='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/wed/configs/wed12/rnemo_ARCHER'
 	alias chknemordf='echo "Checking that WED025_ts runs went to the RDF with: ls nemo_WED025_ts_*/OUTNEMO*/*1m*grid_T.nc: ";ls -1 /fs2/n02/n02/chbull/nemo/run/nemo_WED025_ts_*/OUTNEMO*/*1m*grid_T.nc; echo "This is file number: "; ls -1 /fs2/n02/n02/chbull/nemo/run/nemo_WED025_ts_*/OUTNEMO*/*1m*grid_T.nc| wc -l'
-        alias ajr='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER'
-        alias ajrun='cd /nerc/n02/n02/chbull/repos/nemo_wed_analysis/ajtoy/configs/rnemoARCHER'
+        
         alias misomiprun='cd /nerc/n02/n02/chbull/repos/misomip_bas/configs/rnemo_ARCHER'
-        alias r='cd /nerc/n02/n02/chbull/repos'
+        alias r='cd /fs2/n02/n02/chbull/repos'
 
         alias nemocode='cd /fs2/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/CONFIG/WED025_3/BLD/ppsrc/nemo'
         alias rebuildnemo='/fs2/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/TOOLS/REBUILD_NEMO/rebuild_nemo '
 
         alias rw1='cd /fs2/n02/n02/chbull/RawData'
-        alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
+        #alias rdf1='cd /nerc/n02/n02/chbull/RawData/NEMO'
 
         alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda2/pkgs;export PATH=/work/n02/n02/chbull/anaconda2/bin:$PATH;source activate root'
         alias psrdf='export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2_old/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2_old/bin:$PATH;source activate root'
@@ -287,15 +365,24 @@ case $(hostname) in
         PATH=$PATH:~/xclip/
         ;;
 
-    jasmin-login1.ceda.ac.uk|jasmin-sci1.ceda.ac.uk|jasmin-sci2.ceda.ac.uk|jasmin-sci3.ceda.ac.uk|jasmin-sci4.ceda.ac.uk|jasmin-sci5.ceda.ac.uk|cems-sci1.cems.rl.ac.uk|cems-sci2.cems.rl.ac.uk)
+    jasmin-login1.ceda.ac.uk|jasmin-sci1.ceda.ac.uk|jasmin-sci2.ceda.ac.uk|jasmin-sci3.ceda.ac.uk|jasmin-sci4.ceda.ac.uk|jasmin-sci5.ceda.ac.uk|cems-sci1.cems.rl.ac.uk|cems-sci2.cems.rl.ac.uk|sci1.jasmin.ac.uk|sci2.jasmin.ac.uk|sci3.jasmin.ac.uk|sci4.jasmin.ac.uk|sci5.jasmin.ac.uk|sci6.jasmin.ac.uk|sci8.jasmin.ac.uk|host425.jc.rl.ac.uk|host596.jc.rl.ac.uk)
         #jasmin
-        alias j1='ssh -AX chbull@jasmin-sci1.ceda.ac.uk '
-        alias j2='ssh -AX chbull@jasmin-sci2.ceda.ac.uk '
-        alias j3='ssh -AX chbull@jasmin-sci3.ceda.ac.uk '
-        alias j4='ssh -AX chbull@jasmin-sci4.ceda.ac.uk '
-        alias j5='ssh -AX chbull@jasmin-sci5.ceda.ac.uk '
-        alias j6='ssh -AX chbull@cems-sci1.cems.rl.ac.uk'
-        alias j7='ssh -AX chbull@cems-sci2.cems.rl.ac.uk'
+        #alias j1='ssh -AX chbull@jasmin-sci1.ceda.ac.uk '
+        #alias j2='ssh -AX chbull@jasmin-sci2.ceda.ac.uk '
+        #alias j3='ssh -AX chbull@jasmin-sci3.ceda.ac.uk '
+        #alias j4='ssh -AX chbull@jasmin-sci4.ceda.ac.uk '
+        #alias j5='ssh -AX chbull@jasmin-sci5.ceda.ac.uk '
+        #alias j6='ssh -AX chbull@cems-sci1.cems.rl.ac.uk'
+        #alias j7='ssh -AX chbull@cems-sci2.cems.rl.ac.uk'
+
+        alias j1='ssh -AX chbull@sci1.jasmin.ac.uk'
+        alias j2='ssh -AX chbull@sci2.jasmin.ac.uk'
+        alias j3='ssh -AX chbull@sci3.jasmin.ac.uk'
+        alias j4='ssh -AX chbull@sci4.jasmin.ac.uk'
+        alias j5='ssh -AX chbull@sci5.jasmin.ac.uk'
+        alias j6='ssh -AX chbull@sci6.jasmin.ac.uk'
+        alias j7='ssh -AX chbull@sci8.jasmin.ac.uk'
+
         alias jmass='ssh -X chbull@mass-cli1.ceda.ac.uk'
         alias et='ssh -X et1.ceda.ac.uk'
         
@@ -355,17 +442,20 @@ case $(hostname) in
         #alias fixclip="echo 'printf "\e[?2004l"'"
         printf "\e[?2004l"
         alias r='cd ~/VBoxSHARED/repos'
+        alias rr="lxterminal -e bash -c 'cd /home/chris/VBoxSHARED/repos;bash'"
+        alias ajr='cd ~/VBoxSHARED/repos/nemo_wed_analysis/ajtoy/diagnostics'
+        alias ajrout='cd ~/VBoxSHARED/20200804_slopeVmelt/analysis'
         alias nemoeac='cd ~/VBoxSHARED/repos/nemo_analysis'
         alias nemo='cd ~/VBoxSHARED/repos/nemo_analysis'
         alias nemowed='cd ~/VBoxSHARED/repos/nemo_wed_analysis'
-        alias ps='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
-        alias ps3='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
+        alias ps2='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
+        alias ps='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
+        alias h='cd_;lxterminal'  
 
         alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/'
         alias vb='cd /home/chris/VBoxSHARED'
         alias imgtrkr='python /home/chris/VBoxSHARED/repos/imgtrkr/main.py '
-
 
         # for website stuff
         # Install Ruby Gems to ~/gems

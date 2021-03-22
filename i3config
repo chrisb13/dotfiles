@@ -201,6 +201,10 @@ bindsym $mod+Shift+e exec pcmanfm
 #bindsym F2 exec  python ~/.vim/ranger/ranger.py
 bindsym F2 exec urxvt -e ranger
 
+#bindsym $mod+M exec touch ./moo
+#bindsym $mod+M exec i3-sensible-terminal cd /home/chris/VBoxSHARED
+#bindsym $mod+M exec lxterminal -e bash -c 'cd /home/chris/VBoxSHARED; bash'
+#bindsym $mod+M exec lxterminal
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
