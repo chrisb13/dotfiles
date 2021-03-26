@@ -427,6 +427,7 @@ case $(hostname) in
         #alias fixclip="echo 'printf "\e[?2004l"'"
         printf "\e[?2004l"
         alias r='cd ~/VBoxSHARED/repos'
+        alias out='cd /home/chris/VBoxSHARED/nemo_output'
         alias rr="lxterminal -e bash -c 'cd /home/chris/VBoxSHARED/repos;bash'"
         alias ajr='cd ~/VBoxSHARED/repos/nemo_wed_analysis/ajtoy/diagnostics'
         alias ajrout='cd ~/VBoxSHARED/20200804_slopeVmelt/analysis'
