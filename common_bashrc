@@ -188,6 +188,7 @@ case $(hostname) in
         alias short='cd /work/n02/n02/chbull/'
         alias models='cd /work/n02/n02/chbull/nemo/models'
         alias run='cd /work/n02/n02/chbull/nemo/run'
+        alias out='cd /work/n02/n02/chbull/nemo/nemo_output'
         alias nemo='cd /work/n02/n02/chbull/repos/nemo_analysis'
         alias nemowed='cd /work/n02/n02/chbull/repos/nemo_wed_analysis'
         alias configs='cd /work/n02/n02/chbull/nemo/bld_configs'
@@ -200,6 +201,7 @@ case $(hostname) in
         alias nemocode='cd /work/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/CONFIG/WED025_3/BLD/ppsrc/nemo'
         alias rebuildnemo='/lus/cls01095/work/n02/n02/chbull/nemo/models/NEMO4/tools/REBUILD_NEMO/rebuild_nemo'
         alias cnemo='echo "cleaning nemo run folder .";rm *restart* *grid_T* *grid_U.nc *grid_V.nc mesh_mask_00* ocean.output time.step solver.stat slurm-* core index.html output.namelist.dyn output.init_* output.abort_*'
+        alias wnemo='watch -n 1 cat time.step'
         
         alias rw1='cd /work/n02/n02/chbull/RawData'
         alias ps='export PYTHONPATH=/work/n02/n02/chbull/anaconda3/pkgs;export PATH=/work/n02/n02/chbull/anaconda3/bin:$PATH;source activate root'
@@ -210,6 +212,9 @@ case $(hostname) in
         alias qdel='scancel '
         alias qsub='sbatch '
         alias qshort='sbatch --reservation=shortqos '
+        
+        alias qintshort='salloc --nodes=1 --tasks-per-node=24 --cpus-per-task=1 --time=00:20:00 --partition=standard --reservation=shortqos --qos=short  --account=n02'
+        alias qintlong='salloc --nodes=1 --tasks-per-node=24 --cpus-per-task=1 --time=10:00:00 --partition=standard --qos=standard  --account=n02'
 
         #/lus/cls01095/work/n01/shared/acc/n01_modules/ucx_env
         module -s restore /work/n01/shared/acc/n01_modules/ucx_env
@@ -248,6 +253,7 @@ case $(hostname) in
         #and then for ncdump to work..
         module load cray-python
         module load python-netCDF4/1.5.5.1
+        module load ncview
 
         PATH=$PATH:~/xclip/bin/
         ;;
