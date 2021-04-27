@@ -300,7 +300,8 @@ case $(hostname) in
         alias jmass='ssh -X chbull@mass-cli1.ceda.ac.uk'
         alias et='ssh -X et1.ceda.ac.uk'
         
-        alias ps='export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root'
+        #alias ps='export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root'
+        alias ps='export PYTHONPATH=/home/users/chbull/anaconda2/pkgs;export PATH=/home/users/chbull/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda3/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda3/bin:$PATH;source activate root'
 
         alias r='cd /home/users/chbull/repos'
