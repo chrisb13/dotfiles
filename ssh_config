@@ -64,3 +64,21 @@ Host arc
   ControlPath ~/.ssh/archer-sockets/%r
   #NB: create this folder on your local machine:  ~/.ssh/archer-sockets
   #see email from support: Aug 5, 2020, 6:52 PM
+
+Host arc2
+  HostName login.archer2.ac.uk
+  User chbull
+  #ProxyCommand ssh chbull@bas -XCYW %h:%p
+  IdentityFile ~/.ssh/id_rsa_arc2
+  ControlMaster auto
+  ControlPersist yes
+  ControlPath ~/.ssh/archer2-sockets/%r
+
+Host arc2n01
+  HostName login.archer2.ac.uk
+  User cbull
+  #ProxyCommand ssh chbull@bas -XCYW %h:%p
+  IdentityFile ~/.ssh/id_rsa_arc2
+  ControlMaster auto
+  ControlPersist yes
+  ControlPath ~/.ssh/archer2n01-sockets/%r
