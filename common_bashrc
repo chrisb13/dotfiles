@@ -371,7 +371,8 @@ case $(hostname) in
         alias jmass='ssh -X chbull@mass-cli1.ceda.ac.uk'
         alias et='ssh -X et1.ceda.ac.uk'
         
-        alias ps='export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root'
+        #alias ps='export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root'
+        alias ps='export PYTHONPATH=/home/users/chbull/anaconda2/pkgs;export PATH=/home/users/chbull/anaconda2/bin:$PATH;source activate root'
         alias ps3='export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda3/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda3/bin:$PATH;source activate root'
 
         alias r='cd /home/users/chbull/repos'
@@ -380,7 +381,8 @@ case $(hostname) in
         alias imgtrkr='python /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/imgtrkr/main.py'
         
         
-        alias rw1='cd /group_workspaces/jasmin2/bas_pog/chbull'
+        #alias rw1='cd /group_workspaces/jasmin2/bas_pog/chbull'
+        alias rw1='cd /gws/nopw/j04/bas_pog/chbull'
         #add xclip to the end of bash path
         PATH=$PATH:~/xclip/
         ;;
