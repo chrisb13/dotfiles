@@ -441,8 +441,9 @@ case $(hostname) in
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         alias h='cd_;lxterminal'  
 
-        alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/'
+        alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/;sudo mount -t vboxsf VBoxSHARED2 ~/VBoxSHARED2/'
         alias vb='cd /home/chris/VBoxSHARED'
+        alias vb2='cd /home/chris/VBoxSHARED2'
         alias imgtrkr='python /home/chris/VBoxSHARED/repos/imgtrkr/main.py '
 
         # for website stuff
