@@ -466,8 +466,8 @@ function arcpullajr()
     NC='\033[0m'
     echo "Usage:   Pull AJR experiments from ARCHER2 into laptop"
 
-    echo -e "${RED}Pulling /work/n02/n02/chbull/nemo/nemo_output into /home/chris/VBoxSHARED2/"
-    rsync -avz --progress arc2:/work/n02/n02/chbull/nemo/nemo_output /home/chris/VBoxSHARED2/
+    echo -e "${RED}Pulling /work/n02/n02/chbull/nemo/nemo_output into /home/chris/VBoxSHARED4/"
+    rsync -avz --progress arc2:/work/n02/n02/chbull/nemo/nemo_output /home/chris/VBoxSHARED4/
 }
 
 function arcpullasf()
@@ -507,13 +507,13 @@ function arcpullasf()
     echo -e "Root files found: $rootfiles"
     echo -e ""
     echo -e ""
-    mkdir -p /home/chris/VBoxSHARED2/nemo_output/$1
+    mkdir -p /home/chris/VBoxSHARED4/nemo_output/$1
     while IFS= read -r line; do
         echo -e "Rsync'ing: ${RED}$line ${NC}"
-        rsync -avz --progress arc2:/work/n02/n02/chbull/nemo/nemo_output/$1/$line /home/chris/VBoxSHARED2/nemo_output/$1/$line
+        rsync -avz --progress arc2:/work/n02/n02/chbull/nemo/nemo_output/$1/$line /home/chris/VBoxSHARED4/nemo_output/$1/$line
     done <<< "$rootfiles"
     echo -e "Downloading last year : ${years##*$'\n'}"
-    rsync -avz --progress arc2:${years##*$'\n'} /home/chris/VBoxSHARED2/nemo_output/$1
+    rsync -avz --progress arc2:${years##*$'\n'} /home/chris/VBoxSHARED4/nemo_output/$1
 }
 
 
