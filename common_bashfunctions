@@ -348,6 +348,33 @@ function ospush()
 }
 
 
+function ospull()
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   arcpull PATH_FROM PATH_TO." 
+        echo "Purpose: rsync function to pull files from OSWALD." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "path_from: Path on Oswald to Rsync from" 
+        echo "path_to:   Path on local to Rsync to" 
+        echo "       " 
+        echo "Example." 
+        echo "This:" 
+        echo "ospull /users/chbull/temp/*.png ./temp"
+        echo "       " 
+        echo "Becomes:" 
+        echo "rsync -avz --progress osw_lhly6@oswald:/users/chbull/temp/*.png ./temp"
+
+        return 1
+    fi
+
+    RED='\033[0;31m'
+    NC='\033[0m'
+    echo -e "${RED}Pulling " ${@:1:$(($#-1))} " from OSWALD" " ${NC}"
+    rsync -avz --progress osw_lhly6@oswald:$* 
+}
+
+
 #bash command to push file(s) onto ARCHER (UK)
 function arcpush() 
 {
@@ -439,8 +466,54 @@ function arcpullajr()
     NC='\033[0m'
     echo "Usage:   Pull AJR experiments from ARCHER2 into laptop"
 
-    echo -e "${RED}Pulling /fs2/n02/n02/chbull/nemo/nemo_output into /home/chris/VBoxSHARED/"
-    rsync -avz --progress arc2:/fs2/n02/n02/chbull/nemo/nemo_output /home/chris/VBoxSHARED/
+    echo -e "${RED}Pulling /work/n02/n02/chbull/nemo/nemo_output into /home/chris/VBoxSHARED4/"
+    rsync -avz --progress arc2:/work/n02/n02/chbull/nemo/nemo_output /home/chris/VBoxSHARED4/
+}
+
+function arcpullasf()
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   Pull ASF experiments from ARCHER2 into local"
+        echo "         Will figure out what the last year of output was and only pull that, as well as base config files"
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "experiment name: " 
+        echo "       " 
+        echo "Example." 
+        echo "This: arcpullasf asf_c27_00001" 
+        echo "       " 
+
+        return 1
+    fi
+    #grabs last passed argument..
+    for last; do true; done
+    RED='\033[0;31m'
+    NC='\033[0m'
+
+    echo -e ""
+    echo -e "Pulling experiment ${RED}$1${NC}"
+    echo -e ""
+    #ssh arc2 "ls /lus/cls01095/work/n02/n02/chbull/nemo/nemo_output/$last/???? -d 2>&1"
+    #arr=( $(ssh arc2 "ls /lus/cls01095/work/n02/n02/chbull/nemo/nemo_output/$1/???? -d | tail -1 2>&1") )
+    years=`ssh  -n arc2 "ls /lus/cls01095/work/n02/n02/chbull/nemo/nemo_output/$1/???? -d 2>&1"`
+    rootfiles=`ssh arc2 "ls -p /lus/cls01095/work/n02/n02/chbull/nemo/nemo_output/$1 | grep -v / 2>&1"`
+    #echo -e "$arr"
+    echo -e ""
+    echo -e "Years detected: "
+    echo -e "$years"
+    echo -e "Last year then : ${RED}${years##*$'\n'}${NC}"
+    echo -e ""
+    echo -e ""
+    echo -e "Root files found: $rootfiles"
+    echo -e ""
+    echo -e ""
+    mkdir -p /home/chris/VBoxSHARED4/nemo_output/$1
+    while IFS= read -r line; do
+        echo -e "Rsync'ing: ${RED}$line ${NC}"
+        rsync -avz --progress arc2:/work/n02/n02/chbull/nemo/nemo_output/$1/$line /home/chris/VBoxSHARED4/nemo_output/$1/$line
+    done <<< "$rootfiles"
+    echo -e "Downloading last year : ${years##*$'\n'}"
+    rsync -avz --progress arc2:${years##*$'\n'} /home/chris/VBoxSHARED4/nemo_output/$1
 }
 
 
