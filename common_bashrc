@@ -449,21 +449,26 @@ case $(hostname) in
         #Fixes cliipboard issue. seems to be something about “bracketed paste mode”
         #alias fixclip="echo 'printf "\e[?2004l"'"
         printf "\e[?2004l"
-        alias r='cd ~/VBoxSHARED/repos'
-        alias out='cd /home/chris/VBoxSHARED/nemo_output'
-        alias rr="lxterminal -e bash -c 'cd /home/chris/VBoxSHARED/repos;bash'"
-        alias ajr='cd ~/VBoxSHARED/repos/nemo_wed_analysis/ajtoy/diagnostics'
-        alias ajrout='cd ~/VBoxSHARED/20200804_slopeVmelt/analysis'
-        alias nemoeac='cd ~/VBoxSHARED/repos/nemo_analysis'
-        alias nemo='cd ~/VBoxSHARED/repos/nemo_analysis'
-        alias nemowed='cd ~/VBoxSHARED/repos/nemo_wed_analysis'
+        alias r='cd ~/VBoxSHARED4/repos'
+        alias out='cd /home/chris/VBoxSHARED4/nemo_output'
+        alias rr="lxterminal -e bash -c 'cd /home/chris/VBoxSHARED4/repos;bash'"
+        alias ajr='cd ~/VBoxSHARED4/repos/nemo_wed_analysis/ajtoy/diagnostics'
+        alias ajrout='cd ~/VBoxSHARED4/20200804_slopeVmelt/analysis'
+        alias nemoeac='cd ~/VBoxSHARED4/repos/nemo_analysis'
+        alias nemo='cd ~/VBoxSHARED4/repos/nemo_analysis'
+        alias nemowed='cd ~/VBoxSHARED4/repos/nemo_wed_analysis'
         alias ps2='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
         alias ps='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         alias h='cd_;lxterminal'  
 
-        alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/'
-        alias vb='cd /home/chris/VBoxSHARED'
+        alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/;sudo mount -t vboxsf VBoxSHARED2 ~/VBoxSHARED2/;sudo mount -t vboxsf VBoxSHARED3 ~/VBoxSHARED3/'
+        alias vb='cd /home/chris/VBoxSHARED4'
+        alias vb1='cd /home/chris/VBoxSHARED'
+        alias vb2='cd /home/chris/VBoxSHARED2'
+        alias vb3='cd /home/chris/VBoxSHARED3'
+        alias vb4='cd /home/chris/VBoxSHARED4'
+        alias ds='ssh chris@192.168.0.27'
         alias imgtrkr='python /home/chris/VBoxSHARED/repos/imgtrkr/main.py '
 
         # for website stuff
