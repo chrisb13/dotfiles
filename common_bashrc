@@ -200,7 +200,7 @@ case $(hostname) in
         alias r='cd /work/n02/n02/chbull/repos'
         alias nemocode='cd /work/n02/n02/chbull/nemo/models/MergedCode_G06-9321_isf-remap-9853_shlat2d-9854_isf-flx-986/CONFIG/WED025_3/BLD/ppsrc/nemo'
         alias rebuildnemo='/lus/cls01095/work/n02/n02/chbull/nemo/models/NEMO4/tools/REBUILD_NEMO/rebuild_nemo'
-        alias cnemo='echo "cleaning nemo run folder .";rm *restart* *grid_T* *grid_U.nc *grid_V.nc mesh_mask_00* ocean.output time.step solver.stat slurm-* core index.html output.namelist.dyn output.init_* output.abort_*'
+        alias cnemo='echo "cleaning nemo run folder .";rm *restart* *grid_T* *grid_U.nc *grid_V.nc *grid_W.nc mesh_mask_00* ocean.output time.step solver.stat slurm-* core index.html output.namelist.dyn output.init_* output.abort_* ocean.output* prod_nemo.db'
         alias wnemo='watch -n 1 cat time.step'
         
         alias rw1='cd /work/n02/n02/chbull/RawData'
@@ -213,8 +213,9 @@ case $(hostname) in
         alias qsub='sbatch '
         alias qshort='sbatch --reservation=shortqos '
         
-        alias qintshort='salloc --nodes=1 --tasks-per-node=24 --cpus-per-task=1 --time=00:20:00 --partition=standard --reservation=shortqos --qos=short  --account=n02'
-        alias qintlong='salloc --nodes=1 --tasks-per-node=24 --cpus-per-task=1 --time=10:00:00 --partition=standard --qos=standard  --account=n02'
+        alias qintshort='salloc --nodes=1 --tasks-per-node=24 --cpus-per-task=1 --time=00:20:00 --partition=standard --reservation=shortqos --qos=short  --account=n02-PROPHET'
+        alias qintlong='salloc --nodes=1 --tasks-per-node=24 --cpus-per-task=1 --time=10:00:00 --partition=standard --qos=standard  --account=n02-PROPHET'
+        alias qintshortmax='salloc --nodes=8 --tasks-per-node=128 --cpus-per-task=1 --time=00:20:00 --partition=standard --reservation=shortqos --qos=short  --account=n02-PROPHET'
 
         #/lus/cls01095/work/n01/shared/acc/n01_modules/ucx_env
         module -s restore /work/n01/shared/acc/n01_modules/ucx_env
