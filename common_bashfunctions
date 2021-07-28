@@ -1089,6 +1089,38 @@ function findtype()
 
 }
 
+function findstring() 
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage: findstring PATHS STRING" 
+        echo "Purpose: searches sets of files for TYPE." 
+        echo "       " 
+        echo "Mandatory arguments: " 
+        echo "TYPE: file type " 
+        echo "       " 
+        echo "Example." 
+        echo "findstring './asf_c*_00001/set*' jperio" 
+        echo "gives" 
+        echo "find . -wholename './asf_c*_00001/set*' -print0 | xargs -0 grep -n -H jperio | sort" 
+        echo "NOT CURRENTLY WORKING AS A BASH FUNCTION BUT THE COMMAND ABOVE WORKS!" 
+
+        return 1
+    fi
+
+    #echo "${@:1:$(($#-1))}"
+    echo "'${1}'"
+    echo "${2}"
+    find . -wholename "'${1}'" -print0 | xargs -0 grep -n -H ${2} | sort
+
+}
+
+
+function stitch() 
+{
+echo  "example of using ffmpeg to stitch a movie together"
+echo  "ffmpeg -f image2 -pattern_type glob -i 'pl_spat_grid_mov_asf_c*/*.png' -c:v libx264 -pix_fmt yuv420p out.mp4"
+echo  ""
+}
 
 function htopfind() 
 {
