@@ -67,6 +67,7 @@ Host arc
 
 Host arc2
   HostName login.archer2.ac.uk
+  #HostName login-4c.archer2.ac.uk
   User chbull
   #ProxyCommand ssh chbull@bas -XCYW %h:%p
   IdentityFile ~/.ssh/id_rsa_arc2
@@ -74,8 +75,16 @@ Host arc2
   ControlPersist yes
   ControlPath ~/.ssh/archer2-sockets/%r
 
+Host arc2_4c
+  HostName login-4c.archer2.ac.uk
+  User chbull
+  IdentityFile ~/.ssh/id_rsa_arc2
+  ControlMaster auto
+  ControlPersist yes
+
 Host arc2n01
-  HostName login.archer2.ac.uk
+  #HostName login.archer2.ac.uk
+  HostName login-4c.archer2.ac.uk
   User cbull
   #ProxyCommand ssh chbull@bas -XCYW %h:%p
   IdentityFile ~/.ssh/id_rsa_arc2
