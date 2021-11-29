@@ -344,7 +344,7 @@ function ospush()
     #grabs last passed argument..
     for last; do true; done
 
-    rsync -avS --progress ${@:1:$(($#-1))} osw_lhly6@oswald:$last
+    rsync -avS --progress ${@:1:$(($#-1))} osw_lhly6@oswaldnovis:$last
 }
 
 
