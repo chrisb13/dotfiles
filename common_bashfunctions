@@ -351,7 +351,7 @@ function ospush()
 function ospull()
 {
     if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
-        echo "Usage:   arcpull PATH_FROM PATH_TO." 
+        echo "Usage:   ospull PATH_FROM PATH_TO." 
         echo "Purpose: rsync function to pull files from OSWALD." 
         echo "       " 
         echo "Mandatory arguments: " 
@@ -456,7 +456,8 @@ function arcpull()
     RED='\033[0;31m'
     NC='\033[0m'
     echo -e "${RED}Pulling " ${@:1:$(($#-1))} " from ARCHER2" " ${NC}"
-    rsync -avz --progress arc2:$* 
+    rsync -avz --progress arc2_4c:$* 
+    #rsync -avz --progress arc2:$* 
 }
 
 
@@ -1251,22 +1252,22 @@ infile='${OUTPUT}'
 assert(os.path.exists(infile)),"netCDF file does not exist!"
 ifile=xr.open_dataset(infile)
 #varone=ifile['']
-print ""
-print "NetCDF file loaded with bash loadnc function..."
-print os.path.basename(infile)
-print ""
-print "File Details"
-print ifile
+print("")
+print("NetCDF file loaded with bash loadnc function...")
+print(os.path.basename(infile))
+print("")
+print("File Details")
+print(ifile)
 
-print ""
-print "Variable Names: "
-print ""
-print ifile.variables.keys()
-print ""
+print("")
+print("Variable Names: ")
+print("")
+print(ifile.variables.keys())
+print("")
 
-print ""
-print "'ifile' is name of netCDF4 object... "
-print ""
+print("")
+print("'ifile' is name of netCDF4 object... ")
+print("")
 
 #plt.close('all')
 #fig=plt.figure()

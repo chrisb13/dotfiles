@@ -81,6 +81,7 @@ Host arc2_4c
   IdentityFile ~/.ssh/id_rsa_arc2
   ControlMaster auto
   ControlPersist yes
+  ControlPath ~/.ssh/archer24c-sockets/%r
 
 Host arc2n01
   #HostName login.archer2.ac.uk
