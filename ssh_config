@@ -54,17 +54,6 @@ Host jas
   IdentityFile ~/.ssh/id_rsa_jasmin
   ServerAliveInterval 240
 
-Host arc
-  HostName login.archer.ac.uk
-  User chbull
-  ProxyCommand ssh chbull@bas -XCYW %h:%p
-  IdentityFile ~/.ssh/id_rsa_arc
-  ControlMaster auto
-  ControlPersist yes
-  ControlPath ~/.ssh/archer-sockets/%r
-  #NB: create this folder on your local machine:  ~/.ssh/archer-sockets
-  #see email from support: Aug 5, 2020, 6:52 PM
-
 Host arc2
   HostName login.archer2.ac.uk
   #HostName login-4c.archer2.ac.uk
@@ -74,6 +63,9 @@ Host arc2
   ControlMaster auto
   ControlPersist yes
   ControlPath ~/.ssh/archer2-sockets/%r
+  #NB: create this folder on your local machine:  ~/.ssh/archer-sockets
+  #see email from support: Aug 5, 2020, 6:52 PM
+
 
 Host arc2_4c
   HostName login-4c.archer2.ac.uk
@@ -81,6 +73,7 @@ Host arc2_4c
   IdentityFile ~/.ssh/id_rsa_arc2
   ControlMaster auto
   ControlPersist yes
+  ControlPath ~/.ssh/archer24c-sockets/%r
 
 Host arc2n01
   #HostName login.archer2.ac.uk
