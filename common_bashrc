@@ -205,7 +205,7 @@ case $(hostname) in
         alias bld='cd /projects/jmmp/chrbu/nemo/bld_configs'
         alias configs='cd /projects/jmmp/chrbu/nemo/bld_configs'
         ;;
-    uan02|uan01)
+    ln03)
         alias short='cd /work/n02/n02/chbull/'
         alias models='cd /work/n02/n02/chbull/nemo/models'
         alias run='cd /work/n02/n02/chbull/nemo/run'
@@ -239,44 +239,11 @@ case $(hostname) in
         alias qintlong='salloc --nodes=1 --tasks-per-node=24 --cpus-per-task=1 --time=10:00:00 --partition=standard --qos=standard  --account=n02-PROPHET'
         alias qintshortmax='salloc --nodes=8 --tasks-per-node=128 --cpus-per-task=1 --time=00:20:00 --partition=standard --reservation=shortqos --qos=short  --account=n02-PROPHET'
 
-        #/lus/cls01095/work/n01/shared/acc/n01_modules/ucx_env
-        module -s restore /work/n01/shared/acc/n01_modules/ucx_env
-        #which is:
-        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-pyvenvs
-        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-utils
-        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-libs
-        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse-apps
-        #module use --append /opt/cray/pe/perftools/20.10.0/modulefiles
-        #module use --append /opt/cray/pe/perftools/20.09.0/modulefiles
-        #module use --append /opt/cray/pe/craype/2.7.0/modulefiles
-        #module use --append /usr/local/Modules/modulefiles
-        #module use --append /opt/cray/pe/cpe-prgenv/7.0.0
-        #module use --append /opt/cray/pe/modulefiles
-        #module use --append /opt/cray/pe/craype-targets/default/modulefiles
-        #module use --append /opt/modulefiles
-        #module use --append /opt/cray/modulefiles
-        #module use --append /work/y07/shared/archer2-modules/modulefiles-cse
-        #module load cpe-cray
-        #module load cce
-        #module load craype
-        #module load craype-x86-rome
-        #module load cray-dsmml
-        #module load perftools-base
-        #module load xpmem
-        #module load cray-libsci
-        #module load /work/y07/shared/archer2-modules/modulefiles-cse/epcc-setup-env
-        #module load cray-hdf5-parallel
-        #module load cray-netcdf-hdf5parallel
-        #module load gcc
-        #module load --notuasked cray-ucx
-        #module load craype-network-ucx
-        #module load cray-mpich-ucx
-        #module load libfabric
-
-        #and then for ncdump to work..
-        module load cray-python
-        module load python-netCDF4/1.5.5.1
-        module load ncview
+        module restore
+        module load cray-hdf5-parallel
+        module load cray-netcdf-hdf5parallel
+        module load xpmem
+        module load perftools-base
 
         PATH=$PATH:~/xclip/bin/
         ;;
