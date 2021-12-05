@@ -456,8 +456,7 @@ function arcpull()
     RED='\033[0;31m'
     NC='\033[0m'
     echo -e "${RED}Pulling " ${@:1:$(($#-1))} " from ARCHER2" " ${NC}"
-    rsync -avz --progress arc2_4c:$* 
-    #rsync -avz --progress arc2:$* 
+    rsync -avz --progress arc2:$* 
 }
 
 
