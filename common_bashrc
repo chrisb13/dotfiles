@@ -205,7 +205,7 @@ case $(hostname) in
         alias bld='cd /projects/jmmp/chrbu/nemo/bld_configs'
         alias configs='cd /projects/jmmp/chrbu/nemo/bld_configs'
         ;;
-    ln03)
+    ln03|ln04|ln02)
         alias short='cd /work/n02/n02/chbull/'
         alias models='cd /work/n02/n02/chbull/nemo/models'
         alias run='cd /work/n02/n02/chbull/nemo/run'
