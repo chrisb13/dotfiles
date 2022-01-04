@@ -42,8 +42,9 @@ endfunction
 autocmd BufNewFile	*.spec	call SKEL_spec()
 "tab shortcut keys
 
-"for rainbow highlighting with vim-niji
-let g:niji_matching_filetypes = ['python']
+"for rainbow highlighting 
+"https://github.com/luochen1990/rainbow
+ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
 
 "search and replace with ctrl r
