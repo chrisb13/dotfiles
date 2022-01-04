@@ -262,7 +262,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:surround_116 = "lg.info(str(np.round( \"\r\" ),2))"
 
 "remap escape key
-:imap jj <Esc>
+":imap jj <Esc>
 
 
 "docs 
