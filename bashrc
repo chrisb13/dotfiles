@@ -23,73 +23,8 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-###############################################
-#  turning off prompt now using liquid START  #
-###############################################
-
-## set variable identifying the chroot you work in (used in the prompt below)
-#if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    #debian_chroot=$(cat /etc/debian_chroot)
-#fi
-
-## set a fancy prompt (non-color, unless we know we "want" color)
-#case "$TERM" in
-    #xterm-color) color_prompt=yes;;
-#esac
-
-## uncomment for a colored prompt, if the terminal has the capability; turned
-## off by default to not distract the user: the focus in a terminal window
-## should be on the output of commands, not on the prompt
-##force_color_prompt=yes
-
-#if [ -n "$force_color_prompt" ]; then
-    #if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        ## We have color support; assume it's compliant with Ecma-48
-        ## (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        ## a case would tend to support setf rather than setaf.)
-        #color_prompt=yes
-    #else
-        #color_prompt=
-    #fi
-#fi
-
-#if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#else
-    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#fi
-#unset color_prompt force_color_prompt
-
-## If this is an xterm set the title to user@host:dir
-#case "$TERM" in
-#xterm*|rxvt*)
-    #PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    #;;
-#*)
-    #;;
-#esac
-
-
-##function parse git branch
-#function parse_git_branch {
-  #ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-    #echo "("${ref#refs/heads/}")"
-#}
-
-##neds version
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)\$ '
-
-
-###############################################
-#  turning off prompt now using liquid END    #
-###############################################
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -103,13 +38,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-#turning off bits of liquid prompt that slow us down 
-LP_ENABLE_TEMP=0; LP_ENABLE_JOBS=0; LP_ENABLE_BATT=0; LP_ENABLE_LOAD=0; LP_ENABLE_GIT=0;LP_ENABLE_SVN=0;LP_ENABLE_HG=0;LP_ENABLE_BZR=0;LP_ENABLE_FOSSIL=0;LP_ENABLE_VCS_ROOT=0
-
 #source common aliases
 source ~/.vim/common_bashrc
 
 #source common bash functions
 source ~/.vim/common_bashfunctions
-
-
