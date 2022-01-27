@@ -4,7 +4,6 @@ call pathogen#helptags()
 syntax on
 filetype plugin indent on
 
-
 "tries to fix clipboard
 set clipboard=unnamedplus
 
@@ -283,6 +282,10 @@ nmap <leader>a <Esc>:!ack-grep
 "NERDTree
 map <F2> :NERDTreeToggle<CR>
 
+"switch between tabs
+nnoremap H gT
+nnoremap L gt
+
 
 "Some old rsync bound commands
 "nnoremap <buffer> <F7> :exec '!mkdir ~/codescratch/' <bar>  :exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/*.py ~/codescratch/' <bar> exec '!rsync -avz  z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/repos/cms_analysis/cookies/*.py ~/codescratch/cookies/' <cr>
@@ -487,13 +490,12 @@ nnoremap <leader>es <C-w><C-v><C-l>:e ~/.vim/UltiSnips/python.snippets<cr>
 "select just pasted text
 nnoremap <leader>v V`]
 "highlight column 81
-let &colorcolumn=join(range(81,83),",")
-highlight ColorColumn ctermbg=235 guibg=#2c2d27
+"let &colorcolumn=join(range(81,83),",")
+"highlight ColorColumn ctermbg=235 guibg=#2c2d27
 "for yankring
 nnoremap <silent> <F11> :YRShow<CR>
 
 let g:yankring_replace_n_pkey = '<C-I>'
-
 
 "for some sort of very frustrating reason, these had to go at the bottom...
 nnoremap <leader>pwd :exec 'r!pwd'<bar><cr>
@@ -501,6 +503,5 @@ nnoremap <leader>ls :exec 'r!ls'<bar><cr>
 nnoremap <leader>nc :vnew<Bar>0r!ncdump -c <C-R>+<CR>
 nnoremap <leader>ncv :exec '!ncview <C-R>+'<CR>
 noremap <Leader>sa :CtrlP /home/nfs/z3457920/hdrive/repos/swissarmy<cr>
-noremap <Leader>cm :CtrlP /home/nfs/z3457920/hdrive/repos/cms_analysis<cr>
-noremap <Leader>nemo :CtrlP /home/nfs/z3457920/hdrive/repos/nemo_analysis<cr>
+noremap <Leader>r :CtrlP /home/nfs/z3457920/hdrive/repos/nemo_analysis<cr>
 noremap <Leader>jas :!source /home/chris/.vim/common_bashfunctions;ssh -t jas 'export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root;python /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/mkpaper_20180810_wed_reanalysis_atmo.py';jaspullplots<cr>
