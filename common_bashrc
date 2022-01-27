@@ -8,9 +8,8 @@ CDPATH=$CDPATH:~/
     #echo "("${ref#refs/heads/}")"
 #}
 
-# Only load Liquid Prompt in interactive shells, not from a script or from scp
-#https://ezprompt.net/
-PS1="[\e[34m\]\u\[\e[m\]:\[\e[36m\]\h\[\e[m\]:\A@\[\e[35m\]\w\[\e[m\]]"
+#https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/
+PS1="\[\033[0;33m\][\!]\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\u.\h: \`if [[ `pwd|wc -c|tr -d " "` > 18 ]]; then echo "\\W"; else echo "\\w"; fi\`]\$\[\033[0m\] "; echo -ne "\033]0;`hostname -s`:`pwd`\007"'
 
 #cb added
 set -o vi
