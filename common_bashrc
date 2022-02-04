@@ -54,6 +54,7 @@ alias getwedjcr='watch rsync -avz --progress chris@10.104.2.73:/home/chris/VBoxS
 
 #vim
 alias vi='vim -O'
+alias nvi='/home/chris/nvim.appimage '
 #alias cdo="cdo -C"
 alias feh='feh --scale-down --auto-zoom '
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'

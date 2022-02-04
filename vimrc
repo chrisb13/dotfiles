@@ -7,6 +7,30 @@ filetype plugin indent on
 "tries to fix clipboard
 set clipboard=unnamedplus
 
+"https://dustri.org/b/lightweight-and-sexy-status-bar-in-vim.html
+set statusline=
+set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
+set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
+set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=\ %n\           " buffer number
+set statusline+=%#Visual#       " colour
+set statusline+=%{&paste?'\ PASTE\ ':''}
+set statusline+=%{&spell?'\ SPELL\ ':''}
+set statusline+=%#CursorIM#     " colour
+set statusline+=%R                        " readonly flag
+set statusline+=%M                        " modified [+] flag
+set statusline+=%#Cursor#               " colour
+set statusline+=%#CursorLine#     " colour
+set statusline+=\ %t\                   " short file name
+set statusline+=%=                          " right align
+set statusline+=%#CursorLine#   " colour
+set statusline+=\ %Y\                   " file type
+set statusline+=%#CursorIM#     " colour
+set statusline+=\ %3l:%-2c\         " line + column
+set statusline+=%#Cursor#       " colour
+set statusline+=\ %3p%%\                " percentage
+
 "other ycm wasn't woprking for markdown
 let g:ycm_filetype_blacklist = {}
 "
@@ -257,6 +281,9 @@ set autochdir
 let g:UltiSnipsExpandTrigger="<leader>k"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " activated by doing shift + s, and then 't'
 let g:surround_116 = "lg.info(str(np.round( \"\r\" ),2))"
