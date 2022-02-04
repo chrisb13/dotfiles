@@ -58,3 +58,6 @@
 [submodule "bundle/rainbow"]
 	path = bundle/rainbow
 	url = git@github.com:luochen1990/rainbow.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git@github.com:vim-syntastic/syntastic.git
