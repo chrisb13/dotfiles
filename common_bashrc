@@ -426,6 +426,7 @@ case $(hostname) in
         alias ajrout='cd ~/VBoxSHARED4/20200804_slopeVmelt/analysis'
         alias asf='cd /media/DS1/VBoxSHARED4/20210506_asf_control/analysis'
         alias nemowed='cd ~/VBoxSHARED4/repos/nemo_wed_analysis'
+        alias miniconda='eval "$(/home/chris/miniconda3/bin/conda shell.bash hook)"'
         alias ps2='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
         alias ps='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
@@ -437,7 +438,7 @@ case $(hostname) in
         alias vb2='cd /home/chris/VBoxSHARED2'
         alias vb3='cd /home/chris/VBoxSHARED3'
         alias vb4='cd /home/chris/VBoxSHARED4'
-        alias ds='ssh chris@192.168.0.30'
+        alias ds='ssh chris@192.168.50.109'
         alias imgtrkr='python /home/chris/VBoxSHARED/repos/imgtrkr/main.py '
 
         # for website stuff

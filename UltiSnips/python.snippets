@@ -1164,6 +1164,22 @@ darray=darray.mean(axis=0).compute()
 ifile.close()
 endsnippet
 
+snippet savenetcdfscratch
+shape=(45, 385, 257)
+Tinit=np.zeros(( shape[0],shape[1],shape[2] ))
+Sinit=np.zeros(( shape[0],shape[1],shape[2] ))
+resto=np.zeros(( shape[0],shape[1],shape[2] ))
+#ifile=ifile.assign({'Tinit':(('z','y','x'),Tinit)})
+#ifile=ifile.assign({'Sinit':(('z','y','x'),Sinit)})
+#ifile=ifile.assign({'resto':(('z','y','x'),resto)})
+ifile=xr.Dataset({'Tinit':(('z','y','x'),Tinit),'Sinit':(('z','y','x'),Sinit),'resto':(('z','y','x'),resto)})
+ifile.attrs['history']=   r'Created by mk_ajbathy.py for the 20200804_slopeVmelt project; this is the second attempt at making a woa2018 inspired forcing, what a pain!'
+ifile.attrs['contact']=   r'christopher.bull@northumbria.ac.uk'
+ifile.attrs['creation_date']=   str(datetime.datetime.now())
+ifile.attrs['experiment']=r' '
+ifile.to_netcdf(outfile)
+endsnippet
+
 snippet savenetcdf
 import numpy as np
 import xarray as xr
