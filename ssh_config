@@ -84,3 +84,15 @@ Host arc2n01
   ControlMaster auto
   ControlPersist yes
   ControlPath ~/.ssh/archer2n01-sockets/%r
+
+Host deepspace
+  HostName 192.168.50.250
+  User admin
+
+#trying to emulate (doesn't work)
+#ssh -o ProxyCommand="ssh -W %h:%p admin@192.168.50.250" chris@192.168.50.109
+Host dsvm
+  HostName 192.168.50.109
+  User chris
+  #ProxyCommand ssh deepspace -XCYW %h:%p
+  #ProxyCommand ssh admin@deepspace 
