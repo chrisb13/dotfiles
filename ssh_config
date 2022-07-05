@@ -54,31 +54,45 @@ Host jas
   IdentityFile ~/.ssh/id_rsa_jasmin
   ServerAliveInterval 240
 
-Host arc
-  HostName login.archer.ac.uk
-  User chbull
-  ProxyCommand ssh chbull@bas -XCYW %h:%p
-  IdentityFile ~/.ssh/id_rsa_arc
-  ControlMaster auto
-  ControlPersist yes
-  ControlPath ~/.ssh/archer-sockets/%r
-  #NB: create this folder on your local machine:  ~/.ssh/archer-sockets
-  #see email from support: Aug 5, 2020, 6:52 PM
-
 Host arc2
   HostName login.archer2.ac.uk
+  #HostName login-4c.archer2.ac.uk
   User chbull
   #ProxyCommand ssh chbull@bas -XCYW %h:%p
   IdentityFile ~/.ssh/id_rsa_arc2
   ControlMaster auto
   ControlPersist yes
   ControlPath ~/.ssh/archer2-sockets/%r
+  #NB: create this folder on your local machine:  ~/.ssh/archer-sockets
+  #see email from support: Aug 5, 2020, 6:52 PM
+
+
+Host arc2_4c
+  HostName login-4c.archer2.ac.uk
+  User chbull
+  IdentityFile ~/.ssh/id_rsa_arc2
+  ControlMaster auto
+  ControlPersist yes
+  ControlPath ~/.ssh/archer24c-sockets/%r
 
 Host arc2n01
-  HostName login.archer2.ac.uk
+  #HostName login.archer2.ac.uk
+  HostName login-4c.archer2.ac.uk
   User cbull
   #ProxyCommand ssh chbull@bas -XCYW %h:%p
   IdentityFile ~/.ssh/id_rsa_arc2
   ControlMaster auto
   ControlPersist yes
   ControlPath ~/.ssh/archer2n01-sockets/%r
+
+Host deepspace
+  HostName 192.168.50.250
+  User admin
+
+#trying to emulate (doesn't work)
+#ssh -o ProxyCommand="ssh -W %h:%p admin@192.168.50.250" chris@192.168.50.109
+Host dsvm
+  HostName 192.168.50.109
+  User chris
+  #ProxyCommand ssh deepspace -XCYW %h:%p
+  #ProxyCommand ssh admin@deepspace 

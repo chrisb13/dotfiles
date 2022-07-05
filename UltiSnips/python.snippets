@@ -939,6 +939,26 @@ ax1.set_xlim(0.8, 12.2)
 ax1.set_xticklabels(labels)
 endsnippet
 
+snippet piticks
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as tck
+
+plt.close('all')
+fig=plt.figure()
+ax=fig.add_subplot(1, 1,1)
+xx=np.linspace(-3*np.pi, 3*np.pi,100)
+pme=-np.cos(xx)
+ax.plot(xx/np.pi,pme,color='g',label='2')
+ax.xaxis.set_major_formatter(tck.FormatStrFormatter('%g $\pi$'))
+ax.xaxis.set_major_locator(tck.MultipleLocator(base=1.0))
+pme=-np.cos((2/3)*xx)
+ax.plot(xx/np.pi,pme,color='r',label='2')
+ax.legend()
+ax.grid()
+plt.show()
+endsnippet
+
 snippet regex
 #really handonline regex finder: https://regex101.com/#python
 import re
@@ -1144,6 +1164,22 @@ darray=darray.mean(axis=0).compute()
 ifile.close()
 endsnippet
 
+snippet savenetcdfscratch
+shape=(45, 385, 257)
+Tinit=np.zeros(( shape[0],shape[1],shape[2] ))
+Sinit=np.zeros(( shape[0],shape[1],shape[2] ))
+resto=np.zeros(( shape[0],shape[1],shape[2] ))
+#ifile=ifile.assign({'Tinit':(('z','y','x'),Tinit)})
+#ifile=ifile.assign({'Sinit':(('z','y','x'),Sinit)})
+#ifile=ifile.assign({'resto':(('z','y','x'),resto)})
+ifile=xr.Dataset({'Tinit':(('z','y','x'),Tinit),'Sinit':(('z','y','x'),Sinit),'resto':(('z','y','x'),resto)})
+ifile.attrs['history']=   r'Created by mk_ajbathy.py for the 20200804_slopeVmelt project; this is the second attempt at making a woa2018 inspired forcing, what a pain!'
+ifile.attrs['contact']=   r'christopher.bull@northumbria.ac.uk'
+ifile.attrs['creation_date']=   str(datetime.datetime.now())
+ifile.attrs['experiment']=r' '
+ifile.to_netcdf(outfile)
+endsnippet
+
 snippet savenetcdf
 import numpy as np
 import xarray as xr
@@ -1312,6 +1348,59 @@ endsnippet
 ###########################################################################
 #                               MATPLOTLIB                                #
 ###########################################################################
+snippet catopycbar
+#loosely based
+#https://unidata.github.io/MetPy/v0.6/examples/Four_Panel_Map.html
+lon,lat=np.linspace(-90,-40,50),np.linspace(-180,180,50)
+pme=np.random.rand(50,50)
+plot_proj=ccrs.SouthPolarStereo( central_longitude=0.0)
+
+plt.close('all')
+row=2
+col=2
+fig=plt.figure(figsize=(5.0*col,5*row))
+gs = gridspec.GridSpec(row, col,height_ratios=[1,.1],width_ratios=[1]*col,hspace=.075,wspace=0.075)
+
+#first col
+ax = plt.subplot(gs[0,0], projection=plot_proj)
+#cs1=ax.contourf(pme) #also works and is quicker
+cs1=ax.contourf(lat,lon,pme,transform=ccrs.PlateCarree())
+sm.inset_title_box(ax,'a',bwidth="20%",location=1)
+
+ax.set_extent([-180, 180, -40, -90], ccrs.PlateCarree()) #for circumpolar
+ax.coastlines(resolution='50m')
+ax.gridlines(crs=ccrs.PlateCarree(), linewidth=1, color='gray', alpha=0.5)
+
+#colorbar
+cax = plt.subplot(gs[1,0])
+cb1 = plt.colorbar(cs1, cax=cax, orientation='horizontal')
+cb1.set_label('knots', size='x-large')
+
+#first col
+ax = plt.subplot(gs[0,1])
+cs1=ax.contourf(pme)
+
+cax = plt.subplot(gs[1,1])
+cb1 = plt.colorbar(cs1, cax=cax, orientation='horizontal')
+cb1.set_label('knots', size='x-large')
+
+plt.show()
+endsnippet
+
+snippet catopysouthernocean
+plot_proj=ccrs.SouthPolarStereo( central_longitude=0.0)
+fig = plt.figure()
+ax = plt.subplot(1, 1, 1, projection=plot_proj)
+pme=np.random.rand(50,50)
+lon,lat=np.linspace(-90,-40,50),np.linspace(-180,180,50)
+cs1=ax.contourf(lat,lon,pme,transform=ccrs.PlateCarree())
+ax.set_extent([-180, 180, -40, -90], ccrs.PlateCarree()) #for circumpolar
+ax.coastlines(resolution='50m')
+ax.gridlines(crs=ccrs.PlateCarree(), linewidth=1, color='gray', alpha=0.5)
+ax_cb = plt.axes([0.92, 0.25, 0.015, 0.5])
+cb = plt.colorbar(cs1, cax=ax_cb, orientation='vertical')
+plt.show()
+endsnippet
 
 snippet catopyegwed025
 import cartopy.crs as ccrs
@@ -2326,7 +2415,7 @@ sm.pl_landmask(path_to_netcdf_Tfile,pltaxis,filled=False,cropped=[])
 sm.change_tick_labels_add_dirs(axes)
 sm.ins_legend(pltaxis,exp_subset=None,lw=3,location=0,invisible=False,ncols=4)
 sm.ins_legend_nonz(pltaxis,exp_subset=None,lw=3,location=0,invisible=False,ncols=4)
-sm.pl_inset_title_box(ax,title,bwidth="20%",location=1)
+sm.inset_title_box(ax,title,bwidth="20%",location=1)
 sm.raw_nemo_globber_specifytpe(exp_path,file_type,child='',return_dates=False)
 sm.nemo_fixdateline(netcdf_datasetobj)
 sm.nemo_lon_lat_finder(infile,want_latitude,want_longitude,resolution)

@@ -4,9 +4,32 @@ call pathogen#helptags()
 syntax on
 filetype plugin indent on
 
-
 "tries to fix clipboard
 set clipboard=unnamedplus
+
+"https://dustri.org/b/lightweight-and-sexy-status-bar-in-vim.html
+set statusline=
+set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
+set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
+set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=\ %n\           " buffer number
+set statusline+=%#Visual#       " colour
+set statusline+=%{&paste?'\ PASTE\ ':''}
+set statusline+=%{&spell?'\ SPELL\ ':''}
+set statusline+=%#CursorIM#     " colour
+set statusline+=%R                        " readonly flag
+set statusline+=%M                        " modified [+] flag
+set statusline+=%#Cursor#               " colour
+set statusline+=%#CursorLine#     " colour
+set statusline+=\ %t\                   " short file name
+set statusline+=%=                          " right align
+set statusline+=%#CursorLine#   " colour
+set statusline+=\ %Y\                   " file type
+set statusline+=%#CursorIM#     " colour
+set statusline+=\ %3l:%-2c\         " line + column
+set statusline+=%#Cursor#       " colour
+set statusline+=\ %3p%%\                " percentage
 
 "other ycm wasn't woprking for markdown
 let g:ycm_filetype_blacklist = {}
@@ -42,8 +65,9 @@ endfunction
 autocmd BufNewFile	*.spec	call SKEL_spec()
 "tab shortcut keys
 
-"for rainbow highlighting with vim-niji
-let g:niji_matching_filetypes = ['python']
+"for rainbow highlighting 
+"https://github.com/luochen1990/rainbow
+ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
 
 "search and replace with ctrl r
@@ -258,11 +282,14 @@ let g:UltiSnipsExpandTrigger="<leader>k"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 " activated by doing shift + s, and then 't'
 let g:surround_116 = "lg.info(str(np.round( \"\r\" ),2))"
 
 "remap escape key
-:imap jj <Esc>
+":imap jj <Esc>
 
 
 "docs 
@@ -281,6 +308,10 @@ nmap <leader>a <Esc>:!ack-grep
 
 "NERDTree
 map <F2> :NERDTreeToggle<CR>
+
+"switch between tabs
+nnoremap H gT
+nnoremap L gt
 
 
 "Some old rsync bound commands
@@ -486,13 +517,12 @@ nnoremap <leader>es <C-w><C-v><C-l>:e ~/.vim/UltiSnips/python.snippets<cr>
 "select just pasted text
 nnoremap <leader>v V`]
 "highlight column 81
-let &colorcolumn=join(range(81,83),",")
-highlight ColorColumn ctermbg=235 guibg=#2c2d27
+"let &colorcolumn=join(range(81,83),",")
+"highlight ColorColumn ctermbg=235 guibg=#2c2d27
 "for yankring
 nnoremap <silent> <F11> :YRShow<CR>
 
 let g:yankring_replace_n_pkey = '<C-I>'
-
 
 "for some sort of very frustrating reason, these had to go at the bottom...
 nnoremap <leader>pwd :exec 'r!pwd'<bar><cr>
@@ -500,6 +530,5 @@ nnoremap <leader>ls :exec 'r!ls'<bar><cr>
 nnoremap <leader>nc :vnew<Bar>0r!ncdump -c <C-R>+<CR>
 nnoremap <leader>ncv :exec '!ncview <C-R>+'<CR>
 noremap <Leader>sa :CtrlP /home/nfs/z3457920/hdrive/repos/swissarmy<cr>
-noremap <Leader>cm :CtrlP /home/nfs/z3457920/hdrive/repos/cms_analysis<cr>
-noremap <Leader>nemo :CtrlP /home/nfs/z3457920/hdrive/repos/nemo_analysis<cr>
+noremap <Leader>r :CtrlP /home/nfs/z3457920/hdrive/repos/nemo_analysis<cr>
 noremap <Leader>jas :!source /home/chris/.vim/common_bashfunctions;ssh -t jas 'export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root;python /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics/mkpaper_20180810_wed_reanalysis_atmo.py';jaspullplots<cr>
