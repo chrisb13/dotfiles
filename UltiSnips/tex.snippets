@@ -227,7 +227,7 @@ snippet bmat "bmat" iA
 endsnippet
 
 
-#brackets
+#brackets - to use visually, select your text, leader+k then, type the snippet then leader+k again.
 snippet () "left( right)" iA
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
@@ -247,6 +247,11 @@ endsnippet
 snippet lr{ "left\{ right\}" i
 \left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
+
+snippet curly "left\{ right\}" i
+\nabla \times \left\\{ ${1:${VISUAL}} \right\\} $0
+endsnippet
+
 
 snippet lrb "left\{ right\}" i
 \left\\{ ${1:${VISUAL}} \right\\} $0
@@ -435,8 +440,11 @@ snippet nabl "nabla" iA
 \nabla 
 endsnippet
 
+snippet curl "curl" iA
+\nabla \times 
+endsnippet
 
-snippet xx "cross" iA
+snippet xx "times" iA
 \times 
 endsnippet
 
