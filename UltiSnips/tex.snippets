@@ -227,6 +227,7 @@ snippet bmat "bmat" iA
 endsnippet
 
 
+#brackets
 snippet () "left( right)" iA
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
@@ -288,6 +289,16 @@ snippet part "d/dx" w
 \frac{\partial ${1:V}}{\partial ${2:x}} $0
 endsnippet
 
+snippet nemomo
+\begin{equation}
+    \frac{\partial {\mathbf{u}}_h}{\partial t} =  -\left[ (\nabla \times \mathbf{u}) \times \mathbf{u} + \frac{1}{2} \nabla \mathbf{u}^2 \right]_h - fk \times \mathbf{u}_h -\frac{1}{\rho_0} \nabla P + D^u +F^u
+\\
+\end{equation}
+endsnippet
+
+snippet bf "\mathbf{}" iA
+\mathbf{${1:${VISUAL}}} $0
+endsnippet
 
 snippet sq "\sqrt{}" iA
 \sqrt{${1:${VISUAL}}} $0
@@ -449,6 +460,10 @@ priority 300
 
 snippet dint "integral" wA
 \int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
+endsnippet
+
+snippet ddint "integral" wA
+\int_{${1:-D}}^{${2:\eta}} ${3:${VISUAL}} $0
 endsnippet
 
 priority 200
