@@ -34,6 +34,19 @@ set statusline+=\ %3p%%\                " percentage
 
 "other ycm wasn't woprking for markdown
 let g:ycm_filetype_blacklist = {}
+
+"vimtex
+  "Value  Effect ~
+  "0      The quickfix window is never opened/closed automatically.
+  "1      The quickfix window is opened automatically when there are errors,
+         "and it becomes the active window.
+  "2      The quickfix window is opened automatically when there are errors,
+         "but it does not become the active window.
+let g:vimtex_quickfix_mode=2
+let g:vimtex_quickfix_autoclose_after_keystrokes=5
+"means the quick fix only comes up for a few keystrokes
+"can't get this one to work for some reason
+"let g:vimtex_quickfix_open_on_warning=1
 "
 "
 " ~/.vimrc (configuration file for vim only)

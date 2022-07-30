@@ -495,8 +495,13 @@ function arcpullasf()
     echo -e ""
     #ssh arc2 "ls /lus/cls01095/work/n02/n02/chbull/nemo/nemo_output/$last/???? -d 2>&1"
     #arr=( $(ssh arc2 "ls /lus/cls01095/work/n02/n02/chbull/nemo/nemo_output/$1/???? -d | tail -1 2>&1") )
-    years=`ssh  -n arc2 "ls /lus/cls01095/work/n02/n02/chbull/nemo/nemo_output/$1/???? -d 2>&1"`
-    rootfiles=`ssh arc2 "ls -p /lus/cls01095/work/n02/n02/chbull/nemo/nemo_output/$1 | grep -v / 2>&1"`
+
+    #dodgy hack if you know the exact year you want..
+    years=`ssh  -n arc2 "ls /work/n02/n02/chbull/nemo/nemo_output/$1/0030 -d 2>&1"`
+
+    #normal way..
+    #years=`ssh  -n arc2 "ls /work/n02/n02/chbull/nemo/nemo_output/$1/???? -d 2>&1"`
+    rootfiles=`ssh arc2 "ls -p /work/n02/n02/chbull/nemo/nemo_output/$1 | grep -v / 2>&1"`
     #echo -e "$arr"
     echo -e ""
     echo -e "Years detected: "
@@ -507,13 +512,13 @@ function arcpullasf()
     echo -e "Root files found: $rootfiles"
     echo -e ""
     echo -e ""
-    mkdir -p /home/chris/VBoxSHARED4/nemo_output/$1
+    mkdir -p /home/chris/VBoxSHARED/nemo_output/$1
     while IFS= read -r line; do
         echo -e "Rsync'ing: ${RED}$line ${NC}"
-        rsync -avz --progress arc2:/work/n02/n02/chbull/nemo/nemo_output/$1/$line /home/chris/VBoxSHARED4/nemo_output/$1/$line
+        rsync -avz --progress arc2:/work/n02/n02/chbull/nemo/nemo_output/$1/$line /home/chris/VBoxSHARED/nemo_output/$1/$line
     done <<< "$rootfiles"
     echo -e "Downloading last year : ${years##*$'\n'}"
-    rsync -avz --progress arc2:${years##*$'\n'} /home/chris/VBoxSHARED4/nemo_output/$1
+    rsync -avz --progress arc2:${years##*$'\n'} /home/chris/VBoxSHARED/nemo_output/$1
 }
 
 
