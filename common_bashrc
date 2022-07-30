@@ -426,7 +426,7 @@ case $(hostname) in
         alias ajrout='cd ~/VBoxSHARED4/20200804_slopeVmelt/analysis'
         alias asf='cd /media/DS1/VBoxSHARED4/20210506_asf_control/analysis'
         alias nemowed='cd ~/VBoxSHARED4/repos/nemo_wed_analysis'
-        alias miniconda='eval "$(/home/chris/miniconda3/bin/conda shell.bash hook)"'
+        alias miniconda='eval "$(/media/DS1/VBoxSHARED4/miniconda3/bin/conda shell.bash hook)"'
         alias ps2='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
         alias ps='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  

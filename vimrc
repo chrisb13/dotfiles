@@ -2,6 +2,7 @@ call pathogen#infect()
 call pathogen#helptags()
 
 syntax on
+syntax sync minlines=10000
 filetype plugin indent on
 
 "tries to fix clipboard
@@ -153,7 +154,8 @@ set bs=2 " make backspace behave like normal again
 "
 "set t_Co=256   " This is may or may not needed.
 set background=dark
-colorscheme PaperColor
+"colorscheme PaperColor
+colorscheme gruvbox
 let g:python_highlight_all = 1
 
 
