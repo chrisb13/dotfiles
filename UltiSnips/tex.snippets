@@ -226,6 +226,15 @@ snippet bmat "bmat" iA
 \begin{bmatrix} $1 \end{bmatrix} $0
 endsnippet
 
+snippet cancel "\cancel{}" iA
+\cancel{ ${1:${VISUAL}} } $0
+endsnippet
+
+snippet text "\text{}" iA
+\text{ ${1:${VISUAL} } } $0
+endsnippet
+
+
 
 #brackets - to use visually, select your text, leader+k then, type the snippet then leader+k again.
 snippet () "left( right)" iA
@@ -299,6 +308,11 @@ snippet nemomo
 \\
 \end{equation}
 endsnippet
+
+snippet red "\mathbf{}" iA
+{\color{red}${1:${VISUAL}}}
+endsnippet
+
 
 snippet bf "\mathbf{}" iA
 \mathbf{${1:${VISUAL}}} $0
@@ -439,6 +453,10 @@ snippet nabl "nabla" iA
 \nabla 
 endsnippet
 
+snippet g "grad" iA
+\nabla 
+endsnippet
+
 snippet curl "curl" iA
 \nabla \times 
 endsnippet
@@ -453,6 +471,10 @@ endsnippet
 
 snippet div "div" iA
 \nabla \cdot
+endsnippet
+
+snippet uadv "uadv" iA
+\mathbf{u} \cdot \nabla $0
 endsnippet
 
 snippet dot "dot" iA
