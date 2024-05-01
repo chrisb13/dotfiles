@@ -21,6 +21,13 @@ Host oswald
     ProxyCommand ssh -W %h:%p -p 4219 prx_lhly6@garrett.unn.ac.uk 2> /dev/null
     ServerAliveInterval 240
 
+    Host cairns
+    User lhly6
+    IdentityFile /home/chris/.ssh/id_rsa
+    HostName     cairns.campus.unn.ac.uk
+    ProxyCommand ssh -W %h:%p -p 4219 prx_lhly6@garrett.unn.ac.uk 2> /dev/null
+
+
 ############ Edgar port forwarding way.... (does work)
 #Host jasproxy
     #User chbull
@@ -92,7 +99,8 @@ Host deepspace
 #trying to emulate (doesn't work)
 #ssh -o ProxyCommand="ssh -W %h:%p admin@192.168.50.250" chris@192.168.50.109
 Host dsvm
-  HostName 192.168.50.109
+  #HostName 192.168.50.109
+  HostName 192.168.50.182
   User chris
   #ProxyCommand ssh deepspace -XCYW %h:%p
   #ProxyCommand ssh admin@deepspace 

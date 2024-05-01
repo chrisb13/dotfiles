@@ -50,6 +50,7 @@ alias getwedplots='watch rsync -avz --progress chbull@login.archer.ac.uk:/nerc/n
 alias getwedpaper='watch rsync -avz --progress chbull@login.archer.ac.uk:/nerc/n02/n02/chbull/20180810_wed_reanalysis_atmo/analysis/paperfigsdoc/wed025_figures_main.docx .'
 alias getwedpapersupp='watch rsync -avz --progress chbull@login.archer.ac.uk:/nerc/n02/n02/chbull/20180810_wed_reanalysis_atmo/analysis/paperfigsdoc/wed025_figures_supp.docx .'
 alias getwedjcr='watch rsync -avz --progress chris@10.104.2.73:/home/chris/VBoxSHARED/goship /home/chris/VBoxSHARED'
+alias open='xdg-open '
 
 
 #vim
