@@ -7,6 +7,15 @@ Host garrett.unn.ac.uk
     StrictHostKeyChecking no
     UserKnownHostsFile=/dev/null
 
+Host gadi
+    Hostname gadi.nci.org.au
+    User cyb561
+    ForwardX11 true
+    ForwardX11Trusted yes
+    IdentityFile ~/.ssh/id_rsa
+    AddKeysToAgent yes
+    ForwardAgent yes
+
 Host oswaldnovis
     User osw_lhly6
     IdentityFile /home/chris/.ssh/id_rsa
