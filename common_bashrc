@@ -150,6 +150,19 @@ alias gitcountpylines="git ls-files |  grep  '.py' |xargs wc -l"
 
 # some more ls aliases
 case $(hostname) in
+    gadi-login-*)
+        echo "loading gadi things2...."
+        module use /g/data/hh5/public/modules
+        module load conda_concept/analysis3
+        module load intel-compiler/2021.8.0
+        module load openmpi/4.1.4
+        module load netcdf/4.9.2
+        module use /g/data/vk83/modules
+        module load payu
+        alias gadiint='qsub -I -q normal -P tm70 -l walltime=00:05:00,ncpus=4,mem=80GB'
+        alias gadiintlonger='qsub -I -q normal -P tm70 -l walltime=00:30:00,ncpus=8,mem=80GB'
+        alias gadiintexp='qsub -I -q express -P tm70 -l walltime=00:05:00,ncpus=4,mem=80GB'
+        ;;
     bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk|bslcenb|bslcenc)
         alias rw1='cd /data/oceans_output/shelf/chbull'
         alias r='cd /users/chbull/repos/'
