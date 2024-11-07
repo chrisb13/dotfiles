@@ -206,14 +206,14 @@ function ncipush()
         echo "ncipush ./temp/* /short/e14/cyb561/"
         echo "       " 
         echo "Becomes:" 
-        echo "rsync -avz --progress ./temp/* cyb561@r-dm.nci.org.au:/short/e14/cyb561/"
+        echo "rsync -avz --progress ./temp/* cyb561@gadi.nci.org.au:/short/e14/cyb561/"
 
         return 1
     fi
     #grabs last passed argument..
     for last; do true; done
 
-    rsync -avS --progress ${@:1:$(($#-1))} cyb561@r-dm.nci.org.au:$last
+    rsync -avS --progress ${@:1:$(($#-1))} cyb561@gadi.nci.org.au:$last
 }
 
 #bash command to pull file(s) into NCI
@@ -232,12 +232,12 @@ function ncipull()
         echo "ncipull /short/e14/cyb561/*.py ./temp/"
         echo "       " 
         echo "Becomes:" 
-        echo "rsync -avz --progress cyb561@r-dm.nci.org.au:/short/e14/cyb561/*.py  ./temp/"
+        echo "rsync -avz --progress cyb561@gadi.nci.org.au:/short/e14/cyb561/*.py  ./temp/"
 
         return 1
     fi
 
-    rsync -avS --progress cyb561@r-dm.nci.org.au:$* 
+    rsync -avS --progress cyb561@gadi.nci.org.au:$* 
 }
 
 
