@@ -162,6 +162,7 @@ case $(hostname) in
         alias gadiint='qsub -I -q normal -P tm70 -l walltime=00:05:00,ncpus=4,mem=80GB'
         alias gadiintlonger='qsub -I -q normal -P tm70 -l walltime=00:30:00,ncpus=8,mem=80GB'
         alias gadiintexp='qsub -I -q express -P tm70 -l walltime=00:05:00,ncpus=4,mem=80GB'
+        alias spackenable='cd /g/data/$PROJECT/$USER/spack/0.22;. spack-config/spack-enable.bash'
         ;;
     bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk|bslcenb|bslcenc)
         alias rw1='cd /data/oceans_output/shelf/chbull'
