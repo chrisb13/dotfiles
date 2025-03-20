@@ -26,3 +26,6 @@
         pager = less -r
 [push]
 	default = simple
+[safe]
+	directory = /g/data/ol01/pjb581/MOM6-examples
+	directory = /g/data/ol01/pjb581/MOM6-examples/src/MOM6

@@ -9,7 +9,7 @@ CDPATH=$CDPATH:~/
 #}
 
 #https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/
-PROMPT_COMMAND='PS1="\[\033[0;33m\][\!]\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\u.\h: \`if [[ `pwd|wc -c|tr -d " "` > 18 ]]; then echo "\\W"; else echo "\\w"; fi\`]\$\[\033[0m\] "; echo -ne "\033]0;`hostname -s`:`pwd`\007"'
+#PROMPT_COMMAND='PS1="\[\033[0;33m\][\!]\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\u.\h: \`if [[ `pwd|wc -c|tr -d " "` > 18 ]]; then echo "\\W"; else echo "\\w"; fi\`]\$\[\033[0m\] "; echo -ne "\033]0;`hostname -s`:`pwd`\007"'
 
 #cb added
 set -o vi
@@ -159,10 +159,13 @@ case $(hostname) in
         module load netcdf/4.9.2
         module use /g/data/vk83/modules
         module load payu
-        alias gadiint='qsub -I -q normal -P tm70 -l walltime=00:05:00,ncpus=4,mem=80GB'
-        alias gadiintlonger='qsub -I -q normal -P tm70 -l walltime=00:30:00,ncpus=8,mem=80GB'
-        alias gadiintexp='qsub -I -q express -P tm70 -l walltime=00:05:00,ncpus=4,mem=80GB'
+        #https://opus.nci.org.au/spaces/Help/pages/236880320/Job+Submission...
+        alias gadiint='qsub -I -q normal -P tm70 -l storage=gdata/tm70+scratch/tm70 -l walltime=00:35:00,ncpus=4,mem=80GB'
+        alias gadiintlonger='qsub -I -q normal -P tm70 -l storage=gdata/tm70+scratch/tm70 -l walltime=00:30:00,ncpus=8,mem=80GB'
+        alias gadiintexp='qsub -I -q express -P tm70 -l  storage=gdata/tm70+scratch/tm70 -l walltime=00:05:00,ncpus=4,mem=80GB'
         alias spackenable='cd /g/data/$PROJECT/$USER/spack/0.22;. spack-config/spack-enable.bash'
+        alias buildstuff='echo "clearing modules, loading the buildy ones..";module purge; module load openmpi/4.1.4; module load intel-compiler/2021.8.0; module load netcdf/4.9.2; module list'
+        alias rw1='cd /g/data/tm70/cyb561'
         ;;
     bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk|bslcenb|bslcenc)
         alias rw1='cd /data/oceans_output/shelf/chbull'
