@@ -953,7 +953,7 @@ function vimnci()
         echo "vimnci /home/561/cyb561/repos/scripts_not_in_repo/"
         echo "       " 
         echo "Becomes:" 
-        echo "vim scp://cyb561@raijin.nci.org.au//home/561/cyb561/repos/scripts_not_in_repo/"
+        echo "vim scp://cyb561@gadi.nci.org.au//home/561/cyb561/repos/scripts_not_in_repo/"
 
         return 1
     fi
@@ -961,17 +961,17 @@ function vimnci()
     #echo $#
     if [ $# == 1 ]
       then
-        vim scp://cyb561@raijin.nci.org.au/${1} 
+        vim scp://cyb561@gadi.nci.org.au/${1} 
     fi
 
     if [ $# == 2 ]
       then
-        vim -O scp://cyb561@raijin.nci.org.au/${1}  scp://cyb561@raijin.nci.org.au/${2} 
+        vim -O scp://cyb561@gadi.nci.org.au/${1}  scp://cyb561@gadi.nci.org.au/${2} 
     fi
 
     if [ $# == 3 ]
       then
-        vim -O scp://cyb561@raijin.nci.org.au/${1} scp://cyb561@raijin.nci.org.au/${2} scp://cyb561@raijin.nci.org.au/${3}  
+        vim -O scp://cyb561@gadi.nci.org.au/${1} scp://cyb561@gadi.nci.org.au/${2} scp://cyb561@gadi.nci.org.au/${3}  
     fi
 
     if [ $# > 3 ]
