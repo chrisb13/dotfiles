@@ -23,6 +23,12 @@ Host oswaldnovis
     ProxyCommand ssh -W %h:%p -p 4219 prx_lhly6@garrett.unn.ac.uk 2> /dev/null
     ServerAliveInterval 240
 
+Host aspire
+    Hostname aspire2a.nscc.sg
+    User cbull
+    ForwardX11 true
+    ForwardX11Trusted yes
+
 Host oswald
     User osw_lhly6
     IdentityFile /home/chris/.ssh/id_rsa
