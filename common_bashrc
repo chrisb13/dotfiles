@@ -151,20 +151,29 @@ alias gitcountpylines="git ls-files |  grep  '.py' |xargs wc -l"
 case $(hostname) in
     gadi-login-*)
         echo "loading gadi things2...."
-        module use /g/data/hh5/public/modules
-        module load conda_concept/analysis3
-        module load intel-compiler/2021.8.0
-        module load openmpi/4.1.4
-        module load netcdf/4.9.2
-        module use /g/data/vk83/modules
-        module load payu
+        #module use /g/data/hh5/public/modules
+        #module load conda_concept/analysis3
+        #
+        module use /g/data/xp65/public/modules
+        module load esmvaltool-workflow
+        module load conda/analysis3-25.04
+
+        #Helen said I could turn these off...
+        #module load intel-compiler/2021.8.0
+        #module load openmpi/4.1.4
+        #module load netcdf/4.9.2
+        
         #https://opus.nci.org.au/spaces/Help/pages/236880320/Job+Submission...
+        alias startanalysis='module purge;module use /g/data/xp65/public/modules;module load esmvaltool-workflow;module load conda/analysis3-25.04;module load ncview;module list'
+        alias startpayu='module purge;module use /g/data/vk83/modules;module load payu;module list'
+        alias startpayudev='module purge;module use /g/data/vk83/prerelease/modules; module load payu/dev;module list'
         alias gadiint='qsub -I -q normal -P tm70 -l storage=gdata/tm70+scratch/tm70 -l walltime=00:35:00,ncpus=4,mem=80GB'
         alias gadiintlonger='qsub -I -q normal -P tm70 -l storage=gdata/tm70+scratch/tm70 -l walltime=00:30:00,ncpus=8,mem=80GB'
         alias gadiintexp='qsub -I -q express -P tm70 -l  storage=gdata/tm70+scratch/tm70 -l walltime=00:05:00,ncpus=4,mem=80GB'
         alias spackenable='cd /g/data/$PROJECT/$USER/spack/0.22;. spack-config/spack-enable.bash'
         alias buildstuff='echo "clearing modules, loading the buildy ones..";module purge; module load openmpi/4.1.4; module load intel-compiler/2021.8.0; module load netcdf/4.9.2; module list'
         alias rw1='cd /g/data/tm70/cyb561'
+        alias r='cd /home/561/cyb561/repos'
         ;;
     bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk|bslcenb|bslcenc)
         alias rw1='cd /data/oceans_output/shelf/chbull'
