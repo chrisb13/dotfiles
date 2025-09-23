@@ -6,17 +6,17 @@ cd ~/.vim/home/chris/.vim/bundle/YouCompleteMe;./install.sh
 
 Make links:
 #ln -s ~/.vim/sshconfig ~/.ssh/config
-ln -s ~/.vim/ssh_config ~/.ssh/config #for oswald NU
-ln -s ~/.vim/vimrc ~/.vimrc 
-ln -s ~/.vim/bashrc ~/.bashrc 
-ln -s ~/.vim/tmux.conf ~/.tmux.conf
-ln -s ~/.vim/gitconfig ~/.gitconfig 
-ln -s ~/.vim/inputrc ~/.inputrc 
-ln -s ~/.vim/liquidpromptrc ~/.liquidpromptrc
-ln -s ~/.vim/i3config ~/.i3/config
-ln -s ~/.vim/dircolors_light ~/.dircolors OR ln -s ~/.vim/dircolors_dark ~/.dircolors
-ln -s ~/.vim/lxterminal ~/.config/lxterminal/lxterminal.conf
-ln -s ~/.vim/screenrc ~/.screenrc
+ln -s ~/dotfiles/ssh_config ~/.ssh/config #for oswald NU
+ln -s ~/dotfiles/vimrc ~/.vimrc 
+ln -s ~/dotfiles/bashrc ~/.bashrc 
+ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/gitconfig ~/.gitconfig 
+ln -s ~/dotfiles/inputrc ~/.inputrc 
+ln -s ~/dotfiles/liquidpromptrc ~/.liquidpromptrc
+ln -s ~/dotfiles/i3config ~/.i3/config
+ln -s ~/dotfiles/dircolors_light ~/.dircolors OR ln -s ~/.vim/dircolors_dark ~/.dircolors
+ln -s ~/dotfiles/lxterminal ~/.config/lxterminal/lxterminal.conf
+ln -s ~/dotfiles/screenrc ~/.screenrc
 
 Set up NVIM:
 mkdir -p ~/.config/nvim

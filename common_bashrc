@@ -23,7 +23,6 @@ set -o vi
 export TERM="xterm-256color"
 
 #chris' alias
-set -o vi
 alias ll='ls -alF'
 alias lsfol='ls -d */'
 alias ls='ls --color=auto'
@@ -54,7 +53,7 @@ alias open='xdg-open '
 
 
 #vim
-alias vi='vim -O'
+#alias vi='vim -O'
 alias nvi='/home/chris/nvim.appimage '
 #alias cdo="cdo -C"
 alias feh='feh --scale-down --auto-zoom '
@@ -440,7 +439,7 @@ case $(hostname) in
         PATH=/users/chbull/vim/bin:$PATH
         
         ;;
-    SB2Vbox)
+    SB2Vbox|narky-virtualbox)
         #virtual box on surface book 2
         #Fixes cliipboard issue. seems to be something about “bracketed paste mode”
         #alias fixclip="echo 'printf "\e[?2004l"'"
@@ -466,6 +465,9 @@ case $(hostname) in
         alias vb4='cd /home/chris/VBoxSHARED4'
         alias ds='ssh chris@192.168.50.109'
         alias imgtrkr='python /home/chris/VBoxSHARED/repos/imgtrkr/main.py '
+
+        alias vi='nvim -O '
+        alias vim='nvim -O '
 
         # for website stuff
         # Install Ruby Gems to ~/gems
