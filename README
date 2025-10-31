@@ -18,8 +18,10 @@ ln -s ~/dotfiles/dircolors_light ~/.dircolors OR ln -s ~/.vim/dircolors_dark ~/.
 ln -s ~/dotfiles/lxterminal ~/.config/lxterminal/lxterminal.conf
 ln -s ~/dotfiles/screenrc ~/.screenrc
 
+Set up NVIM:
+#from charles for installing on Gadi
+#curl -fsSL https://pixi.sh/install.sh | sh
+#pixi global install nvim
+
 ln -s ~/dotfiles/nvim ./nvim
 
-Set up NVIM:
-mkdir -p ~/.config/nvim
-ln -s ~/.vim/nvimconfig ~/.config/nvim/init.vim
