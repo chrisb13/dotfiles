@@ -190,6 +190,11 @@ function ncipushshort() #bash command to push file(s) into short on NCI
     rsync -avPS $* cyb561@raijin.nci.org.au:/short/e14/cyb561/
 }
 
+function aspirepush() #bash command to push file(s) into short on NCI
+{
+    rsync -avS --progress $* aspire:/home/users/industry/northumbria/cbull
+}
+
 #bash command to push file(s) into NCI
 function ncipush() 
 {
