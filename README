@@ -18,6 +18,8 @@ ln -s ~/dotfiles/dircolors_light ~/.dircolors OR ln -s ~/.vim/dircolors_dark ~/.
 ln -s ~/dotfiles/lxterminal ~/.config/lxterminal/lxterminal.conf
 ln -s ~/dotfiles/screenrc ~/.screenrc
 
+ln -s ~/dotfiles/nvim ./nvim
+
 Set up NVIM:
 mkdir -p ~/.config/nvim
 ln -s ~/.vim/nvimconfig ~/.config/nvim/init.vim

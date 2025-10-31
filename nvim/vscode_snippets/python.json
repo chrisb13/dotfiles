@@ -1,0 +1,3110 @@
+{
+  "header": {
+    "prefix": "header",
+    "body": [
+      "#!/usr/bin/env python ",
+      "#   Author: Christopher Bull. ",
+      "#   Affiliation:  Department of Geography and Environmental Sciences, ",
+      "#                 Northumbria University, Newcastle upon Tyne, UK",
+      "#   Contact: christopher.bull@northumbria.ac.uk",
+      "`!p ",
+      "import time",
+      "snip.rv='#   Date created: '+time.strftime(\"%a, %d %b %Y %H:%M:%S\")",
+      "`",
+      "`!p ",
+      "import socket",
+      "snip.rv='#   Machine created on: '+socket.gethostname()",
+      "`",
+      "#",
+      "",
+      "\"\"\"",
+      "${1:Doc string for script}",
+      "\"\"\"",
+      "import sys,os",
+      "sys.path.insert(1,os.path.expanduser('~/hdrive/repos/cms_analysis/'))",
+      "from cb2logger import *",
+      "",
+      "if __name__ == \"__main__\": ",
+      "    LogStart('',fout=False)",
+      "\t${0:#put useful code here!}",
+      "",
+      "    lg.info('')",
+      "    localtime = time.asctime( time.localtime(time.time()) )",
+      "    lg.info(\"Local current time : \"+ str(localtime))",
+      "    lg.info('SCRIPT ended')"
+    ]
+  },
+  "nemoheader": {
+    "prefix": "nemoheader",
+    "body": [
+      "#!/usr/bin/env python ",
+      "#   Author: Christopher Bull. ",
+      "#   Affiliation:  Department of Geography and Environmental Sciences, ",
+      "#                 Northumbria University, Newcastle upon Tyne, UK",
+      "#   Contact: christopher.bull@northumbria.ac.uk",
+      "#   www:     christopherbull.com.au",
+      "`!p ",
+      "import time",
+      "snip.rv='#   Date created: '+time.strftime(\"%a, %d %b %Y %H:%M:%S\")",
+      "`",
+      "`!p ",
+      "import socket",
+      "snip.rv='#   Machine created on: '+socket.gethostname()",
+      "`",
+      "#",
+      "",
+      "\"\"\"",
+      "${1:Doc string for script}",
+      "\"\"\"",
+      "import logging as lg",
+      "import time",
+      "import os",
+      "import sys",
+      "pathfile = os.path.dirname(os.path.realpath(__file__)) ",
+      "sys.path.insert(1,os.path.dirname(pathfile)+'/')",
+      "from cb2logger import *",
+      "import inputdirs as ind",
+      "import shareme as sm",
+      "",
+      "if __name__ == \"__main__\": ",
+      "    LogStart('',fout=False)",
+      "    if ind.paper_case=='20150706_EACseperation':",
+      "\tlg.warning(\"We are doing case: \" + ind.paper_case)",
+      "    elif ind.paper_case=='20160804_EAC_NoNZ':",
+      "\tlg.warning(\"We are doing case: \" + ind.paper_case)",
+      "    elif ind.paper_case=='20170113_EACnowClimateChange01':",
+      "\tlg.warning(\"We are doing case: \" + ind.paper_case)",
+      "    else:",
+      "\tlg.error(\"I don't know what to do here!\"+ ind.paper_case)",
+      "\tsys.exit()",
+      "",
+      "    output_folder=ind.output_folder",
+      "    nemo_fols=ind.nemo_fols",
+      "",
+      "    lg.info('')",
+      "    localtime = time.asctime( time.localtime(time.time()) )",
+      "    lg.info(\"Local current time : \"+ str(localtime))",
+      "    lg.info('SCRIPT ended')"
+    ]
+  },
+  "pdb": {
+    "prefix": "pdb",
+    "body": [
+      "import pdb;pdb.set_trace()"
+    ]
+  },
+  "wedheader": {
+    "prefix": "wedheader",
+    "body": [
+      "#!/usr/bin/env python ",
+      "#   Author: Christopher Bull. ",
+      "#   Affiliation:  Department of Geography and Environmental Sciences, ",
+      "#                 Northumbria University, Newcastle upon Tyne, UK",
+      "#   Contact: christopher.bull@northumbria.ac.uk",
+      "#   www:     christopherbull.com.au",
+      "`!p ",
+      "import time",
+      "snip.rv='#   Date created: '+time.strftime(\"%a, %d %b %Y %H:%M:%S\")",
+      "`",
+      "`!p ",
+      "import socket",
+      "snip.rv='#   Machine created on: '+socket.gethostname()",
+      "`",
+      "#",
+      "",
+      "\"\"\"",
+      "${1:Doc string for script}",
+      "\"\"\"",
+      "import logging as lg",
+      "import time",
+      "import os",
+      "import sys",
+      "pathfile = os.path.dirname(os.path.realpath(__file__)) ",
+      "sys.path.insert(1,os.path.dirname(pathfile)+'/')",
+      "from cb2logger import *",
+      "import inputdirs as ind",
+      "import shareme as sm",
+      "",
+      "if __name__ == \"__main__\": ",
+      "    LogStart('',fout=False)",
+      "    lg.warning(\"We are doing case: \" + ind.paper_case)",
+      "    output_folder=ind.output_folder",
+      "    nemo_fols=ind.nemo_fols",
+      "    if ind.paper_case=='20180810_wed_reanalysis_atmo':",
+      "\tfor exp in nemo_fols.keys():",
+      "\t    pass",
+      "\t    lg.info(\"We are working experiment :\" + exp)",
+      "    else:",
+      "\tlg.error(\"I don't know what to do here!\"+ ind.paper_case)",
+      "\tsys.exit()",
+      "",
+      "    lg.info('')",
+      "    localtime = time.asctime( time.localtime(time.time()) )",
+      "    lg.info(\"Local current time : \"+ str(localtime))",
+      "    lg.info('SCRIPT ended')"
+    ]
+  },
+  "mkheadlogger": {
+    "prefix": "mkheadlogger",
+    "body": [
+      "`!p",
+      "writeme=\\",
+      "\"\"\"",
+      "#python logging",
+      "import logging as lg",
+      "import time",
+      "import subprocess",
+      "import sys",
+      "import os",
+      "",
+      "class LogStart(object):",
+      "   \"class that sets up a logger\"",
+      "   def __init__(self, fname,fout=False,level='debug'):",
+      "       if level=='debug':",
+      "           lvl=lg.DEBUG",
+      "       elif level=='info':",
+      "           lvl=lg.INFO",
+      "       elif level=='warning':",
+      "           lvl=lg.WARNING",
+      "       elif level=='error':",
+      "           lvl=lg.ERROR",
+      "       else: ",
+      "           raise Exception('You passed a bad logging level')",
+      "",
+      "       if fout:",
+      "          lg.basicConfig(filename=fname,filemode='w',\\",
+      "                  format='%(name)s - %(levelname)s - %(message)s'\\",
+      "                  , level=lvl) #where filemode clobbers file",
+      "       else:",
+      "          lg.basicConfig(format='%(name)s - %(levelname)s - %(message)s',\\",
+      "                  level=lvl)",
+      "",
+      "       lg.info('')",
+      "       lg.info('SCRIPT started')",
+      "       lg.info('Logging level is: ' + level)",
+      "       localtime = time.asctime( time.localtime(time.time()) )",
+      "       #found from (see limitations):",
+      "       #http://stackoverflow.com/questions/7871319/how-to-know-who-is-importing-me-in-python",
+      "       #lg.info(\"Path for script is : \"+os.path.dirname(os.path.realpath(__name__)) )",
+      "       lg.info(\"Script name is : \"+ str(sys.argv[0]))",
+      "",
+      "       lg.info(\"Local current time : \"+ str(localtime))",
+      "",
+      "       #lg.info(\"Machine run on : \"+ os.getenv('HOSTNAME'))",
+      "       if hasattr(sys, 'real_prefix'):",
+      "           lg.info(\"We are running inside a venv.\")",
+      "       else:",
+      "           lg.info(\"We are not running inside a venv.\")",
+      "           return",
+      "",
+      "       lg.info(\"\")",
+      "       command=subprocess.Popen(['pip','freeze'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)",
+      "       pipout, piperr = command.communicate()",
+      "       lg.info(\"---Pip freeze (including system-wide) START...--- \")",
+      "       for pkg in pipout.splitlines():",
+      "           lg.info(pkg)",
+      "       lg.info(\"---Pip freeze (including system-wide) END.---\")",
+      "       lg.info(\"\")",
+      "\"\"\"",
+      "import contextlib as ctx",
+      "with ctx.closing(open('./cb2logger.py','w')) as handle:",
+      "     handle.write(writeme+\"\\n\")",
+      "`",
+      "#!/usr/bin/env python ",
+      "#   Author: Christopher Bull. ",
+      "#   Affiliation:  Department of Geography and Environmental Sciences, ",
+      "#                 Northumbria University, Newcastle upon Tyne, UK",
+      "#   Contact: christopher.bull@northumbria.ac.uk",
+      "#   www:     christopherbull.com.au",
+      "`!p ",
+      "import time",
+      "snip.rv='#   Date created: '+time.strftime(\"%a, %d %b %Y %H:%M:%S\")",
+      "`",
+      "`!p ",
+      "import socket",
+      "snip.rv='#   Machine created on: '+socket.gethostname()",
+      "`",
+      "#",
+      "",
+      "\"\"\"",
+      "${1:Doc string for script}",
+      "\"\"\"",
+      "from cb2logger import *",
+      "",
+      "if __name__ == \"__main__\": ",
+      "    LogStart('',fout=False)",
+      "\t${0:#put useful code here!}",
+      "",
+      "    lg.info('')",
+      "    localtime = time.asctime( time.localtime(time.time()) )",
+      "    lg.info(\"Local current time : \"+ str(localtime))",
+      "    lg.info('SCRIPT ended')"
+    ]
+  },
+  "remotels": {
+    "prefix": "remotels",
+    "body": [
+      "r!ssh cyb561@raijin.nci.org.au ls path/to/dir",
+      "r!ssh -X z3457920@maelstrom.ccrc.unsw.edu.au ls path/to/dir"
+    ]
+  },
+  "cbd": {
+    "prefix": "cbd",
+    "body": [
+      "'/srv/ccrc/data23/z3457920/leeuwincurrent/'"
+    ]
+  },
+  "cbd2": {
+    "prefix": "cbd2",
+    "body": [
+      "'/srv/ccrc/data32/z3457920/leeuwincurrent2/'"
+    ]
+  },
+  "cbd3": {
+    "prefix": "cbd3",
+    "body": [
+      "'/srv/ccrc/data32/z3457920/leeuwincurrent3/'"
+    ]
+  },
+  "cbd4": {
+    "prefix": "cbd4",
+    "body": [
+      "'/srv/ccrc/data42/z3457920/'"
+    ]
+  },
+  "currentexps": {
+    "prefix": "currentexps",
+    "body": [
+      "'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdeasternboundary01/output/pandasHDF/cookie_parted/'",
+      "'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdwesternboundary02/output/pandasHDF/cookie_parted/'",
+      "'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthernIO_01/output/pandasHDF/cookie_parted/'",
+      "'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_karimata_itf_03/output/pandasHDF/cookie_parted/'",
+      "'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_makassar_itf_04/output/pandasHDF/cookie_parted/'",
+      "'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_moluccas_itf_05/output/pandasHDF/cookie_parted/'"
+    ]
+  },
+  "currentexps_dict": {
+    "prefix": "currentexps_dict",
+    "body": [
+      "ckd_exps={\\",
+      "'fwdeasternboundary01':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdeasternboundary01/output/pandasHDF/cookie_parted/',\\",
+      "'fwdwesternboundary02':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdwesternboundary02/output/pandasHDF/cookie_parted/',\\",
+      "'fwdnorthernIO_01':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthernIO_01/output/pandasHDF/cookie_parted/',\\",
+      "'fwdnorthern_karimata_itf_03':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_karimata_itf_03/output/pandasHDF/cookie_parted/',\\",
+      "'fwdnorthern_makassar_itf_04':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_makassar_itf_04/output/pandasHDF/cookie_parted/',\\",
+      "'fwdnorthern_moluccas_itf_05':'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_moluccas_itf_05/output/pandasHDF/cookie_parted/',\\",
+      "}"
+    ]
+  },
+  "newdata": {
+    "prefix": "newdata",
+    "body": [
+      "'/srv/ccrc/data42/z3457920/'"
+    ]
+  },
+  "im": {
+    "prefix": "im",
+    "description": "Import",
+    "body": [
+      "import $1`!p snip.rv=complete(t[1], ['matplotlib', 'pandas as pd',\\",
+      "             'numpy as np', 'datetime as dt', 'logging as lg', 'matplotlib.pyplot as plt'])`"
+    ]
+  },
+  "fname": {
+    "prefix": "fname",
+    "description": "current_file_name",
+    "body": [
+      "`!p snip.rv=os.path.basename(fn)`"
+    ]
+  },
+  "logit": {
+    "prefix": "logit",
+    "description": "change print statement to logger",
+    "body": [
+      "`!p snip.rv=split_it(snip.v.text)`"
+    ]
+  },
+  "moo": {
+    "prefix": "moo",
+    "description": "change print statement to logger",
+    "body": [
+      "`!p snip.rv=snip.v.text`"
+    ]
+  },
+  "cdost": {
+    "prefix": "cdost",
+    "body": [
+      "# Load required module",
+      "from cdo import *",
+      "cdo = Cdo()",
+      "cdo.debug = True",
+      "# Compute the global mean monthly precipitation (as in section 7) and return it as a numpy array:",
+      "#mean_pr = np.squeeze(cdo.fldmean(input=file, returnArray=\u2019precip\u2019))"
+    ]
+  },
+  "alphabet": {
+    "prefix": "alphabet",
+    "body": [
+      "import itertools",
+      "alphabet=\\",
+      "['a','b','c','d','e','f','g','h','i','j','k','l','m',\\",
+      " 'n','o','p','q','r','s','t','u','v','w','x','y','z']",
+      "sub_let=itertools.cycle(alphabet)",
+      "#sub_let.next()",
+      "next(sub_let)",
+      "#sm.pl_inset_title_box(axis,sub_let.next(),bwidth=\"5%\",location=2)"
+    ]
+  },
+  "cbrew": {
+    "prefix": "cbrew",
+    "body": [
+      "import itertools",
+      "cbrew=itertools.cycle(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'])",
+      "cos=next(cbrew)"
+    ]
+  },
+  "marky": {
+    "prefix": "marky",
+    "body": [
+      "import itertools",
+      "marky=itertools.cycle(['.',',','o','v','^','<','>','1','2','3','4','8','s','p','P','*','h','H','+','x','X','D','d'])",
+      "mark=next(marky)"
+    ]
+  },
+  "r": {
+    "prefix": "r",
+    "body": [
+      "'~/hdrive/repos/cms_analysis/'"
+    ]
+  },
+  "sa": {
+    "prefix": "sa",
+    "body": [
+      "'~/hdrive/repos/swissarmy/'"
+    ]
+  },
+  "log": {
+    "prefix": "log",
+    "body": [
+      "lg.info(\"${1:msg}: \" + str(${2:non-string}))"
+    ]
+  },
+  "timeitcomplicated": {
+    "prefix": "timeitcomplicated",
+    "body": [
+      "#this gets put in a bash script",
+      "#see: https://docs.python.org/2/library/timeit.html",
+      "#and one of the later answers from here:",
+      "#http://stackoverflow.com/questions/8220801/how-to-use-timeit-module",
+      "",
+      "SETUP=\"",
+      "#body python code",
+      "",
+      "def some_function(argument):",
+      "\tpass",
+      "\"",
+      "",
+      "# where n is the number of loops (it will self-optimise if left out)",
+      "python -m timeit -n 5 -s \"$SETUP\" \"some_function(argument)\" "
+    ]
+  },
+  "timeit": {
+    "prefix": "timeit",
+    "body": [
+      "start=time.time()",
+      "#insert timed code here",
+      "finish=time.time()",
+      "lg.info(\"time for ${0:msg}: %s\",str(finish-start))"
+    ]
+  },
+  "memoryuse": {
+    "prefix": "memoryuse",
+    "body": [
+      "#option 1",
+      "#function from http://stackoverflow.com/questions/897941/python-equivalent-of-phps-memory-get-usage",
+      "def memory_usage():",
+      "    \"\"\"Memory usage of the current process in kilobytes.\"\"\"",
+      "    status = None",
+      "    result = {'peak': 0, 'rss': 0}",
+      "    try:",
+      "        # This will only work on systems with a /proc file system (like Linux).",
+      "        status = open('/proc/self/status')",
+      "        for line in status:",
+      "            parts = line.split()",
+      "            key = parts[0][2:-1].lower()",
+      "            if key in result:",
+      "                result[key] = int(parts[1])/1024",
+      "    finally:",
+      "        if status is not None:",
+      "            status.close()",
+      "    return result",
+      "",
+      "print 'mem use',memory_usage()",
+      "",
+      "#option 2",
+      "import resource",
+      "",
+      "#import gc",
+      "",
+      "def func(x, y):",
+      "    return x*(1-x)*np.cos(4*np.pi*x) * np.sin(4*np.pi*y**2)**2",
+      "",
+      "grid_x, grid_y = np.mgrid[0:1:100j, 0:1:200j]",
+      "points = np.random.rand(1000, 2)",
+      "values = func(points[:,0], points[:,1])",
+      "",
+      "print 'py version',sys.version_info",
+      "print 'scipy version',scipy.__version__",
+      "print 'numpy version',np.__version__",
+      "loops=int(sys.argv[1])",
+      "",
+      "for t in xrange(loops):",
+      "    griddata(points, values, (grid_x, grid_y), method='nearest')",
+      "    griddata(points, values, (grid_x, grid_y), method='linear')",
+      "    griddata(points, values, (grid_x, grid_y), method='cubic')",
+      "    #gc.collect()",
+      "",
+      "print 'mem use', resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024"
+    ]
+  },
+  "base": {
+    "prefix": "base",
+    "body": [
+      "os.path.basename(${1:insert_path_to_file})"
+    ]
+  },
+  "fout": {
+    "prefix": "fout",
+    "body": [
+      "import contextlib as ctx",
+      "with ctx.closing(open(${1:ofol}+${2:'ofile_name.txt'},'w')) as handle:",
+      "     handle.write(\"string to write\"+\"\\n\")"
+    ]
+  },
+  "collections": {
+    "prefix": "collections",
+    "body": [
+      "import collections",
+      "plot_dict=collections.OrderedDict()"
+    ]
+  },
+  "subsetdict": {
+    "prefix": "subsetdict",
+    "body": [
+      "{k: bigdict[k] for k in ('l', 'm', 'n')}"
+    ]
+  },
+  "docopt": {
+    "prefix": "docopt",
+    "body": [
+      "#see: https://github.com/docopt/docopt",
+      "#round brackets mean required square are optional",
+      "",
+      "#download docopt from...",
+      "#https://raw.githubusercontent.com/docopt/docopt/master/docopt.py",
+      "",
+      "`!p",
+      "import inspect,os",
+      "docopt_path=os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))+'/docopt.py'",
+      "#snip.rv=docopt_path",
+      "if not os.path.isfile(docopt_path):",
+      "\timport urllib",
+      "\turllib.urlretrieve(\"https://raw.githubusercontent.com/docopt/docopt/master/docopt.py\",\\",
+      "\tfilename=docopt_path)",
+      "\t#ret='downloaded docopt'",
+      "#else:",
+      "\t#ret='did not download docopt'",
+      "#snip.rv=ret",
+      "`",
+      "\"\"\"",
+      "${1:Docstring for file}",
+      "",
+      "Usage:",
+      "`!p",
+      "snip.rv='    '+snip.fn",
+      "` -h",
+      "`!p",
+      "snip.rv='    '+snip.fn",
+      "` ( ${2:first_argument} | ${4:second_argument} ) ",
+      "Options:",
+      "    -h,--help          : show this help message",
+      "    $2,--${3:Long_version_first_agument}           : optional argument",
+      "    $4                 : mandatory argument (capitals or angled brackets)",
+      "\"\"\"",
+      "from docopt import docopt",
+      "arguments = docopt(__doc__)"
+    ]
+  },
+  "parser": {
+    "prefix": "parser",
+    "body": [
+      "import argparse",
+      "parser = argparse.ArgumentParser(description='Parser for ${1:msg}.',\\",
+      "epilog='')",
+      "parser.add_argument(\"${2:arg}\",help=\"mandatory argument $2 is: ${3:msg}\")",
+      "parser.add_argument(\"${4:arg}\",help=\"mandatory argument $4 is: ${5:msg}\")",
+      "parser.add_argument(\"-${6:shortarg}\",\"--${7:longarg}\",help=\"optional argument \\",
+      "$7 for ${8:msg}.\",action=\"store\")",
+      "args=parser.parse_args()",
+      "lg.info(\"$2 is: \"+str(args.$2))",
+      "lg.info(\"$4 is: \"+str(args.$4))",
+      "if args.$2!=None:",
+      "\tpass",
+      "if args.$4!=None:",
+      "\tpass",
+      "if args.$7==None:",
+      "\tlg.info(\"$7 was not given.\")",
+      "else:",
+      "\tlg.info(\"$7 is: \"+args.$7)"
+    ]
+  },
+  "hackit": {
+    "prefix": "hackit",
+    "body": [
+      "import subprocess ",
+      "path=['/srv/ccrc/data32/z3457920/leeuwincurrent2/expt_lc_fwdcore01/output/pandasHDF/toyhdf/',\\",
+      "\t'/srv/ccrc/data32/z3457920/leeuwincurrent2/expt_lc_fwdcore01/output/pandasHDF/toyhdf2/',\\",
+      "\t'/srv/ccrc/data32/z3457920/leeuwincurrent2/expt_lc_fwdcore01/output/pandasHDF/toyhdf3/']",
+      "boundingbox=['118 130 -37 -31','120 130 -37 -31']",
+      "",
+      "#with ctx.closing(open('./go.sh','w')) as handle:",
+      "for p in path:",
+      "\tfor bb in boundingbox:",
+      "\t\tdo=\"python cms_diagnostics.py \" + p + \" \" + \"-bndbox '\" + bb + \"' &\"",
+      "\t\tprint p,bb",
+      "\t\tprint ''",
+      "\t\tprint do",
+      "\t\tsubprocess.call(do,shell=True)",
+      "",
+      "#subprocess.call('chmod +x ./go.sh',shell=True)"
+    ]
+  },
+  "interpolate": {
+    "prefix": "interpolate",
+    "body": [
+      "import numpy as np",
+      "import scipy.interpolate",
+      "",
+      "old_grid_data=np.random.rand(4,3)",
+      "",
+      "#old grid dim",
+      "loni=np.array([109.94999695, 110.05000305, 110.15000153])",
+      "depi=np.array([3.04677272, 9.45404911, 16.36396599, 23.89871025])",
+      "",
+      "#new grid dim",
+      "lon=np.arange(110.,110.3,.1) #NB: 110.2 outside of convex hull of old so will produce nan",
+      "depth=np.array([3.1,9,16,23])",
+      "",
+      "#create mesh",
+      "X, Y = np.meshgrid(loni, depi)",
+      "XI, YI = np.meshgrid(lon,depth)",
+      "",
+      "#interp",
+      "new_grid=scipy.interpolate.griddata((X.flatten(),Y.flatten()),old_grid_data.flatten() , (XI,YI),method='cubic')",
+      "",
+      "print \"this is original\"",
+      "print old_grid_data.reshape(4,3)",
+      "print \"\"",
+      "print \"this is interp' by cubic\"",
+      "print new_grid",
+      "",
+      "print",
+      "print \"this is diff\"",
+      "print new_grid-old_grid_data.reshape(4,3)"
+    ]
+  },
+  "cKDTree": {
+    "prefix": "cKDTree",
+    "body": [
+      "#an awesome way of finding the closest point in the grid",
+      "#see: https://stackoverflow.com/questions/32909087/efficiently-find-indices-of-nearest-points-on-non-rectangular-2d-grid",
+      "import scipy.interpolate",
+      "eastsecpts='./east_sec_pts.npz'",
+      "secs=np.load(eastsecpts)",
+      "assert(os.path.exists(eastsecpts)),\"can't find files file_discription\"",
+      "bsosef=xr.open_dataset(bsose)",
+      "bsosef_salt=xr.open_dataset(bsose_Salt)",
+      "lon,lat=np.meshgrid(bsosef['YC'],bsosef['XC']-360)",
+      "",
+      "points=[[-60.725048,-1],[-61.725048,-2],[-61.725048,-2]]",
+      "points=[[j,i] for j,i in zip(secs['east_lats'],secs['east_lons'])]",
+      "points=[p for p in points if np.sum(p)!=0]",
+      "",
+      "lonlat = np.column_stack((lon.ravel(),lat.ravel()))",
+      "tree = scipy.spatial.cKDTree(lonlat)",
+      "",
+      "lg.info('creating the tree')",
+      "dist,idx = tree.query(points,k=1)",
+      "ind = np.column_stack(np.unravel_index(idx,lon.shape))",
+      "idxs=[(i,j) for i,j in ind]",
+      "idxs_lonlat=[(lon[id[0],id[1]],lat[id[0],id[1]]) for id in idxs]",
+      "",
+      "lg.info('Extracting points, THETA')",
+      "theta_tmean=np.mean(bsosef['THETA'][:],axis=0)",
+      "theta=np.array([theta_tmean[:,k[1],k[0]] for k in idxs])"
+    ]
+  },
+  "mkmov": {
+    "prefix": "mkmov",
+    "body": [
+      "def makemovie(path_to_png_plots,outmov,folder_for_mkmov):",
+      "    \"\"\"quick and dirty wrapper function to stitch together a bunch of png files",
+      "",
+      "    Parameters",
+      "    ----------",
+      "    path_to_png_plots: full path to png files, needs to be a very long string (fnames separated by a whitespace) or a wildcard string",
+      "    outmov: full path to put mov file (must end in .mov)",
+      "    folder_for_mkmov: path that we will temporarily keep mkmov in",
+      "",
+      "    Returns",
+      "    -------",
+      "    :returns: mov file",
+      "    ",
+      "    Notes",
+      "    -------",
+      "    -Directories need to exist",
+      "    -Can be rather inefficient if cloning the repo multiple times...",
+      "    ",
+      "",
+      "    Example",
+      "    --------",
+      "    >>> baseout='/srv/ccrc/data42/z3457920/20151012_eac_sep_dynamics/analysis2/ugeoplots/'",
+      "    >>> poutdir_aviso=baseout+'plots_aviso/'",
+      "    >>> makemovie(poutdir_aviso+'*.png',baseout+'avisogeou.mov',baseout)",
+      "    \"\"\"",
+      "",
+      "    print \"stitching png files \"+path_to_png_plots+ \" into a movie\"",
+      "    import subprocess",
+      "    cmd=\"git clone https://github.com/chrisb13/mkmov/ \"+folder_for_mkmov+'mkmov'",
+      "    subprocess.call(cmd,shell=True)",
+      "",
+      "    cmd=\"python \"+folder_for_mkmov+'mkmov/mkmov.py '+ ' --stitch -o '+outmov+' '+ path_to_png_plots",
+      "    subprocess.call( cmd,shell=True)",
+      "",
+      "    cmd=\"rm -rf \"+folder_for_mkmov+'mkmov'",
+      "    subprocess.call(cmd ,shell=True)",
+      "",
+      "    return"
+    ]
+  },
+  "mkdir": {
+    "prefix": "mkdir",
+    "body": [
+      "def mkdir(p):",
+      "    \"\"\"make directory of path that is passed\"\"\"",
+      "    try:",
+      "       os.makedirs(p)",
+      "       lg.info(\"output folder: \"+p+ \" does not exist, we will make one.\")",
+      "    except OSError as exc: # Python >2.5",
+      "       import errno",
+      "       if exc.errno == errno.EEXIST and os.path.isdir(p):",
+      "          pass",
+      "       else: raise"
+    ]
+  },
+  "updir": {
+    "prefix": "updir",
+    "body": [
+      "def updir(dir_name,num):",
+      "    \"\"\"",
+      "    Function that takes a path and returns the next level up",
+      "",
+      "    Parameters",
+      "    ----------",
+      "    dir_name: path (string)",
+      "    num: number of levels to go up",
+      "",
+      "    Returns",
+      "    -------",
+      "",
+      "    Example",
+      "    --------",
+      "    >>> path=\\",
+      "    >>> '/srv/ccrc/data32/z3457920/leeuwincurrent3/'",
+      "    >>> moo=updir(path,1)",
+      "    >>> print moo",
+      "    >>> In [4]: moo",
+      "    >>> Out[4]: '/srv/ccrc/data32/z3457920/'",
+      "    \"\"\"",
+      "    import os",
+      "    upd=dir_name",
+      "    for n in range(num):",
+      "        upd=os.path.abspath(os.path.join(upd, os.pardir))",
+      "    return upd+'/'"
+    ]
+  },
+  "chunker": {
+    "prefix": "chunker",
+    "body": [
+      "#stolen from http://stackoverflow.com/questions/434287/what-is-the-most-pythonic-way-to-iterate-over-a-list-in-chunks",
+      "#second answer",
+      "def chunker(seq, size):",
+      "    return (seq[pos:pos + size] for pos in xrange(0, len(seq), size))"
+    ]
+  },
+  "ncimulti_core": {
+    "prefix": "ncimulti_core",
+    "body": [
+      "\"\"\"",
+      "File docstring",
+      "#NB probably easier to use docopt snippet here!",
+      "",
+      "The following modules are required to run on NCI:",
+      "module purge",
+      "module use ~access/modules",
+      "module load pythonlib/netCDF4",
+      "module load pythonlib/matplotlib",
+      "module load pythonlib/six",
+      "",
+      "Usage:",
+      "    interpolate_erai.py -h",
+      "    interpolate_erai.py ( -p | FILE_PATH )",
+      "Options:",
+      "    -h,--help          : show this help message",
+      "    -p,--pbs           : create pbs files on nci",
+      "    FILE_PATH          : path to ERAI parent grid nest file",
+      "\"\"\"",
+      "",
+      "import logging as lg",
+      "import os,inspect",
+      "",
+      "pathfile = os.path.dirname(os.path.realpath(__file__)) ",
+      "#sys.path.insert(1,os.path.dirname(pathfile)+'/')",
+      "sys.path.insert(1,pathfile+'/')",
+      "",
+      "from cb2logger import *",
+      "import contextlib as ctx",
+      "from docopt import docopt",
+      "",
+      "arguments = docopt(__doc__)",
+      "",
+      "pbsheader=\\",
+      "\"\"\"",
+      "#!/bin/bash",
+      "#PBS -P e14",
+      "#PBS -q normal",
+      "#PBS -l wd",
+      "#PBS -l ncpus=1,mem=10Gb,walltime=07:00:00 ",
+      "",
+      "#insert code here, e.g.",
+      "\"\"\"",
+      "",
+      "def chunks(l, n):",
+      "    \"\"\"Yield successive n-sized chunks from l.\"\"\"",
+      "    for i in xrange(0, len(l), n):",
+      "        yield list(l[i:i+n])",
+      "",
+      "def mkdir(p):",
+      "    \"\"\"make directory of path that is passed\"\"\"",
+      "    try:",
+      "       os.makedirs(p)",
+      "       lg.info(\"output folder: \"+p+ \" does not exist, we will make one.\")",
+      "    except OSError as exc: # Python >2.5",
+      "       import errno",
+      "       if exc.errno == errno.EEXIST and os.path.isdir(p):",
+      "          pass",
+      "       else: raise",
+      "",
+      "if __name__ == \"__main__\":                                     #are we being run directly?",
+      "    LogStart('',fout=False)",
+      "",
+      "    ##########",
+      "    #  init  #",
+      "    ##########",
+      "    ",
+      "    #for nci",
+      "    path_to_interp_files='/g/data1/e14/cyb561/cb_tempa/nemo_cordex24_AGRIF/'",
+      "",
+      "    ##########",
+      "    #  init  #",
+      "    ##########",
+      "",
+      "    ######################",
+      "    #  multicore on NCI  #",
+      "    ######################",
+      "",
+      "    path_to_pbs='/g/data1/e14/cyb561/cb_tempa/nemo_cordex24_AGRIF/'+'pbs/'",
+      "    mkdir(path_to_pbs)",
+      "",
+      "    if arguments['--pbs']:",
+      "        ifiles=sorted(glob.glob(path_to_interp_files + 'ERAI*.nc' ))",
+      "        assert(ifiles!=[]),\"glob didn't find anything!\"",
+      "",
+      "        cnt=0",
+      "        for fchunk in chunks(ifiles,3):",
+      "            with ctx.closing(open(path_to_pbs+str(cnt).zfill(5)+'ERAI_nest_interp'+'.sh','w')) as handle:",
+      "                 handle.write(pbsheader+\"\\n\")",
+      "",
+      "                 handle.write(\"module purge\" + \"\\n\")",
+      "                 handle.write(\"module use ~access/modules\" + \"\\n\")",
+      "                 handle.write(\"module load pythonlib/netCDF4\" + \"\\n\")",
+      "                 handle.write(\"module load pythonlib/matplotlib\" + \"\\n\")",
+      "                 handle.write(\"module load pythonlib/six\" + \"\\n\")",
+      "                 handle.write(\"\" + \"\\n\")",
+      "                 ",
+      "                 for f in fchunk:",
+      "                     handle.write(\"python \"+\\",
+      "                             os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))+\"/\"+\\",
+      "                             \"interpolate_erai.py \"+ f+\"\\n\")",
+      "                 ",
+      "                 handle.write(\" \"+\"\\n\")",
+      "",
+      "            cnt+=1",
+      "",
+      "        ifiles=sorted(glob.glob(path_to_pbs+ '*ERAI*.sh' ))",
+      "        assert(ifiles!=[]),\"glob didn't find anything!\"",
+      "        with ctx.closing(open(path_to_pbs+'runmetosubmit.sh','w')) as handle:",
+      "\t\t\t handle.write(\"set -x\" + \"\\n\")",
+      "\t\t\t for f in ifiles:",
+      "\t\t\t\t handle.write(\"qsub \" +f+ \"\\n\")",
+      "        subprocess.call('chmod +x ' +path_to_pbs+'runmetosubmit.sh',shell=True)",
+      "",
+      "        #import multiprocessing",
+      "        #pool=multiprocessing.Pool(processes=2)",
+      "        #r=pool.map(main,ifiles[0:2])",
+      "        #pool.close()",
+      "",
+      "    ##################",
+      "    #  Do the work!  #",
+      "    ##################",
+      "",
+      "    if arguments['FILE_PATH'] is not None:",
+      "        main(arguments['FILE_PATH'])",
+      "",
+      "    lg.info('')",
+      "    #localtime = time.asctime( time.localtime(time.time()) )",
+      "    #lg.info(\"Local current time : \"+ str(localtime))",
+      "    lg.info('SCRIPT ended')"
+    ]
+  },
+  "multi_core": {
+    "prefix": "multi_core",
+    "body": [
+      "def multi_sh(s_name,args_one):",
+      "    \"\"\"function for an embarrasingly parralel job in which we want to use many cores",
+      "    ",
+      "    :s_name: name of script",
+      "    :args_one: list containing argument to send to script",
+      "    :returns: s_name + '.sh' script.",
+      "",
+      "    Notes",
+      "    -------",
+      "    ",
+      "",
+      "    Example",
+      "    --------",
+      "    >>> #to call multi_sh() ...",
+      "    >>> s_name='cms_diagnostics.py'",
+      "    >>> args_one=\\",
+      "    >>> [\"'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdwesternboundary02/output/pandasHDF/'\",\\",
+      "    >>> \"'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthernIO_01/output/pandasHDF/'\",\\",
+      "    >>> \"'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_itf_01/output/pandasHDF/'\",\\",
+      "    >>> \"'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdnorthern_itf_02/output/pandasHDF/'\",\\",
+      "    >>> \"'/srv/ccrc/data32/z3457920/leeuwincurrent3/expt_lc_fwdeasternboundary01/output/pandasHDF/'\"]",
+      "    >>> multi_sh(s_name,args_one)",
+      "",
+      "    >>> #to put in script",
+      "    >>> import sys",
+      "    >>> ifile=sys.argv[1]",
+      "    >>> lg.info('Working folder: ' + ifile)",
+      "    \"\"\"",
+      "    import contextlib as ctx",
+      "    import subprocess ",
+      "    f_name=s_name[:-3]+'.sh'",
+      "    lg.info(\"Creating multi-core script for: \" + f_name)",
+      "    with ctx.closing(open('./' + f_name,'w')) as handle:",
+      "        for arg in args_one:",
+      "            do=\"python \" + s_name +\" \" + arg+\" &\"",
+      "            lg.info(\"Writing: \" + do)",
+      "            #subprocess.call(do,shell=True)",
+      "            handle.write(do+\"\\n\")",
+      "",
+      "    subprocess.call('chmod +x ' + f_name,shell=True)",
+      "    return"
+    ]
+  },
+  "assertf": {
+    "prefix": "assertf",
+    "body": [
+      "assert(os.path.exists(${1:variable_to_file_path})),\"can't find files ${2:file_discription}\""
+    ]
+  },
+  "catch": {
+    "prefix": "catch",
+    "body": [
+      "if ${1:msg}:",
+      "\tlg.error(\"${2:msg}: \" + str(${3:non-string}))",
+      "\tsys.exit(\"Okay, shit went bad, now exit.\")"
+    ]
+  },
+  "catchg": {
+    "prefix": "catchg",
+    "body": [
+      "#error trap for globbing...",
+      "if ${1:msg}==[]:",
+      "\tlg.error(\"Globbing returned nothing!\")",
+      "\tsys.exit(\"Okay, shit went bad, now exit.\")"
+    ]
+  },
+  "loopme": {
+    "prefix": "loopme",
+    "body": [
+      "for $1 in $2:",
+      "    ${TM_SELECTED_TEXT}"
+    ]
+  },
+  "s": {
+    "prefix": "s",
+    "body": [
+      "str(${TM_SELECTED_TEXT:object to convert to string})"
+    ]
+  },
+  "w": {
+    "prefix": "w",
+    "body": [
+      "${1:function you want to call}(${TM_SELECTED_TEXT:object that will be wrapped})"
+    ]
+  },
+  "nfo": {
+    "prefix": "nfo",
+    "body": [
+      "lg.info(\"${TM_SELECTED_TEXT:object to put in}\")"
+    ]
+  },
+  "confirm": {
+    "prefix": "confirm",
+    "body": [
+      "confirm = raw_input(\"Please confirm you're happy with the ...\")",
+      "if confirm=='y':",
+      "    #do something!",
+      "\tpass",
+      "elif confirm=='n':",
+      "   sys.exit(\"Quitting b/c you said you weren't happy with the slice.\")",
+      "else:",
+      "   sys.exit(\"Quitting b/c you didn't answer yes ('y')  or no ('n').\")"
+    ]
+  },
+  "clobber": {
+    "prefix": "clobber",
+    "body": [
+      "#a clobber check here",
+      "try:",
+      "    os.remove(${1:file_path})",
+      "    lg.info(\"File: \" +os.path.basename($1) + \" already exists, clobbering!\")",
+      "except OSError:",
+      "    pass "
+    ]
+  },
+  "months": {
+    "prefix": "months",
+    "body": [
+      "plt.xlim(0.8, 12.2)",
+      "labels=['J','F','M','A','M','J','J','A','S','O','N','D']",
+      "labels=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']",
+      "ax1.set_xlim(0.8, 12.2)",
+      "ax1.set_xticklabels(labels)"
+    ]
+  },
+  "piticks": {
+    "prefix": "piticks",
+    "body": [
+      "import numpy as np",
+      "import matplotlib.pyplot as plt",
+      "import matplotlib.ticker as tck",
+      "",
+      "plt.close('all')",
+      "fig=plt.figure()",
+      "ax=fig.add_subplot(1, 1,1)",
+      "xx=np.linspace(-3*np.pi, 3*np.pi,100)",
+      "pme=-np.cos(xx)",
+      "ax.plot(xx/np.pi,pme,color='g',label='2')",
+      "ax.xaxis.set_major_formatter(tck.FormatStrFormatter('%g $\\pi$'))",
+      "ax.xaxis.set_major_locator(tck.MultipleLocator(base=1.0))",
+      "pme=-np.cos((2/3)*xx)",
+      "ax.plot(xx/np.pi,pme,color='r',label='2')",
+      "ax.legend()",
+      "ax.grid()",
+      "plt.show()"
+    ]
+  },
+  "regex": {
+    "prefix": "regex",
+    "body": [
+      "#really handonline regex finder: https://regex101.com/#python",
+      "import re",
+      "test_string='cordex24REALNONZ500-ERAI01_1d_19890101_19891231_grid_T_2D.nc'",
+      "exp = re.search(r'[0-9]{8}_[0-9]{8}', test_string) ; exp=exp.group()",
+      "print exp"
+    ]
+  },
+  "regexfunc": {
+    "prefix": "regexfunc",
+    "body": [
+      "def regme(string):",
+      "    \"\"\"function for finding a regular expression in a passed string",
+      "    ",
+      "    :string: @todo",
+      "    :returns: @todo",
+      "    \"\"\"",
+      "    #really handonline regex finder: https://regex101.com/#python",
+      "    import re",
+      "    exp = re.search(r'_[-].*_300_all', string) ; exp=exp.group()",
+      "    return exp"
+    ]
+  },
+  "cl": {
+    "prefix": "cl",
+    "body": [
+      "class ${1:ClassName}(${2:object}):",
+      "\t\"\"\"",
+      "\t${3:docstring for $1}.",
+      "",
+      "\tParameters",
+      "\t----------",
+      "\t$4: ",
+      "",
+      "\tReturns",
+      "\t-------",
+      "\t",
+      "\tNotes",
+      "\t-------",
+      "\t",
+      "",
+      "\tExample",
+      "\t--------",
+      "\t>>> ",
+      "\t>>> ",
+      "\t\"\"\"",
+      "\tdef __init__(self, ${4:arg}):",
+      "\t\t${5:super($1, self).__init__()}",
+      "\t\tself.$4 = $4",
+      "\t\t${0}"
+    ]
+  },
+  "de": {
+    "prefix": "de",
+    "body": [
+      "def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):",
+      "\t\"\"\"",
+      "\t${3:docstring for $1}.",
+      "",
+      "\tParameters",
+      "\t----------",
+      "\t$4: ",
+      "",
+      "\tReturns",
+      "\t-------",
+      "\t",
+      "\tNotes",
+      "\t-------",
+      "\t",
+      "",
+      "\tExample",
+      "\t--------",
+      "\t>>> ",
+      "\t>>> ",
+      "\t\"\"\"",
+      "\t${0}"
+    ]
+  },
+  "savehdf_append": {
+    "prefix": "savehdf_append",
+    "body": [
+      "efile = ${1:variable for export path} + ${2:name of exported hdf}+'_table'+ '.h5'",
+      "store = pd.HDFStore(efile,complevel=9, complib='blosc')",
+      "store.append('DF',DF,data_columns = ${3:list of columns that will be data columns}) #querable columns or dc take more space and are slower",
+      "store.close()"
+    ]
+  },
+  "savehdf_put": {
+    "prefix": "savehdf_put",
+    "body": [
+      "efile = ${1:variable for export path} +\\",
+      "\t\t${2:name of exported hdf} +\\",
+      "        '_table'+ '.h5'",
+      "",
+      "#a clobber check here",
+      "try:",
+      "    os.remove(efile)",
+      "    lg.info(\"HDFStore already existed, clobbering!\")",
+      "except OSError:",
+      "    pass ",
+      "",
+      "#Due to Pandas 'TypeError' had to use put rather than append...",
+      "store = pd.HDFStore(efile,complevel=9, complib='blosc')",
+      "store.put('$3',${3:name of dataframe})",
+      "store.close()"
+    ]
+  },
+  "toypanda": {
+    "prefix": "toypanda",
+    "body": [
+      "import itertools",
+      "import pandas as pd",
+      "import numpy as np",
+      "def expand_grid(data_dict):",
+      "    rows = itertools.product(*data_dict.values())",
+      "    return pd.DataFrame.from_records(rows, columns=data_dict.keys())",
+      "",
+      "",
+      "df = expand_grid(",
+      "    {'height': [60, 70],",
+      "     'weight': [100, 140, 180],",
+      "     'sex': ['Male', 'Female']}",
+      "    )",
+      "",
+      "df2 = pd.DataFrame(",
+      "        {u'stratifying_var': np.random.uniform(0, 100, 20),",
+      "         u'price': np.random.normal(100, 5, 20)}",
+      "    )"
+    ]
+  },
+  "toypandamerge": {
+    "prefix": "toypandamerge",
+    "body": [
+      "#Doing join/merge of DF's that are different sizes...",
+      "one=pd.DataFrame({\"year\":[1992,2003,2014],\"blah\":[231,1232,1212],\"parnum\":[1,2,3]})",
+      "two=pd.DataFrame({\"seconds\":[20,40,20,60,60,60],\"garbage\":[204,430,240,-60,604,603],\"parnum\":[1,1,2,3,3,3]})",
+      "two.merge(one[['year','parnum']],on='parnum')"
+    ]
+  },
+  "loadtoy": {
+    "prefix": "loadtoy",
+    "body": [
+      "import pandas as pd",
+      "import numpy as np",
+      "file='/srv/ccrc/data32/z3457920/leeuwincurrent2/expt_lc_fwdcore01/output/pandasHDF/toyhdf/'",
+      "file='/srv/ccrc/data32/z3457920/leeuwincurrent2/expt_lc_fwdcore01/output/pandasHDF/toyhdf/'",
+      "file='/home/z3457920/hdrive/repos/cms_analysis/fwdcore_toyhdf/traj_file_05_table.h5'",
+      "dataframe=pd.HDFStore(file)",
+      "df=dataframe.select('DF')"
+    ]
+  },
+  "toymaskedarray": {
+    "prefix": "toymaskedarray",
+    "body": [
+      "import numpy as np",
+      "mask=[[False,True,False], \\",
+      "     [False,False,False], \\",
+      "     [False,False,True], \\",
+      "     [False,True,False]]",
+      "old=np.ma.MaskedArray(np.random.rand(4,3),mask=mask)",
+      "new=np.ma.MaskedArray(np.random.rand(4,3),mask=mask)"
+    ]
+  },
+  "maskedarray": {
+    "prefix": "maskedarray",
+    "body": [
+      "import numpy as np",
+      "zos=np.array([[3,6,9], \\",
+      "             [0,6,9], \\",
+      "             [3,6,9], \\",
+      "             [3,6,0]])",
+      "",
+      "masked=np.ma.masked_where(zos==0,zos) "
+    ]
+  },
+  "smasked": {
+    "prefix": "smasked",
+    "body": [
+      "pme=np.ma.masked_where(${1:maskarray}==0,${2:maskarray2seton}) "
+    ]
+  },
+  "loadnetcdf": {
+    "prefix": "loadnetcdf",
+    "body": [
+      "import os",
+      "from netCDF4 import Dataset",
+      "infile='/path/to/netcdf4/file.nc'",
+      "assert(os.path.exists(infile)),\"netCDF file does not exist!\"",
+      "ifile=Dataset(infile, 'r')",
+      "varone=ifile.variables['']"
+    ]
+  },
+  "loadcsv": {
+    "prefix": "loadcsv",
+    "body": [
+      "import pandas as pd",
+      "infile='/path/to/netcdf4/file.csv'",
+      "assert(os.path.exists(infile)),\"CSV file does not exist!\"",
+      "ifile=pd.read_csv(infile)"
+    ]
+  },
+  "loadnetcdfxr": {
+    "prefix": "loadnetcdfxr",
+    "body": [
+      "import os",
+      "import xarray as xr",
+      "infile='/path/to/netcdf4/file.nc'",
+      "assert(os.path.exists(infile)),\"netCDF file does not exist!\"",
+      "ifile=xr.open_dataset(infile)",
+      "",
+      "#fls=xr.open_mfdataset(filelist[0:3],concat_dim='time_counter')"
+    ]
+  },
+  "dask": {
+    "prefix": "dask",
+    "body": [
+      "import os",
+      "from netCDF4 import Dataset",
+      "infile='./cordex24-ERAI01_1d_19890101_19890105_grid_T_T3D.nc'",
+      "assert(os.path.exists(infile)),\"netCDF file does not exist!\"",
+      "ifile=Dataset(infile, 'r')",
+      "varone=ifile.variables['thetao']",
+      "import dask.array",
+      "darray=dask.array.from_array(ifile.variables['thetao'],1000)",
+      "darray=darray.mean(axis=0).compute()",
+      "ifile.close()"
+    ]
+  },
+  "savenetcdfscratch": {
+    "prefix": "savenetcdfscratch",
+    "body": [
+      "shape=(45, 385, 257)",
+      "Tinit=np.zeros(( shape[0],shape[1],shape[2] ))",
+      "Sinit=np.zeros(( shape[0],shape[1],shape[2] ))",
+      "resto=np.zeros(( shape[0],shape[1],shape[2] ))",
+      "#ifile=ifile.assign({'Tinit':(('z','y','x'),Tinit)})",
+      "#ifile=ifile.assign({'Sinit':(('z','y','x'),Sinit)})",
+      "#ifile=ifile.assign({'resto':(('z','y','x'),resto)})",
+      "ifile=xr.Dataset({'Tinit':(('z','y','x'),Tinit),'Sinit':(('z','y','x'),Sinit),'resto':(('z','y','x'),resto)})",
+      "ifile.attrs['history']=   r'Created by mk_ajbathy.py for the 20200804_slopeVmelt project; this is the second attempt at making a woa2018 inspired forcing, what a pain!'",
+      "ifile.attrs['contact']=   r'christopher.bull@northumbria.ac.uk'",
+      "ifile.attrs['creation_date']=   str(datetime.datetime.now())",
+      "ifile.attrs['experiment']=r' '",
+      "ifile.to_netcdf(outfile)"
+    ]
+  },
+  "savenetcdf": {
+    "prefix": "savenetcdf",
+    "body": [
+      "import numpy as np",
+      "import xarray as xr",
+      "da=xr.DataArray(np.random.rand(3,2))",
+      "ds=da.to_dataset(name='foo')",
+      "ds.to_netcdf('/path/to/netcdf/file')",
+      "",
+      "#if trying to pick up an existing netcdf file and change something..",
+      "ifilev['variablename']=\\",
+      "xr.DataArray(v10,dims=('time','y','x'),coords=ifilev.variablename.coords)",
+      "",
+      "import datetime",
+      "ifilev.attrs['creation_date']=   str(datetime.datetime.now())",
+      "ifilev.to_netcdf('/path/to/netcdf/file')",
+      "",
+      "#if trying to just have a new file with just y,x / nav_lon/nav_lat",
+      "xr.DataArray(new_grid,dims=('y','x'),coords=nemomeltf.nav_lon.coords,name='melt_actual').to_netcdf('./moo.nc')",
+      "",
+      "#handy if you want to inherit units/attributes..",
+      "newnc['melt_actual'].attrs=JMmeltf['melt_actual'].attrs",
+      ""
+    ]
+  },
+  "savenetcdf_robin": {
+    "prefix": "savenetcdf_robin",
+    "body": [
+      "ncfile_out = Dataset('bathy_meter.nc','w',format='NETCDF3_CLASSIC')",
+      "ncfile_out.createDimension('x',isf.shape[2])",
+      "ncfile_out.createDimension('y',isf.shape[1])",
+      "bathy_nc=ncfile_out.createVariable('Bathymetry_isf',np.dtype('float64').char,('y','x'))",
+      "bathy_nc[:]=bathy[slice-1,:,:]",
+      "ncfile_out.close()"
+    ]
+  },
+  "modifynetcdf": {
+    "prefix": "modifynetcdf",
+    "body": [
+      "#https://github.com/Unidata/netcdf4-python/issues/109",
+      "ifile2=xr.open_dataset(f)",
+      "ifile=Dataset(outfol+os.path.basename(f),'r+')",
+      "ifile['vosaline'][:]=ifile2['vosaline'][:]*200",
+      "ifile.close()",
+      "",
+      "# (untested!) doesn't work on netcdf3 files it seems..",
+      "# https://stackoverflow.com/questions/42627367/it-it-possible-to-define-attributes-of-a-group-in-a-netcdf4-file-using-python",
+      "#group1 = ifile.createGroup(\"creation_cbhack_date\")",
+      "#group1.long_name = str(datetime.datetime.now())"
+    ]
+  },
+  "savenetcdfNEMO": {
+    "prefix": "savenetcdfNEMO",
+    "body": [
+      "def ncout(nemo_template,export_dict,outputpath,numtsteps=0):",
+      "    \"\"\"function to export a bunch of variables that look like NEMO outputs into a netCDF file.",
+      "    ",
+      "    :nemo_template: NEMO netcdf file that will be the basis for our output",
+      "    :export_dict: dictionary containing the names and arrays you would like to output",
+      "    :outputpath: string path to netCDF file output",
+      "    :numtsteps (optional): number of t steps in output file",
+      "    :returns: @todo",
+      "    \"\"\"",
+      "    tpointsdefn=Dataset(nemo_template, 'r')",
+      "    new_lat=tpointsdefn.variables['nav_lat'][:]",
+      "    new_lon=tpointsdefn.variables['nav_lon'][:]",
+      "    deptht=tpointsdefn.variables['deptht'][:]",
+      "",
+      "    fout = Dataset(outputpath, 'w')",
+      "",
+      "    #note that we have to flip all the axis because python is annoying ...",
+      "    #note too that once we've created the dimensions and variables, ",
+      "    #these will override what you feed from numpy (I think the arrays get reshaped)",
+      "    fout.createDimension('time_counter', None)",
+      "    fout.createDimension('y', new_lat.shape[0])",
+      "    fout.createDimension('x', new_lon.shape[1])",
+      "    fout.createDimension('deptht', deptht.shape[0])",
+      "",
+      "    #source for netcdf dtypes...",
+      "    #https://netcdf4-python.googlecode.com/svn/trunk/docs/netCDF4-module.html",
+      "    #You can specify the datatype as a numpy dtype object, or anything that can be converted to a numpy dtype object.__class__ Valid datatype specifiers include: 'f4' (32-bit floating point), 'f8' (64-bit floating point), 'i4' (32-bit signed integer), 'i2' (16-bit signed integer), 'i8' (64-bit singed integer), 'i1' (8-bit signed integer), 'u1' (8-bit unsigned integer), 'u2' (16-bit unsigned integer), 'u4' (32-bit unsigned integer), 'u8' (64-bit unsigned integer), or 'S1' (single-character string). The old Numeric single-character typecodes ('f','d','h', 's','b','B','c','i','l'), corresponding to ('f4','f8','i2','i2','i1','i1','S1','i4','i4'), will also work. The unsigned integer types and the 64-bit integer type can only be used if the file format is NETCDF4.",
+      "",
+      "    fout_time=fout.createVariable('time_average_1d','f4',('time_counter',))",
+      "    fout_lat=fout.createVariable('nav_lat','f4',('y','x',))",
+      "    fout_lon=fout.createVariable('nav_lon','f4',('y','x',))",
+      "    fout_depth=fout.createVariable('deptht','f4',('deptht'))",
+      "",
+      "    # Copy variable attributes and history (wrong names!)",
+      "    #attrvals=[tpointsdefn.variables['time'].getncattr(k) for k in tpointsdefn.variables['time'].ncattrs()]",
+      "    #fout_time.setncatts({key:value for (key,value) in zip(tpointsdefn.variables['time'].ncattrs(),attrvals)})",
+      "",
+      "    #attrvals=[tpointsdefn.variables['lat0'].getncattr(k) for k in tpointsdefn.variables['lat0'].ncattrs()]",
+      "    #fout_lat.setncatts({key:value for (key,value) in zip(tpointsdefn.variables['lat0'].ncattrs(),attrvals)})",
+      "",
+      "    #attrvals=[tpointsdefn.variables['lon0'].getncattr(k) for k in tpointsdefn.variables['lon0'].ncattrs()]",
+      "    #fout_lon.setncatts({key:value for (key,value) in zip(tpointsdefn.variables['lon0'].ncattrs(),attrvals)})",
+      "",
+      "    #fout.setncatts({'history':tpointsdefn.getncattr('history')+' \\n. Smoothed with'+os.path.realpath(__file__)+' time: '+datetime.datetime.now().strftime(\"%Y-%m-%d %H:%M\")+' machine: '+socket.gethostname()+' function_name: '+inspect.currentframe().f_code.co_name})",
+      "",
+      "",
+      "    fout_time[:]=np.arange(numtsteps)",
+      "    fout_lat[:]=new_lat",
+      "    fout_lon[:]=new_lon",
+      "    fout_depth[:]=deptht",
+      "",
+      "    for var_name in export_dict.keys():",
+      "        fout_varone=fout.createVariable(var_name,'f8',('deptht','y','x'))",
+      "        fout_varone[:]=export_dict[var_name]",
+      "",
+      "    fout.close()",
+      "    return"
+    ]
+  },
+  "loadhdf": {
+    "prefix": "loadhdf",
+    "body": [
+      "import pandas as pd",
+      "file='path/to/hdfstore.h5'",
+      "dataframe=pd.HDFStore(file)",
+      "df=dataframe.select('DF')"
+    ]
+  },
+  "loadmat": {
+    "prefix": "loadmat",
+    "body": [
+      "import scipy.io",
+      "infile='file.mat'",
+      "assert(os.path.exists(infile)),\"File does not exist!\"",
+      "mat = scipy.io.loadmat(infile)"
+    ]
+  },
+  "glob": {
+    "prefix": "glob",
+    "body": [
+      "import glob",
+      "ifiles=sorted(glob.glob(${1:varpath to glob} + ${2:string to glob} ))",
+      "assert(ifiles!=[]),\"glob didn't find anything!\""
+    ]
+  },
+  "pd": {
+    "prefix": "pd",
+    "body": [
+      "import pandas as pd"
+    ]
+  },
+  "rounddf": {
+    "prefix": "rounddf",
+    "body": [
+      "slice['latitude']=np.round(slice['latitude']/.1)*.1     "
+    ]
+  },
+  "pickle": {
+    "prefix": "pickle",
+    "body": [
+      "#Save a dictionary into a pickle file.",
+      "import pickle",
+      "favorite_color = { \"lion\": \"yellow\", \"kitty\": \"red\" }",
+      "pickle.dump( favorite_color, open( \"save.p\", \"wb\" ) )",
+      "",
+      "# Load the dictionary back from the pickle file.",
+      "favorite_color = pickle.load( open( \"save.p\", \"rb\" ) )",
+      "# favorite_color is now { \"lion\": \"yellow\", \"kitty\": \"red\" }"
+    ]
+  },
+  "sor": {
+    "prefix": "sor",
+    "body": [
+      "ifiles=sorted(glob.glob(path + '*' ))"
+    ]
+  },
+  "plt": {
+    "prefix": "plt",
+    "body": [
+      "import matplotlib.pyplot as plt"
+    ]
+  },
+  "np": {
+    "prefix": "np",
+    "body": [
+      "import numpy as np"
+    ]
+  },
+  "xr": {
+    "prefix": "xr",
+    "body": [
+      "import xarray as xr"
+    ]
+  },
+  "catopycbar": {
+    "prefix": "catopycbar",
+    "body": [
+      "#loosely based",
+      "#https://unidata.github.io/MetPy/v0.6/examples/Four_Panel_Map.html",
+      "lon,lat=np.linspace(-90,-40,50),np.linspace(-180,180,50)",
+      "pme=np.random.rand(50,50)",
+      "plot_proj=ccrs.SouthPolarStereo( central_longitude=0.0)",
+      "",
+      "plt.close('all')",
+      "row=2",
+      "col=2",
+      "fig=plt.figure(figsize=(5.0*col,5*row))",
+      "gs = gridspec.GridSpec(row, col,height_ratios=[1,.1],width_ratios=[1]*col,hspace=.075,wspace=0.075)",
+      "",
+      "#first col",
+      "ax = plt.subplot(gs[0,0], projection=plot_proj)",
+      "#cs1=ax.contourf(pme) #also works and is quicker",
+      "cs1=ax.contourf(lat,lon,pme,transform=ccrs.PlateCarree())",
+      "sm.inset_title_box(ax,'a',bwidth=\"20%\",location=1)",
+      "",
+      "ax.set_extent([-180, 180, -40, -90], ccrs.PlateCarree()) #for circumpolar",
+      "ax.coastlines(resolution='50m')",
+      "ax.gridlines(crs=ccrs.PlateCarree(), linewidth=1, color='gray', alpha=0.5)",
+      "",
+      "#colorbar",
+      "cax = plt.subplot(gs[1,0])",
+      "cb1 = plt.colorbar(cs1, cax=cax, orientation='horizontal')",
+      "cb1.set_label('knots', size='x-large')",
+      "",
+      "#first col",
+      "ax = plt.subplot(gs[0,1])",
+      "cs1=ax.contourf(pme)",
+      "",
+      "cax = plt.subplot(gs[1,1])",
+      "cb1 = plt.colorbar(cs1, cax=cax, orientation='horizontal')",
+      "cb1.set_label('knots', size='x-large')",
+      "",
+      "plt.show()"
+    ]
+  },
+  "catopysouthernocean": {
+    "prefix": "catopysouthernocean",
+    "body": [
+      "plot_proj=ccrs.SouthPolarStereo( central_longitude=0.0)",
+      "fig = plt.figure()",
+      "ax = plt.subplot(1, 1, 1, projection=plot_proj)",
+      "pme=np.random.rand(50,50)",
+      "lon,lat=np.linspace(-90,-40,50),np.linspace(-180,180,50)",
+      "cs1=ax.contourf(lat,lon,pme,transform=ccrs.PlateCarree())",
+      "ax.set_extent([-180, 180, -40, -90], ccrs.PlateCarree()) #for circumpolar",
+      "ax.coastlines(resolution='50m')",
+      "ax.gridlines(crs=ccrs.PlateCarree(), linewidth=1, color='gray', alpha=0.5)",
+      "ax_cb = plt.axes([0.92, 0.25, 0.015, 0.5])",
+      "cb = plt.colorbar(cs1, cax=ax_cb, orientation='vertical')",
+      "plt.show()"
+    ]
+  },
+  "catopyegwed025": {
+    "prefix": "catopyegwed025",
+    "body": [
+      "import cartopy.crs as ccrs",
+      "import cartopy",
+      "#CArtopy example for WED025",
+      "plt.close('all')",
+      "",
+      "fig = plt.figure()",
+      "ax2 = plt.subplot(1, 1, 1, projection=ccrs.SouthPolarStereo(central_longitude=30.0-80))",
+      "",
+      "# Limit the map to -60 degrees latitude and below.",
+      "ax2.set_extent([-75, 10, -80, -52], ccrs.PlateCarree())",
+      "gl=ax2.gridlines(crs=ccrs.PlateCarree(), linewidth=1, color='gray', alpha=0.2)",
+      "",
+      "ax2.add_feature(cartopy.feature.LAND,facecolor='#858588')",
+      "# ax2.add_feature(cartopy.feature.OCEAN)",
+      "",
+      "# cs1=ax2.scatter(df['lon'],df['lat'],transform=ccrs.Geodetic())",
+      "cs1=ax2.contourf(ifile['nav_lon'],ifile['nav_lat'],ifile['sossheig'][0,:],cmap='inferno_r',extend='max',transform=ccrs.PlateCarree())",
+      "",
+      "# #WED025 box",
+      "# x, y = [-91.19742, -0.5, -0.5, -91.19742, -91.19742], [-82.09814, -82.09814, -62.490463, -62.490463, -82.09814]",
+      "# ax2.plot(x, y, marker='o',lw=1.5 ,transform=ccrs.PlateCarree(),color='g',linestyle='--',alpha=0.75)",
+      "",
+      "plt.show()",
+      "end snippet",
+      "",
+      "",
+      "snippet fixcbarticks",
+      "#fix colourbar ticks",
+      "import matplotlib.ticker as ticker",
+      "def fmt(x, pos):",
+      "    \"\"\"",
+      "    Ripped from: ",
+      "    http://stackoverflow.com/questions/25983218/scientific-notation-colorbar-in-matplotlib",
+      "    \"\"\"",
+      "    return '{:.1f}'.format(x)",
+      "cbar=plt.colorbar(cs1,\\",
+      "cax=ax0",
+      ",orientation='vertical',format=ticker.FuncFormatter(fmt))"
+    ]
+  },
+  "quiver": {
+    "prefix": "quiver",
+    "body": [
+      "velmag_ctr=np.sqrt(np.square(arrayx)+np.square(arrayy))",
+      "cs1=ax.contourf(lon_new,lat_new,velmag_ctr,levels=np.linspace(0,0.7,30),alpha=0.9,cmap='Blues_r',extend='max')",
+      "skip=(slice(None,None,3),slice(None,None,3))",
+      "quivopts={'pivot':'mid','color':'black', 'units':'xy','headwidth':4,  'headlength':2,'angles':'xy','scale_units':'xy','alpha':0.9, 'headaxislength':5}",
+      "Q=ax.quiver(lon_new[skip],lat_new[skip],uvel_ctrl[skip],vvel_ctrl[skip],**quivopts)"
+    ]
+  },
+  "axisoff": {
+    "prefix": "axisoff",
+    "body": [
+      "ax.set_axis_off()"
+    ]
+  },
+  "insetaxis": {
+    "prefix": "insetaxis",
+    "body": [
+      "from mpl_toolkits.axes_grid.inset_locator import inset_axes",
+      "# this is an inset axes over the main axes",
+      "inset_axes = inset_axes(ax, ",
+      "                        width=\"14%\", # width = 30% of parent_bbox",
+      "                        height=1.4, # height : 1 inch",
+      "                        loc=1)"
+    ]
+  },
+  "twinx": {
+    "prefix": "twinx",
+    "body": [
+      "ax2 = ax.twinx()  # instantiate a second axes that shares the same x-axis",
+      "color = 'tab:blue'",
+      "ax2.set_ylabel('sin', color=color)  # we already handled the x-label with ax1",
+      "ax2.plot(t, data2, color=color)",
+      "ax2.tick_params(axis='y', labelcolor=color)"
+    ]
+  },
+  "patches": {
+    "prefix": "patches",
+    "body": [
+      "#little box",
+      "#upright=(-33.433537, 159.48608)",
+      "#lowleft=(-51.030285, 142.7417)",
+      "",
+      "#pts=[0,0,0,0]",
+      "#pts[0]=lowleft[1]",
+      "#pts[1]=upright[1]",
+      "#pts[2]=lowleft[0]",
+      "#pts[3]=upright[0]",
+      "patch=axis.fill([pts[0],pts[1],pts[1],pts[0]],[pts[2],pts[2],pts[3],pts[3]],'w', alpha=1, edgecolor='b',lw=2, facecolor='none')",
+      "",
+      "#insert text",
+      "def makebox(axis,text,xpos,ypos,rot=0,fs=9.5,co='w'):",
+      "    axis.annotate(text,",
+      "    xy = (xpos,ypos),",
+      "    xycoords = 'axes fraction',",
+      "    horizontalalignment = 'center',",
+      "    verticalalignment = 'bottom',",
+      "    fontsize = fs,",
+      "    fontweight = 'light',# animated=True,",
+      "    color=co,",
+      "    bbox = dict(boxstyle=\"round\", fc='black',",
+      "    ec=\"0.5\", alpha=0.7),rotation=rot)",
+      "return axis",
+      "",
+      "#insert zonal arrow (I think, see dx, from Tasman Sea transport budget plots)",
+      "import matplotlib.patches as patches",
+      "ax.add_patch(patches.Arrow(",
+      "-68,            # x",
+      "1700,            # y",
+      "-2,           # dx",
+      "0 ,           # dy",
+      "width=2,       # optional - defaults to 1.0",
+      "color='k'))"
+    ]
+  },
+  "uselatex": {
+    "prefix": "uselatex",
+    "body": [
+      "#nb requires latex installed on the machine, see http://matplotlib.org/users/usetex.html",
+      "from matplotlib import rc",
+      "import matplotlib",
+      "rc('text', usetex=True)",
+      "",
+      "#this makes the font the same.. http://stackoverflow.com/questions/11367736/matplotlib-consistent-font-using-latex",
+      "matplotlib.rcParams['mathtext.fontset'] = 'custom'",
+      "matplotlib.rcParams['mathtext.rm'] = 'Bitstream Vera Sans'",
+      "matplotlib.rcParams['mathtext.it'] = 'Bitstream Vera Sans:italic'",
+      "matplotlib.rcParams['mathtext.bf'] = 'Bitstream Vera Sans:bold'",
+      "cb1.set_label(r\"$\\displaystyle ^{\\circ} C$\")",
+      "",
+      "#Note, more recently (June 2024) I needed cm-super",
+      "#https://stackoverflow.com/questions/11354149/python-unable-to-render-tex-in-matplotlib",
+      "#sudo apt-get install dvipng texlive-latex-extra texlive-fonts-recommended cm-super"
+    ]
+  },
+  "uselatex2": {
+    "prefix": "uselatex2",
+    "body": [
+      "ax.set_ylabel(r'Eastern boundary salinity ($\\frac{g}{kg}*m^{2}$)')",
+      "ax.set_ylabel('Eastern boundary entrant temperature ($^{\\circ}C*m^{2}$ )')"
+    ]
+  },
+  "flipyaxis": {
+    "prefix": "flipyaxis",
+    "body": [
+      "plt.gca().invert_yaxis()",
+      "ax.invert_yaxis()"
+    ]
+  },
+  "killalllabs": {
+    "prefix": "killalllabs",
+    "body": [
+      "frame1 = plt.gca()",
+      "frame1.axes.get_xaxis().set_ticks([])",
+      "frame1.axes.get_yaxis().set_ticks([])"
+    ]
+  },
+  "killxlab": {
+    "prefix": "killxlab",
+    "body": [
+      "plt.setp(ax.get_xticklabels(),visible=False)"
+    ]
+  },
+  "killylab": {
+    "prefix": "killylab",
+    "body": [
+      "plt.setp(ax.get_yticklabels(),visible=False)"
+    ]
+  },
+  "splot": {
+    "prefix": "splot",
+    "body": [
+      "plt.close('all')",
+      "fig=plt.figure()",
+      "ax=fig.add_subplot(1, 1,1)",
+      "${0:code to plot}",
+      "plt.show()"
+    ]
+  },
+  "plthack": {
+    "prefix": "plthack",
+    "body": [
+      "def ${1:function_name}(output_opt):",
+      "    \"\"\"",
+      "\tThis function ($1) is designed to ${2:function_doc_string}",
+      "    \"\"\"",
+      "\t${0:code to plot}",
+      "    if output_opt=='':",
+      "        plt.show()",
+      "    else:",
+      "        plt.savefig(output_opt+'$1.png',dpi=300)",
+      "        #plt.savefig(output_opt+'$1.pdf',format='pdf')"
+    ]
+  },
+  "scatter": {
+    "prefix": "scatter",
+    "body": [
+      "plt.close('all')",
+      "fig=plt.figure()",
+      "ax=fig.add_subplot(1, 1,1)",
+      "${0:#code to plot}",
+      "scat=ax.scatter(whole_trajectory['longitude'].tolist(),whole_trajectory['latitude'].tolist(),c=whole_trajectory.depth_m,lw=0,s=3,marker='o',vmin=0,vmax=300)",
+      "ax.scatter(whole_trajectory.iloc[-1]['longitude'].tolist(),whole_trajectory.iloc[-1]['latitude'].tolist(),color='k',alpha=1,marker='D',s=32*4)",
+      "ax.set_title(str(incoming_df['parnum'])+' start is plus' + ' end is diamond')",
+      "fig.colorbar(scat,ticks=np.arange(0,5900,50),orientation='horizontal')",
+      "ax.set_title('${1:msg}')",
+      "ax.set_xlabel('${2:msg}')",
+      "ax.set_ylabel('${3:msg}')",
+      "#fig.savefig('./.png',dpi=300)",
+      "#fig.savefig('./.pdf',format='pdf')",
+      "plt.show()"
+    ]
+  },
+  "plot": {
+    "prefix": "plot",
+    "body": [
+      "plt.close('all')",
+      "fig=plt.figure()",
+      "ax=fig.add_subplot(1, 1,1)",
+      "#${0:code to plot}",
+      "",
+      "#if want symmetry around neg to pos..",
+      "# ub=np.max([np.abs(np.nanmin(field)),np.nanmax(field)])",
+      "# cs1=ax.contourf(field,levels=np.linspace(ub*-1,ub,40),cmap='seismic')",
+      "",
+      "#if you don't care for symmetry ",
+      "#cs1=ax.contourf(field,levels=np.linspace(np.min(field),np.max(field),40),cmap='jet')",
+      "#plt.colorbar(cs1,orientation='horizontal')",
+      "",
+      "ax.set_title('${1:msg}')",
+      "ax.set_xlabel('${2:msg}')",
+      "ax.set_ylabel('${3:msg}')",
+      "#fig.savefig('./.png',dpi=300)",
+      "#fig.savefig('./.pdf',format='pdf')",
+      "plt.show()"
+    ]
+  },
+  "contourf": {
+    "prefix": "contourf",
+    "body": [
+      "import numpy as np",
+      "import matplotlib.pyplot as plt",
+      "plt.close('all')",
+      "fig=plt.figure()",
+      "ax=fig.add_subplot(1, 1,1)",
+      "ax.contourf(x,y,z,levels=np.linspace(np.min(z),np.max(z),30),cmap='jet')",
+      "ax.set_title('${1:msg}')",
+      "ax.set_xlabel('${2:msg}')",
+      "ax.set_ylabel('${3:msg}')",
+      "#fig.savefig('./.png',dpi=300)",
+      "#fig.savefig('./.pdf',format='pdf')",
+      "plt.show()"
+    ]
+  },
+  "savefig": {
+    "prefix": "savefig",
+    "body": [
+      "fig.savefig('./.png',dpi=300,bbox_inches='tight')",
+      "fig.savefig('./.pdf',format='pdf',bbox_inches='tight')"
+    ]
+  },
+  "imgtrkr": {
+    "prefix": "imgtrkr",
+    "body": [
+      "import imgtrkr as it",
+      "import os",
+      "import datetime",
+      "import socket",
+      "it.AddTrkr(${1:path_to_png},{'Created with':os.path.realpath(__file__),'time':datetime.datetime.now().strftime(\"%Y-%m-%d %H:%M\"),'machine':socket.gethostname()})"
+    ]
+  },
+  "imgtrkrfunc": {
+    "prefix": "imgtrkrfunc",
+    "body": [
+      "import imgtrkr as it",
+      "import os",
+      "import datetime",
+      "import socket",
+      "import inspect",
+      "",
+      "path_to_png=ind.plot_outputs+''",
+      "fig.savefig(path_to_png,dpi=300,bbox_inches='tight')",
+      "it.AddTrkr(${1:path_to_png},{'Created with':os.path.realpath(__file__),'time':datetime.datetime.now().strftime(\"%Y-%m-%d %H:%M\"),'machine':socket.gethostname(),'function_name':inspect.currentframe().f_code.co_name})",
+      "lg.info(\"Figure created: \"+path_to_png)"
+    ]
+  },
+  "savefigtrkd": {
+    "prefix": "savefigtrkd",
+    "body": [
+      "fig.savefig(${1:path_to_png},dpi=300)",
+      "",
+      "import os",
+      "import imgtrkr as it",
+      "",
+      "it.AddTrkr($1,{'Created with':os.path.realpath(__file__)})",
+      "#it.RdTrkr($1)"
+    ]
+  },
+  "snsplot": {
+    "prefix": "snsplot",
+    "body": [
+      "import seaborn as sns",
+      "import itertools",
+      "#sns.set(style=\"whitegrid\")",
+      "sns.axes_style('darkgrid')",
+      "#sns.set_style(\"ticks\")",
+      "#sns.set_palette(\"deep\", desat=.6)",
+      "sns.set_style(\"darkgrid\", {\"grid.linewidth\": .5, \"axes.facecolor\": \".9\"})",
+      "sym=itertools.cycle(['v','o','^','s','D'])",
+      "plt.close('all')",
+      "fig=plt.figure()",
+      "ax=fig.add_subplot(1, 1,1)",
+      "${0:code to plot}",
+      "ax.plot(foob.index,foob['transport'], linestyle='--',marker=sym.next(),label=cookie)",
+      "plt.show()",
+      "",
+      "#fig.savefig('./.png',dpi=300)",
+      "#fig.savefig('./.pdf',format='pdf')",
+      "",
+      "## Now add the legend with some customizations.",
+      "#legend = ax.legend(loc='upper right', shadow=True)",
+      "#",
+      "## The frame is matplotlib.patches.Rectangle instance surrounding the legend.",
+      "#frame = legend.get_frame()",
+      "#frame.set_facecolor('0.90')"
+    ]
+  },
+  "snsplotcomplicated": {
+    "prefix": "snsplotcomplicated",
+    "body": [
+      "import seaborn as sns",
+      "import itertools",
+      "#sns.set(style=\"whitegrid\")",
+      "sns.axes_style('darkgrid')",
+      "#sns.set_style(\"ticks\")",
+      "#sns.set_palette(\"deep\", desat=.6)",
+      "sns.set_style(\"darkgrid\", {\"grid.linewidth\": .5, \"axes.facecolor\": \".9\"})",
+      "sym=itertools.cycle(['v','o','^','s','D'])",
+      "plt.close('all')",
+      "fig=plt.figure()",
+      "#fig.set_size_inches(20,12.5)",
+      "ax1=fig.add_subplot(2, 1,1)",
+      "ax2=fig.add_subplot(2, 1,2)",
+      "",
+      "${0:code to plot}",
+      "ax1.plot(foob.index,foob['transport'], linestyle='--',marker=sym.next(),label=cookie)",
+      "",
+      "ax2.set_title('Month--crossing location')",
+      "ax2.set_xlabel('month')",
+      "ax2.set_ylabel('transport')",
+      "",
+      "#note you can specify axis!",
+      "sns.barplot(whole_mean.pathway,whole_mean.transport,ax=ax2)",
+      "plt.show()",
+      "",
+      "",
+      "#fig.savefig('./.png',dpi=300)",
+      "#fig.savefig('./.pdf',format='pdf')",
+      "",
+      "## Now add the legend with some customizations.",
+      "#legend = ax.legend(loc='upper right', shadow=True)",
+      "#",
+      "## The frame is matplotlib.patches.Rectangle instance surrounding the legend.",
+      "#frame = legend.get_frame()",
+      "#frame.set_facecolor('0.90')"
+    ]
+  },
+  "figsize": {
+    "prefix": "figsize",
+    "body": [
+      "#width then height",
+      "fig=plt.figure(figsize=(20.0,9.0))"
+    ]
+  },
+  "scolorbar": {
+    "prefix": "scolorbar",
+    "body": [
+      "from mpl_toolkits.axes_grid1 import make_axes_locatable",
+      "from matplotlib.ticker import MultipleLocator",
+      "#cs1=ax.contourf()",
+      "plt.colorbar(cs1,cax=make_axes_locatable(ax).append_axes(\"bottom\", size=\"5%\", pad=0.25),orientation='horizontal')"
+    ]
+  },
+  "colorbar": {
+    "prefix": "colorbar",
+    "body": [
+      "#for one plot...",
+      "#eg",
+      "#cs1=ax.contourf(field,levels=np.linspace(-1,1,50))",
+      "#plt.colorbar(cs1,orientation='vertical')",
+      "plt.colorbar(cs1,orientation='horizontal')",
+      "",
+      "#for multiple plots",
+      "#from:http://stackoverflow.com/questions/18266642/multiple-imshow-subplots-each-with-colorbar ",
+      "from mpl_toolkits.axes_grid1 import make_axes_locatable",
+      "from matplotlib.ticker import MultipleLocator",
+      "# Create divider for existing axes instance",
+      "divider = make_axes_locatable(ax)",
+      "# Append axes to the right of ax, with 20% width of ax",
+      "caxis = divider.append_axes(\"bottom\", size=\"10%\", pad=0.05)",
+      "",
+      "plt.colorbar(cs1,cax=caxis,ticks=MultipleLocator(0.5),orientation='horizontal')",
+      "",
+      "#really great when you have lots of panels and want a global cbar..",
+      "fig.colorbar(cs1, ax=axis.ravel().tolist(), pad=0.04, aspect = 30)"
+    ]
+  },
+  "colorbar_label": {
+    "prefix": "colorbar_label",
+    "body": [
+      "cb1=plt.colorbar()",
+      "cb1.set_label('')"
+    ]
+  },
+  "fieldcontour": {
+    "prefix": "fieldcontour",
+    "body": [
+      "import numpy as np",
+      "#npu=np.load('')",
+      "field=npu[0,:,:]",
+      "plt.close('all')",
+      "fig=plt.figure()",
+      "ax=fig.add_subplot(1, 1,1)",
+      "ax.contourf(field,levels=np.linspace(-1,1,50))",
+      "#landmask",
+      "#lmask = np.ma.masked_where(field ==0.,field) ",
+      "#ax.contour(lmask.mask,levels=[-1,0],linewidths=2,alpha=.5,colors='black')",
+      "plt.show()"
+    ]
+  },
+  "customlegend": {
+    "prefix": "customlegend",
+    "body": [
+      "from matplotlib.lines import Line2D",
+      "from matplotlib.legend import Legend",
+      "legend_elements = [",
+      "Line2D([0], [0], color='r', lw=2, label='one'),",
+      "Line2D([0], [0], color='b', lw=2, label='two'),",
+      "Line2D([0], [0], marker='s', color='m', label='CNTRL',markerfacecolor='m', markersize=10),",
+      "Line2D([0], [0], marker='D', color='w', label='dT',markerfacecolor='b', markersize=10),",
+      "Line2D([0], [0], marker='X', color='w', label='dS',markerfacecolor='r', markersize=10)]",
+      "ax.legend(handles=legend_elements, loc=3)"
+    ]
+  },
+  "gspec_basic": {
+    "prefix": "gspec_basic",
+    "body": [
+      "from matplotlib import gridspec",
+      "plt.close('all')",
+      "#fig=plt.figure(figsize=(20.0,9.0))",
+      "fig=plt.figure()",
+      "gs = gridspec.GridSpec(5, 2,hspace=.225,wspace=0.065)",
+      "#width_ratios=[5,1]",
+      "ax = plt.subplot(gs[0,0])",
+      "cs1=ax.contourf()",
+      "plt.colorbar(cs1,cax=make_axes_locatable(ax).append_axes(\"bottom\", size=\"5%\", pad=0.25),orientation='horizontal')"
+    ]
+  },
+  "gridspecp": {
+    "prefix": "gridspecp",
+    "body": [
+      "from matplotlib import gridspec",
+      "import matplotlib.pyplot as plt",
+      "import collections",
+      "import itertools",
+      "#set up for gridspec plot...",
+      "plt.close('all')",
+      "#width then height",
+      "fig=plt.figure(figsize=(20.0,9.0))",
+      "",
+      "gs = gridspec.GridSpec(3, 1,hspace=.225,wspace=0.065)",
+      "",
+      "#contour plot",
+      "ax=collections.OrderedDict()",
+      "pnum=itertools.cycle(np.arange(100))",
+      "",
+      "ax[pnum.next()] = plt.subplot(gs[0,0])",
+      "",
+      "# make some labels invisible",
+      "#plt.setp(ax[].get_yticklabels()+\\",
+      "\t #ax[].get_xticklabels()+\\",
+      "\t #ax[].get_yticklabels(),\\",
+      "\t\t #visible=False)",
+      "",
+      "plt.show()"
+    ]
+  },
+  "gridspecdict": {
+    "prefix": "gridspecdict",
+    "body": [
+      "import matplotlib.pyplot as plt",
+      "#set up for gridspec plot...",
+      "plt.close('all')",
+      "#width then height",
+      "",
+      "row=3",
+      "col=4",
+      "fig, ax = plt.subplots(\\",
+      "\tnrows=row, ncols=col, sharex=True, sharey=True,\\",
+      "\tgridspec_kw={'hspace':.225,'wspace':.065}\\",
+      "\t\t      )",
+      "",
+      "for co in np.arange(col):",
+      "    for ro in np.arange(row):",
+      "\taxis=ax[ro,co]",
+      "\tpass",
+      "",
+      "\timport ipdb",
+      "\tipdb.set_trace()",
+      "# make some labels invisible",
+      "#plt.setp(ax[].get_yticklabels()+\\",
+      "     #ax[].get_xticklabels()+\\",
+      "     #ax[].get_yticklabels(),\\",
+      "\t #visible=False)",
+      "",
+      "plt.show()"
+    ]
+  },
+  "gridspecdict_good": {
+    "prefix": "gridspecdict_good",
+    "body": [
+      "#pass:",
+      "#an ordered dictionary called pdict with name : fields",
+      "#and integer tuple pdims = (rows,cols)",
+      "",
+      "import matplotlib.pyplot as plt",
+      "#set up for gridspec plot...",
+      "cbrew=itertools.cycle(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'])",
+      "subplotnum=len(pdict)",
+      "plt.close('all')",
+      "fig=plt.figure(figsize=(pdims[0]*2.8, pdims[1]*4))",
+      "hs=.4",
+      "ys=.28",
+      "ys+=.08",
+      "gs = gridspec.GridSpec(pdims[0], pdims[1],hspace=hs,wspace=ys)",
+      "names=itertools.cycle(pdict.keys())",
+      "fields=itertools.cycle(pdict.values())",
+      "",
+      "pnum=1",
+      "for rownum in range(pdims[0]):",
+      "    for colnum in range(pdims[1]):",
+      "\tif pnum<=subplotnum:",
+      "",
+      "\t    name=names.next()",
+      "\t    field=fields.next()",
+      "",
+      "\t    if rownum==0:",
+      "\t\tax=plt.subplot(gs[rownum,colnum])",
+      "",
+      "\t    #this if needs to be separate from the one above",
+      "\t    if colnum==0:",
+      "\t\tax=plt.subplot(gs[rownum,colnum])",
+      "",
+      "\t    ax=plt.subplot(gs[rownum,colnum])",
+      "",
+      "\t    ax.plot(meshy['nav_lat'][:,7],isf[:,7],label='isf',color='blue')",
+      "",
+      "\t    ax.legend()",
+      "\t    ax.grid(True)",
+      "\t    ax.set_ylim([0,1150])",
+      "\t    plt.gca().invert_yaxis()",
+      "\t    pnum+=1",
+      "",
+      "ax=plt.subplot(gs[-1,-1])",
+      "plt.show()"
+    ]
+  },
+  "gridspecplot": {
+    "prefix": "gridspecplot",
+    "body": [
+      "from matplotlib import gridspec",
+      "import matplotlib.pyplot as plt",
+      "#set up for gridspec plot...",
+      "plt.close('all')",
+      "#width then height",
+      "fig=plt.figure(figsize=(20.0,9.0))",
+      "#the other option",
+      "#fig.set_size_inches(7.5,15.5)",
+      "",
+      "#if you want to use seaborn too...",
+      "import seaborn as sns",
+      "sns.set(style=\"whitegrid\")",
+      "sns.set_style(\"ticks\")",
+      "gs = gridspec.GridSpec(5, 2,width_ratios=[5,1],hspace=.225,wspace=0.065)",
+      "",
+      "#contour plot",
+      "ax0 = plt.subplot(gs[0,0])",
+      "#ax0.set_title('Crossing at 30 S')",
+      "ax0.set_ylabel('Transport (Sv)')",
+      "",
+      "ax1 = plt.subplot(gs[0,1])",
+      "",
+      "ax2 = plt.subplot(gs[1,0], sharex=ax0)",
+      "ax2.set_title('Subplot title')",
+      "ax2.set_ylabel('Transport (Sv)')",
+      "",
+      "# make some labels invisible",
+      "plt.setp(ax1.get_yticklabels()+ax1.get_xticklabels()+\\",
+      "         ax0.get_xticklabels()+\\",
+      "         ax2.get_yticklabels(),\\",
+      "                 visible=False)",
+      "",
+      "#turn on tight layout for gridspec, see more options here:",
+      "#http://matplotlib.org/users/tight_layout_guide.html",
+      "#couldn't actually get this to work... these options: pad=0.4, w_pad=0.5,",
+      "#h_pad=1.0",
+      "gs.tight_layout(fig)",
+      "",
+      "# sub-panel enumerations",
+      "plt.figtext(0.1, 0.92,  'a)',clip_on=False,color='black',size=22)",
+      "plt.figtext(0.1, 0.77,  'b)',clip_on=False,color='black',size=22)",
+      "plt.show()"
+    ]
+  },
+  "sgridspec": {
+    "prefix": "sgridspec",
+    "body": [
+      "plt.close('all')",
+      "row=1",
+      "col=2",
+      "fig, axis = plt.subplots(\\",
+      "\tnrows=row, ncols=col, sharex=False, sharey=False,\\",
+      "\tgridspec_kw={'hspace':.225,'wspace':.065}\\",
+      "\t\t      )",
+      "",
+      "ax=axis[ro,co]",
+      "plt.show()"
+    ]
+  },
+  "gridspecextras": {
+    "prefix": "gridspecextras",
+    "body": [
+      "#colourbar",
+      "'width_ratios':[1]*(col-1)+[.1] #put inside gridspec_kw",
+      "plt.colorbar(cs1,cax=ax[0,-1],orientation='vertical')",
+      "figsize=(5.5*enum,5)",
+      "",
+      "#colorbar",
+      "ax=axis[x]",
+      "plt.colorbar(cs1,cax=ax,orientation='vertical')"
+    ]
+  },
+  "sgridspec_cbar": {
+    "prefix": "sgridspec_cbar",
+    "body": [
+      "levs=np.linspace(${1:Min,Max},30)",
+      "plt.close('all')",
+      "row=1",
+      "col=3",
+      "fig, axis = plt.subplots(\\",
+      "    nrows=row, ncols=col, sharex=False, sharey=False,\\",
+      "    gridspec_kw={'hspace':.225,'wspace':.065,'width_ratios':[1]*(col-1)+[0.1]}\\",
+      "              )",
+      "",
+      "ax=axis[0]",
+      "cs1=ax.contourf(${2:variableone},levels=levs)",
+      "ax=axis[1]",
+      "cs1=ax.contourf(${3:variabletwo},levels=levs)",
+      "ax=axis[2]",
+      "plt.colorbar(cs1,cax=ax,orientation='vertical')",
+      "plt.show()"
+    ]
+  },
+  "sgridspec_indvid_cbar": {
+    "prefix": "sgridspec_indvid_cbar",
+    "body": [
+      "from mpl_toolkits.axes_grid1 import make_axes_locatable",
+      "from matplotlib.ticker import MultipleLocator",
+      "",
+      "levs=np.linspace(${1:Min,Max},30)",
+      "plt.close('all')",
+      "row=1",
+      "col=2",
+      "fig, axis = plt.subplots(\\",
+      "    nrows=row, ncols=col, sharex=False, sharey=False,figsize=(5.0*col,5),\\",
+      "    gridspec_kw={'hspace':.025,'wspace':.065,'width_ratios':[1]*(col),'height_ratios':[1]}\\",
+      "\t      )",
+      "",
+      "ax=axis[0]",
+      "cs1=ax.contourf(variableone,levels=levs)",
+      "plt.colorbar(cs1,\\",
+      "\tcax=make_axes_locatable(ax).append_axes(\"bottom\", size=\"5%\", pad=0.25)\\",
+      "\t,orientation='horizontal')",
+      "ax=axis[1]",
+      "cs1=ax.contourf(variabletwo,levels=levs)",
+      "plt.colorbar(cs1,\\",
+      "\tcax=make_axes_locatable(ax).append_axes(\"bottom\", size=\"5%\", pad=0.25)\\",
+      "\t,orientation='horizontal')",
+      "plt.show()"
+    ]
+  },
+  "sgridspec_awesomeshared": {
+    "prefix": "sgridspec_awesomeshared",
+    "body": [
+      "#Pzos was a dictinoary containing names and the number of subplots",
+      "",
+      "plt.close('all')",
+      "row=2",
+      "col=3",
+      "fig=plt.figure(figsize=(5.0*col,5*row))",
+      "gs = gridspec.GridSpec(row, col,height_ratios=[1]*row,width_ratios=[1]*col,hspace=.045,wspace=0.045)",
+      "",
+      "axis=[]",
+      "for r in range(row):",
+      "    for c in range(col):",
+      "\taxis.append(plt.subplot(gs[r,c]))",
+      "",
+      "for idx,ax in enumerate(axis):",
+      "    #stop when we run out of arrays",
+      "    if idx==len(Pzos):",
+      "\tfig.delaxes(ax)",
+      "\tbreak",
+      "",
+      "    if idx==0 or idx==col:",
+      "\t# print idx,'printlat'",
+      "\tax.set_ylabel('Latitude')",
+      "",
+      "    if idx>=col:",
+      "\tax.set_xlabel('Longitude')",
+      "",
+      "    # make the right labels invisible",
+      "    if idx<col:",
+      "\tplt.setp(ax.get_xticklabels(),visible=False)",
+      "",
+      "    if idx!=0:",
+      "\tif idx!=col:",
+      "\t    # print idx,'killy'",
+      "\t    plt.setp(ax.get_yticklabels(),visible=False)"
+    ]
+  },
+  "sgridspec_biasplots": {
+    "prefix": "sgridspec_biasplots",
+    "body": [
+      "import numpy as np",
+      "import matplotlib.pyplot as plt",
+      "from matplotlib import gridspec",
+      "fakedata=True",
+      "if fakedata:",
+      "    pme=np.random.rand(50,30)",
+      "plt.close('all')",
+      "row=4",
+      "col=5",
+      "fig=plt.figure(figsize=(3*col,4*2))",
+      "gs = gridspec.GridSpec(row, col,height_ratios=[1,1,.1,.1],width_ratios=[.1,.25,1,1,1],hspace=.075,wspace=0.075)",
+      "",
+      "for r in range(0,2):",
+      "    for c in range(2,5):",
+      "        ax = plt.subplot(gs[r,c])",
+      "",
+      "        if fakedata:",
+      "            cs1=ax.contourf(pme)",
+      "",
+      "        # make the labels you don't want invisible",
+      "        if c!=2:",
+      "            plt.setp(ax.get_yticklabels(),visible=False)",
+      "        else:",
+      "            ax.set_ylabel('Latitude')",
+      "",
+      "        if r==0:",
+      "            plt.setp(ax.get_xticklabels(),visible=False)",
+      "        else:",
+      "            ax.set_xlabel('Longitude')",
+      "",
+      "cb1=plt.colorbar(cs1,cax=plt.subplot(gs[-1,2:]),orientation='horizontal')",
+      "cb2=plt.colorbar(cs1,cax=plt.subplot(gs[0,0]),orientation='vertical')",
+      "cb1.set_label('v-velocity (m/s)')",
+      "cb2.set_label('u-velocity (m/s)')",
+      "# fig.savefig('./meh.png',dpi=300,bbox_inches='tight')",
+      "plt.show()"
+    ]
+  },
+  "sgridspec_stretchy_cbar": {
+    "prefix": "sgridspec_stretchy_cbar",
+    "body": [
+      "from matplotlib import gridspec",
+      "plt.close('all')",
+      "row=3",
+      "col=4",
+      "fig=plt.figure(figsize=(5.0*col,5*row))",
+      "gs = gridspec.GridSpec(row, col,height_ratios=[1]*row,width_ratios=[1]*col,hspace=.075,wspace=0.075)",
+      "",
+      "ax = plt.subplot(gs[0,0])",
+      "",
+      "# cs1=ax.contourf(self.nemo_lons,self.nemo_lats,z,levels=levs,cmap='seismic',extend='both')",
+      "",
+      "ax = plt.subplot(gs[0,1])",
+      "",
+      "plt.colorbar(cs1,cax=plt.subplot(gs[2,0:2]),orientation='horizontal')"
+    ]
+  },
+  "sgridspec_stretchy_cbar_fulleg": {
+    "prefix": "sgridspec_stretchy_cbar_fulleg",
+    "body": [
+      "import matplotlib.pyplot as plt",
+      "from mpl_toolkits.axes_grid1 import make_axes_locatable",
+      "from matplotlib.ticker import MultipleLocator",
+      "import numpy as np",
+      "",
+      "",
+      "import itertools",
+      "alphabet=\\",
+      "['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']",
+      "sub_let=itertools.cycle(alphabet)",
+      "",
+      "from matplotlib import gridspec",
+      "plt.close('all')",
+      "row=6",
+      "col=3",
+      "fig=plt.figure(figsize=(5.0*col,5*2))",
+      "gs = gridspec.GridSpec(row, col,height_ratios=[1,.05,.1,1,.05,.1],width_ratios=[1]*col,hspace=.075,wspace=0.075)",
+      "",
+      "ax = plt.subplot(gs[0,0])",
+      "#sm.pl_inset_title_box(axis,sub_let.next(),bwidth=\"5%\",location=2)",
+      "cs1=ax.contourf(np.random.rand(100,80),cmap='seismic',extend='both')",
+      "cbar=plt.colorbar(cs1,cax=plt.subplot(gs[1,0]),orientation='horizontal')",
+      "plt.setp(ax.get_xticklabels()+ax.get_yticklabels(),visible=False)",
+      "cbar.set_label('v-velocity (m/s)')",
+      "",
+      "ax = plt.subplot(gs[0,1])",
+      "#sm.pl_inset_title_box(axis,sub_let.next(),bwidth=\"5%\",location=2)",
+      "cs1=ax.contourf(np.random.rand(100,80),cmap='jet',extend='both')",
+      "cbar=plt.colorbar(cs1,cax=plt.subplot(gs[1,1]),orientation='horizontal')",
+      "plt.setp(ax.get_xticklabels()+ax.get_yticklabels(),visible=False)",
+      "cbar.set_label('v-velocity (m/s)')",
+      "",
+      "ax = plt.subplot(gs[0,2])",
+      "#sm.pl_inset_title_box(axis,sub_let.next(),bwidth=\"5%\",location=2)",
+      "cs1=ax.contourf(np.random.rand(100,80),cmap='inferno')",
+      "cbar=plt.colorbar(cs1,cax=plt.subplot(gs[1,2]),orientation='horizontal')",
+      "plt.setp(ax.get_xticklabels()+ax.get_yticklabels(),visible=False)",
+      "cbar.set_label('v-velo (m/s)')",
+      "",
+      "ax = plt.subplot(gs[3,0])",
+      "#sm.pl_inset_title_box(axis,sub_let.next(),bwidth=\"5%\",location=2)",
+      "cs1=ax.contourf(np.random.rand(100,80),cmap='jet')",
+      "cbar=plt.colorbar(cs1,cax=plt.subplot(gs[4,0]),orientation='horizontal')",
+      "plt.setp(ax.get_xticklabels()+ax.get_yticklabels(),visible=False)",
+      "cbar.set_label('meh (m/s)')",
+      "",
+      "ax = plt.subplot(gs[3,1])",
+      "#sm.pl_inset_title_box(axis,sub_let.next(),bwidth=\"5%\",location=2)",
+      "cs1=ax.contourf(np.random.rand(100,80),cmap='Greys')",
+      "cbar=plt.colorbar(cs1,cax=plt.subplot(gs[4,1]),orientation='horizontal')",
+      "plt.setp(ax.get_xticklabels()+ax.get_yticklabels(),visible=False)",
+      "cbar.set_label('moo (m/s)')",
+      "",
+      "# fig.savefig('./moo.png',dpi=300,bbox_inches='tight')",
+      "plt.show()"
+    ]
+  },
+  "phandy": {
+    "prefix": "phandy",
+    "body": [
+      "def phandy(pltaxis,title,hidex=False,hidey=False):",
+      "    #tf=sm.get_tfile(ename)",
+      "    #ename is the experiment (real) name",
+      "    #sm.pl_landmask(tf,pltaxis,filled=True,cropped=[])",
+      "    pltaxis.set_ylim([-49,-7])",
+      "    pltaxis.set_xlim([138,200])",
+      "    #sm.pl_inset_title_box(pltaxis,title,bwidth=\"35%\",location=4)",
+      "    if hidex:",
+      "\tplt.setp(ax.get_xticklabels(),visible=False)",
+      "    if hidey:",
+      "\tplt.setp(ax.get_yticklabels(),visible=False)",
+      "    sm.change_tick_labels_add_dirs(pltaxis)",
+      "    return"
+    ]
+  },
+  "title": {
+    "prefix": "title",
+    "body": [
+      "ax.set_title('${1:Title}')"
+    ]
+  },
+  "suptitle": {
+    "prefix": "suptitle",
+    "body": [
+      "fig.suptitle(\"Title centered above all subplots\", fontsize=14)"
+    ]
+  },
+  "xlab": {
+    "prefix": "xlab",
+    "body": [
+      "ax.set_xlabel('${1:xlabel}')"
+    ]
+  },
+  "ylab": {
+    "prefix": "ylab",
+    "body": [
+      "ax.set_ylabel('${1:ylabel}')"
+    ]
+  },
+  "cbarlab": {
+    "prefix": "cbarlab",
+    "body": [
+      "cbar.set_label('v-velocity (m/s)')"
+    ]
+  },
+  "getlev": {
+    "prefix": "getlev",
+    "body": [
+      "def getlev(field,levels=30):",
+      "    \"\"\"function that returns a linspace of levels of the passed fields",
+      "    ",
+      "    :field: field to return levels on",
+      "    :levels (optional): number of linspace levels to return (default: 30)",
+      "    :returns: numpy linspace array",
+      "    \"\"\"",
+      "    return np.linspace(np.min(field),np.max(field),levels)"
+    ]
+  },
+  "cmap_centre_adjust": {
+    "prefix": "cmap_centre_adjust",
+    "body": [
+      "def cmap_center_point_adjust(cmap, range, center):",
+      "    '''",
+      "    converts center to a ratio between 0 and 1 of the",
+      "    range given and calls cmap_center_adjust(). returns",
+      "    a new adjusted colormap accordingly",
+      "",
+      "    NB: nicked from https://sites.google.com/site/theodoregoetz/notes/matplotlib_colormapadjust",
+      "    '''",
+      "    import math",
+      "    import copy",
+      "    from matplotlib import colors",
+      "",
+      "    def cmap_center_adjust(cmap, center_ratio):",
+      "        '''",
+      "        returns a new colormap based on the one given",
+      "        but adjusted so that the old center point higher",
+      "        (>0.5) or lower (<0.5)",
+      "        '''",
+      "        if not (0. < center_ratio) & (center_ratio < 1.):",
+      "            return cmap",
+      "        a = math.log(center_ratio) / math.log(0.5)",
+      "        return cmap_powerlaw_adjust(cmap, a)",
+      "",
+      "    def cmap_powerlaw_adjust(cmap, a):",
+      "        '''",
+      "        returns a new colormap based on the one given",
+      "        but adjusted via power-law:",
+      "",
+      "        newcmap = oldcmap**a",
+      "        '''",
+      "        if a < 0.:",
+      "            return cmap",
+      "        cdict = copy.copy(cmap._segmentdata)",
+      "        fn = lambda x : (x[0]**a, x[1], x[2])",
+      "        for key in ('red','green','blue'):",
+      "            cdict[key] = map(fn, cdict[key])",
+      "            cdict[key].sort()",
+      "            assert (cdict[key][0]<0 or cdict[key][-1]>1), \\",
+      "                \"Resulting indices extend out of the [0, 1] segment.\"",
+      "        return colors.LinearSegmentedColormap('colormap',cdict,1024)",
+      "",
+      "    if not ((range[0] < center) and (center < range[1])):",
+      "        return cmap",
+      "    return cmap_center_adjust(cmap,",
+      "        abs(center - range[0]) / abs(range[1] - range[0]))",
+      "",
+      "#usage",
+      "import matplolib",
+      "orig_cmap = matplotlib.cm.seismic",
+      "shifted_cmap1=cmap_center_point_adjust(orig_cmap,[np.min(field),np.max(field)],0)"
+    ]
+  },
+  "hidelab": {
+    "prefix": "hidelab",
+    "body": [
+      "# make some labels invisible",
+      "plt.setp(${1:ax}.get_yticklabels()+$1.get_xticklabels(),visible=False)"
+    ]
+  },
+  "resamplecm": {
+    "prefix": "resamplecm",
+    "body": [
+      "cmappy=matplotlib.cm.seismic._resample(13)"
+    ]
+  },
+  "xlim": {
+    "prefix": "xlim",
+    "body": [
+      "#ax.set_xlim([-1,5])"
+    ]
+  },
+  "ylim": {
+    "prefix": "ylim",
+    "body": [
+      "#ax.set_ylim([-10,10])"
+    ]
+  },
+  "lines": {
+    "prefix": "lines",
+    "body": [
+      "#these use axes coords!",
+      "#ax.axhline(y=0.2,xmin=0,xmax=3,c=\"blue\",linewidth=3,zorder=0)",
+      "#ax.axhline(y=-8,xmin=0,xmax=0.5,c=\"blue\",linewidth=3)",
+      "#ax.axhline(y=-5, xmin=0, xmax=0.5,c=\"red\",linewidth=3,zorder=0)",
+      "",
+      "# horizontal line",
+      "ax.hlines(y=-8.5, xmin=90, xmax=114,linewidth=3, color='red', zorder=1)",
+      "ax.hlines(y=-8.5, xmin=114, xmax=140,linewidth=3, color='purple', zorder=1)",
+      "",
+      "# vertical line",
+      "ax.vlines(x=90.1, ymin=-49, ymax=-8.5,linewidth=3, color='blue', zorder=1)",
+      "ax.vlines(x=142.5, ymin=-11, ymax=-9,linewidth=3, color='sienna', zorder=1)"
+    ]
+  },
+  "globalsavefig": {
+    "prefix": "globalsavefig",
+    "body": [
+      "##file for importing global settings",
+      "from p_global_settings import *",
+      "",
+      "if plottype=='png':",
+      "\tplt.savefig(global_plot_outfol+'${1:output_file_name}.png',dpi=300)",
+      "elif plottype=='pdf':",
+      "\tplt.savefig(global_plot_outfol+'$1.pdf')",
+      "elif plottype=='both':",
+      "\tplt.savefig(global_plot_outfol+'$1.png',dpi=300)",
+      "\tplt.savefig(global_plot_outfol+'$1.pdf')"
+    ]
+  },
+  "lonlat": {
+    "prefix": "lonlat",
+    "body": [
+      "infile=''",
+      "assert(os.path.exists(infile)),\"netCDF file does not exist!\"",
+      "ifile=xr.open_dataset(infile)",
+      "lons=sm.nemo_fixdateline(ifile)",
+      "lats=ifile['nav_lat'][:]"
+    ]
+  },
+  "ldoc": {
+    "prefix": "ldoc",
+    "body": [
+      "\"\"\"",
+      "docstring for .",
+      "",
+      "Parameters",
+      "----------",
+      "arg: ",
+      "",
+      "Returns",
+      "-------",
+      "",
+      "Notes",
+      "-------",
+      "",
+      "",
+      "Example",
+      "--------",
+      ">>> ",
+      ">>> ",
+      "\"\"\""
+    ]
+  },
+  "landmask": {
+    "prefix": "landmask",
+    "body": [
+      "def pl_landmask(path_to_netcdf_Tfile,pltaxis,filled=False,lmaskvar='zos'):",
+      "    \"\"\"function to add a landmask from NEMO to a matplotlib axis",
+      "    ",
+      "    :path_to_netcdf_Tfile: nemo output file that is a Tfile",
+      "    :pltaxis: matplotlib axis that the landmask will be drawn on",
+      "    :filled (optional): will fill in the landmask",
+      "    :lmaskvar (optional): variable to grab landmask from",
+      "    :returns: matplotlib axis with landmask on it",
+      "    \"\"\"",
+      "    assert(os.path.exists(path_to_netcdf_Tfile)),\"netCDF file does not exist!\"",
+      "    ifile=Dataset(path_to_netcdf_Tfile, 'r')",
+      "    assert(lmaskvar in ifile.variables.keys()),\"lmaskvar not one of the variables, options: \"+\", \".join(ifile.variables.keys())",
+      "    lmask=ifile.variables[lmaskvar][:][0,:,:]",
+      "",
+      "    nemo_lats=ifile.variables['nav_lat'][:]",
+      "    nemo_lons=ifile.variables['nav_lon'][:]",
+      "    for index in np.arange(np.shape(nemo_lons)[0]):                                ",
+      "        start=np.where(np.sign(nemo_lons[index,:])==-1)[0][0]                      ",
+      "        end=  np.where(np.sign(nemo_lons[index,:])==-1)[0][-1]",
+      "        nemo_lons[index,start:end]=nemo_lons[index,start:end]+360 ",
+      "",
+      "    lmask = np.ma.masked_where(",
+      "        lmask ==0.,",
+      "        lmask ) ",
+      "",
+      "    if filled:",
+      "        pltaxis.contourf(nemo_lons,nemo_lats,lmask.mask,levels=[-1,0,1],colors=('#B2D1FF','#858588'),alpha=.9) #landmask",
+      "    else:",
+      "        #ax.contour(x,y[1:],masksurface.mask[1:,:],levels=[0],linewidths=1,colors='black') #landmask",
+      "        pltaxis.contour(nemo_lons,nemo_lats,lmask.mask,\\",
+      "                levels=[-1,0],linewidths=2,alpha=.5,colors='black')",
+      "",
+      "    ifile.close()",
+      "    return pltaxis"
+    ]
+  },
+  "shareme": {
+    "prefix": "shareme",
+    "body": [
+      "import shareme as sm",
+      "sm.pl_landmask(path_to_netcdf_Tfile,pltaxis,filled=False,cropped=[])",
+      "sm.change_tick_labels_add_dirs(axes)",
+      "sm.ins_legend(pltaxis,exp_subset=None,lw=3,location=0,invisible=False,ncols=4)",
+      "sm.ins_legend_nonz(pltaxis,exp_subset=None,lw=3,location=0,invisible=False,ncols=4)",
+      "sm.inset_title_box(ax,title,bwidth=\"20%\",location=1)",
+      "sm.raw_nemo_globber_specifytpe(exp_path,file_type,child='',return_dates=False)",
+      "sm.nemo_fixdateline(netcdf_datasetobj)",
+      "sm.nemo_lon_lat_finder(infile,want_latitude,want_longitude,resolution)",
+      "mesh_mask=sm.get_meshmask(\"nemo_cordex24_FLATFCNG_ERAI01\")",
+      "tfile=sm.get_tfile(\"nemo_cordex24_FLATFCNG_ERAI01\")",
+      "meanu=sm.get_meanfile('nemo_cordex24_ERAI01',file_type=['grid_T_2D','grid_U_3D_U','grid_V_3D_V','grid_U_2D_U','grid_V_2D_V'])",
+      "icemasks=sm.ice_shelf_mask()"
+    ]
+  },
+  "paperstruct": {
+    "prefix": "paperstruct",
+    "body": [
+      "import inputdirs as ind",
+      "if ind.paper_case=='20150706_EACseperation':",
+      "    lg.warning(\"We are doing case: \" + ind.paper_case)",
+      "elif ind.paper_case=='20160804_EAC_NoNZ':",
+      "    lg.warning(\"We are doing case: \" + ind.paper_case)",
+      "elif ind.paper_case=='20170113_EACnowClimateChange01':",
+      "    lg.warning(\"We are doing case: \" + ind.paper_case)",
+      "else:",
+      "    lg.error(\"I don't know what to do here!\"+ ind.paper_case)",
+      "    sys.exit()"
+    ]
+  },
+  "paperstructwed": {
+    "prefix": "paperstructwed",
+    "body": [
+      "import inputdirs as ind",
+      "lg.warning(\"We are doing case: \" + ind.paper_case)",
+      "output_folder=ind.output_folder",
+      "nemo_fols=ind.nemo_fols",
+      "if ind.paper_case=='20180810_wed_reanalysis_atmo':",
+      "    lg.warning(\"We are doing case: \" + ind.paper_case)",
+      "    output_folder=ind.output_folder",
+      "",
+      "    nemo_fols=ind.nemo_fols",
+      "",
+      "    plotoutputs=output_folder+'plots/'",
+      "    sm.mkdir(plotoutputs)",
+      "",
+      "    for exp in nemo_fols.keys():",
+      "\tlg.info(\"We are working experiment :\" + exp)",
+      "",
+      "\tplotoutputs=output_folder+'plots/'",
+      "\tsm.mkdir(plotoutputs)",
+      "",
+      "\ttfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_T',return_dates=False)",
+      "\tnemomelt=sm.get_timemean(exp,tfiles,'grid_T',output_folder)",
+      "",
+      "",
+      "\tmesh_mask=sm.get_meshmask(exp)",
+      "",
+      "\ttstd=sm.get_annual_std(exp,tfiles,'grid_T',output_folder)",
+      "",
+      "\tufiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_U',return_dates=False)",
+      "\tumean=sm.get_timemean(exp,ufiles,'grid_U',output_folder)",
+      "\t",
+      "\tvfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_V',return_dates=False)",
+      "\tvmean=sm.get_timemean(exp,vfiles,'grid_V',output_folder)",
+      "\t",
+      "\t# wfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_W',return_dates=False)",
+      "\t# wmean=sm.get_timemean(exp,wfiles,'grid_W',output_folder)",
+      "",
+      "\t#plotting",
+      "\tsm.pmask(mesh_mask,ax)",
+      "\tif bathy!='':",
+      "\t    sm.pmask_ice(bathy,ax)",
+      "\tsm.pl_inset_title_box(ax,nemo_fols[exp][1],bwidth=\"15%\",location=2)",
+      "",
+      "else:",
+      "    lg.error(\"I don't know what to do here!\"+ ind.paper_case)",
+      "    sys.exit()"
+    ]
+  },
+  "wedmeans": {
+    "prefix": "wedmeans",
+    "body": [
+      "tfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_T',return_dates=False)",
+      "tmean=sm.get_timemean(exp,tfiles,'grid_T',output_folder)",
+      "",
+      "ufiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_U',return_dates=False)",
+      "umean=sm.get_timemean(exp,ufiles,'grid_U',output_folder)",
+      "",
+      "vfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_V',return_dates=False)",
+      "vmean=sm.get_timemean(exp,vfiles,'grid_V',output_folder)",
+      "",
+      "wfiles=sm.raw_nemo_globber_specifytpe(nemo_fols[exp][0],'grid_W',return_dates=False)",
+      "wmean=sm.get_timemean(exp,wfiles,'grid_W',output_folder)"
+    ]
+  },
+  "#!": {
+    "prefix": "#!",
+    "description": "Shebang header for python scripts",
+    "body": [
+      "#!/usr/bin/env python",
+      "# encoding: utf-8",
+      "$0"
+    ]
+  },
+  "ifmain": {
+    "prefix": "ifmain",
+    "description": "ifmain",
+    "body": [
+      "if __name__ == '__main__':",
+      "\t${1:main()}$0"
+    ]
+  },
+  "class": {
+    "prefix": "class",
+    "description": "class with docstrings",
+    "body": [
+      "class ${1:MyClass}(${2:object}):",
+      "\t\"\"\"${3:Docstring for $1 }\"\"\"",
+      "",
+      "\tdef __init__(self$4):",
+      "\t\t\"\"\"${5:@todo: to be defined}`!p",
+      "snip.rv = \"\"",
+      "snip >> 2",
+      "",
+      "args = get_args(t[4])",
+      "",
+      "write_docstring_args(args, snip)",
+      "if args: snip += '\"\"\"'",
+      "",
+      "",
+      "snip += \"\"",
+      "write_init_body(args, t[2], snip)",
+      "`",
+      "\t\t$0"
+    ]
+  },
+  "slotclass": {
+    "prefix": "slotclass",
+    "description": "class with slots and docstrings",
+    "body": [
+      "class ${1:MyClass}(${2:object}):",
+      "\t\"\"\"${3:Docstring for $1 }\"\"\"",
+      "\t`!p",
+      "snip >> 1",
+      "args = get_args(t[4])",
+      "write_slots_args(args, snip)",
+      "`",
+      "",
+      "\tdef __init__(self$4):",
+      "\t\t\"\"\"${5:@todo: to be defined}`!p",
+      "snip.rv = \"\"",
+      "snip >> 2",
+      "",
+      "args = get_args(t[4])",
+      "",
+      "write_docstring_args(args, snip)",
+      "if args: snip += '\"\"\"'",
+      "",
+      "snip += \"\"",
+      "write_init_body(args, t[2], snip)",
+      "`",
+      "\t\t$0"
+    ]
+  },
+  "contain": {
+    "prefix": "contain",
+    "description": "methods for emulating a container type",
+    "body": [
+      "def __len__(self):",
+      "\t${1:pass}",
+      "",
+      "def __getitem__(self, key):",
+      "\t${2:pass}",
+      "",
+      "def __setitem__(self, key, value):",
+      "\t${3:pass}",
+      "",
+      "def __delitem__(self, key):",
+      "\t${4:pass}",
+      "",
+      "def __iter__(self):",
+      "\t${5:pass}",
+      "",
+      "def __reversed__(self):",
+      "\t${6:pass}",
+      "",
+      "def __contains__(self, item):",
+      "\t${7:pass}"
+    ]
+  },
+  "context": {
+    "prefix": "context",
+    "description": "context manager methods",
+    "body": [
+      "def __enter__(self):",
+      "\t${1:pass}",
+      "",
+      "def __exit__(self, exc_type, exc_value, traceback):",
+      "\t${2:pass}"
+    ]
+  },
+  "attr": {
+    "prefix": "attr",
+    "description": "methods for customizing attribute access",
+    "body": [
+      "def __getattr__(self, name):",
+      "\t${1:pass}",
+      "",
+      "def __setattr__(self, name, value):",
+      "\t${2:pass}",
+      "",
+      "def __delattr__(self, name):",
+      "\t${3:pass}"
+    ]
+  },
+  "desc": {
+    "prefix": "desc",
+    "description": "methods implementing descriptors",
+    "body": [
+      "def __get__(self, instance, owner):",
+      "\t${1:pass}",
+      "",
+      "def __set__(self, instance, value):",
+      "\t${2:pass}",
+      "",
+      "def __delete__(self, instance):",
+      "\t${3:pass}"
+    ]
+  },
+  "cmp": {
+    "prefix": "cmp",
+    "description": "methods implementing rich comparison",
+    "body": [
+      "def __eq__(self, other):",
+      "\t${1:pass}",
+      "",
+      "def __ne__(self, other):",
+      "\t${2:pass}",
+      "",
+      "def __lt__(self, other):",
+      "\t${3:pass}",
+      "",
+      "def __le__(self, other):",
+      "\t${4:pass}",
+      "",
+      "def __gt__(self, other):",
+      "\t${5:pass}",
+      "",
+      "def __ge__(self, other):",
+      "\t${6:pass}",
+      "",
+      "def __cmp__(self, other):",
+      "\t${7:pass}"
+    ]
+  },
+  "repr": {
+    "prefix": "repr",
+    "description": "methods implementing string representation",
+    "body": [
+      "def __repr__(self):",
+      "\t${1:pass}",
+      "",
+      "def __str__(self):",
+      "\t${2:pass}",
+      "",
+      "def __unicode__(self):",
+      "\t${3:pass}"
+    ]
+  },
+  "numeric": {
+    "prefix": "numeric",
+    "description": "methods for emulating a numeric type",
+    "body": [
+      "def __add__(self, other):",
+      "\t${1:pass}",
+      "",
+      "def __sub__(self, other):",
+      "\t${2:pass}",
+      "",
+      "def __mul__(self, other):",
+      "\t${3:pass}",
+      "",
+      "def __div__(self, other):",
+      "\t${4:pass}",
+      "",
+      "def __truediv__(self, other):",
+      "\t${5:pass}",
+      "",
+      "def __floordiv__(self, other):",
+      "\t${6:pass}",
+      "",
+      "",
+      "def __mod__(self, other):",
+      "\t${7:pass}",
+      "",
+      "def __divmod__(self, other):",
+      "\t${8:pass}",
+      "",
+      "def __pow__(self, other):",
+      "\t${9:pass}",
+      "",
+      "",
+      "def __lshift__(self, other):",
+      "\t${10:pass}",
+      "",
+      "def __rshift__(self, other):",
+      "\t${11:pass}",
+      "",
+      "def __and__(self, other):",
+      "\t${12:pass}",
+      "",
+      "def __xor__(self, other):",
+      "\t${13:pass}",
+      "",
+      "def __or__(self, other):",
+      "\t${14:pass}",
+      "",
+      "",
+      "def __neg__(self):",
+      "\t${15:pass}",
+      "",
+      "def __pos__(self):",
+      "\t${16:pass}",
+      "",
+      "def __abs__(self):",
+      "\t${17:pass}",
+      "",
+      "def __invert__(self):",
+      "\t${18:pass}",
+      "",
+      "",
+      "def __complex__(self):",
+      "\t${19:pass}",
+      "",
+      "def __int__(self):",
+      "\t${20:pass}",
+      "",
+      "def __long__(self):",
+      "\t${21:pass}",
+      "",
+      "def __float__(self):",
+      "\t${22:pass}",
+      "",
+      "",
+      "def __oct__(self):",
+      "\t${22:pass}",
+      "",
+      "def __hex__(self):",
+      "\t${23:pass}",
+      "",
+      "",
+      "def __index__(self):",
+      "\t${24:pass}",
+      "",
+      "def __coerce__(self, other):",
+      "\t${25:pass}"
+    ]
+  },
+  "def": {
+    "prefix": "def",
+    "description": "function with docstrings",
+    "body": [
+      "def ${1:function}(`!p",
+      "if snip.indent:",
+      "   snip.rv = 'self' + (\", \" if len(t[2]) else \"\")`${2:arg1}):",
+      "\t\"\"\"${4:@todo: Docstring for $1}`!p",
+      "snip.rv = \"\"",
+      "snip >> 1",
+      "",
+      "args = get_args(t[2])",
+      "if args:",
+      "   write_docstring_args(args, snip)",
+      "",
+      "style = get_style(snip)",
+      "snip += format_return(style)",
+      "snip += '\"\"\"' `",
+      "",
+      "\t${0:pass}"
+    ]
+  },
+  "/(^|(?<=\\W))\\./": {
+    "prefix": "/(^|(?<=\\W))\\./",
+    "description": "self.",
+    "body": [
+      "self."
+    ]
+  },
+  "from": {
+    "prefix": "from",
+    "description": "from module import name",
+    "body": [
+      "from ${1:module} import ${2:Stuff}"
+    ]
+  },
+  "roprop": {
+    "prefix": "roprop",
+    "description": "Read Only Property",
+    "body": [
+      "@property",
+      "def ${1:property}(self):",
+      "\t${2:return self._$1}$0"
+    ]
+  },
+  "rwprop": {
+    "prefix": "rwprop",
+    "description": "Read write property",
+    "body": [
+      "def ${1:property}():",
+      "\t${2/.+/(?0:\"\"\")/}${2:The RW property $1}${2/.+/(?0:\"\"\"\\n\t\t)/}def fget(self):",
+      "\t\treturn self._$1$0",
+      "\tdef fset(self, value):",
+      "\t\tself._$1 = value",
+      "\treturn locals()",
+      "$1 = property(**$1())"
+    ]
+  },
+  "try": {
+    "prefix": "try",
+    "description": "Try / Except / Else / Finally",
+    "body": [
+      "try:",
+      "\t${1:pass}",
+      "except${2: ${3:Exception}, ${4:e}}:",
+      "\t${5:raise}",
+      "else:",
+      "\t${6:pass}",
+      "finally:",
+      "\t${7:pass}"
+    ]
+  },
+  "ae": {
+    "prefix": "ae",
+    "description": "Assert equal",
+    "body": [
+      "self.assertEqual(${1:first},${2:second})"
+    ]
+  },
+  "at": {
+    "prefix": "at",
+    "description": "Assert True",
+    "body": [
+      "self.assertTrue(${0:exp})"
+    ]
+  },
+  "af": {
+    "prefix": "af",
+    "description": "Assert False",
+    "body": [
+      "self.assertFalse(${1:expression})"
+    ]
+  },
+  "aae": {
+    "prefix": "aae",
+    "description": "Assert almost equal",
+    "body": [
+      "self.assertAlmostEqual(${1:first},${2:second})"
+    ]
+  },
+  "ar": {
+    "prefix": "ar",
+    "description": "Assert raises",
+    "body": [
+      "self.assertRaises(${1:exception}, ${2:func}${3/.+/, /}${3:arguments})"
+    ]
+  },
+  "testcase": {
+    "prefix": "testcase",
+    "description": "pyunit testcase",
+    "body": [
+      "class Test${1:Class}(${2:unittest.TestCase}):",
+      "\t\"\"\"${3:Test case docstring}\"\"\"",
+      "",
+      "\tdef setUp(self):",
+      "\t\t${3:pass}",
+      "",
+      "\tdef tearDown(self):",
+      "\t\t${4:pass}",
+      "",
+      "\tdef test_${5:name}(self):",
+      "\t\t${6:pass}"
+    ]
+  }
+}

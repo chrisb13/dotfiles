@@ -1,0 +1,87 @@
+{
+  "bang": {
+    "prefix": "bang",
+    "body": [
+      "#!/bin/bash"
+    ]
+  },
+  "loop": {
+    "prefix": "loop",
+    "body": [
+      "#!/bin/bash",
+      "# declare an array called array and define 3 vales",
+      "array=( one two three )",
+      "for i in \"${array[@]}\"",
+      "do",
+      "    echo $i",
+      "done"
+    ]
+  },
+  "arcpp_pbs": {
+    "prefix": "arcpp_pbs",
+    "body": [
+      "#!/bin/bash --login",
+      "#PBS -l select=serial=true:ncpus=1",
+      "#PBS -l walltime=06:00:00",
+      "#PBS -A n02-FISSA",
+      "",
+      "# Make sure any symbolic links are resolved to absolute path",
+      "export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)               ",
+      "",
+      "# Change to the directory that the job was submitted from",
+      "cd $PBS_O_WORKDIR",
+      "",
+      "export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2/bin:$PATH;source activate root",
+      "",
+      "module load cdo",
+      "",
+      "cd /fs2/n02/n02/chbull/nemo/bld_configs/input_WED025/CICE2LIM",
+      "python cice2lim_cdowrap.py /fs2/n02/n02/chbull/RawData/mi-an854/inm.nc.file/",
+      "",
+      "##### alternatively for multiple procs",
+      "#!/bin/bash --login",
+      "#PBS -l select=serial=true:ncpus=2",
+      "#PBS -l walltime=01:00:00",
+      "#PBS -A n02-FISSA",
+      "",
+      "# Make sure any symbolic links are resolved to absolute path",
+      "export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)",
+      "",
+      "# Change to the directory that the job was submitted from",
+      "cd $PBS_O_WORKDIR",
+      "",
+      "export PYTHONPATH=/nerc/n02/n02/chbull/anaconda2/pkgs;export PATH=/nerc/n02/n02/chbull/anaconda2/bin:$PATH;source activate root",
+      "",
+      "module unload cray-netcdf-hdf5parallel/4.4.1.1",
+      "module unload cray-hdf5-parallel/1.10.0.1",
+      "module load nco",
+      "",
+      "cd /nerc/n02/n02/chbull/RawData/NEMO/new_temp/20180901_New_AUS_doughnuts/nemo_cordex24_DFLX_VERAIW002innW/meh",
+      "",
+      "ncra /nerc/n02/n02/chbull/RawData/NEMO/new_temp/20180901_New_AUS_doughnuts/nemo_cordex24_DFLX_VERAIW002innW/meh/cordex24_CURLFX-FLUXFCE_3h_20090101_20091231_grid_V_2D.nc /nerc/n02/n02/chbull/RawData/NEMO/new_temp/20180901_New_AUS_doughnuts/nemo_cordex24_DFLX_VERAIW002innW/meh/cordex24_CURLFX-meh1.nc &",
+      "ncra /nerc/n02/n02/chbull/RawData/NEMO/new_temp/20180901_New_AUS_doughnuts/nemo_cordex24_DFLX_VERAIW002innW/meh/cordex24_CURLFX-FLUXFCE_3h_20090101_20091231_grid_V_2D.nc /nerc/n02/n02/chbull/RawData/NEMO/new_temp/20180901_New_AUS_doughnuts/nemo_cordex24_DFLX_VERAIW002innW/meh/cordex24_CURLFX-meh2.nc &",
+      "",
+      "wait"
+    ]
+  },
+  "jas_pbs": {
+    "prefix": "jas_pbs",
+    "body": [
+      "#!/bin/bash",
+      "#BSUB -q short-serial",
+      "#BSUB -o %J.out",
+      "#BSUB -e %J.err",
+      "#BSUB -W 04:00",
+      "",
+      "export PYTHONPATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/pkgs;export PATH=/group_workspaces/jasmin2/bas_pog/chbull/anaconda2/bin:$PATH;source activate root",
+      "",
+      "",
+      "cd /home/users/chbull/repos/nemo_wed_analysis/wed/diagnostics",
+      "",
+      "echo \"Running hostname\"",
+      "python mk_tdiogs_timeseries.py",
+      "#to submit bsub < demo.bsub",
+      "#more info https://help.jasmin.ac.uk/article/113-submit-jobs"
+    ]
+  }
+}

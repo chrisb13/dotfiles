@@ -1,0 +1,157 @@
+{
+  "bash_example": {
+    "prefix": "bash_example",
+    "body": [
+      "{% highlight bash %}",
+      "{% endhighlight %}"
+    ]
+  },
+  "python_example": {
+    "prefix": "python_example",
+    "body": [
+      "{% highlight python %}",
+      "{% endhighlight %}"
+    ]
+  },
+  "markdown_examples": {
+    "prefix": "markdown_examples",
+    "body": [
+      "{% highlight bash %}",
+      "{% endhighlight %}",
+      "`inline_code`",
+      "",
+      "This is a list:",
+      "",
+      "* GYRE_5d_00010101_00011230_grid_*.nc",
+      "* GYRE_5d_00010101_00011230_grid_*.nc",
+      "* GYRE_5d_00010101_00011230_grid_*.nc",
+      "* GYRE_5d_00010101_00011230_grid_*.nc",
+      "",
+      "",
+      "This is a numbered list:",
+      "",
+      "1. GYRE_5d_00010101_00011230_grid_*.nc",
+      "1. GYRE_5d_00010101_00011230_grid_*.nc",
+      "1. GYRE_5d_00010101_00011230_grid_*.nc",
+      "1. GYRE_5d_00010101_00011230_grid_*.nc",
+      "",
+      "# H1",
+      "",
+      "## H2",
+      "",
+      "### H3",
+      "",
+      "#### H4",
+      "",
+      "##### H5",
+      "",
+      "###### H6",
+      "",
+      "| Tables        | Are           | Cool  |",
+      "| ------------- |:-------------:| -----:|",
+      "| col 3 is      | right-aligned | $1600 |",
+      "| col 2 is      | centered      |   $12 |",
+      "| zebra stripes | are neat      |    $1 |",
+      "",
+      "> Blockquotes are very handy in email to emulate reply text.",
+      "> This line is part of the same quote.",
+      "",
+      "Box text",
+      "{: .notice}"
+    ]
+  },
+  "sec": {
+    "prefix": "sec",
+    "description": "Section",
+    "body": [
+      "# ${1:Section Name} #",
+      "$0"
+    ]
+  },
+  "ssec": {
+    "prefix": "ssec",
+    "description": "Sub Section",
+    "body": [
+      "## ${1:Section Name} ##",
+      "$0"
+    ]
+  },
+  "sssec": {
+    "prefix": "sssec",
+    "description": "SubSub Section",
+    "body": [
+      "### ${1:Section Name} ###",
+      "$0"
+    ]
+  },
+  "par": {
+    "prefix": "par",
+    "description": "Paragraph",
+    "body": [
+      "#### ${1:Paragraph Name} ####",
+      "$0"
+    ]
+  },
+  "spar": {
+    "prefix": "spar",
+    "description": "Paragraph",
+    "body": [
+      "##### ${1:Paragraph Name} #####",
+      "$0"
+    ]
+  },
+  "link": {
+    "prefix": "link",
+    "description": "Link to something",
+    "body": [
+      "[${1:${TM_SELECTED_TEXT:Text}}](${3:http://${2:www.url.com}})$0"
+    ]
+  },
+  "img": {
+    "prefix": "img",
+    "description": "Image",
+    "body": [
+      "![${1:pic alt}](${2:path}${3/.+/ \"/}${3:opt title}${3/.+/\"/})$0"
+    ]
+  },
+  "ilc": {
+    "prefix": "ilc",
+    "description": "Inline Code",
+    "body": [
+      "\\`$1\\`$0"
+    ]
+  },
+  "cbl": {
+    "prefix": "cbl",
+    "description": "Codeblock",
+    "body": [
+      "\\`\\`\\`",
+      "$1",
+      "\\`\\`\\`",
+      "$0"
+    ]
+  },
+  "refl": {
+    "prefix": "refl",
+    "description": "Reference Link",
+    "body": [
+      "[${1:${TM_SELECTED_TEXT:Text}}][${2:id}]$0",
+      "",
+      "[$2]:${4:http://${3:www.url.com}} \"${5:$4}\""
+    ]
+  },
+  "fnt": {
+    "prefix": "fnt",
+    "description": "Footnote",
+    "body": [
+      "[^${1:${TM_SELECTED_TEXT:Footnote}}]$0",
+      "",
+      "[^$1]:${2:Text}"
+    ]
+  },
+  "\"tb(\\d+x\\d+)\"": {
+    "prefix": "\"tb(\\d+x\\d+)\"",
+    "description": "tb(\\d+x\\d+)",
+    "body": []
+  }
+}
