@@ -9,7 +9,7 @@ CDPATH=$CDPATH:~/
 #}
 
 #https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/
-#PROMPT_COMMAND='PS1="\[\033[0;33m\][\!]\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\u.\h: \`if [[ `pwd|wc -c|tr -d " "` > 18 ]]; then echo "\\W"; else echo "\\w"; fi\`]\$\[\033[0m\] "; echo -ne "\033]0;`hostname -s`:`pwd`\007"'
+PROMPT_COMMAND='PS1="\[\033[0;33m\][\!]\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\u.\h: \`if [[ `pwd|wc -c|tr -d " "` > 18 ]]; then echo "\\W"; else echo "\\w"; fi\`]\$\[\033[0m\] "; echo -ne "\033]0;`hostname -s`:`pwd`\007"'
 
 #cb added
 set -o vi
@@ -54,7 +54,7 @@ alias open='xdg-open '
 
 #vim
 #alias vi='vim -O'
-alias nvi='/home/chris/nvim.appimage '
+alias nvi='nvim '
 #alias cdo="cdo -C"
 alias feh='feh --scale-down --auto-zoom '
 alias hvim='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
@@ -64,7 +64,8 @@ alias ncivi='vim scp://cyb561@raijin.nci.org.au//home/561/cyb561/repos/scripts_n
 alias ncicdftools='vim scp://cyb561@raijin.nci.org.au//short/e14/cyb561/cdftools3/'
 alias hdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias sniped='vi ~/.vim/UltiSnips/python.snippets'
-alias v='cd ~/.vim/'
+alias v='cd ~/.dotfiles/nvim'
+alias dot='cd ~/.dotfiles/'
 alias updatesubmodvim='git submodule foreach git pull origin master'
 alias getnewsubmodsvim='git submodule update --init --recursive'
 
@@ -446,11 +447,12 @@ case $(hostname) in
         
         ;;
     SB2Vbox|narky-virtualbox)
-        #virtual box on surface book 2
+        #virtual box on home pc / work
         #Fixes cliipboard issue. seems to be something about “bracketed paste mode”
         #alias fixclip="echo 'printf "\e[?2004l"'"
         printf "\e[?2004l"
-        alias r='cd ~/VBoxSHARED4/repos'
+        #alias r='cd ~/VBoxSHARED4/repos'
+        alias r='cd /home/narky/VBoxSHARED/repos'
         alias out='cd /home/chris/VBoxSHARED4/nemo_output'
         alias rr="lxterminal -e bash -c 'cd /home/chris/VBoxSHARED4/repos;bash'"
         alias ajr='cd ~/VBoxSHARED4/repos/nemo_wed_analysis/ajtoy/diagnostics'
@@ -461,7 +463,7 @@ case $(hostname) in
         alias ps2='export PYTHONPATH=/home/chris/anaconda2/pkgs;export PATH=/home/chris/anaconda2/bin:$PATH;source activate root'
         alias ps='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
-        alias h='cd_;lxterminal'  
+        alias h='cd_;ghostty &'  
 
         alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/;sudo mount -t vboxsf VBoxSHARED2 ~/VBoxSHARED2/;sudo mount -t vboxsf VBoxSHARED3 ~/VBoxSHARED3/'
         alias vb='cd /home/chris/VBoxSHARED4'
