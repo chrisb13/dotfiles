@@ -64,8 +64,8 @@ alias ncivi='vim scp://cyb561@raijin.nci.org.au//home/561/cyb561/repos/scripts_n
 alias ncicdftools='vim scp://cyb561@raijin.nci.org.au//short/e14/cyb561/cdftools3/'
 alias hdrive='vim scp://z3457920@squall.ccrc.unsw.edu.au//home/z3457920/hdrive/repos/cms_analysis/'
 alias sniped='vi ~/.vim/UltiSnips/python.snippets'
-alias v='cd ~/.dotfiles/nvim'
-alias dot='cd ~/.dotfiles/'
+alias v='cd ~/dotfiles/nvim'
+alias dot='cd ~/dotfiles/'
 alias updatesubmodvim='git submodule foreach git pull origin master'
 alias getnewsubmodsvim='git submodule update --init --recursive'
 
