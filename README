@@ -18,6 +18,8 @@ ln -s ~/dotfiles/dircolors_light ~/.dircolors OR ln -s ~/.vim/dircolors_dark ~/.
 ln -s ~/dotfiles/lxterminal ~/.config/lxterminal/lxterminal.conf
 ln -s ~/dotfiles/screenrc ~/.screenrc
 
+ln -s ~/dotfiles/gh_dash_config.yml ~/.config/gh-dash/config.yml
+
 Set up NVIM:
 #from charles for installing on Gadi
 #curl -fsSL https://pixi.sh/install.sh | sh
