@@ -7,6 +7,15 @@ Host garrett.unn.ac.uk
     StrictHostKeyChecking no
     UserKnownHostsFile=/dev/null
 
+Host setonix
+    Hostname setonix.pawsey.org.au
+    User cbull
+    ForwardX11 true
+    ForwardX11Trusted yes
+    IdentityFile ~/.ssh/id_rsa
+    AddKeysToAgent yes
+    ForwardAgent yes
+
 Host gadi
     Hostname gadi.nci.org.au
     User cyb561
