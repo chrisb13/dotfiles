@@ -16,6 +16,15 @@ Host setonix
     AddKeysToAgent yes
     ForwardAgent yes
 
+Host setonix2
+    Hostname setonix-02.pawsey.org.au
+    User cbull
+    ForwardX11 true
+    ForwardX11Trusted yes
+    IdentityFile ~/.ssh/id_rsa
+    AddKeysToAgent yes
+    ForwardAgent yes
+
 Host gadi
     Hostname gadi.nci.org.au
     User cyb561

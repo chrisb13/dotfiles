@@ -464,6 +464,7 @@ case $(hostname) in
         alias ps='export PYTHONPATH=/home/chris/anaconda3/pkgs;export PATH=/home/chris/anaconda3/bin:$PATH;source activate root'
         alias jekyllgo='bundle exec jekyll build; bundle exec jekyll serve --watch'  
         alias h='cd_;ghostty &'  
+        alias fixclip='sudo VBoxClient --clipboard'
 
         alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/;sudo mount -t vboxsf VBoxSHARED2 ~/VBoxSHARED2/;sudo mount -t vboxsf VBoxSHARED3 ~/VBoxSHARED3/'
         alias vb='cd /home/chris/VBoxSHARED4'
