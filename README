@@ -18,6 +18,10 @@ ln -s ~/dotfiles/dircolors_light ~/.dircolors OR ln -s ~/.vim/dircolors_dark ~/.
 ln -s ~/dotfiles/lxterminal ~/.config/lxterminal/lxterminal.conf
 ln -s ~/dotfiles/screenrc ~/.screenrc
 
+#for gh
+ln -s /home/narky/dotfiles/gh/config.yml /home/narky/.config/gh/config.yml
+ln -s /home/narky/dotfiles/gh/hosts.yml /home/narky/.config/gh/hosts.yml
+
 ln -s ~/dotfiles/gh_dash_config.yml ~/.config/gh-dash/config.yml
 
 Set up NVIM:

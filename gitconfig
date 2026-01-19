@@ -1,6 +1,7 @@
 [user]
 	email = 5499680+chrisb13@users.noreply.github.com
 	name = Christopher Bull 
+	signingkey = /home/narky/.ssh/id_rsa.pub
 [diff]
 	tool = vimdiff
 [difftool]
@@ -27,5 +28,13 @@
 [push]
 	default = simple
 [safe]
-	directory = /g/data/ol01/pjb581/MOM6-examples
-	directory = /g/data/ol01/pjb581/MOM6-examples/src/MOM6
+	directory = *
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

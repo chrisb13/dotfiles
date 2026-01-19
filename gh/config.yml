@@ -1,0 +1,26 @@
+# The current version of the config schema
+version: 1
+# What protocol to use when performing git operations. Supported values: ssh, https
+git_protocol: https
+# What editor gh should run when creating issues, pull requests, etc. If blank, will refer to environment.
+editor: vim
+# When to interactively prompt. This is a global config that cannot be overridden by hostname. Supported values: enabled, disabled
+prompt: enabled
+# A pager program to send command output to, e.g. "less". If blank, will refer to environment. Set the value to "cat" to disable the pager.
+pager:
+# Aliases allow you to create nicknames for gh commands
+aliases: 
+    c:     '!gh repo clone access-nri/$1 && cd $1 && gh repo set-default access-nri/$1'
+    #chi:   '!gh repo clone access-nri/$1 && cd $1 && pwd;ls -al . && gh repo set-default access-nri/$1'
+    #ch:    '!set -x; gh repo clone access-nri/$1 && cd $1 && gh repo set-default access-nri/$1'
+    cfork: '!gh repo clone $1 && cd ${1#*/} && gh repo set-default $1'
+    co: pr checkout
+    homework: issue list --assignee @me
+    dev: issue develop $1 --checkout --name cbull/$1-$2
+    ic: '!GIT_EDITOR="nvim" gh issue create -e $@'
+    cnri: repo clone access-nri/"$1"
+    cme: repo clone chrisb13/"$1"
+# The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
+http_unix_socket:
+# What web browser gh should use when opening URLs. If blank, will refer to environment.
+browser:
