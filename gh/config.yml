@@ -10,7 +10,7 @@ prompt: enabled
 pager:
 # Aliases allow you to create nicknames for gh commands
 aliases: 
-    c:     '!gh repo clone access-nri/$1 && cd $1 && gh repo set-default access-nri/$1'
+    c:     '!gh repo clone access-nri/$1 -- --recursive && cd $1 && gh repo set-default access-nri/$1'
     #chi:   '!gh repo clone access-nri/$1 && cd $1 && pwd;ls -al . && gh repo set-default access-nri/$1'
     #ch:    '!set -x; gh repo clone access-nri/$1 && cd $1 && gh repo set-default access-nri/$1'
     cfork: '!gh repo clone $1 && cd ${1#*/} && gh repo set-default $1'
