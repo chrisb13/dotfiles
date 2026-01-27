@@ -185,6 +185,42 @@ function pushit() #bash command to push file into hdrive at UNSW
     rsync -avz $* z3457920@squall.ccrc.unsw.edu.au:/home/z3457920/hdrive/
 }
 
+
+function payuexp()
+{
+    if [[ ( $# -eq 0 ) || ( $1 == "--help" ) || ( $1 == "-h" ) ]] ; then
+        echo "Usage:   payuexp BRANCH."
+        echo "Purpose: clone an access-om3-config and path to the folder on Gadi (NCI)."
+        echo "       "
+        echo "Mandatory arguments: "
+        echo "BRANCH:   branch on om3-configs we'll clone"
+        echo "This:"
+        echo "  payuexp dev-MC_100km_jra_ryf"
+        echo "       "
+        echo "Becomes:"
+        echo "  payu clone -b expt -B dev-MC_100km_jra_ryf  https://github.com/ACCESS-NRI/access-om3-configs dev-MC_100km_jra_ryf"
+        echo "       "
+        echo "To make payuexp available in your shell, copy the function into your shell startup file, such as '. ~/.bashrc' for bash then reload your environment by 'source ~/.bashrc'"
+        return 1
+    fi
+    echo "We are payu cloning branch "$1
+    echo ""
+    module purge
+    module use /g/data/vk83/modules
+    module load payu
+    module list
+    work_dir=/g/data/$PROJECT/$USER/access-om3-runs
+    mkdir -p $work_dir
+    cd $work_dir
+    payu clone -b expt -B $1 https://github.com/ACCESS-NRI/access-om3-configs $1
+    echo ""
+    cd $1
+    CWD="$(pwd)"
+    echo "Experiment folder is: "$CWD
+    echo ""
+}
+
+
 function ncipushshort() #bash command to push file(s) into short on NCI
 {
     rsync -avPS $* cyb561@raijin.nci.org.au:/short/e14/cyb561/
