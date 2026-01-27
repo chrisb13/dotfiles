@@ -54,7 +54,7 @@ Host oswald
     ProxyCommand ssh -W %h:%p -p 4219 prx_lhly6@garrett.unn.ac.uk 2> /dev/null
     ServerAliveInterval 240
 
-    Host cairns
+Host cairns
     User lhly6
     IdentityFile /home/chris/.ssh/id_rsa
     HostName     cairns.campus.unn.ac.uk
@@ -99,7 +99,7 @@ Host arc2
   #HostName login-4c.archer2.ac.uk
   User chbull
   #ProxyCommand ssh chbull@bas -XCYW %h:%p
-  IdentityFile ~/.ssh/id_rsa_arc2
+  IdentityFile ~/.ssh/id_rsa
   ControlMaster auto
   ControlPersist yes
   ControlPath ~/.ssh/archer2-sockets/%r

@@ -467,7 +467,12 @@ case $(hostname) in
         alias fixclip='sudo VBoxClient --clipboard'
 
         alias vboxmount='sudo mount -t vboxsf VBoxSHARED ~/VBoxSHARED/;sudo mount -t vboxsf VBoxSHARED2 ~/VBoxSHARED2/;sudo mount -t vboxsf VBoxSHARED3 ~/VBoxSHARED3/'
-        alias vb='cd /home/chris/VBoxSHARED4'
+        #requires me to enter password
+        #alias ds1mount='sudo mount -t cifs -o username=admin //192.168.50.250/share1/VBoxSHARED4 /home/narky/VBoxSHARED4'
+        #this does not (?!)
+        alias ds1mount='sudo mount -t nfs 192.168.50.250:/share1/VBoxSHARED4 /home/narky/VBoxSHARED4'
+        
+        alias vb='cd /home/narky/VBoxSHARED4'
         alias vb1='cd /home/chris/VBoxSHARED'
         alias vb2='cd /home/chris/VBoxSHARED2'
         alias vb3='cd /home/chris/VBoxSHARED3'
