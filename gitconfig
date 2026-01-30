@@ -1,7 +1,7 @@
 [user]
 	email = 5499680+chrisb13@users.noreply.github.com
 	name = Christopher Bull 
-	signingkey = /home/narky/.ssh/id_rsa.pub
+	signingkey = ~/.ssh/id_rsa.pub
 [diff]
 	tool = vimdiff
 [difftool]
