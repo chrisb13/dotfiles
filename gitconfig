@@ -38,3 +38,17 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[diff "jupyternotebook"]
+	command = git-nbdiffdriver diff
+[merge "jupyternotebook"]
+	driver = git-nbmergedriver merge %O %A %B %L %P
+	name = jupyter notebook merge driver
+[difftool "nbdime"]
+	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+[mergetool "nbdime"]
+	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool]
+	prompt = false
+[gpg "ssh"]
+	program = /g/data/vk83/apps/spack/0.22/release/linux-rocky8-x86_64_v4/gcc-14.1.0/openssh-9.8p1-srryuoi3qbdh2jo6kptsqodjz3fj7e64/bin/ssh-keygen
+	allowedSignersFile = /home/561/cyb561/.config/git/allowed_signers
