@@ -181,6 +181,8 @@ case $(hostname) in
         alias buildstuff='echo "clearing modules, loading the buildy ones..";module purge; module load openmpi/4.1.4; module load intel-compiler/2021.8.0; module load netcdf/4.9.2; module list'
         alias rw1='cd /g/data/tm70/cyb561'
         alias r='cd /home/561/cyb561/repos'
+
+        export PATH="$HOME/.local/bin:$PATH"
         ;;
     bslscihub-ws1|bslscihub-ws2|bslscihub-ws3|bslscihub-ws4|bslceng.nerc-bas.ac.uk|bslcenh.nerc-bas.ac.uk|bslcenb|bslcenc)
         alias rw1='cd /data/oceans_output/shelf/chbull'

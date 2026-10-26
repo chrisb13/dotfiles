@@ -17,6 +17,8 @@ ln -s ~/dotfiles/i3config ~/.i3/config
 ln -s ~/dotfiles/dircolors_light ~/.dircolors OR ln -s ~/.vim/dircolors_dark ~/.dircolors
 ln -s ~/dotfiles/lxterminal ~/.config/lxterminal/lxterminal.conf
 ln -s ~/dotfiles/screenrc ~/.screenrc
+ln -s ~/dotfiles/claude_settings_gadi.json ~/.claude/settings.json
+ln -s ~/dotfiles/claude_md_gadi.md ~/.claude/CLAUDE.md
 
 #for gh
 ln -s ~/dotfiles/gh/config.yml ~/.config/gh/config.yml

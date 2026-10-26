@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm /g/data/tm70/cyb561/repos/claude/*)",
+      "Bash(rmdir /g/data/tm70/cyb561/repos/claude/*)"
+    ],
+    "ask": [
+      "Bash(git push:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(rm -fr:*)",
+      "Bash(rm -r:*)",
+      "Bash(rm *..*)",
+      "Bash(shred:*)",
+      "Bash(git clean:*)",
+      "Bash(find:*-delete*)",
+      "Bash(rsync:*--delete*)",
+      "Bash(git commit:*--no-gpg-sign*)",
+      "Edit(//g/data/ol01/**)",
+      "Write(//g/data/ol01/**)",
+      "Edit(//g/data/tm70/cyb561/access-om3-runs/**)",
+      "Write(//g/data/tm70/cyb561/access-om3-runs/**)"
+    ]
+  },
+  "theme": "dark",
+  "agentPushNotifEnabled": true
+}
