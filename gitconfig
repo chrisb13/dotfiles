@@ -14,6 +14,7 @@
     lgs = log --stat
     d = difftool
     diffc = diff --cached
+	ol = log --oneline --graph
 
 [color]
 	ui = auto
@@ -49,6 +50,3 @@
 	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool]
 	prompt = false
-[gpg "ssh"]
-	program = /g/data/vk83/apps/spack/0.22/release/linux-rocky8-x86_64_v4/gcc-14.1.0/openssh-9.8p1-srryuoi3qbdh2jo6kptsqodjz3fj7e64/bin/ssh-keygen
-	allowedSignersFile = /home/561/cyb561/.config/git/allowed_signers
