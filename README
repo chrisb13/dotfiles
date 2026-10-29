@@ -19,6 +19,7 @@ ln -s ~/dotfiles/lxterminal ~/.config/lxterminal/lxterminal.conf
 ln -s ~/dotfiles/screenrc ~/.screenrc
 ln -s ~/dotfiles/claude_settings_gadi.json ~/.claude/settings.json
 ln -s ~/dotfiles/claude_md_gadi.md ~/.claude/CLAUDE.md
+ln -s ~/dotfiles/claude_md_home.md ~/.claude/CLAUDE.md
 
 #for gh
 ln -s ~/dotfiles/gh/config.yml ~/.config/gh/config.yml
